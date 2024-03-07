@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Hamburguer com JavaScript</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Para esconder a barra de rolagem horizontal ao abrir o menu */
+        }
+
+        .menu-container {
+            position: relative;
+        }
+
+        #menu-btn {
+            display: none;
+        }
+
+        .menu-btn {
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Inicialmente fora da tela */
+            width: 250px;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            transition: 0.4s;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .menu ul li {
+            margin-bottom: 15px;
+        }
+
+        #menu-btn:checked + .menu-btn span {
+            background-color: transparent;
+        }
+
+        #menu-btn:checked + .menu-btn span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        #menu-btn:checked + .menu-btn span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #menu-btn:checked + .menu-btn span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        #menu-btn:checked + .menu {
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <input type="checkbox" id="menu-btn">
+        <label class="menu-btn" for="menu-btn"><span></span><span></span><span></span></label>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <div id="content">
+            <h1>Conteúdo Principal</h1>
+            <p>Seu conteúdo principal aqui.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('change', function() {
+            var menu = document.querySelector('.menu');
+            if (this.checked) {
+                menu.style.left = '0';
+            } else {
+                menu.style.left = '-250px';
+            }
+        });
+    </script>
+
+</body>
+</html>
