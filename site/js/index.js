@@ -69,16 +69,3 @@ function fecharMenu(){
         });
         fecharMenu()
     }
-
-    
-    function scrollToSection2(sectionId) {
-        abrirHome1();
-        setTimeout(1200, function(){
-            var section = document.getElementById(sectionId);
-            window.scrollTo({
-                top: section.offsetTop,
-                behavior: 'smooth'
-            });
-            fecharMenu()
-        });
-    }
