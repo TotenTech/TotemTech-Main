@@ -33,7 +33,6 @@ function abrirHome3(){
 
 // Menu Lateral 
 document.getElementById('menu-btn').addEventListener('change', function() {
-    console.log("Banana")
     var menu = document.querySelector('.itensNavMobile');
     if (this.checked) {
         menu.style.left = '0';
@@ -43,12 +42,11 @@ document.getElementById('menu-btn').addEventListener('change', function() {
 });
 
 document.getElementById('menu-btn').addEventListener('change', function() {
-    console.log("Banana")
     var menu = document.querySelector('.itensNavMobile2');
     if (this.checked) {
         menu.style.left = '0';
     } else {
-        menu.style.left = '-300px';
+        menu.style.left = '-500px';
     }
 });
 
