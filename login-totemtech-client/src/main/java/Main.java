@@ -1,6 +1,5 @@
 import controller.UserController;
 import model.User;
-
 import java.util.Scanner;
 
 public class Main {
@@ -28,12 +27,11 @@ public class Main {
                 case 1 -> entrar();
                 case 2 -> cadastrar();
                 case 3 -> System.exit(0);
-                case 4 -> entrar();
                 default -> {
                     System.out.println("Escolha uma opção válida!");
                 }
             }
-        } while (opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4);
+        } while (opcao != 1 && opcao != 2 && opcao != 3);
         input.close();
     }
 

@@ -1,8 +1,6 @@
 package controller;
-
 import model.User;
 import model.UserModel;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
