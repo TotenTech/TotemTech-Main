@@ -8,18 +8,16 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            overflow-x: hidden; /* Para esconder a barra de rolagem horizontal ao abrir o menu */
+            overflow-x: hidden; /* Para esconder a barra de rolagem horizontal ao abrir o itensNavMobile */
         }
 
-        .menu-container {
-            position: relative;
-        }
+    
 
-        #menu-btn {
+        #itensNavMobile-btn {
             display: none;
         }
 
-        .menu-btn {
+        .itensNavMobile-btn {
             cursor: pointer;
             position: fixed;
             top: 20px;
@@ -27,7 +25,7 @@
             z-index: 2;
         }
 
-        .menu-btn span {
+        .itensNavMobile-btn span {
             display: block;
             width: 30px;
             height: 3px;
@@ -36,7 +34,7 @@
             transition: 0.4s;
         }
 
-        .menu {
+        .itensNavMobile {
             position: fixed;
             top: 0;
             left: -250px; /* Inicialmente fora da tela */
@@ -48,44 +46,44 @@
             transition: 0.4s;
         }
 
-        .menu ul {
+        .itensNavMobile ul {
             list-style: none;
             padding: 20px;
             text-align: center;
             margin: 0;
         }
 
-        .menu ul li {
+        .itensNavMobile ul li {
             margin-bottom: 15px;
         }
 
-        #menu-btn:checked + .menu-btn span {
+        #itensNavMobile-btn:checked + .itensNavMobile-btn span {
             background-color: transparent;
         }
 
-        #menu-btn:checked + .menu-btn span:nth-child(1) {
+        #itensNavMobile-btn:checked + .itensNavMobile-btn span:nth-child(1) {
             transform: rotate(-45deg) translate(-5px, 6px);
         }
 
-        #menu-btn:checked + .menu-btn span:nth-child(2) {
+        #itensNavMobile-btn:checked + .itensNavMobile-btn span:nth-child(2) {
             opacity: 0;
         }
 
-        #menu-btn:checked + .menu-btn span:nth-child(3) {
+        #itensNavMobile-btn:checked + .itensNavMobile-btn span:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
 
-        #menu-btn:checked + .menu {
+        #itensNavMobile-btn:checked + .itensNavMobile {
             left: 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-container">
-        <input type="checkbox" id="menu-btn">
-        <label class="menu-btn" for="menu-btn"><span></span><span></span><span></span></label>
-        <div class="menu">
+    
+        <input type="checkbox" id="itensNavMobile-btn">
+        <label class="itensNavMobile-btn" for="itensNavMobile-btn"><span></span><span></span><span></span></label>
+        <div class="itensNavMobile">
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Sobre</a></li>
@@ -99,15 +97,15 @@
             <h1>Conteúdo Principal</h1>
             <p>Seu conteúdo principal aqui.</p>
         </div>
-    </div>
+    
 
     <script>
-        document.getElementById('menu-btn').addEventListener('change', function() {
-            var menu = document.querySelector('.menu');
+        document.getElementById('itensNavMobile-btn').addEventListener('change', function() {
+            var itensNavMobile = document.querySelector('.itensNavMobile');
             if (this.checked) {
-                menu.style.left = '0';
+                itensNavMobile.style.left = '0';
             } else {
-                menu.style.left = '-250px';
+                itensNavMobile.style.left = '-250px';
             }
         });
     </script>
