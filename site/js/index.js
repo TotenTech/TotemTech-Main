@@ -32,13 +32,53 @@ function abrirHome3(){
 }
 
 // Menu Lateral 
-function abrirMenu() {
-    var menuMobile = document.querySelector('.itensNavMobile');
-    if (menuMobile.classList.contains('open')) {
-        menuMobile.classList.remove('open');
-       
+document.getElementById('menu-btn').addEventListener('change', function() {
+    console.log("Banana")
+    var menu = document.querySelector('.itensNavMobile');
+    if (this.checked) {
+        menu.style.left = '0';
     } else {
-        menuMobile.classList.add('open');
-       
+        menu.style.left = '-300px';
     }
-}
+});
+
+document.getElementById('menu-btn').addEventListener('change', function() {
+    console.log("Banana")
+    var menu = document.querySelector('.itensNavMobile2');
+    if (this.checked) {
+        menu.style.left = '0';
+    } else {
+        menu.style.left = '-300px';
+    }
+});
+
+function fecharMenu(){
+        var menu = document.querySelector('.itensNavMobile');
+        if (this.checked) {
+            menu.style.left = '0';
+        } else {
+            menu.style.left = '-300px'
+        }
+    }
+
+    function scrollToSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        window.scrollTo({
+            top: section.offsetTop,
+            behavior: 'smooth'
+        });
+        fecharMenu()
+    }
+
+    
+    function scrollToSection2(sectionId) {
+        abrirHome1();
+        setTimeout(1200, function(){
+            var section = document.getElementById(sectionId);
+            window.scrollTo({
+                top: section.offsetTop,
+                behavior: 'smooth'
+            });
+            fecharMenu()
+        });
+    }
