@@ -3,6 +3,7 @@
     margin: 0%;
     box-shadow: none;
     position: relative;
+    font-family: "Poppins", sans-serif;
 }
 
 .telaPrincipal {
@@ -54,7 +55,7 @@
 .itensNavMobile {
     position: fixed;
     top: 0;
-    left: -300px;
+    left: -500px;
     width: 50%;
     height: 100vh;
     background-color: rgba(154, 223, 238, 0.9);
@@ -82,7 +83,7 @@
     width: 100%;
     justify-content: center;
     margin: 6% 0;
-    font-size: 24px;
+    font-size: 18px;
     text-decoration: none;
     font-weight: 900;
 }
@@ -152,7 +153,7 @@
     align-items: center;
     text-align: center;
     margin: 2% 3%;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .telaPrincipal .textoComum b {
@@ -277,7 +278,7 @@
     width: 100%;
     justify-content: center;
     margin: 6% 0;
-    font-size: 24px;
+    font-size: 18px;
     text-decoration: none;
     font-weight: 900;
 }
