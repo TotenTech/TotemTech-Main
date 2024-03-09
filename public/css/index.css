@@ -7,7 +7,7 @@
 }
 
 .telaPrincipal {
-    background-color: white;
+    background-color: #E3E3DD;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -107,9 +107,6 @@
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-#menu-btn:checked+.itensNavMobile {
-    left: 0;
-}
 
 
 
@@ -139,6 +136,7 @@
     font-weight: 900;
     width: fit-content;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .telaPrincipal .navBar .login:hover {
@@ -152,7 +150,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 2% 3%;
+    margin: 0;
     font-size: 14px;
 }
 
@@ -197,7 +195,7 @@
     flex-direction: column;
     width: 90%;
     height: 40vh;
-    margin: 9% 0 10vh 0;
+    margin: 9% 0 15vh 0;
 }
 
 .telaPrincipal .table .linha {
@@ -214,29 +212,60 @@
     height: 100%;
 }
 
+.telaPrincipal .tableSolucoes {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 20vh;
+    margin: 0;
+    padding: 0%;
+}
 
+.telaPrincipal .tableSolucoes .linha{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 40%;
+    margin: 5% 0;
+}
+
+.telaPrincipal .tableSolucoes .linha .circulo01{
+    width: 28%;
+    height: fit-content;
+    background-color: #9ADFEE;
+    padding: 7% 1%;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.telaPrincipal .tableSolucoes .linha .circulo02{
+    width: 28%;
+    height: fit-content;
+    background-color: #D9D9D9;
+    padding: 6% 1%;
+    border-radius: 50%;
+    font-size: 12px;
+}
 
 
 
 
 
 .telaLogin {
-    background-color: #ffffff;
+    background-color: #E3E3DD;
     color: #000000;
     transition: 1s;
-    opacity: 0;
     width: 100%;
     height: 100vh;
     display: flex;
-    opacity: 0;
-    display: none;
+    opacity: 1;
     align-items: center;
     flex-direction: column;
     z-index: 1;
 }
 
 .telaLogin .navBar {
-    background-color: #ffffff;
+    background-color: #E3E3DD;
     height: 17vh;
     width: 100%;
     display: flex;
@@ -250,7 +279,7 @@
 .itensNavMobile2{
     position: fixed;
     top: 0;
-    left: -300px;
+    left: -500px;
     width: 50%;
     height: 100vh;
     background-color: rgba(154, 223, 238, 0.9);
@@ -299,6 +328,7 @@
     padding: 6%;
     font-size: 28px;
     font-weight: 900;
+    border-radius: 30px;
 }
 
 .telaLogin .form {
@@ -307,7 +337,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 15% 0 0 0;
+    margin: 25% 0 5% 0;
 }
 
 .telaLogin .form h2 {
@@ -356,6 +386,10 @@
     width: 40%;
     text-align: center;
     margin-top: 5%;
+}
+
+.telaLogin p a{
+    text-decoration: none;
 }
 
 .telaLogin p i {
