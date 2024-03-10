@@ -18,6 +18,18 @@ public class UserController {
         }
     }
 
+    public static Boolean buscarEmail(String email) throws Exception {
+        try {
+            if (UserModel.buscarEmail(email)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            throw new Exception("Exceção no controller", e);
+        }
+    }
+
     public static Boolean cadastrar(User usuario) throws Exception {
         try {
             if (UserModel.cadastrar(usuario)) {
@@ -37,6 +49,10 @@ public class UserController {
         Matcher matcher = pattern.matcher(email);
 
         return matcher.matches();
+    }
+
+    public static Boolean validarCodigoEmpresa(String codigo) throws Exception {
+        return UserModel.buscarCodigoEmpresa(codigo);
     }
 
     public static Boolean validarSenha(String senha, String confirmaSenha) {

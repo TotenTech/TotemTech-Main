@@ -46,7 +46,26 @@ public class Main {
             if (!UserController.validarEmail(inputEmail)) {
                 System.out.println("Insira um email válido");
             }
-        } while (!UserController.validarEmail(inputEmail));
+
+            if (UserController.buscarEmail(inputEmail)) {
+                int escolha;
+                do {
+                    System.out.println("""
+                        Já existe uma conta com este email
+                        Digite para escolher uma opção
+                        1-Fazer login | 2-Tentar novamente | 3-Sair""");
+                    escolha = input.nextInt();
+
+                    switch (escolha) {
+                        case 1 -> {
+                            entrar();
+                            return;
+                        }
+                        case 3 -> System.exit(0);
+                    }
+                } while (escolha != 1 && escolha != 2);
+            }
+        } while (!UserController.validarEmail(inputEmail) || UserController.buscarEmail(inputEmail));
 
         String inputSenha;
         String inputConfirmaSenha;
@@ -54,13 +73,23 @@ public class Main {
             System.out.print("Digite sua senha: ");
             inputSenha = input.nextLine();
 
-            System.out.println("Confirme sua senha: ");
+            System.out.print("Confirme sua senha: ");
             inputConfirmaSenha = input.nextLine();
 
             if (!UserController.validarSenha(inputSenha, inputConfirmaSenha)) {
                 System.out.println("As senhas devem ser iguais!");
             }
         } while (!UserController.validarSenha(inputSenha, inputConfirmaSenha));
+
+        String inputCodigoEmpresa;
+        do {
+            System.out.print("Digite o código da sua empresa: ");
+            inputCodigoEmpresa = input.nextLine();
+
+            if (!UserController.validarCodigoEmpresa(inputCodigoEmpresa)) {
+                System.out.println("Digite um código válido");
+            }
+        } while (!UserController.validarCodigoEmpresa(inputCodigoEmpresa));
 
         if (UserController.cadastrar(new User(inputEmail, inputSenha))) {
             System.out.println("""
@@ -69,7 +98,7 @@ public class Main {
 
             int opcao;
             do {
-                System.out.print("""
+                System.out.println("""
                         Digite o número equivalente para escolher uma opção
                         1-Fazer login || 2-Sair""");
 
@@ -124,7 +153,7 @@ public class Main {
                 System.out.println("""
                     Usuário não encontrado!
                     Digite o número equivalente para escolher uma opção
-                    1- Tentar novamente || 2-Cadastrar-se || 3-Sair""");
+                    1-Tentar novamente || 2-Cadastrar-se || 3-Sair""");
 
                 opcao = input.nextInt();
 
