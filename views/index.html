@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../public/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -14,10 +19,11 @@
 
             <!--Versão Mobile-->
             <input type="checkbox" id="menu-btn" class="menuBtn">
-            <label class="menu-btn" for="menu-btn"><span></span><span></span><span></span></label>
+            <label class="menu-btn" for="menu-btn"><span id="linha1"></span><span
+                    id="linha2"></span><span></span></label>
 
             <div>
-                <img src="../../imagens/logo.png" width="86px">
+                <img src="../public/img/logo.png" width="86px">
                 <h1 onclick="abrirHome1()">TOTEM TECH</h1>
             </div>
 
@@ -29,7 +35,7 @@
                 <li><a href="#clientes">Clientes</a></li>
                 <li><a href="#">Acionar Suporte</a></li>
             </ul>
-            <div class="login" onclick="abrirLogin1()">LOGIN</div>
+            <a class="login" href="../views/telaLogin.html">LOGIN</a>
         </div>
 
 
@@ -43,21 +49,19 @@
                 <li><a href="#" onclick="scrollToSection()">Acionar Suporte</a></li>
             </ul>
         </div>
-        <img src="../../imagens/totem2.png" height="320px">
+        <img src="../public/img/totem2.png" height="300px">
         <div class="textoComum">
             <b>O Melhor Suporte para o seu
-                Negócio</b><br>
+                Negócio</b>
             <p>Oferecemos suporte abrangente, incluindo manutenção preventiva, diagnóstico, atualizações de software,
                 reparos físicos e suporte remoto, adaptado às necessidades individuais de cada cliente,
-                independentemente do tamanho ou complexidade do sistema.</p><br>
+                independentemente do tamanho ou complexidade do sistema.</p>
         </div>
         <br>
         <h1 id="sobreNos">Sobre Nós</h1>
         <br>
-
-        <img src="../../imagens/totem-mc.jpg " width="90%">
+        <img src="../public/img/totem-mc.jpg " width="90%">
         <br>
-
         <div class="textoComum">
             Na Totem Tech, nos especializamos em fornecer suporte técnico para totens de autoatendimento. Com uma equipe
             altamente qualificada e comprometida, estamos prontos para resolver qualquer problema, garantindo a operação
@@ -70,22 +74,30 @@
         <br>
         <h1 id="nossasSolucoes">Nossas Soluções</h1>
         <br>
-        <img src="../../imagens/totem-pedido.webp" width="90%">
+        <img src="../public/img/totem-pedido.webp" width="80%">
         <br>
         <div class="textoComum">
             Nossos serviços de suporte abrangem uma ampla: gama de áreas:<br>
-            - Manutenção preventiva<br>
-            - Diagnóstico de problemas<br>
-            - Atualizações de software<br>
-            - Suporte remoto.<br>
-            Não importa o tamanho ou a complexidade do seu sistema de autoatendimento, estamos preparados para oferecer
-            soluções sob medida que atendam às suas necessidades específicas.
+
+            <div class="tableSolucoes">
+                <div class="linha">
+                    <div class="circulo01">Manutenção Preventiva</div>
+                    <div class="circulo02">Diagnóstico De Problemas</div>
+                </div>
+                <div class="linha">
+                    <div class="circulo02">Suporte Remoto</div>
+                    <div class="circulo01">Atualizações De Software</div>
+                </div>
+            </div>
+
         </div>
         <br>
+        <br>
+        <br>
         <div class="botaoCadastro">Cadastre-se</div>
-        <br><br><br>
+        <br><br>
         <h1 id="clientes"> Clientes</h1>
-        <br><br><br>
+        <br>
         <div class="textoComum">
             No coração do nosso negócio, a dedicação aos nossos clientes é a pedra angular que molda a experiência única
             que oferecemos. Estamos empenhados em proporcionar não apenas soluções inovadoras de totem, mas também um
@@ -93,68 +105,20 @@
         </div>
         <div class="table">
             <div class="linha">
-                <div><img src="../../imagens/mcdonalds.png" height="100%"></div>
-                <div><img src="../../imagens/burguer-king.png" height="100%"></div>
+                <div><img src="../public/img/mcdonalds.png" height="100%"></div>
+                <div><img src="../public/img/burguer-king.png" height="100%"></div>
             </div>
             <div class="linha">
-                <div><img src="../../imagens/popeyes.png" height="100%"></div>
-                <div><img src="../../imagens/maddero.png" height="100%"></div>
+                <div><img src="../public/img/popeyes.png" height="100%"></div>
+                <div><img src="../public/img/maddero.png" height="100%"></div>
             </div>
         </div>
     </div>
 
 
 
-    <div class="telaLogin" id="divTelaLogin">
-        <div class="navBar">
 
-            <!--Versão Mobile-->
-            <input type="checkbox" id="menu-btn" class="menuBtn">
-            <label class="menu-btn" for="menu-btn"><span></span><span></span><span></span></label>
-
-            <!--Versão Desktop-->
-            <ul class="itensNav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#sobreNos">Sobre Nós</a></li>
-                <li><a href="#nossasSolucoes">Nossas soluções</a></li>
-                <li><a href="#clientes">Clientes</a></li>
-                <li><a href="#">Acionar Suporte</a></li>
-            </ul>
-
-            <img src="../../imagens/logo.png" width="86px" onclick="abrirHome1()">
-
-            <div class="mensagem">BEM VINDO </div>
-        </div>
-
-
-        <!--Versão Mobile-->
-        <div class="itensNavMobile2">
-            <ul>
-                <li><a href="#" onclick="abrirHome1()">Home</a></li>
-                <li><a href="#" onclick="abrirHome1()">Sobre Nós</a></li>
-                <li><a href="#" onclick="abrirHome1()">Nossas soluções</a></li>
-                <li><a href="#" onclick="abrirHome1()">Clientes</a></li>
-                <li><a href="#" onclick="abrirHome1()">Acionar Suporte</a></li>
-            </ul>
-        </div>
-
-
-
-        <div class="form">
-            <h2>Email</h2>
-            <input type="text" id="inputEmail" placeholder=" Digite o seu email">
-            <h2>Senha</h2>
-            <input type="text" id="inputSenha" placeholder=" Digite sua senha">
-            <h2>Código de Acesso</h2>
-            <input type="text" id="inputCodigo" placeholder=" Código">
-            <div><button onclick="">LOGIN</button></div>
-        </div>
-        <p><i>-- ou -- </i><br><br>
-            Ainda não possui uma conta?<br>
-            <i>Cadastre-se</i>
-        </p>
-    </div>
 </body>
-<script src="../js/index.js"></script>
+<script src="../public/js/index.js"></script>
 
 </html>
