@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | TotemTech</title>
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="telaPrincipal" id="divTelaPrincipal">
+
+        <div class="navBar">
+            <div class="perfil">
+                <span class="material-symbols-outlined">
+                    account_circle
+                </span>
+                <!-- <img src="./assets/dashboard/user-solid.svg" alt="" style="width: 35px;"> -->
+                <p>Olá, Nome</p>
+            </div>
+
+            <img src="../public/img/logo.png" width="75px">
+
+            <button class="btn-sair">Sair</button>
+        </div>
+
+        <div class="dashboard">
+            <div class="menu-lateral">
+
+                <ul class="menu">
+                    <li>
+                        <a href="#totens">Totens</a>
+                    </li>
+                    <li>
+                        <a href="">Histórico</a>
+                    </li>
+                    <li>
+                        <a href="">Usuário</a>
+                    </li>
+                    <li>
+                        <a href="">Estatísticas</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="homePage" id="totens">
+                <div class="square-totems">
+
+                    <div class="square-circles">
+                        <div class="square">TOTEM 1</div>
+                        <div class="circle" style="background-color: brown; cursor: pointer;" id="circle-legenda"></div>
+                    </div>
+
+                    <div class="square-circles">
+                        <div class="square">TOTEM 2</div>
+                        <div class="circle" style="background-color: brown;"></div>
+                    </div>
+
+                    <div class="square-circles">
+                        <div class="square">TOTEM 3</div>
+                        <div class="circle" style="background-color: burlywood;"></div>
+                    </div>
+
+                    <div class="square-circles">
+                        <div class="square">TOTEM 4</div>
+                        <div class="circle" style="background-color: green;"></div>
+                    </div>
+
+                </div>
+
+                <div class="legenda-help" id="legenda-help">
+                    <div class="legenda-cores">
+                        <div class="cores">
+                            <div class="circle" style="background-color: brown;"></div>
+                            <p>Crítico</p>
+                        </div>
+
+                        <div class="cores">
+                            <div class="circle" style="background-color: burlywood;"></div>
+                            <p>Alerta</p>
+                        </div>
+
+                        <div class="cores">
+                            <div class="circle" style="background-color: green;"></div>
+                            <p>Normal</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="grafico">
+                    <div class="filtro">
+                        <select name="" id="selecao-filtro">
+                            <option value="totem1">Totem 1</option>
+                            <option value="totem2">Totem 2</option>
+                        </select>
+                    </div>
+
+                    <div class="chart">
+                        <canvas id="graficoTotem"></canvas>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    //legenda cores - status totens
+    document.getElementById('circle-legenda').addEventListener('click', function () {
+        var helpLegenda = document.getElementById('legenda-help');
+        if (helpLegenda.style.display === 'none') {
+            helpLegenda.style.display = 'block';
+        } else {
+            helpLegenda.style.display = 'none';
+        }
+    });
+
+
+    // Dados de exemplo 
+    const dadosCPU = [40, 50, 60, 70, 65, 55, 45]; // Utilização da CPU (%)
+    const dadosRAM = [60, 65, 70, 75, 80, 85, 90]; // Uso de RAM (%)
+    const dadosDISCO = [5, 6, 7, 6, 5, 4, 3]; // Tempo médio de resposta do disco (ms)
+    const labels = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+
+    const ctx = document.getElementById('graficoTotem');
+
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'CPU',
+                data: dadosCPU,
+                borderColor: '#D6618F',
+                fill: false
+            }, {
+                label: 'RAM',
+                data: dadosRAM,
+                borderColor: '#F1931B',
+                fill: false
+            }, {
+                label: 'Disco',
+                data: dadosDISCO,
+                borderColor: '#888C46',
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
+            }
+        }
+    });
+
+</script>
