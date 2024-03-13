@@ -225,3 +225,75 @@
     border-radius: 15px;
     /* flex-direction: row; */
 }
+
+/* tela de perfil */
+.telaPerfil {
+    /* background-color: blue; */
+    width: 80%;
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.telaPerfil .perfil {
+    /* background-color: #637AA7; */
+    width: 20%; /* Definindo a largura */
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #679BC5;
+    border-radius: 10px;
+    color: #E3E3DD;
+}
+
+
+.telaPerfil .infos {
+    /* background-color: wheat; */
+    width: 60%; 
+    height: 90%; /* Ajustando a altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.telaPerfil .infos .campos {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+} 
+
+.telaPerfil .infos .campos b{
+    font-size: 14px;
+    color: #0d4a7c;
+}
+
+.telaPerfil .infos .campos p{
+    border: 1px solid #637AA7;
+    border-radius: 5px;
+    border-bottom: 2px solid #0d4a7c;
+    width: 50%;
+    color: gray;
+    font-size: 14px;
+}
+
+.telaPerfil .edicao {
+    width: 20%; /* Definindo a largura */
+    display: flex; /* Para centralizar o botão */
+    justify-content: center; /* Centralizando horizontalmente */
+    align-items: center; 
+}
+
+.telaPerfil .edicao button {
+    background-color: #0d4a7c;
+    color: #E3E3DD;
+    width: 50%;
+    border-radius: 5px;
+}
