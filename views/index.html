@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="../public/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -23,8 +23,8 @@
                     id="linha2"></span><span></span></label>
 
             <div>
-                <img src="/img/logo.png" width="86px">
-                <h1 onclick="abrirHome1()">TOTEM TECH</h1>
+                <img src="../public/img/logo.png" width="86px">
+                <h1 onclick="abrirHome1()" class="mensagem">TOTEM TECH</h1>
             </div>
 
             <!--Versão Desktop-->
@@ -35,7 +35,7 @@
                 <li><a href="#clientes">Clientes</a></li>
                 <li><a href="#">Acionar Suporte</a></li>
             </ul>
-            <a class="login" href="/login">LOGIN</a>
+            <a class="login" href="./telaLogin.html">LOGIN</a>
         </div>
 
 
@@ -49,36 +49,45 @@
                 <li><a href="#" onclick="scrollToSection()">Acionar Suporte</a></li>
             </ul>
         </div>
-        <img src="/img/totem2.png" height="300px">
-        <div class="textoComum">
-            <b>O Melhor Suporte para o seu
-                Negócio</b>
-            <p>Oferecemos suporte abrangente, incluindo manutenção preventiva, diagnóstico, atualizações de software,
-                reparos físicos e suporte remoto, adaptado às necessidades individuais de cada cliente,
-                independentemente do tamanho ou complexidade do sistema.</p>
+        <div class="caixa">
+            <img src="../public/img/totem2.png" width="55%">
+            <div class="textoComum">
+                <b>O Melhor Suporte para o seu
+                    Negócio</b>
+                <p>Oferecemos suporte abrangente, incluindo manutenção preventiva, diagnóstico, atualizações de
+                    software,
+                    reparos físicos e suporte remoto, adaptado às necessidades individuais de cada cliente,
+                    independentemente do tamanho ou complexidade do sistema.</p>
+            </div>
         </div>
         <br>
-        <h1 id="sobreNos">Sobre Nós</h1>
         <br>
-        <img src="/img/totem-mc.jpg " width="90%">
-        <br>
-        <div class="textoComum">
-            Na Totem Tech, nos especializamos em fornecer suporte técnico para totens de autoatendimento. Com uma equipe
-            altamente qualificada e comprometida, estamos prontos para resolver qualquer problema, garantindo a operação
-            eficiente dos seus totens. Nosso foco é na qualidade e na satisfação do cliente. Conte conosco para otimizar
-            seus sistemas de autoatendimento e elevar a experiência do cliente ao próximo nível.
-        </div>
-        <br>
-        <div class="botaoCadastro">Cadastre-se</div>
-        <br>
-        <br>
-        <h1 id="nossasSolucoes">Nossas Soluções</h1>
-        <br>
-        <img src="/img/totem-pedido.webp" width="80%">
-        <br>
-        <div class="textoComum">
-            Nossos serviços de suporte abrangem uma ampla: gama de áreas:<br>
 
+        <h1 id="sobreNos" class="sobreNos">Sobre Nós</h1>
+        <div class="caixa2">
+            <img src="../public/img/totem-mc.jpg" width="90%">
+            <div class="textoComumSobreNos">
+                <p> Na Totem Tech, nos especializamos em fornecer suporte técnico para totens de autoatendimento. Com
+                    uma
+                    equipe
+                    altamente qualificada e comprometida, estamos prontos para resolver qualquer problema, garantindo a
+                    operação
+                    eficiente dos seus totens. Nosso foco é na qualidade e na satisfação do cliente. Conte conosco para
+                    otimizar
+                    seus sistemas de autoatendimento e elevar a experiência do cliente ao próximo nível.
+                </p>
+                <div class="botaoCadastro">Cadastre-se</div>
+            </div>
+        </div>
+
+        <!--Versão Mobile-->
+        <div class="caixa3">
+            <h1 id="nossasSolucoes" class="nossasSolucoes">Nossas Soluções</h1>
+            <div class="textoComum">
+                <img src="../public/img/totem-pedido.webp" width="80%">
+                <br>
+                Nossos serviços de suporte abrangem uma ampla: gama de áreas:<br>
+            </div>
             <div class="tableSolucoes">
                 <div class="linha">
                     <div class="circulo01">Manutenção Preventiva</div>
@@ -89,28 +98,55 @@
                     <div class="circulo01">Atualizações De Software</div>
                 </div>
             </div>
+            <br>
+        </div>
 
+        <!--Versão Desktop-->
+        <div class="caixa3Desktop">
+            <div class="caixaInterna3">
+                <img src="../public/img/totem-pedido.webp" width="80%">
+                <div class="textoComum">
+                    <h1 id="nossasSolucoes" class="nossasSolucoes">Nossas Soluções</h1>
+                    <p>Nossos serviços de suporte abrangem uma ampla: gama de áreas:</p>
+                </div>
+            </div>
+
+            <div class="tableSolucoes">
+                <div class="circulo01">Manutenção Preventiva</div>
+                <div class="circulo02">Diagnóstico De Problemas</div>
+                <div class="circulo01">Atualizações De Software</div>
+                <div class="circulo03">Suporte Remoto</div>
+            </div>
+            <div class="linha">
+                <div class="botaoCadastro">Cadastre-se</div>
+            </div>
         </div>
         <br>
         <br>
         <br>
         <div class="botaoCadastro">Cadastre-se</div>
-        <br><br>
-        <h1 id="clientes"> Clientes</h1>
         <br>
-        <div class="textoComum">
-            No coração do nosso negócio, a dedicação aos nossos clientes é a pedra angular que molda a experiência única
-            que oferecemos. Estamos empenhados em proporcionar não apenas soluções inovadoras de totem, mas também um
-            serviço excepcional que transcende as expectativas.
-        </div>
-        <div class="table">
-            <div class="linha">
-                <div><img src="/img/mcdonalds.png" height="100%"></div>
-                <div><img src="/img/burguer-king.png" height="100%"></div>
+        <br>
+
+        <div class="caixa4">
+            <h1 id="clientes"> Clientes</h1>
+            <br>
+            <div class="textoComum">
+                No coração do nosso negócio, a dedicação aos nossos clientes é a pedra angular que molda a experiência
+                única
+                que oferecemos. Estamos empenhados em proporcionar não apenas soluções inovadoras de totem, mas também
+                um
+                serviço excepcional que transcende as expectativas.
             </div>
-            <div class="linha">
-                <div><img src="/img/popeyes.png" height="100%"></div>
-                <div><img src="/img/maddero.png" height="100%"></div>
+            <div class="table">
+                <div class="linha">
+                    <div><img src="../public/img/mcdonalds.png" height="100%"></div>
+                    <div><img src="../public/img/burguer-king.png" height="100%"></div>
+                </div>
+                <div class="linha">
+                    <div><img src="../public/img/popeyes.png" height="100%"></div>
+                    <div><img src="../public/img/maddero.png" height="100%"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -119,6 +155,6 @@
 
 
 </body>
-<script src="/js/index.js"></script>
+<script src="../public/js/index.js"></script>
 
 </html>
