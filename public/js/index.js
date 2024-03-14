@@ -4,20 +4,7 @@ document.getElementById('menu-btn').addEventListener('change', function () {
     if (this.checked) {
         menu.style.left = '0';
     } else {
-        menu.style.left = '-500px';
-    }
-});
-
-document.getElementById('menu-btn').addEventListener('change', function () {
-    var menu = document.querySelector('.itensNavMobile2');
-    var checkbox = document.getElementById('menu-btn');
-
-    if (this.checked) {
-        menu.style.left = '0';
-        checkbox.checked = true;
-    } else {
-        menu.style.left = '-500px';
-        checkbox.checked = false;
+        menu.style.left = '-1500px';
     }
 });
 
@@ -29,7 +16,7 @@ function fecharMenu() {
         menu.style.left = '0';
         checkbox.checked = true;
     } else {
-        menu.style.left = '-500px';
+        menu.style.left = '-1500px';
         checkbox.checked = false;
 
     }
