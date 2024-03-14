@@ -35,13 +35,13 @@
 
                 <ul class="menu">
                     <li>
-                        <a href="#totens">Totens</a>
+                        <a href="./dashTotens.html">Totens</a>
                     </li>
                     <li>
                         <a href="">Histórico</a>
                     </li>
                     <li>
-                        <a href="">Usuário</a>
+                        <a href="./dashPerfil.html">Usuário</a>
                     </li>
                     <li>
                         <a href="">Estatísticas</a>
@@ -50,8 +50,8 @@
 
             </div>
 
-            <div class="homePage" id="totens">
-                <div class="square-totems">
+            <div class="homePage">
+                <div class="square-totems" id="square-totems">
 
                     <div class="square-circles">
                         <div class="square">TOTEM 1</div>
@@ -70,6 +70,11 @@
 
                     <div class="square-circles">
                         <div class="square">TOTEM 4</div>
+                        <div class="circle" style="background-color: green;"></div>
+                    </div>
+
+                    <div class="square-circles">
+                        <div class="square">TOTEM 5</div>
                         <div class="circle" style="background-color: green;"></div>
                     </div>
 
@@ -134,10 +139,13 @@
     });
 
 
+    //gráfico:
     // Dados de exemplo 
     const dadosCPU = [40, 50, 60, 70, 65, 55, 45]; // Utilização da CPU (%)
     const dadosRAM = [60, 65, 70, 75, 80, 85, 90]; // Uso de RAM (%)
     const dadosDISCO = [5, 6, 7, 6, 5, 4, 3]; // Tempo médio de resposta do disco (ms)
+    const dadosDownload = [20, 25, 30, 35, 30, 25, 20]; // Utilização da rede - Download (%)
+    const dadosUpload = [10, 15, 20, 15, 10, 15, 20]; // Utilização da rede - Upload (%)
     const labels = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
 
     const ctx = document.getElementById('graficoTotem');
@@ -161,6 +169,16 @@
                 data: dadosDISCO,
                 borderColor: '#888C46',
                 fill: false
+            }, {
+                label: 'Download',
+                data: dadosDownload,
+                borderColor: '#3E6BA8',
+                fill: false
+            }, {
+                label: 'Upload',
+                data: dadosUpload,
+                borderColor: '#BD4E46',
+                fill: false
             }]
         },
         options: {
@@ -176,5 +194,4 @@
             }
         }
     });
-
 </script>

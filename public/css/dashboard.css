@@ -236,12 +236,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin: 30px;
 }
 
 .telaPerfil .perfil {
     /* background-color: #637AA7; */
     width: 20%; /* Definindo a largura */
-    height: 60%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
