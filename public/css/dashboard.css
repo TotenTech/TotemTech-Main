@@ -138,7 +138,7 @@
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
-    scrollbar-color: #637AA7 white;
+    scrollbar-color: #0d4a7c #637AA7;
 }
 
 .square-circles {
