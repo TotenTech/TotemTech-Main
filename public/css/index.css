@@ -478,72 +478,72 @@
 
     /*Menu*/
 
-    .itensNav {
-        display: none;
-    }
+        .itensNav {
+            display: none;
+        }
 
-    .menuBtn {
-        display: none;
-    }
+        .menuBtn {
+            display: none;
+        }
 
-    .menu-btn {
-        cursor: pointer;
-        z-index: 2;
-    }
+        .menu-btn {
+            cursor: pointer;
+            z-index: 2;
+        }
 
-    .menu-btn span {
-        display: block;
-        width: 30px;
-        height: 3px;
-        background-color: #203FAB;
-        margin: 6px 0;
-        transition: 0.4s;
-    }
+        .menu-btn span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: #203FAB;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
 
 
-    .itensNavMobile {
-        position: fixed;
-        top: 0;
-        left: -1500px;
-        width: 50%;
-        height: 100vh;
-        background-color: rgba(154, 223, 238, 0.9);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
-        z-index: 1;
-        transition: 0.4;
-        display: flex;
-        flex-direction: column;
-        transition: 0.4s;
-    }
+        .itensNavMobile {
+            position: fixed;
+            top: 0;
+            left: -1500px;
+            width: 50%;
+            height: 100vh;
+            background-color: rgba(154, 223, 238, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
+            z-index: 1;
+            transition: 0.4;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s;
+        }
 
-    .itensNavMobile ul {
-        list-style: none;
-        margin: 0;
-        width: 90%;
-        height: fit-content;
-        margin: 25% 5% 10% 5%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-    }
+        .itensNavMobile ul {
+            list-style: none;
+            margin: 0;
+            width: 90%;
+            height: fit-content;
+            margin: 25% 5% 10% 5%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
 
-    .itensNavMobile ul li {
-        border-bottom: 6px solid #ffffff;
-        width: 100%;
-        justify-content: center;
-        margin: 6% 0;
-        font-size: 18px;
-        text-decoration: none;
-        font-weight: 900;
-    }
+        .itensNavMobile ul li {
+            border-bottom: 6px solid #ffffff;
+            width: 100%;
+            justify-content: center;
+            margin: 6% 0;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: 900;
+        }
 
-    .itensNavMobile ul li a {
-        text-decoration: none;
-        color: #203FAB;
-        padding: 0 0 5% 0%;
-        font-weight: 700;
-    }
+        .itensNavMobile ul li a {
+            text-decoration: none;
+            color: #203FAB;
+            padding: 0 0 5% 0%;
+            font-weight: 700;
+        }
 
 
 
