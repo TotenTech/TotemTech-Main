@@ -43,7 +43,7 @@
     align-items: baseline;
 }
 
-/* Menu lateral  da tela principal*/
+/* Menu lateral da tela principal*/
 
 .itensNav {
     display: none;
@@ -71,7 +71,7 @@
 .itensNavMobile {
     position: fixed;
     top: 0;
-    left: -500px;
+    left: -1500px;
     width: 50%;
     height: 100vh;
     background-color: rgba(154, 223, 238, 0.9);
@@ -88,7 +88,7 @@
     margin: 0;
     width: 90%;
     height: fit-content;
-    margin: 40% 5% 10% 5%;
+    margin: 30% 5% 10% 5%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -109,6 +109,7 @@
     text-decoration: none;
     color: #203FAB;
     padding: 0 0 5% 0%;
+    font-weight: 700;
 }
 
 
@@ -141,9 +142,9 @@
 .telaPrincipal .navBar div h1 {
     color: white;
     margin: 0%;
-    padding: 0% 2% 1.5% 2%;
-    font-size: 20px;
-    width: 100%;
+    padding: 0% 3% 0% 3%;
+    font-size: 120%;
+    width: fit-content;
     height: 100%;
     border-bottom: 4px solid #203FAB;
 }
@@ -154,6 +155,7 @@
     width: fit-content;
     cursor: pointer;
     text-decoration: none;
+    margin: 0 5% 0 0;
 }
 
 .telaPrincipal .navBar .login:hover {
@@ -325,6 +327,12 @@
 
 
 
+
+
+
+
+/*Tela de login*/
+
 .telaLogin {
     background-color: #E3E3DD;
     color: #000000;
@@ -336,6 +344,7 @@
     align-items: center;
     flex-direction: column;
     z-index: 1;
+    overflow: hidden;
 }
 
 .telaLogin .navBar {
@@ -347,103 +356,72 @@
     align-items: center;
 }
 
-/*Menu login */
 
 
-.itensNavMobile2 {
-    position: fixed;
-    top: 0;
-    left: -500px;
-    width: 50%;
-    height: 100vh;
-    background-color: rgba(154, 223, 238, 0.9);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
-    z-index: 1;
-    transition: 0.4;
-    display: flex;
-    flex-direction: column;
+
+.telaLogin .navBar img {
+    width: 110px;
 }
-
-.itensNavMobile2 ul {
-    list-style: none;
-    margin: 0;
-    width: 90%;
-    height: fit-content;
-    margin: 40% 5% 10% 5%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.itensNavMobile2 ul li {
-    border-bottom: 6px solid #ffffff;
-    width: 100%;
-    justify-content: center;
-    margin: 6% 0;
-    font-size: 18px;
-    text-decoration: none;
-    font-weight: 900;
-}
-
-.itensNavMobile2 ul li a {
-    text-decoration: none;
-    color: #203FAB;
-    padding: 0 0 5% 0%;
-}
-
-
 
 .telaLogin .navBar .mensagem {
     width: fit-content;
     height: fit-content;
     color: #0073CF;
     background-color: #D9D9D9;
-    padding: 6%;
+    padding: 3%;
     font-size: 28px;
     font-weight: 900;
+    margin: 1% 0 0 0;
     border-radius: 30px;
 }
 
-.telaLogin .form {
+.telaLogin .formAndroid {
     width: 80%;
     height: fit-content;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 25% 0 5% 0;
+    margin: 17% 0 2% 0;
 }
 
-.telaLogin .form h2 {
+.telaLogin .formAndroid .form {
+    padding: 0%;
+    margin: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+.telaLogin .formAndroid .form h2 {
     color: #0073CF;
     margin: 0%;
     padding: 0%;
     font-weight: 100;
 }
 
-.telaLogin .form input {
+.telaLogin .formAndroid .form input {
     background-color: #D9D9D9;
     color: #0073CF;
     border: none;
-    height: 25px;
+    height: 35px;
     width: 100%;
     margin: 0 0 6% 0;
+    padding: 0 0 0 2%;
 }
 
-.telaLogin .form input::placeholder {
+.telaLogin .formAndroid .form input::placeholder {
     color: #0073CF;
     font-weight: 500;
     font-size: 14px;
 }
 
-.telaLogin .form div {
+.telaLogin .formAndroid .form div {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
 
-.telaLogin .form button {
+.telaLogin .formAndroid .form button {
     background-color: #0073CF;
     border: none;
     font-weight: 700;
@@ -454,13 +432,25 @@
     padding: 3% 12%;
     border-radius: 30px;
     margin-top: 2%;
+    transition: 0.5s;
+}
+
+.telaLogin .formAndroid .form button:hover {
+    background-color: #D9D9D9;
+    color: #203FAB;
+    border: 1px solid #203FAB;
+    transition: 0.5s;
+}
+
+.telaLogin .formDesktop {
+    display: none;
 }
 
 .telaLogin p {
     color: #0073CF;
-    width: 40%;
+    width: 100%;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .telaLogin p a {
@@ -472,9 +462,11 @@
 }
 
 
-/*Tablet*/
 
-@media screen and (min-width: 768px) {
+
+/*Celular Grande*/
+
+@media screen and (min-width: 600px) {
     * {
         margin: 0%;
         padding: 0%;
@@ -485,98 +477,77 @@
     }
 
     /*Menu*/
-   
-.itensNav {
-    display: none;
-}
 
-.menuBtn {
-    display: none;
-}
-
-.menu-btn {
-    cursor: pointer;
-    z-index: 2;
-}
-
-.menu-btn span {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background-color: #203FAB;
-    margin: 6px 0;
-    transition: 0.4s;
-}
-
-
-.itensNavMobile {
-    position: fixed;
-    top: 0;
-    left: -500px;
-    width: 50%;
-    height: 100vh;
-    background-color: rgba(154, 223, 238, 0.9);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
-    z-index: 1;
-    transition: 0.4;
-    display: flex;
-    flex-direction: column;
-    transition: 0.7s;
-}
-
-.itensNavMobile ul {
-    list-style: none;
-    margin: 0;
-    width: 90%;
-    height: fit-content;
-    margin: 40% 5% 10% 5%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.itensNavMobile ul li {
-    border-bottom: 6px solid #ffffff;
-    width: 100%;
-    justify-content: center;
-    margin: 6% 0;
-    font-size: 18px;
-    text-decoration: none;
-    font-weight: 900;
-}
-
-.itensNavMobile ul li a {
-    text-decoration: none;
-    color: #203FAB;
-    padding: 0 0 5% 0%;
-}
-
-
-#menu-btn:checked+.menu-btn span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-#menu-btn:checked+.menu-btn span:nth-child(2) {
-    opacity: 0;
-}
-
-#menu-btn:checked+.menu-btn span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
-
-
-
-    
-
-    .telaPrincipal {
-        overflow: hidden;
-        display: flex;
-        align-items: baseline;
-        padding: 0%;
-        margin: 0%;
-        left: 0%;
+    .itensNav {
+        display: none;
     }
+
+    .menuBtn {
+        display: none;
+    }
+
+    .menu-btn {
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .menu-btn span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: #203FAB;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+
+    .itensNavMobile {
+        position: fixed;
+        top: 0;
+        left: -1500px;
+        width: 50%;
+        height: 100vh;
+        background-color: rgba(154, 223, 238, 0.9);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
+        z-index: 1;
+        transition: 0.4;
+        display: flex;
+        flex-direction: column;
+        transition: 0.4s;
+    }
+
+    .itensNavMobile ul {
+        list-style: none;
+        margin: 0;
+        width: 90%;
+        height: fit-content;
+        margin: 25% 5% 10% 5%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .itensNavMobile ul li {
+        border-bottom: 6px solid #ffffff;
+        width: 100%;
+        justify-content: center;
+        margin: 6% 0;
+        font-size: 18px;
+        text-decoration: none;
+        font-weight: 900;
+    }
+
+    .itensNavMobile ul li a {
+        text-decoration: none;
+        color: #203FAB;
+        padding: 0 0 5% 0%;
+        font-weight: 700;
+    }
+
+
+
+
 
     .telaPrincipal .navBar {
         display: flex;
@@ -589,7 +560,7 @@
     }
 
     .telaPrincipal .navBar img {
-        width: 120px;
+        width: 42%;
         margin: 0%;
         padding: 0;
 
@@ -599,7 +570,7 @@
         display: flex;
         justify-content: center;
         flex-direction: row;
-        margin: 6% 0 5% 0;
+        margin: 7% 0 5% 0;
         height: 100hv;
     }
 
@@ -628,7 +599,7 @@
         font-size: 40px;
         left: 12%;
         padding: 0% 5% 0% 5%;
-        margin: 7% 0 0 0 ;
+        margin: 7% 0 0 0;
     }
 
     .telaPrincipal .caixa2 {
@@ -713,7 +684,7 @@
 
     .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum p {
         width: 80%;
-        margin:  0 10% 0 0;
+        margin: 0 10% 0 0;
         font-size: 18px;
         height: 60%;
     }
@@ -814,26 +785,397 @@
     }
 
 
+
+
+
+
+
+
+    /*Tela De Login*/
+    .telaLogin .navBar {
+        background-color: #E3E3DD;
+        height: 17vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    /*Menu login */
+    .telaLogin .navBar .mensagem {
+        padding: 3%;
+        margin: 1% 0 0 0;
+    }
+
+    .telaLogin .formAndroid {
+        margin: 10% 0 0 0;
+    }
+
+    .telaLogin .formAndroid .form h2 {
+        margin: 0 0 1% 0;
+    }
+
+    .telaLogin .formAndroid .form input {
+        height: 40px;
+        width: 100%;
+        margin: 0 0 7% 0;
+        padding: 0 0 0 3%;
+    }
+
+    .telaLogin .formAndroid .form input::placeholder {
+        font-size: 16px;
+    }
+
+    .telaLogin .formAndroid .form button {
+        font-size: 17px;
+        padding: 2% 10%;
+    }
+
+    .telaLogin p {
+        margin-top: 2%;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Tablet*/
+
+@media screen and (min-width: 768px) {
+    * {
+        margin: 0%;
+        padding: 0%;
+    }
+
+    /*Menu*/
+
+
+    .itensNavMobile {
+        width: 40%;
+    }
+
+    .itensNavMobile ul li {
+        font-size: 20px;
+    }
+
+    .telaPrincipal .navBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 91%;
+        margin: 0%;
+        padding: 0 5%;
+        height: 23vh;
+    }
+
+    .telaPrincipal .navBar img {
+        width: 42%;
+    }
+
+    .telaPrincipal .caixa img {
+        width: 28%;
+        margin: 5% 5% 0 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum {
+        width: 60%;
+        margin: 0% 5% 0 0;
+    }
+
+    .telaPrincipal .caixa .textoComum b {
+        font-size: 31px;
+        width: 90%;
+        text-align: left;
+        margin: 0% 0 3% 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum p {
+        font-size: 18px;
+    }
+
+    .telaPrincipal .sobreNos {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+        margin: 7% 0 0 0;
+    }
+
+    .telaPrincipal .caixa2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+        margin: 0% 0 7% 0;
+    }
+
+    .telaPrincipal .caixa2 img {
+        width: 43%;
+        margin: 0% 2% 5% 2%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos {
+        font-size: 15px;
+        width: 45%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 7% 0 10% 0%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos p {
+        margin: 0 0 2% 0;
+        text-align: left;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos .botaoCadastro {
+        margin: 4% 0 0 0;
+    }
+
+    .telaPrincipal .nossasSolucoes {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+    }
+
+    .telaPrincipal .caixa3 {
+        display: none;
+    }
+
+    .telaPrincipal .botaoCadastro {
+        display: none;
+    }
+
+    .telaPrincipal .caixa3Desktop {
+        display: flex;
+        flex-direction: column;
+        height: 80vh;
+        width: 100%;
+        margin: 5% 0 -1% 0;
+        padding: 0 0 0 5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 {
+        width: 100%;
+        display: flex;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 img {
+        width: 48%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum {
+        width: 80%;
+        height: 60%;
+        justify-content: space-around;
+        padding: 0%;
+        margin: 3% 0 0 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum h1 {
+        width: 70%;
+        font-size: 28px;
+        margin: 0 0 5% -35%;
+        padding: 0 0 1% 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum p {
+        width: 80%;
+        margin: 0 10% 0 0;
+        font-size: 18px;
+        height: 60%;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 95%;
+        height: fit-content;
+        margin: 5% 0 5% 0;
+        padding: 0%;
+    }
+
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo01 {
+        width: 12%;
+        height: fit-content;
+        background-color: #9ADFEE;
+        padding: 5% 3%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo02 {
+        width: 12%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 4% 3%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo03 {
+        width: 12%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 5% 3%;
+        border-radius: 50%;
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0 0 0 -5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha .botaoCadastro {
+        display: flex;
+        padding: 1%;
+        font-weight: 700;
+        margin: 2% 0 0 0;
+    }
+
+    .telaPrincipal .caixa4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0%;
+    }
+
+    .telaPrincipal .caixa4 h1 {
+        font-size: 40px;
+        margin: 5% 0 0 0;
+        padding: 0 5% 1% 5%;
+    }
+
+    .telaPrincipal .caixa4 .textoComum {
+        margin: 1% 0;
+        padding: 0%;
+        font-size: 20px;
+        width: 90%;
+    }
+
+    .telaPrincipal .caixa4 .table {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40vh;
+        margin: 2% 0 15vh 0;
+    }
+
+    .telaPrincipal .caixa4 .table .linha {
+        width: 50%;
+        display: flex;
+        height: 50%;
+    }
+
+    .telaPrincipal .caixa4 .table .linha div:hover {
+        border: 8px solid #203FAB;
+        transition: 1s;
+    }
+
+
+
+
+
+
+
+
+    /*Tela De Login*/
+    .telaLogin .navBar {
+        background-color: #E3E3DD;
+        height: 17vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    /*Menu login */
+    .telaLogin .navBar .mensagem {
+        padding: 3%;
+        margin: 1% 0 0 0;
+    }
+
+    .telaLogin .formAndroid {
+        margin: 10% 0 0 0;
+    }
+
+    .telaLogin .formAndroid .form h2 {
+        margin: 0 0 1% 0;
+    }
+
+    .telaLogin .formAndroid .form input {
+        height: 40px;
+        width: 100%;
+        margin: 0 0 7% 0;
+        padding: 0 0 0 3%;
+    }
+
+    .telaLogin .formAndroid .form input::placeholder {
+        font-size: 16px;
+    }
+
+    .telaLogin .formAndroid .form button {
+        font-size: 17px;
+        padding: 2% 10%;
+    }
+
+    .telaLogin p {
+        margin-top: 2%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 /*Desktop pequeno*/
 
-@media screen and (min-width: 920px) {
+@media screen and (min-width: 992px) {
 
     * {
         margin: 0%;
         padding: 0%;
     }
 
-    .telaPrincipal .navBar {
-        align-items: center;
-    }
+
 
     /*Menu*/
     .itensNav {
-        padding: 0%;
+        padding: 0 4%;
         display: flex;
         align-items: center;
         list-style: none;
@@ -848,14 +1190,14 @@
     }
 
     .itensNav li {
-        margin: 0% 15px;
+        margin: 0% 20px;
     }
 
     .itensNav li a {
         text-decoration: none;
         font-size: 16px;
         color: #0073CF;
-
+        font-weight: 700;
     }
 
     .itensNav li a:hover {
@@ -885,7 +1227,7 @@
 
 
 
-    
+
 
     .telaPrincipal {
         overflow: hidden;
@@ -900,9 +1242,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 96%;
+        width: 98%;
         margin: 0%;
-        padding: 0 3%;
+        padding: 0% 1%;
+        height: 17vh;
     }
 
     .telaPrincipal .navBar img {
@@ -945,7 +1288,7 @@
         font-size: 40px;
         left: 12%;
         padding: 0% 5% 0% 5%;
-        margin: 7% 0 0 0 ;
+        margin: 7% 0 0 0;
     }
 
     .telaPrincipal .caixa2 {
@@ -998,7 +1341,7 @@
         flex-direction: column;
         height: 80vh;
         width: 100%;
-        margin:0;
+        margin: 0;
         padding: 0 0 0 5%;
     }
 
@@ -1030,7 +1373,7 @@
 
     .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum p {
         width: 80%;
-        margin:  0 10% 0 0;
+        margin: 0 10% 0 0;
         font-size: 18px;
         height: 60%;
     }
@@ -1130,6 +1473,136 @@
     }
 
 
+
+
+
+
+
+
+    /*Tela Login*/
+
+    .telaLogin .navBar {
+        height: 17vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .telaLogin .navBar img {
+        width: 130px;
+    }
+
+
+    .telaLogin .navBar .mensagem {
+        display: none;
+    }
+
+    .telaLogin .navBar .itensNav {
+        width: 80%;
+        margin: 0%;
+        padding: 0;
+   
+    }
+
+    .telaLogin .navBar .itensNav li{
+        width: fit-content;
+        margin: 0% 3%;
+    }
+
+    .telaLogin .navBar .itensNav li a {
+        font-size: 20px;
+        margin: 0%;
+        padding: 0;
+        font-weight: 700;
+    }
+
+    .telaLogin .formAndroid {
+        display: none;
+    }
+
+    .telaLogin .formDesktop {
+        display: flex;
+        width: 85%;
+        height: fit-content;
+        justify-content: center;
+        align-items: baseline;
+        flex-direction: row;
+        margin: 1% 0 2% 0;
+    }
+
+    .telaLogin .formDesktop .mensagemForm {
+        padding: 7% 5% 1% 0%;
+        color: #0073CF;
+        border-bottom: 5px solid #203FAB;
+        width: fit-content;
+        height: fit-content;
+        margin: 0 10% 0 0;
+        font-size: 25px;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    .telaLogin .formDesktop .form {
+        padding: 0%;
+        margin: 0%;
+        height: 100%;
+        width: 50%;
+    }
+
+    .telaLogin .formDesktop .form h2 {
+        margin: 0 0 1% 0;
+        color: #0073CF;
+        padding: 0%;
+        font-weight: 100;
+    }
+
+    .telaLogin .formDesktop .form input {
+        background-color: #D9D9D9;
+        color: #0073CF;
+        border: none;
+        height: 45px;
+        width: 110%;
+        margin: 0 0 9% 0;
+        padding: 0 0 0 3%;
+    }
+
+    .telaLogin .formDesktop .form input::placeholder {
+        color: #0073CF;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .telaLogin .formDesktop .form div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .telaLogin .formDesktop .form button {
+        background-color: #0073CF;
+        border: none;
+        font-weight: 700;
+        color: #ffffff;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 30px;
+        margin-top: 2%;
+        font-size: 17px;
+        padding: 3% 20%;
+    }
+
+    .telaLogin .formDesktop .form button:hover {
+        background-color: #D9D9D9;
+        color: #203FAB;
+        border: 1px solid #203FAB;
+        transition: 0.5s;
+    }
+
+    .telaLogin p {
+        margin-top: 2%;
+    }
+
 }
 
 
@@ -1147,6 +1620,7 @@
         display: flex;
         align-items: center;
         list-style: none;
+        height: 17vh;
     }
 
     .itensNav li {
@@ -1158,6 +1632,7 @@
         font-size: 20px;
         border-radius: 5px;
         color: #0073CF;
+        font-weight: 700;
     }
 
     .menuMobile {
@@ -1422,6 +1897,36 @@
     .telaPrincipal .caixa4 .table .linha div:hover {
         border: 8px solid #203FAB;
         transition: 1s;
+    }
+
+
+
+
+
+
+
+
+
+    /*Tela Login*/
+
+    .telaLogin .formDesktop {
+        margin: 0% 0 2% 0;
+    }
+
+    .telaLogin .formDesktop .mensagemForm {
+        padding: 6% 5% 1% 0%;
+        margin: 0 10% 0 0;
+        font-size: 170%;
+    }
+
+    .telaLogin .formDesktop .form {
+        width: 52%;
+    }
+
+    .telaLogin .formDesktop .form input {
+        height: 50px;
+        width: 105%;
+        font-size: 16px;
     }
 
 }
