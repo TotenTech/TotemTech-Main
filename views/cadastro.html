@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/css/cadastro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="telaCadastro" id="divTelaCadastro">
+        <div class="navBar">
+
+            <!--Versão Mobile-->
+            <input type="checkbox" id="menu-btn" class="menuBtn">
+            <label class="menu-btn" for="menu-btn"><span></span><span></span><span></span></label>
+
+
+            <img src="../public/img/logo.png" width="86px">
+
+            <!--Versão Desktop-->
+            <ul class="itensNav">
+                <li><a href="../views/index.html">Home</a></li>
+                <li><a href="../views/index.html">Sobre Nós</a></li>
+                <li><a href="../views/index.html">Nossas soluções</a></li>
+                <li><a href="../views/index.html">Clientes</a></li>
+                <li><a href="../views/index.html">Acionar Suporte</a></li>
+            </ul>
+
+            <div class="mensagem">BEM VINDO </div>
+        </div>
+
+
+        <!--Versão Mobile-->
+        <div class="itensNavMobile">
+            <ul>
+                <li><a href="../views/index.html">Home</a></li>
+                <li><a href="../views/index.html">Sobre Nós</a></li>
+                <li><a href="../views/index.html">Nossas soluções</a></li>
+                <li><a href="../views/index.html">Clientes</a></li>
+                <li><a href="../views/index.html">Acionar Suporte</a></li>
+            </ul>
+        </div>
+
+        <!--Versão Mobile-->
+        <div class="versionAndroid">
+            <div class="tituloCadastro">
+                <h1>Cadastro</h1>
+            </div>
+
+            <p>Nome:</p>
+            <input type="text" placeholder="Digite seu nome">
+            <p>Email:</p>
+            <input type="text" placeholder="Digite seu email">
+            <p>Senha:</p>
+            <input type="text" placeholder="Digite seu senha">
+            <p>Confirme sua senha:</p>
+            <input type="text" placeholder="Digite novamente sua senha">
+            <p>Código de acesso:</p>
+            <input type="text" placeholder="Digite código de acesso">
+
+            <div class="botaoCadastrar">
+                <button>
+                    Cadastrar
+                </button>
+            </div>
+
+            <p class="legendaConta">
+                Já possui uma conta
+            </p>
+
+            <a href="telaLogin.html">
+                <i>
+                    login
+                </i>
+            </a>
+
+        </div>
+
+        <!--Versão Desktop-->
+
+        <div class="versionDesktop">
+            <div class="tituloCadastro">
+                <h1>Cadastro</h1>
+            </div>
+
+            <div class="caixa">
+
+                <div class="caixaEsquerda">
+                    <p>Nome:</p>
+                    <input type="text" placeholder="Digite seu nome">
+                    <p>Email:</p>
+                    <input type="text" placeholder="Digite seu email">
+                    <p>Código de acesso:</p>
+                    <input type="text" placeholder="Digite código de acesso">
+                </div>
+
+
+                <div class="caixaDireita">
+                    <p>Senha:</p>
+                    <input type="text" placeholder="Digite seu senha">
+                    <p>Confirme sua senha:</p>
+                    <input type="text" placeholder="Digite novamente sua senha">
+
+                </div>
+
+
+            </div>
+
+            <div class="botaoCadastrar">
+                <button>
+                    Cadastrar
+                </button>
+            </div>
+
+            <p class="legendaConta">
+                Já possui uma conta
+            </p>
+
+            <a href="telaLogin.html">
+                <i>
+                    login
+                </i>
+            </a>
+
+        </div>
+
+    </div>
+</body>
+<script src="index.js"></script>
