@@ -1,0 +1,479 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    font-family: "Poppins", sans-serif;
+}
+
+.telaCadastro {
+    background-color: #E3E3DD;
+    color: #000000;
+    transition: 1s;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.telaCadastro .navBar {
+    background-color: #E3E3DD;
+    height: 17vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.telaCadastro .navBar img {
+    width: 110px;
+}
+
+.telaCadastro .navBar .mensagem {
+    width: fit-content;
+    height: fit-content;
+    color: #0073CF;
+    background-color: #D9D9D9;
+    padding: 3%;
+    font-size: 22px;
+    font-weight: 900;
+    margin: 1% 0 0 0;
+    border-radius: 30px;
+}
+
+.itensNav {
+    display: none;
+}
+
+.menuBtn {
+    display: none;
+}
+
+.menu-btn {
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #203FAB;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+
+.itensNavMobile {
+    position: fixed;
+    top: 0;
+    left: -1500px;
+    width: 50%;
+    height: 100vh;
+    background-color: rgba(52, 97, 149, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
+    z-index: 1;
+    transition: 0.4;
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s;
+}
+
+.itensNavMobile ul {
+    list-style: none;
+    margin: 0;
+    width: 90%;
+    height: fit-content;
+    margin: 25% 5% 10% 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.itensNavMobile ul li {
+    width: 100%;
+    justify-content: center;
+    margin: 6% 0;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.itensNavMobile ul li a {
+    text-decoration: none;
+    color: #E3E3DD;
+    padding: 0 0 5% 0%;
+    font-weight: 700;
+}
+
+.telaCadastro .versionAndroid {
+    width: 90%;
+    height: 90vh;
+    background-color: #E3E3DD;
+    display: flex;
+    justify-content: baseline;
+    flex-direction: column;
+    padding: 0 5%;
+}
+
+.telaCadastro .versionDesktop {
+    display: none;
+}
+
+.telaCadastro .versionAndroid .tituloCadastro {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    height: fit-content;
+}
+
+.telaCadastro .versionAndroid .tituloCadastro h1 {
+    color: #0073CF;
+    padding: 0 8% 1% 0;
+    border-bottom: 2px solid #203FAB;
+    font-size: 15px;
+    margin: 2% 0 2% 0;
+
+}
+
+.versionAndroid p {
+    color: #0073CF;
+    font-size: 18px;
+    margin: 1% 0;
+}
+
+.versionAndroid input {
+    border: none;
+    height: 25px;
+    margin: 1% 0;
+    background-color: #D9D9D9;
+    color: #0073CF;
+    padding: 0 1%;
+}
+
+.versionAndroid input::placeholder {
+    color: #0073CF;
+    font-size: 15px;
+    padding: 0 1% 0 2%;
+}
+
+.versionAndroid .botaoCadastrar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.versionAndroid .botaoCadastrar button {
+    background-color: #0073CF;
+    color: white;
+    border: none;
+    padding: 1% 5%;
+    font-size: 20px;
+    margin: 2% 0;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: 1s;
+}
+
+.versionAndroid .botaoCadastrar button:hover {
+    background-color: white;
+    color: #0073CF;
+    border: 1px solid #0073CF;
+    transition: 1s;
+}
+
+.versionAndroid .legendaConta {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+
+
+.versionAndroid a {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #203FAB;
+    text-decoration: none;
+}
+
+.versionAndroid a i{
+    width: fit-content;
+    border-bottom: 1px solid #E3E3DD;
+    transition: 1s;
+}
+
+.versionAndroid a i:hover{
+    transition: 1s;
+    border-bottom: 1px solid #0073CF;
+}
+
+/*Versão Android*/
+
+@media screen and (min-width:600px) {
+    .itensNavMobile {
+        width: 50%;
+
+    }
+
+
+    .itensNavMobile ul li {
+        margin: 6% 0;
+        font-size: 20px;
+
+    }
+
+
+    .telaCadastro .versionAndroid .tituloCadastro h1 {
+        font-size: 18px;
+        margin: 3% 0 3% 0;
+    }
+
+    .versionAndroid p {
+        color: #0073CF;
+        font-size: 15px;
+        margin: 1% 5%;
+    }
+
+    .versionAndroid input {
+        width: 90%;
+        border: none;
+        height: 25px;
+        margin: 0 5%;
+    }
+
+    .versionAndroid .botaoCadastrar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .versionAndroid .botaoCadastrar button {
+        font-size: 18px;
+    }
+
+    .versionAndroid .legendaConta {
+        width: 90%;
+        margin: 0 5%;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .versionAndroid a {
+        width: 100%;
+        text-align: center;
+        font-size: 13px;
+        color: #203FAB;
+    }
+}
+
+
+/*Versão Tablet*/
+
+@media screen and (min-width:768px) {
+    .itensNavMobile {
+        width: 40%;
+    }
+
+
+    .telaCadastro .versionAndroid .tituloCadastro h1 {
+        font-size: 18px;
+        margin: 1% 0 1% 0;
+    }
+}
+
+
+/*Versão DeskTop Pequeno*/
+@media screen and (min-width:992px) {
+
+    .itensNavMobile {
+        display: none;
+    }
+
+    .menuBtn {
+        display: none;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    .telaCadastro .versionAndroid {
+        display: none;
+    }
+
+    .mensagem {
+        display: none;
+    }
+
+    .itensNav{
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 17vh;
+    }
+
+    .itensNav li{
+        margin: 0 20px;
+    }
+
+    .itensNav a{
+        text-decoration: none;
+        font-size: 18px;
+        color: #0073CF;
+        font-weight: 700;
+        transition: 1s;
+        border-bottom: 3px solid #E3E3DD;
+    }
+
+    .itensNav a:hover{
+        transition: 1s;
+        border-bottom: 3px solid #203FAB;
+    }
+
+    .telaCadastro .versionDesktop {
+        display: flex;
+        background-color: #E3E3DD;
+        margin: 0 3%;
+        width: 84%;
+        height: 80vh;
+        padding: 0 8%;
+        justify-content: baseline;
+        flex-direction: column;
+    }
+
+    .telaCadastro .versionDesktop .tituloCadastro {
+        width: 100%;
+        display: flex;
+        justify-content: left;
+        height: fit-content;
+    }
+
+    .telaCadastro .versionDesktop .tituloCadastro h1 {
+        color: #0073CF;
+        padding: 0 5% 1% 0;
+        border-bottom: 3px solid #203FAB;
+        font-size: 30px;
+        margin: 2% 0 3% 0;
+    }
+
+    .telaCadastro .versionDesktop .caixa{
+        display: flex;
+        width: 100%;
+        height: fit-content;
+
+    }
+
+    .telaCadastro .versionDesktop .caixa .caixaEsquerda{
+        width: 50%;
+        font-size: 22px;
+        color: #0073CF;
+    }
+
+    .telaCadastro .versionDesktop .caixa .caixaEsquerda input{
+        width: 90%;
+        border: none;
+        background-color: #D9D9D9;
+        color: #0073CF;
+        height: 40px;
+        font-size: 18px;
+        padding: 0 1%;
+        margin: 1% 0;
+    }
+
+    .telaCadastro .versionDesktop .caixa .caixaEsquerda input::placeholder{
+        color: #0073CF;
+        font-size: 18px;
+        padding: 0 2%;
+    }
+
+    .telaCadastro .versionDesktop .caixa .caixaDireita{
+        width: 50%;
+        font-size: 22px;
+        color: #0073CF;
+    }
+
+    .telaCadastro .versionDesktop .caixa .caixaDireita input{
+        width: 90%;
+        border: none;
+        background-color: #D9D9D9;
+        color: #0073CF;
+        height: 40px;
+        font-size: 18px;
+        padding: 0 1%;
+        margin: 1% 0;
+    }
+
+    .telaCadastro .versionDesktop .caixa .caixaDireita input::placeholder{
+        color: #0073CF;
+        font-size: 18px;
+        padding: 0 2%;
+    }
+
+    .telaCadastro .versionDesktop .botaoCadastrar{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: fit-content;
+    }
+
+    .telaCadastro .versionDesktop .botaoCadastrar button{
+        background-color: #0073CF;
+        color: white;
+        font-size: 22px;
+        padding: 1% 8%;
+        border: none;
+        border-radius: 30px;
+        margin: 4% 0;
+        font-weight: 600;
+        transition: 1s;
+    }
+
+    .telaCadastro .versionDesktop .botaoCadastrar button:hover{
+        transition: 1s;
+        background-color: white;
+        color: #0073CF;
+    }
+
+    .telaCadastro .versionDesktop .legendaConta{
+        width: 100%;
+        text-align: center;
+        color: #0073CF;
+    }
+
+    .telaCadastro .versionDesktop a{
+        width: 100%;
+        text-align: center;
+        color: #203FAB;
+        text-decoration: none;
+    }
+
+    .telaCadastro .versionDesktop a i{
+        width: fit-content;
+        border-bottom: 1px solid #E3E3DD;
+        transition: 1s;
+    }
+    
+    .telaCadastro .versionDesktop a i:hover{
+        transition: 1s;
+        border-bottom: 1px solid #0073CF;
+    }
+}
+
+
+/*Versão DeskTop Grande*/
+
+@media screen and (min-width:1200px){  
+    
+    .itensNav a{
+        font-size: 20px;
+    }
+    
+    .telaCadastro .versionDesktop .botaoCadastrar button{
+        margin: 2% 0;
+    }
+}
