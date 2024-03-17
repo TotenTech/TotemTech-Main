@@ -1,0 +1,551 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-shadow: none;
+    font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #888;
+}
+
+
+::-webkit-scrollbar {
+    height: 0;
+    width: 3px;
+    margin-right: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.itensNav {
+    display: none;
+}
+
+.menuBtn {
+    display: none;
+}
+
+.menu-btn {
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #203FAB;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+
+.itensNavMobile {
+    position: fixed;
+    top: 0;
+    left: -1500px;
+    width: 50%;
+    height: 100vh;
+    background-color: rgba(52, 97, 149, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
+    z-index: 1;
+    transition: 0.4;
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s;
+}
+
+.itensNavMobile ul {
+    list-style: none;
+    margin: 0;
+    width: 90%;
+    height: fit-content;
+    margin: 25% 5% 10% 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.itensNavMobile ul li {
+    width: 100%;
+    justify-content: center;
+    margin: 6% 0;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.itensNavMobile ul li a {
+    text-decoration: none;
+    color: #E3E3DD;
+    padding: 0 0 5% 0%;
+    font-weight: 700;
+}
+
+#menu-btn:checked+.menu-btn span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+#menu-btn:checked+.menu-btn span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-btn:checked+.menu-btn span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
+
+.telaLogin {
+    background-color: #E3E3DD;
+    color: #000000;
+    transition: 1s;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.telaLogin .navBar {
+    background-color: #E3E3DD;
+    height: 17vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+
+.telaLogin .navBar img {
+    width: 110px;
+}
+
+.telaLogin .navBar .mensagem {
+    width: fit-content;
+    height: fit-content;
+    color: #0073CF;
+    background-color: #D9D9D9;
+    padding: 3%;
+    font-size: 28px;
+    font-weight: 900;
+    margin: 1% 0 0 0;
+    border-radius: 30px;
+}
+
+.telaLogin .formAndroid {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 17% 0 2% 0;
+}
+
+.telaLogin .formAndroid .form {
+    padding: 0%;
+    margin: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+.telaLogin .formAndroid .form h2 {
+    color: #0073CF;
+    margin: 0%;
+    padding: 0%;
+    font-weight: 100;
+}
+
+.telaLogin .formAndroid .form input {
+    background-color: #D9D9D9;
+    color: #0073CF;
+    border: none;
+    height: 35px;
+    width: 100%;
+    margin: 0 0 6% 0;
+    padding: 0 0 0 2%;
+}
+
+.telaLogin .formAndroid .form input::placeholder {
+    color: #0073CF;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.telaLogin .formAndroid .form div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.telaLogin .formAndroid .form button {
+    background-color: #0073CF;
+    border: none;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 16px;
+    width: fit-content;
+    height: fit-content;
+    padding: 3% 12%;
+    border-radius: 30px;
+    margin-top: 2%;
+    transition: 0.5s;
+}
+
+.telaLogin .formAndroid .form button:hover {
+    background-color: #D9D9D9;
+    color: #203FAB;
+    border: 1px solid #203FAB;
+    transition: 0.5s;
+}
+
+.telaLogin .formDesktop {
+    display: none;
+}
+
+.telaLogin p {
+    color: #0073CF;
+    width: 100%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.telaLogin p a {
+    text-decoration: none;
+}
+
+.telaLogin p i {
+    color: #203FAB;
+}
+
+.telaLogin .mensagemAlerta{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: fit-content;
+    height: 50px;
+    right: -100%;
+    position: absolute;
+    border: 2px solid #203FAB;
+    background-color: rgba(0, 115, 207, 0.9);
+    color: white;
+    margin: 5% 0;
+    padding: 1%;
+    border-radius: 15px;
+    align-items: center;
+    gap: 1%;
+    transition: 1s;
+    opacity: 0;
+}
+
+.telaLogin .mensagemAlerta img{
+    height: 100%;
+}
+
+
+
+/*Celular Grande*/
+
+@media screen and (min-width: 600px) {
+    .itensNavMobile {
+        width: 50%;
+    }
+
+
+    .itensNavMobile ul li {
+        margin: 6% 0;
+        font-size: 20px;
+    }
+
+    
+    .telaLogin .navBar {
+        background-color: #E3E3DD;
+        height: 17vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .telaLogin .navBar .mensagem {
+        padding: 3%;
+        margin: 1% 0 0 0;
+    }
+
+    .telaLogin .formAndroid {
+        margin: 10% 0 0 0;
+    }
+
+    .telaLogin .formAndroid .form h2 {
+        margin: 0 0 1% 0;
+    }
+
+    .telaLogin .formAndroid .form input {
+        height: 40px;
+        width: 100%;
+        margin: 0 0 7% 0;
+        padding: 0 0 0 3%;
+    }
+
+    .telaLogin .formAndroid .form input::placeholder {
+        font-size: 16px;
+    }
+
+    .telaLogin .formAndroid .form button {
+        font-size: 17px;
+        padding: 2% 10%;
+    }
+
+    .telaLogin p {
+        margin-top: 2%;
+    }
+}
+
+
+
+/*Tablet*/
+@media screen and(min-width: 768px) {
+    .itensNavMobile {
+        width: 40%;
+    }
+
+    .itensNavMobile ul li {
+        font-size: 20px;
+    }
+
+
+    .telaLogin .navBar {
+        background-color: #E3E3DD;
+        height: 17vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .telaLogin .navBar .mensagem {
+        padding: 3%;
+        margin: 1% 0 0 0;
+    }
+
+    .telaLogin .formAndroid {
+        margin: 10% 0 0 0;
+    }
+
+    .telaLogin .formAndroid .form h2 {
+        margin: 0 0 1% 0;
+    }
+
+    .telaLogin .formAndroid .form input {
+        height: 40px;
+        width: 100%;
+        margin: 0 0 7% 0;
+        padding: 0 0 0 3%;
+    }
+
+    .telaLogin .formAndroid .form input::placeholder {
+        font-size: 16px;
+    }
+
+    .telaLogin .formAndroid .form button {
+        font-size: 17px;
+        padding: 2% 10%;
+    }
+
+    .telaLogin p {
+        margin-top: 2%;
+    }
+}
+
+
+
+
+/*Desktop pequeno*/
+
+@media screen and (min-width: 992px){
+    
+    .itensNavMobile {
+        display: none;
+    }
+
+    .menuBtn {
+        display: none;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    .telaCadastro .versionAndroid {
+        display: none;
+    }
+
+    .mensagem {
+        display: none;
+    }
+
+    .itensNav{
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 17vh;
+    }
+
+    .itensNav li{
+        margin: 0 20px;
+    }
+
+    .itensNav a{
+        text-decoration: none;
+        font-size: 20px;
+        color: #0073CF;
+        font-weight: 700;
+        transition: 1s;
+        border-bottom: 3px solid #E3E3DD;
+    }
+
+    .itensNav a:hover{
+        transition: 1s;
+        border-bottom: 3px solid #203FAB;
+    }
+
+
+    .telaLogin .navBar .mensagem {
+        display: none;
+    }
+
+    .telaLogin .formAndroid {
+        display: none;
+    }
+
+    .telaLogin .formDesktop {
+        display: flex;
+        width: 85%;
+        height: fit-content;
+        justify-content: center;
+        align-items: baseline;
+        flex-direction: row;
+        margin: 1% 0 2% 0;
+    }
+
+    .telaLogin .formDesktop .mensagemForm {
+        padding: 7% 5% 1% 0%;
+        color: #0073CF;
+        border-bottom: 5px solid #203FAB;
+        width: fit-content;
+        height: fit-content;
+        margin: 0 20% 0 0;
+        font-size: 25px;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    .telaLogin .formDesktop .form {
+        padding: 0%;
+        margin: 0%;
+        height: 100%;
+        width: 50%;
+    }
+
+    .telaLogin .formDesktop .form h2 {
+        margin: 0 0 1% 0;
+        color: #0073CF;
+        padding: 0%;
+        font-weight: 100;
+    }
+
+    .telaLogin .formDesktop .form input {
+        background-color: #D9D9D9;
+        color: #0073CF;
+        border: none;
+        height: 45px;
+        width: 110%;
+        margin: 0 0 9% 0;
+        padding: 0 0 0 3%;
+    }
+
+    .telaLogin .formDesktop .form input::placeholder {
+        color: #0073CF;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .telaLogin .formDesktop .form div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .telaLogin .formDesktop .form button {
+        background-color: #0073CF;
+        border: none;
+        font-weight: 700;
+        color: #ffffff;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 30px;
+        margin-top: 2%;
+        font-size: 17px;
+        padding: 3% 20%;
+    }
+
+    .telaLogin .formDesktop .form button:hover {
+        background-color: #D9D9D9;
+        color: #203FAB;
+        border: 1px solid #203FAB;
+        transition: 0.5s;
+    }
+
+    .telaLogin p {
+        margin-top: 2%;
+    }
+}
+
+
+
+
+
+/*Desktop grande*/
+@media screen and (min-width: 1200px){
+    .itensNav a {
+     font-size: 21px;
+    }
+
+    .telaLogin .formDesktop {
+        margin: 0% 0 2% 0;
+    }
+
+    .telaLogin .formDesktop .mensagemForm {
+        padding: 6% 5% 1% 0%;
+        margin: 0 20% 0 0;
+        font-size: 170%;
+    }
+
+    .telaLogin .formDesktop .form {
+        width: 52%;
+    }
+
+    .telaLogin .formDesktop .form input {
+        height: 50px;
+        width: 105%;
+        font-size: 16px;
+    }
+
+    .telaLogin .formDesktop .form button {
+        font-size: 22px;
+        padding: 2% 12%;
+    }
+
+}
