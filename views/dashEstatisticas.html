@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | TotemTech</title>
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="telaPrincipal" id="divTelaPrincipal">
+
+        <div class="navBar">
+            <div class="perfil">
+                <span class="material-symbols-outlined">
+                    account_circle
+                </span>
+                <!-- <img src="./assets/dashboard/user-solid.svg" alt="" style="width: 35px;"> -->
+                <p>Olá, Nome</p>
+            </div>
+
+            <a href="./dashTotens.html"><img src="../public/img/logo.png" width="75px"></a>
+
+            <button class="btn-sair"><a href="./index.html">Sair</a></button>
+        </div>
+
+        <div class="dashboard">
+            <div class="menu-lateral">
+
+                <ul class="menu">
+                    <li>
+                        <a href="./dashTotens.html">Totens</a>
+                    </li>
+                    <li>
+                         <a href="./dashHistorico.html">Histórico</a>
+                    </li>
+                    <li>
+                        <a href="./dashPerfil.html">Usuário</a>
+                    </li>
+                    <li>
+                        <a href="./dashEstatisticas.html">Estatísticas</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="telaEstatisticas">
+                <b>Estatísticas</b>
+
+                <div class="tela1">
+                    <div class="tabela">
+                        <div class="filtros">
+                            <select name="" id="selecao-filtro">
+                                <option value="totem1">Totem 1</option>
+                                <option value="totem2">Totem 2</option>
+                                <option value="totem2">Totem 3</option>
+                                <option value="totem2">Totem 4</option>
+                            </select>
+
+                            <button onclick="openModal()" style="display: none;">Ver Tabela com parâmetros</button>
+
+                            <!-- <select name="" id="selecao-filtro">
+                                <option value="totem1">CPU</option>
+                                <option value="totem2">RAM</option>
+                                <option value="totem2">Disco</option>
+                                <option value="totem2">Rede: Utilização</option>
+                                <option value="totem2">Rede: Download</option>
+                            </select> -->
+                        </div>
+
+                        <div id="myModal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close" onclick="closeModal()">&times;</span>
+
+                                <div class="tabela">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Métrica</th>
+                                                <th>Média</th>
+                                                <th>Mínimo</th>
+                                                <th>Máximo</th>
+                                                <th>Desvio Padrão</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Download (Internet)</td>
+                                                <td>50 Mbps</td>
+                                                <td>0 Mbps</td>
+                                                <td>100 Mbps</td>
+                                                <td>20 Mbps</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Upload (Internet)</td>
+                                                <td>30 Mbps</td>
+                                                <td>0 Mbps</td>
+                                                <td>80 Mbps</td>
+                                                <td>15 Mbps</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Utilização da CPU (%)</td>
+                                                <td>30%</td>
+                                                <td>5%</td>
+                                                <td>80%</td>
+                                                <td>10%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Número de Processos da CPU</td>
+                                                <td>50</td>
+                                                <td>10</td>
+                                                <td>100</td>
+                                                <td>15</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Disponível (RAM)</td>
+                                                <td>8 GB</td>
+                                                <td>2 GB</td>
+                                                <td>16 GB</td>
+                                                <td>2 GB</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tempo Médio de Resposta (Disco)</td>
+                                                <td>5 ms</td>
+                                                <td>2 ms</td>
+                                                <td>10 ms</td>
+                                                <td>1 ms</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="filtros">
+
+
+                        <button>Fazer download</button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="tela2">
+                    <div class="grafico-linhas">
+                        <p>Monitoramento das Métricas do Totem por Minutos</p>
+                        <!-- <p>Monitoramento das Métricas do Totem por Minuto</p> -->
+                        <div class="chartPizza">
+                            <canvas id="graficoLinhas"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="grafico-pizza">
+                        <p>Percentual de Utilização de CPU, RAM, Disco e Rede</p>
+
+                        <div class="chartPizza">
+                            <canvas id="graficoPizza"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Função para abrir o modal
+    function openModal() {
+        document.getElementById('myModal').style.display = 'block';
+    }
+
+    // Função para fechar o modal
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Dados fictícios para CPU, RAM, disco e rede
+    const dadosCPU = [40, 50, 60, 70, 65, 55, 45]; // Utilização da CPU (%)
+    const dadosRAM = [60, 65, 70, 75, 80, 85, 90]; // Uso de RAM (%)
+    const dadosDISCO = [5, 6, 7, 6, 5, 4, 3]; // Tempo médio de resposta do disco (ms)
+    const dadosDownload = [20, 25, 30, 35, 30, 25, 20]; // Utilização da rede - Download (%)
+    const dadosUpload = [10, 15, 20, 15, 10, 15, 20]; // Utilização da rede - Upload (%)
+    const labels = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+
+    // Converter os horários para minutos
+    const minutos = labels.map(label => {
+        const [hora, minuto] = label.split(':');
+        return (parseInt(hora) * 60) + parseInt(minuto);
+    });
+
+    const ctx1 = document.getElementById('graficoLinhas');
+
+    const chart1 = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: minutos,
+            datasets: [{
+                label: 'CPU',
+                data: dadosCPU,
+                borderColor: '#D6618F',
+                fill: false
+            }, {
+                label: 'RAM',
+                data: dadosRAM,
+                borderColor: '#F1931B',
+                fill: false
+            }, {
+                label: 'Disco',
+                data: dadosDISCO,
+                borderColor: '#888C46',
+                fill: false
+            }, {
+                label: 'Download',
+                data: dadosDownload,
+                borderColor: '#3E6BA8',
+                fill: false
+            }, {
+                label: 'Upload',
+                data: dadosUpload,
+                borderColor: '#BD4E46',
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'linear',
+                    ticks: {
+                        callback: function (value, index, values) {
+                            // Converter os minutos de volta para horários
+                            const horas = Math.floor(value / 60);
+                            const minutos = value % 60;
+                            return `${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
+            }
+        }
+    });
+
+
+    //GRAFICO PIZZA : uso de recursos
+    // Dados fictícios para a distribuição de uso de recursos
+    const dadosDistribuicao = [30, 20, 25, 25]; // Percentuais de uso de recursos (CPU, RAM, disco, rede)
+    const labelsDistribuicao = ['CPU', 'RAM', 'Disco', 'Rede'];
+    const cores = ['#D6618F', '#F1931B', '#888C46', '#3E6BA8'];
+
+    const ctx2 = document.getElementById('graficoPizza');
+
+    const chart2 = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: labelsDistribuicao,
+            datasets: [{
+                data: dadosDistribuicao,
+                backgroundColor: cores
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
+            }
+        }
+    });
+</script>
