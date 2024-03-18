@@ -29,19 +29,20 @@ function fecharMenu() {
 var mensagemAlerta = document.getElementById('mensagemAlerta');
 
 
-function fazerLogin() {
-    var emailCorreto = "totemTech@gmail.com";
-    var senhaCorreta = "totem1234";
-    var larguraTela =  window.innerWidth;
+var emailReserva = "totemTech@gmail.com";
+var senhaReserva = "totem1234";
 
-    if ( larguraTela < 992) {
+function fazerLoginA() {
         var emailA = inputEmailA.value;
         var senhaA = inputSenhaA.value;
 
-        if (emailA == emailCorreto && senhaA == senhaCorreta) {
+        var email = emailA.replace(/\s/g, '');
+        var senha = senhaA.replace(/\s/g, '');
+
+        if (email == emailReserva && senha == senhaReserva) {
             mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
             setTimeout(redirecionarDash, 4000);
-        } else if (emailA == "" || senhaA == "") {
+        } else if (email == "" || senha == "") {
             mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
          Preencha todos os campos`;
 
@@ -50,23 +51,28 @@ function fazerLogin() {
             Email ou senha incorreto`;
 
         }
+    mostrarAlerta();
+}
+
+function fazerLoginD(){
+    var emailD = inputEmailD.value;
+    var senhaD = inputSenhaD.value;
+    
+
+    var email = emailD.replace(/\s/g, '');
+    var senha = senhaD.replace(/\s/g, '');
+
+    if (email == emailReserva && senha == senhaReserva) {
+        mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
+        setTimeout(redirecionarDash, 4000);
+    } else if (email == "" || senha == "") {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+     Preencha todos os campos`;
+
     } else {
-        var emailD = inputEmailD.value;
-        var senhaD = inputSenhaD.value;
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        Email ou senha incorreto`;
 
-        if (emailD == emailCorreto && senhaD == senhaCorreta) {
-            mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
-            setTimeout(redirecionarDash, 4000);
-        
-        } else if (emailD == "" || senhaD == "") {
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
-         Preencha todos os campos`;
-
-        } else {
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
-            Email ou senha incorreto`;
-
-        }
     }
     mostrarAlerta();
 }
