@@ -27,53 +27,80 @@ function fecharMenu() {
 /*Verificação de mensagem */
 
 var mensagemAlerta = document.getElementById('mensagemAlerta');
+var codigoCorreto = "1234567890ABC";
 
-function fazerCadastro() {
-    var codigoCorreto = "1234567890ABC"
-    var larguraTela = window.innerWidth;
+function fazerCadastroA() {
 
-    if (larguraTela < 992) {
-        var nomeA = inputNomeA.value;
-        var emailA = inputEmailA.value;
-        var senhaA = inputSenhaA.value;
-        var confirmarA = inputConfirmarA.value;
-        var codigoA = inputCodigoA.value;
-        
-        if(nomeA =="" || emailA =="" || senhaA =="" || codigoA == "" || confirmarA == ""){
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+    var nomeA = inputNomeA.value;
+    var emailA = inputEmailA.value;
+    var senhaA = inputSenhaA.value;
+    var confirmarA = inputConfirmarA.value;
+    var codigoA = inputCodigoA.value;
+
+    var nome = nomeA.replace(/\s/g, '');
+    var email = emailA.replace(/\s/g, '');
+    var senha = senhaA.replace(/\s/g, '');
+    var confirmar = confirmarA.replace(/\s/g, '');
+    var codigo = codigoA.replace(/\s/g, '')
+
+
+    if (nome == "" || email == "" || senha == "" || codigo == "" || confirmar == "") {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
             Preencha todos os campos`;
-        }else if(senhaA != confirmarA){
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+    } else if (email.indexOf('@') < 0 || email.indexOf('.') < 0) {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            Preencha o campo do email corretamente utilizando @ e . `;
+    } else if (senha.length < 6) {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            A senha deve ter no minimo 6 digitos`;
+    } else if (senha != confirmar) {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
             Senhas diferentes`;
-        }else if(codigoCorreto == codigoA){
-            mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
-            setTimeout(redirecionarLogin, 4000);  
-        }else{
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
-            Código Inválido`;
-        }
+    } else if (codigoCorreto == codigo) {
+        mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
+        setTimeout(redirecionarLogin, 4000);
     } else {
-        var nomeD = inputNomeD.value;
-        var emailD = inputEmailD.value;
-        var senhaD = inputSenhaD.value;
-        var confirmarD = inputConfirmarD.value;
-        var codigoD = inputCodigoD.value;
-    
-        
-        if(nomeD =="" || emailD =="" || senhaD =="" || codigoD == "" || confirmarD == ""){
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
-            Preencha todos os campos`;
-        }else if(senhaD != confirmarD){
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
-            Senhas diferentes`;
-        }else if(codigoCorreto == codigoD){
-            mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
-            setTimeout(redirecionarLogin, 4000);  
-        }else{
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
             Código Inválido`;
-        }
     }
+
+    mostrarAlerta();
+}
+
+function fazerCadastroD() {
+    var nomeD = inputNomeD.value;
+    var emailD = inputEmailD.value;
+    var senhaD = inputSenhaD.value;
+    var confirmarD = inputConfirmarD.value;
+    var codigoD = inputCodigoD.value;
+
+    var nome = nomeD.replace(/\s/g, '');
+    var email = emailD.replace(/\s/g, '');
+    var senha = senhaD.replace(/\s/g, '');
+    var confirmar = confirmarD.replace(/\s/g, '');
+    var codigo = codigoD.replace(/\s/g, '')
+
+
+    if (nome == "" || email == "" || senha == "" || codigo == "" || confirmar == "") {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            Preencha todos os campos`;
+    } else if (email.indexOf('@') < 0 || email.indexOf('.') < 0) {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            Preencha o campo do email corretamente utilizando @ e . `;
+    } else if (senha.length < 6) {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            A senha deve ter no minimo 6 digitos`;
+    } else if (senha != confirmar) {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            Senhas diferentes`;
+    } else if (codigoCorreto == codigo) {
+        mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
+        setTimeout(redirecionarLogin, 4000);
+    } else {
+        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            Código Inválido`;
+    }
+
     mostrarAlerta();
 }
 
