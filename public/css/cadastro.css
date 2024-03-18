@@ -89,7 +89,7 @@
     position: fixed;
     top: 0;
     left: -1500px;
-    width: 50%;
+    width: 30%;
     height: 100vh;
     background-color: rgba(52, 97, 149, 0.9);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
@@ -119,6 +119,13 @@
     font-size: 18px;
     text-decoration: none;
     font-weight: 900;
+    border-bottom: 3px solid rgba(52, 97, 149, 0.9);;
+    transition: 1s;
+}
+
+.itensNavMobile ul li:hover{
+    border-bottom: 3px solid white;
+    transition: 1s;
 }
 
 .itensNavMobile ul li a {
@@ -258,7 +265,7 @@
 
 @media screen and (min-width:600px) {
     .itensNavMobile {
-        width: 50%;
+        width: 25%;
 
     }
 
@@ -318,7 +325,7 @@
 
 @media screen and (min-width:768px) {
     .itensNavMobile {
-        width: 40%;
+        width: 20%;
     }
 
 

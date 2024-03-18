@@ -29,12 +29,13 @@
 
             <!--Versão Desktop-->
             <ul class="itensNav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#sobreNos">Sobre Nós</a></li>
-                <li><a href="#nossasSolucoes">Nossas soluções</a></li>
-                <li><a href="#clientes">Clientes</a></li>
-                <li><a href="#">Acionar Suporte</a></li>
+                <li><a  onclick="scrollToSection('home')">Home</a></li>
+                <li><a  onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
+                <li><a  onclick="scrollToSection('nossasSolucoesD')">Nossas soluções</a></li>
+                <li><a  onclick="scrollToSection('clientes')">Clientes</a></li>
+                <li><a href="./cadastro.html">Cadastra-se</a></li>
             </ul>
+
             <a class="login" href="./telaLogin.html">LOGIN</a>
         </div>
 
@@ -42,14 +43,14 @@
         <!--Versão Mobile-->
         <div class="itensNavMobile">
             <ul>
-                <li><a href="#" onclick="scrollToSection()">Home</a></li>
-                <li><a href="#" onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
-                <li><a href="#" onclick="scrollToSection('nossasSolucoes')">Nossas soluções</a></li>
-                <li><a href="#" onclick="scrollToSection('clientes')">Clientes</a></li>
-                <li><a href="#" onclick="scrollToSection()">Acionar Suporte</a></li>
+                <li><a  onclick="scrollToSection('home')">Home</a></li>
+                <li><a  onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
+                <li><a  onclick="scrollToSection('nossasSolucoesM')">Nossas soluções</a></li>
+                <li><a  onclick="scrollToSection('clientes')">Clientes</a></li>
+                <li><a href="./cadastro.html">Cadastra-se</a></li>
             </ul>
         </div>
-        <div class="caixa">
+        <div class="caixa" id="home">
             <img src="../public/img/totem2.png" width="55%">
             <div class="textoComum">
                 <b>O Melhor Suporte para o seu
@@ -76,13 +77,13 @@
                     otimizar
                     seus sistemas de autoatendimento e elevar a experiência do cliente ao próximo nível.
                 </p>
-                <div class="botaoCadastro">Cadastre-se</div>
+                <a href="./cadastro.html" class="botaoCadastro">Cadastra-se</a>
             </div>
         </div>
 
         <!--Versão Mobile-->
-        <div class="caixa3">
-            <h1 id="nossasSolucoes" class="nossasSolucoes">Nossas Soluções</h1>
+        <div class="caixa3" id="nossasSolucoesM">
+            <h1  class="nossasSolucoes">Nossas Soluções</h1>
             <div class="textoComum">
                 <img src="../public/img/totem-pedido.webp" width="80%">
                 <br>
@@ -102,11 +103,11 @@
         </div>
 
         <!--Versão Desktop-->
-        <div class="caixa3Desktop">
+        <div class="caixa3Desktop" id="nossasSolucoesD">
             <div class="caixaInterna3">
                 <img src="../public/img/totem-pedido.webp" width="80%">
                 <div class="textoComum">
-                    <h1 id="nossasSolucoes" class="nossasSolucoes">Nossas Soluções</h1>
+                    <h1  class="nossasSolucoes">Nossas Soluções</h1>
                     <p>Nossos serviços de suporte abrangem uma ampla: gama de áreas:</p>
                 </div>
             </div>
@@ -118,18 +119,18 @@
                 <div class="circulo03">Suporte Remoto</div>
             </div>
             <div class="linha">
-                <div class="botaoCadastro">Cadastre-se</div>
+                <a href="./cadastro.html" class="botaoCadastro">Cadastra-se</a>
             </div>
         </div>
         <br>
         <br>
         <br>
-        <div class="botaoCadastro">Cadastre-se</div>
+        <a href="./cadastro.html" class="botaoCadastro">Cadastra-se</a>
         <br>
         <br>
 
-        <div class="caixa4">
-            <h1 id="clientes"> Clientes</h1>
+        <div id="clientes" class="caixa4">
+            <h1> Clientes</h1>
             <br>
             <div class="textoComum">
                 No coração do nosso negócio, a dedicação aos nossos clientes é a pedra angular que molda a experiência
