@@ -16,6 +16,8 @@ app.listen(port, () => {
 
 const indexRouter = require("./src/routes/indexRouter");
 const loginRouter = require("./src/routes/loginRouter");
+const cadastroRouter = require("./src/routes/cadastroRouter");
 
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
+app.use("cadastro", cadastroRouter);

@@ -68,13 +68,12 @@ function fazerCadastroA() {
 }
 
 function fazerCadastroD() {
-    var nomeD = inputNomeD.value;
+    var nom = inputNomeD.value;
     var emailD = inputEmailD.value;
     var senhaD = inputSenhaD.value;
     var confirmarD = inputConfirmarD.value;
     var codigoD = inputCodigoD.value;
 
-    var nome = nomeD.replace(/\s/g, '');
     var email = emailD.replace(/\s/g, '');
     var senha = senhaD.replace(/\s/g, '');
     var confirmar = confirmarD.replace(/\s/g, '');
@@ -102,6 +101,19 @@ function fazerCadastroD() {
     }
 
     mostrarAlerta();
+
+    fetch("/cadastro/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({
+            nomeServer: nome,
+            emailServer: email,
+            senhaServer: senha,
+            codigoServer: codigo,
+        })
+    })
 }
 
 function redirecionarLogin() {

@@ -35,12 +35,12 @@
 
 .telaPrincipal .navBar {
     background-color: #9ADFEE;
-    height: 17vh;
+    height: fit-content;
     width: 92%;
-    padding: 0 4%;
+    padding: 1% 4%;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
 }
 
 /* Menu lateral da tela principal*/
@@ -102,11 +102,12 @@
     font-size: 18px;
     text-decoration: none;
     font-weight: 900;
-    border-bottom: 3px solid rgba(52, 97, 149, 0.9);;
+    border-bottom: 3px solid rgba(52, 97, 149, 0.9);
+    ;
     transition: 1s;
 }
 
-.itensNavMobile ul li:hover{
+.itensNavMobile ul li:hover {
     border-bottom: 3px solid white;
     transition: 1s;
 }
@@ -144,14 +145,22 @@
     margin: 0;
 }
 
+.telaPrincipal .navBar div img {
+    margin: 0%;
+    padding: 0%;
+}
+
 .telaPrincipal .navBar div h1 {
     color: white;
-    margin: 0%;
-    padding: 0% 3% 0% 3%;
-    font-size: 120%;
+    margin: 0;
+    padding: 0% 15%;
+    font-size: 100%;
     width: fit-content;
-    height: 100%;
+    max-height: 80%;
     border-bottom: 4px solid #203FAB;
+    text-align: center;
+    white-space: nowrap;
+    align-items: center;
 }
 
 .telaPrincipal .navBar .login {
@@ -174,10 +183,17 @@
 
 .telaPrincipal .caixa {
     display: flex;
-    justify-content: center;
+    justify-content: baseline;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    min-height: 75vh;
+    margin: 0%;
+    gap: 6%;
+    padding: 5% 0 6% 0;
 }
+
+
 
 .telaPrincipal .caixa2 {
     display: flex;
@@ -274,7 +290,7 @@
     flex-direction: column;
     width: 90%;
     height: 40vh;
-    margin: 9% 0 15vh 0;
+    padding: 9% 0 21vh 0;
 }
 
 .telaPrincipal .table .linha {
@@ -356,22 +372,19 @@
 
     }
 
-
-
-
     .telaPrincipal .navBar {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 91%;
         margin: 0%;
-        padding: 0 5%;
-        height: 23vh;
+        padding: 1% 5%;
+        height: fit-content;
     }
 
-    .telaPrincipal .navBar img {
-        width: 42%;
-        margin: 0%;
+    .telaPrincipal .navBar div img {
+        height: 12vh;
+        margin: 0 0 1% 0;
         padding: 0;
 
     }
@@ -381,7 +394,7 @@
         justify-content: center;
         flex-direction: row;
         margin: 7% 0 5% 0;
-        height: 100hv;
+        height: 80vh;
     }
 
     .telaPrincipal .caixa img {
@@ -623,9 +636,9 @@
         font-size: 20px;
     }
 
-
     .telaPrincipal .navBar img {
-        width: 42%;
+        height: 42vh;
+        margin: 0 0 2% 0;
     }
 
     .telaPrincipal .caixa img {
@@ -913,7 +926,8 @@
         padding: 0;
 
     }
-    .telaPrincipal .navBar .login{
+
+    .telaPrincipal .navBar .login {
         font-size: 22px;
     }
 
