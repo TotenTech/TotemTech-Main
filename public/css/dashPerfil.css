@@ -1,0 +1,197 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-shadow: none;
+    /* position: relative; */
+    font-family: "Poppins", sans-serif;
+}
+
+.telaPrincipal {
+    background-color: #E3E3DD;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    width: 100wh;
+    height: 100vh;
+}
+
+
+/* navBar */
+.navBar {
+    /* background-color: aliceblue; */
+    background-color: #E3E3DD;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid #8EC0C0;
+    color: #0d4a7c;
+}
+
+.navBar .btn-sair {
+    background-color: #679BC5;
+    /* background-color: #8EC0C0; */
+    border: none;
+    /* color: #000; */
+    color: #0d4a7c;
+    width: 10%;
+    height: 60%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 12px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    outline: none;
+}
+
+.navBar .btn-sair:hover {
+    background-color: #0d4a7c;
+    color: #E3E3DD;
+}
+
+.navBar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.perfil {
+    /* margin: 10px; */
+    display: flex;
+    justify-content: space-around;
+    /* background-color: #637AA7; */
+    width: 10%;
+    /* color: #203FAB;   */
+}
+
+.dashboard {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* background-color: rgb(11, 40, 40); */
+    background-color: #E3E3DD;
+
+}
+
+
+/* menu de navegação */
+.dashboard .menu-lateral {
+    /* background-color: blue; */
+    /* background-color: #E3E3DD;  */
+    background-color: #D3D1D1;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin: 10px; */
+    align-items: center;
+    /* border-right: 2px solid #8EC0C0; */
+    /* gap: 30px; */
+    /* color: #f2f2f2; */
+}
+
+.menu {
+    display: flex;
+    height: 70%;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    cursor: pointer;
+    color: #000;
+}
+
+.menu a {
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid #0d4a7c;
+}
+
+.menu a:hover {
+    /* background-color: #0d4a7c;  */
+    color: #0d4a7c;
+}
+
+.telaPerfil {
+    /* background-color: blue; */
+    width: 80%;
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px;
+}
+
+.telaPerfil .perfil {
+    /* background-color: #637AA7; */
+    width: 20%;
+    /* Definindo a largura */
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #679BC5;
+    border-radius: 10px;
+    color: #E3E3DD;
+}
+
+
+.telaPerfil .infos {
+    /* background-color: wheat; */
+    width: 60%;
+    height: 90%;
+    /* Ajustando a altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.telaPerfil .infos .campos {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.telaPerfil .infos .campos b {
+    font-size: 14px;
+    color: #0d4a7c;
+}
+
+.telaPerfil .infos .campos p {
+    border: 1px solid #637AA7;
+    border-radius: 5px;
+    border-bottom: 2px solid #0d4a7c;
+    width: 50%;
+    color: gray;
+    font-size: 14px;
+}
+
+.telaPerfil .edicao {
+    width: 20%;
+    /* Definindo a largura */
+    display: flex;
+    /* Para centralizar o botão */
+    justify-content: center;
+    /* Centralizando horizontalmente */
+    align-items: center;
+}
+
+.telaPerfil .edicao button {
+    background-color: #0d4a7c;
+    color: #E3E3DD;
+    width: 50%;
+    border-radius: 5px;
+}
