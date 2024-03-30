@@ -426,6 +426,8 @@ body {
         padding: 0 8%;
         justify-content: baseline;
         flex-direction: column;
+        overflow: scroll;
+        overflow-x: hidden;
     }
 
     .telaCadastro .versionDesktop .tituloCadastro {
