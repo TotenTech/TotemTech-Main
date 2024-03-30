@@ -33,3 +33,28 @@ function scrollToSection(sectionId) {
     this.checked = false;
     fecharMenu()
 }
+
+
+function redirecionarLogin(){
+    window.location.href = "telaLogin.html";
+}
+
+function redirecionarCadastro(){
+    window.location.href = "cadastro.html";
+}
+
+
+//Menu rolagem 
+let prevScrollPos = window.pageYOffset;
+const navBar = document.getElementById('navBar');
+
+window.addEventListener('scroll', function() {
+  let currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    navBar.style.top = '0';
+  } else {
+    navBar.style.top = `-${navBar.offsetHeight}px`;
+  }
+  prevScrollPos = currentScrollPos;
+});

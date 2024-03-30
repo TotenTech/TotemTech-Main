@@ -38,6 +38,9 @@ body {
     flex-direction: column;
     z-index: 1;
     overflow: hidden;
+    justify-content: baseline;
+    margin: 0%;
+    padding: 0%;
 }
 
 .telaCadastro .navBar {
@@ -48,6 +51,7 @@ body {
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
+    margin: 0;
 }
 
 .telaCadastro .navBar img {
@@ -103,6 +107,8 @@ body {
     flex-direction: column;
     transition: 0.4s;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .itensNavMobile ul {
@@ -124,11 +130,12 @@ body {
     font-size: 18px;
     text-decoration: none;
     font-weight: 900;
-    border-bottom: 3px solid rgba(52, 97, 149, 0.9);;
+    border-bottom: 3px solid rgba(52, 97, 149, 0.9);
+    ;
     transition: 1s;
 }
 
-.itensNavMobile ul li:hover{
+.itensNavMobile ul li:hover {
     border-bottom: 3px solid white;
     transition: 1s;
 }
@@ -176,6 +183,16 @@ body {
     color: #0073CF;
     font-size: 18px;
     margin: 1% 0;
+    align-items: center;
+    display: flex;
+    gap: 0 2%;
+    height: 3vh;
+}
+
+.versionAndroid p img {
+    height: 100%;
+    margin: 0%;
+    cursor: help;
 }
 
 .versionAndroid input {
@@ -220,8 +237,14 @@ body {
 
 .versionAndroid .legendaConta {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 4% 0%;
+    padding: 0%;
     text-align: center;
     font-size: 13px;
+    display: flex;
+    gap: 0;
 }
 
 
@@ -233,18 +256,18 @@ body {
     text-decoration: none;
 }
 
-.versionAndroid a i{
+.versionAndroid a i {
     width: fit-content;
     border-bottom: 1px solid #E3E3DD;
     transition: 1s;
 }
 
-.versionAndroid a i:hover{
+.versionAndroid a i:hover {
     transition: 1s;
     border-bottom: 1px solid #0073CF;
 }
 
-.telaCadastro .mensagemAlerta{
+.telaCadastro .mensagemAlerta {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -262,10 +285,11 @@ body {
     gap: 1%;
     transition: 1s;
     opacity: 0;
-    position: fixed; 
+    position: fixed;
+    max-width: 55%;
 }
 
-.telaCadastro .mensagemAlerta img{
+.telaCadastro .mensagemAlerta img {
     height: 100%;
 }
 
@@ -368,18 +392,18 @@ body {
         display: none;
     }
 
-    .itensNav{
+    .itensNav {
         display: flex;
         align-items: center;
         list-style: none;
         height: 17vh;
     }
 
-    .itensNav li{
+    .itensNav li {
         margin: 0 20px;
     }
 
-    .itensNav a{
+    .itensNav a {
         text-decoration: none;
         font-size: 18px;
         color: #0073CF;
@@ -388,7 +412,7 @@ body {
         border-bottom: 3px solid #E3E3DD;
     }
 
-    .itensNav a:hover{
+    .itensNav a:hover {
         transition: 1s;
         border-bottom: 3px solid #203FAB;
     }
@@ -421,20 +445,36 @@ body {
         margin: 2% 0 3% 0;
     }
 
-    .telaCadastro .versionDesktop .caixa{
+    .telaCadastro .versionDesktop .caixa {
         display: flex;
         width: 100%;
         height: fit-content;
 
     }
 
-    .telaCadastro .versionDesktop .caixa .caixaEsquerda{
+    .telaCadastro .versionDesktop .caixa .caixaEsquerda {
         width: 50%;
         font-size: 22px;
         color: #0073CF;
+        gap: 0 2%;
+        height: 3vh;
     }
 
-    .telaCadastro .versionDesktop .caixa .caixaEsquerda input{
+    .versionDesktop .caixa .caixaEsquerda p {
+        height: 5vh;
+        gap:0 3%;
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    .versionDesktop .caixa .caixaEsquerda p img {
+        height: 90%;
+        margin: 0%;
+        cursor: help;
+    }
+
+    .telaCadastro .versionDesktop .caixa .caixaEsquerda input {
         width: 90%;
         border: none;
         background-color: #D9D9D9;
@@ -445,19 +485,19 @@ body {
         margin: 1% 0;
     }
 
-    .telaCadastro .versionDesktop .caixa .caixaEsquerda input::placeholder{
+    .telaCadastro .versionDesktop .caixa .caixaEsquerda input::placeholder {
         color: #0073CF;
         font-size: 18px;
         padding: 0 2%;
     }
 
-    .telaCadastro .versionDesktop .caixa .caixaDireita{
+    .telaCadastro .versionDesktop .caixa .caixaDireita {
         width: 50%;
         font-size: 22px;
         color: #0073CF;
     }
 
-    .telaCadastro .versionDesktop .caixa .caixaDireita input{
+    .telaCadastro .versionDesktop .caixa .caixaDireita input {
         width: 90%;
         border: none;
         background-color: #D9D9D9;
@@ -468,57 +508,57 @@ body {
         margin: 1% 0;
     }
 
-    .telaCadastro .versionDesktop .caixa .caixaDireita input::placeholder{
+    .telaCadastro .versionDesktop .caixa .caixaDireita input::placeholder {
         color: #0073CF;
         font-size: 18px;
         padding: 0 2%;
     }
 
-    .telaCadastro .versionDesktop .botaoCadastrar{
+    .telaCadastro .versionDesktop .botaoCadastrar {
         width: 100%;
         display: flex;
         justify-content: center;
         height: fit-content;
     }
 
-    .telaCadastro .versionDesktop .botaoCadastrar button{
+    .telaCadastro .versionDesktop .botaoCadastrar button {
         background-color: #0073CF;
         color: white;
         font-size: 22px;
         padding: 1% 8%;
         border: none;
         border-radius: 30px;
-        margin: 4% 0;
+        margin: 15vh 0 1vh 0;
         font-weight: 600;
         transition: 1s;
     }
 
-    .telaCadastro .versionDesktop .botaoCadastrar button:hover{
+    .telaCadastro .versionDesktop .botaoCadastrar button:hover {
         transition: 1s;
         background-color: white;
         color: #0073CF;
     }
 
-    .telaCadastro .versionDesktop .legendaConta{
+    .telaCadastro .versionDesktop .legendaConta {
         width: 100%;
         text-align: center;
         color: #0073CF;
     }
 
-    .telaCadastro .versionDesktop a{
+    .telaCadastro .versionDesktop a {
         width: 100%;
         text-align: center;
         color: #203FAB;
         text-decoration: none;
     }
 
-    .telaCadastro .versionDesktop a i{
+    .telaCadastro .versionDesktop a i {
         width: fit-content;
         border-bottom: 1px solid #E3E3DD;
         transition: 1s;
     }
-    
-    .telaCadastro .versionDesktop a i:hover{
+
+    .telaCadastro .versionDesktop a i:hover {
         transition: 1s;
         border-bottom: 1px solid #0073CF;
     }
@@ -527,13 +567,13 @@ body {
 
 /*Versão DeskTop Grande*/
 
-@media screen and (min-width:1200px){  
-    
-    .itensNav a{
+@media screen and (min-width:1200px) {
+
+    .itensNav a {
         font-size: 20px;
     }
-    
-    .telaCadastro .versionDesktop .botaoCadastrar button{
-        margin: 2% 0;
+
+    .telaCadastro .versionDesktop .botaoCadastrar button {
+        margin: 15vh 0 1vh 0;
     }
 }

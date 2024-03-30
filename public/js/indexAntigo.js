@@ -33,12 +33,3 @@ function scrollToSection(sectionId) {
     this.checked = false;
     fecharMenu()
 }
-
-
-function redirecionarLogin(){
-    window.location.href = "telaLogin.html";
-}
-
-function redirecionarCadastro(){
-    window.location.href = "cadastro.html";
-}

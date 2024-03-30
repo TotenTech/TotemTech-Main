@@ -14,147 +14,164 @@
 </head>
 
 <body>
-    <div class="telaPrincipal" id="divTelaPrincipal">
-        <div class="navBar">
 
-            <!--Versão Mobile-->
-            <input type="checkbox" id="menu-btn" class="menuBtn">
-            <label class="menu-btn" for="menu-btn"><span id="linha1"></span><span
-                    id="linha2"></span><span></span></label>
+    <div class="navBar" id="navBar">
+        <!-- Versão Mobile-->
+        <input type="checkbox" id="menu-btn" class="menuBtn">
+        <label class="menu-btn" for="menu-btn"><span id="linha1"></span><span id="linha2"></span><span></span></label>
 
-            <div>
-                <img src="../public/img/logo.png" height="70hv">
-                <h1 onclick="abrirHome1()" class="mensagem">TOTEM TECH</h1>
-            </div>
-
-            <!--Versão Desktop-->
-            <ul class="itensNav">
-                <li><a  onclick="scrollToSection('home')">Home</a></li>
-                <li><a  onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
-                <li><a  onclick="scrollToSection('nossasSolucoesD')">Nossas soluções</a></li>
-                <li><a  onclick="scrollToSection('clientes')">Clientes</a></li>
-                <li><a href="./cadastro.html">Cadastre-se</a></li>
-            </ul>
-
-            <a class="login" href="./telaLogin.html">LOGIN</a>
-        </div>
-
-
-        <!--Versão Mobile-->
-        <div class="itensNavMobile">
-            <ul>
-                <li><a  onclick="scrollToSection('home')">Home</a></li>
-                <li><a  onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
-                <li><a  onclick="scrollToSection('nossasSolucoesM')">Nossas soluções</a></li>
-                <li><a  onclick="scrollToSection('clientes')">Clientes</a></li>
-                <li><a href="./cadastro.html">Cadastre-se</a></li>
-            </ul>
-        </div>
-        <div class="caixa" id="home">
-            <img src="../public/img/totem2.png" width="55%">
-            <div class="textoComum">
-                <b>O Melhor Suporte para o seu
-                    Negócio</b>
-                <p>Oferecemos suporte abrangente, incluindo manutenção preventiva, diagnóstico, atualizações de
-                    software,
-                    reparos físicos e suporte remoto, adaptado às necessidades individuais de cada cliente,
-                    independentemente do tamanho ou complexidade do sistema.</p>
-            </div>
-        </div>
-        <br>
-        <br>
-
-        <h1 id="sobreNos" class="sobreNos">Sobre Nós</h1>
-        <div class="caixa2">
-            <img src="../public/img/totem-mc.jpg" width="90%">
-            <div class="textoComumSobreNos">
-                <p> Na Totem Tech, nos especializamos em fornecer suporte técnico para totens de autoatendimento. Com
-                    uma
-                    equipe
-                    altamente qualificada e comprometida, estamos prontos para resolver qualquer problema, garantindo a
-                    operação
-                    eficiente dos seus totens. Nosso foco é na qualidade e na satisfação do cliente. Conte conosco para
-                    otimizar
-                    seus sistemas de autoatendimento e elevar a experiência do cliente ao próximo nível.
-                </p>
-                <a href="./cadastro.html" class="botaoCadastro">Cadastre-se</a>
-            </div>
-        </div>
-
-        <!--Versão Mobile-->
-        <div class="caixa3" id="nossasSolucoesM">
-            <h1  class="nossasSolucoes">Nossas Soluções</h1>
-            <div class="textoComum">
-                <img src="../public/img/totem-pedido.webp" width="80%">
-                <br>
-                Nossos serviços de suporte abrangem uma ampla gama de áreas:<br>
-            </div>
-            <div class="tableSolucoes">
-                <div class="linha">
-                    <div class="circulo01">Manutenção Preventiva</div>
-                    <div class="circulo02">Diagnóstico De Problemas</div>
-                </div>
-                <div class="linha">
-                    <div class="circulo02">Suporte Remoto</div>
-                    <div class="circulo01">Atualizações De Software</div>
-                </div>
-            </div>
-            <br>
-        </div>
+        <img src="../public/img/Logo-Preta.png" height="70vh">
 
         <!--Versão Desktop-->
-        <div class="caixa3Desktop" id="nossasSolucoesD">
-            <div class="caixaInterna3">
-                <img src="../public/img/totem-pedido.webp" width="80%">
-                <div class="textoComum">
-                    <h1  class="nossasSolucoes">Nossas Soluções</h1>
-                    <p>Nossos serviços de suporte abrangem uma ampla gama de áreas:</p>
-                </div>
-            </div>
+        <ul class="itensNav">
+            <li><a onclick="scrollToSection('home')">Home</a></li>
+            <li><a onclick="scrollToSection('nossasSolucoes')">Nossas soluções</a></li>
+            <li><a onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
+            <li><a onclick="scrollToSection('clientes')">Clientes</a></li>
+        </ul>
 
-            <div class="tableSolucoes">
-                <div class="circulo01">Manutenção Preventiva</div>
-                <div class="circulo02">Diagnóstico De Problemas</div>
-                <div class="circulo01">Atualizações De Software</div>
-                <div class="circulo03">Suporte Remoto</div>
-            </div>
-            <div class="linha">
-                <a href="./cadastro.html" class="botaoCadastro">Cadastre-se</a>
-            </div>
+
+        <a class="login" href="./telaLogin.html">Login/Cadastro</a>
+    </div>
+
+    <!--Versão Mobile-->
+    <div class="itensNavMobile">
+        <ul>
+            <li><a onclick="scrollToSection('home')">Home</a></li>
+            <li><a onclick="scrollToSection('nossasSolucoes')">Nossas soluções</a></li>
+            <li><a onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
+            <li><a onclick="scrollToSection('clientes')">Clientes</a></li>
+        </ul>
+    </div>
+
+    <div class="home">
+        <h2>Melhore a perfomance de seus totens</h2>
+        <div class="linha">
+            <button class="btnLogin" onclick="redirecionarLogin()">Login</button>
+            <button class="btnCadastro" onclick="redirecionarCadastro()">Cadastre-se</button>
         </div>
-        <br>
-        <br>
-        <br>
-        <a href="./cadastro.html" class="botaoCadastro">Cadastre-se</a>
-        <br>
-        <br>
-
-        <div id="clientes" class="caixa4">
-            <h1> Clientes</h1>
-            <br>
-            <div class="textoComum">
-                No coração do nosso negócio, a dedicação aos nossos clientes é a pedra angular que molda a experiência
-                única
-                que oferecemos. Estamos empenhados em proporcionar não apenas soluções inovadoras de totem, mas também
-                um
-                serviço excepcional que transcende as expectativas.
-            </div>
-            <div class="table">
-                <div class="linha">
-                    <div><img src="../public/img/mcdonalds.png" height="100%"></div>
-                    <div><img src="../public/img/burguer-king.png" height="100%"></div>
-                </div>
-                <div class="linha">
-                    <div><img src="../public/img/popeyes.png" height="100%"></div>
-                    <div><img src="../public/img/maddero.png" height="100%"></div>
-                </div>
+        <div class="totemCasca">
+            <div class="telaTotem"  id="home">
+                <img src="../public/img/logo.png">
             </div>
         </div>
     </div>
 
+    <h2 class="bemVindo">
+        Bem Vindo a Totem Tech!!
+    </h2>
 
+    <p class="textoBemVindo">
+        Aqui nós reinventamos o jogo no monitoramento de totens de autoatendimento em fast food. Nosso foco é garantir
+        que seus totens funcionem perfeitamente, proporcionando uma experiência impecável ao cliente, enquanto você se
+        concentra no crescimento do seu negócio. Com nossa tecnologia avançada e suporte dedicado, estamos aqui para
+        tornar seu sucesso mais simples e sua satisfação do cliente inigualável. Junte-se a nós e descubra como podemos
+        transformar seu negócio de fast food para melhor.
+    </p>
 
+    <div class="fundoSituacao">
+        <img src="../public/img/storyBoard.png">
+        <div>
+            <h3>Já passou por essa situação ?</h3>
+            <p class="textoSituacao">
+                Problemas de lentidão ou inatividade de totens são comuns em fast food, principalmente em horários de
+                alta demanda de pedidos, o que pode resultar em atrasos no atendimento, perda de receita, insatisfação
+                do cliente e até mesmo a perda do cliente.
+            </p>
+            <button class="btnDeCadastro">Cadastre-se</button>
+        </div>
+    </div>
 
+    <div class="linhaSolucao" >
+        <h2>Nossa Solução <img src="../public/img/lampada.png" id="nossasSolucoes"></h2>
+    </div>
+    <p class="textoSolucao">
+        Nossa solução tem como objetivo reduzir o tempo de ociosidade nos totens. Eles serão monitorados continuamente
+        durante todo o seu tempo de uso, verificando informações como o uso da memória RAM, do disco, da CPU, entre
+        outros. Com esses dados capturados, qualquer anormalidade será identificada e um alerta será enviado através da
+        plataforma. Em situações extremas, o totem precisará ser reinicializado para melhorar sua performance. É
+        importante ressaltar que apenas o totem com problema será reinicializado.
+    </p>
+
+    <div class="divPrint">
+        <li class="listaSolucao">Monitore simultaneamenye seus totens</li>
+        <img src="../public/img/printMonitore.png" class="print">
+
+    </div>
+    <div class="divPrint">
+        <li class="listaSolucao">Identifique quais totens apresentaram problemas e em que horários ocorreram</li>
+        <img src="../public/img/printHorario.png" class="print">
+
+    </div>
+    <div class="divPrint">
+        <li class="listaSolucao">Receba um relatório mensal sobre o desempenho das funcionalidades dos seus totens</li>
+        <img src="../public/img/printMedia.png" alt="" class="print">
+
+    </div>
+    <button class="btnDeCadastro">Cadastre-se</button>
+    <div class="fundoSobreNos" id="sobreNos">
+        <div class="linha">
+            <h2>Sobre Nós</h2>
+            <img src="../public/img/Logo-Preta.png">
+        </div>
+        <p>Na Totem Tech, somos líderes em fornecer suporte técnico especializado para totens de autoatendimento. Nossa
+            equipe altamente qualificada e comprometida está pronta para lidar com qualquer desafio, garantindo a
+            operação impecável dos seus totens. Com nosso foco incessante na qualidade e na satisfação do cliente, você
+            pode confiar plenamente em nossa expertise para otimizar seus sistemas de autoatendimento e elevar a
+            experiência do cliente a um nível superior. Estamos aqui para oferecer tranquilidade e segurança, sabendo
+            que seus totens estão em mãos experientes e confiáveis</p>
+    </div>
+    <div class="areaCliente" id="clientes">
+        <div class="esquerdaCliente">
+            <h1 class="clientes">Nossos Clientes</h1>
+            <p class="textoCliente">No coração do nosso negócio, a dedicação aos nossos clientes é a pedra angular que
+                molda a
+                experiência única que oferecemos. Estamos empenhados em proporcionar não apenas soluções inovadoras de
+                totem,
+                mas também um serviço excepcional que transcende as expectativas.
+            </p>
+
+            <div class="linhaCliente">
+                <img src="../public/img/mcdonalds.png">
+                <img src="../public/img/maddero.png">
+                <img src="../public/img/burguer-king.png">
+            </div>
+        </div>
+        <div class="direitaCliente">
+            <div class="circulo">
+                <img src="../public/img/cisstotem2021-removebg-preview.png" alt="">
+            </div>
+        </div>
+    </div>
+    <button class="btnDeCadastro">Cadastre-se</button>
+    <div class="footer">
+        <div class="linha">
+            <img src="../public/img/Logo-Preta.png">
+            <h2>Totem Tech</h2>
+        </div>
+        <div class="br">
+        </div>
+        <div class="linhaContato">
+            <div>
+                <img src="../public/img/whatsapp.png">
+                <p>11 97830-1733</p>
+            </div>
+            <div>
+                <img src="../public/img/instagram.png">
+                <p>Totem_Tech</p>
+            </div>
+        </div>
+        <div class="linhaContato">
+            <div>
+                <img src="../public/img/telefone.png">
+                <p>11 97830-1733</p>
+            </div>
+            <div>
+                <img src="../public/img/o-email.png">
+                <p>TotenTech@sptech.school</p>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="../public/js/index.js"></script>
 

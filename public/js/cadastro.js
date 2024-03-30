@@ -27,7 +27,7 @@ function fecharMenu() {
 /*Verificação de mensagem */
 
 var mensagemAlerta = document.getElementById('mensagemAlerta');
-var codigoCorreto = "1234567890ABC";
+var codigoCorreto = "";
 
 function fazerCadastroA() {
 
@@ -67,17 +67,60 @@ function fazerCadastroA() {
     mostrarAlerta();
 }
 
+//Informações do usuário 
+var nome = "";
+var emailD = "";
+var senhaD = "";
+var confirmarD = "";
+var codigoD = "";
+
 function fazerCadastroD() {
-    var nom = inputNomeD.value;
-    var emailD = inputEmailD.value;
-    var senhaD = inputSenhaD.value;
-    var confirmarD = inputConfirmarD.value;
-    var codigoD = inputCodigoD.value;
+    nome = inputNomeD.value;
+    emailD = inputEmailD.value;
+    senhaD = inputSenhaD.value;
+    confirmarD = inputConfirmarD.value;
+    codigoD = inputCodigoD.value;
 
     var email = emailD.replace(/\s/g, '');
     var senha = senhaD.replace(/\s/g, '');
     var confirmar = confirmarD.replace(/\s/g, '');
     var codigo = codigoD.replace(/\s/g, '')
+
+
+    
+    //Verificar codigo
+    fetch("/codigoRouter/validarCodigo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            codigoServer: codigo,
+        })
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                sessionStorage.CODIGO_EMPRESA = json.codigo;
+            });
+        } else {
+            console.log("Houve um erro ao tentar validar o codigo!");
+            
+            resposta.text().then(texto => {
+                console.error(texto);
+                finalizarAguardar(texto);    
+            });
+            return false;
+        }
+        
+    }).catch(
+        function (erro) {
+            res.status(500).json(erro.sqlMessage );
+            
+    })
 
 
     if (nome == "" || email == "" || senha == "" || codigo == "" || confirmar == "") {
@@ -102,6 +145,7 @@ function fazerCadastroD() {
 
     mostrarAlerta();
 
+
     fetch("/cadastro/cadastrar", {
         method: "POST",
         headers: {
@@ -121,14 +165,28 @@ function redirecionarLogin() {
 }
 
 function mostrarAlerta() {
-    if (mensagemAlerta.style.right == "2%") {
-        mensagemAlerta.style.right = '-100%';
-        mensagemAlerta.style.opacity = '0';
-    } else {
-        mensagemAlerta.style.right = '2%';
-        mensagemAlerta.style.opacity = '1';
-        setTimeout(function () {
-            mostrarAlerta();
-        }, 3000);
-    }
-}   
+    mensagemAlerta.style.right = '2%';
+    mensagemAlerta.style.opacity = '1';
+    setTimeout(function () {
+        esconderAlerta();
+    }, 3000);
+}
+
+function esconderAlerta() {
+    mensagemAlerta.style.right = '-100%';
+    mensagemAlerta.style.opacity = '0';
+
+}
+
+
+//tooltip
+function tooltip() {
+    mensagemAlerta.innerHTML = `O código de acesso é fornecido à empresa para identificar a qual empresa você será associado.`;
+    mensagemAlerta.style.fontSize = "10px";
+    mensagemAlerta.style.padding = "1%";
+    mensagemAlerta.style.right = '2%';
+    mensagemAlerta.style.opacity = '1';
+    setTimeout(function () {
+        esconderAlerta();
+    }, 8000);
+}
