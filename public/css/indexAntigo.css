@@ -1,0 +1,1445 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-shadow: none;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #888;
+}
+
+
+::-webkit-scrollbar {
+    height: 0;
+    width: 3px;
+    margin-right: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.telaPrincipal {
+    background-color: #E3E3DD;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+    z-index: 1;
+    overflow-x: hidden;
+}
+
+.telaPrincipal .navBar {
+    background-color: #9ADFEE;
+    height: fit-content;
+    width: 92%;
+    padding: 1% 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Menu lateral da tela principal*/
+
+.itensNav {
+    display: none;
+}
+
+.menuBtn {
+    display: none;
+}
+
+.menu-btn {
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #203FAB;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+
+.itensNavMobile {
+    position: fixed;
+    top: 0;
+    left: -1500px;
+    width: 50%;
+    height: 100vh;
+    background-color: rgba(52, 97, 149, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.1);
+    z-index: 1;
+    transition: 0.4;
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s;
+}
+
+.itensNavMobile ul {
+    list-style: none;
+    margin: 0;
+    width: 90%;
+    height: fit-content;
+    margin: 25% 5% 10% 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.itensNavMobile ul li {
+    width: 100%;
+    justify-content: center;
+    margin: 6% 0;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 900;
+    border-bottom: 3px solid rgba(52, 97, 149, 0.9);
+    ;
+    transition: 1s;
+}
+
+.itensNavMobile ul li:hover {
+    border-bottom: 3px solid white;
+    transition: 1s;
+}
+
+.itensNavMobile ul li a {
+    text-decoration: none;
+    color: #E3E3DD;
+    padding: 0 0 5% 0%;
+    font-weight: 700;
+}
+
+#menu-btn:checked+.menu-btn span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+#menu-btn:checked+.menu-btn span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-btn:checked+.menu-btn span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/*Fim do menu lateral principal*/
+
+
+
+.telaPrincipal .navBar div {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.telaPrincipal .navBar div img {
+    margin: 0%;
+    padding: 0%;
+}
+
+.telaPrincipal .navBar div h1 {
+    color: white;
+    margin: 0;
+    padding: 0% 15%;
+    font-size: 100%;
+    width: fit-content;
+    max-height: 80%;
+    border-bottom: 4px solid #203FAB;
+    text-align: center;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.telaPrincipal .navBar .login {
+    color: #203FAB;
+    font-weight: 900;
+    width: fit-content;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0 5% 0 0;
+    cursor: pointer;
+    border-bottom: 3px solid #9ADFEE;
+    transition: 1s;
+}
+
+.telaPrincipal .navBar .login:hover {
+    color: #0073CF;
+    border-bottom: 3px solid white;
+    transition: 1s;
+}
+
+.telaPrincipal .caixa {
+    display: flex;
+    justify-content: baseline;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 75vh;
+    margin: 0%;
+    gap: 6%;
+    padding: 5% 0 6% 0;
+}
+
+
+
+.telaPrincipal .caixa2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 10% 0;
+}
+
+.telaPrincipal .caixa3 {
+    display: block;
+}
+
+.telaPrincipal .caixa3Desktop {
+    display: none;
+}
+
+.telaPrincipal .caixa3 .nossasSolucoes {
+    width: 60%;
+    margin: 0 20% 5% 20%;
+}
+
+.telaPrincipal .caixa4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.telaPrincipal .textoComum {
+    width: 94%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 3%;
+    font-size: 14px;
+}
+
+.telaPrincipal .textoComumSobreNos {
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 3% 0;
+    font-size: 14px;
+}
+
+.telaPrincipal .textoComumSobreNos p {
+    margin: 0 0 5% 0;
+}
+
+.telaPrincipal .textoComum b {
+    width: 100%;
+    font-size: 22px;
+    text-align: center;
+    margin: 2% 0;
+}
+
+.telaPrincipal h1 {
+    width: fit-content;
+    height: fit-content;
+    margin: 0%;
+    padding: 0 2% 2% 2%;
+    border-bottom: 4px solid #203FAB;
+    font-size: 25px;
+}
+
+.telaPrincipal .botaoCadastro {
+    width: fit-content;
+    height: fit-content;
+    margin: 1%;
+    padding: 1.5% 4%;
+    background-color: #D9D9D9;
+    color: #0073CF;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 22px;
+    word-break: 500;
+    transition: 1s;
+    text-decoration: none;
+}
+
+.telaPrincipal .botaoCadastro:hover {
+    transition: 1s;
+    background-color: #0073CF;
+    color: #D9D9D9;
+}
+
+.telaPrincipal .table {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 40vh;
+    padding: 9% 0 21vh 0;
+}
+
+.telaPrincipal .table .linha {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 40%;
+    margin: 5% 0;
+}
+
+.telaPrincipal .table .linha div {
+    border: 8px solid #D9D9D9;
+    width: fit-content;
+    height: 100%;
+    transition: 1s;
+}
+
+.telaPrincipal .caixa4 .table .linha div:hover {
+    border: 8px solid #203FAB;
+    transition: 1s;
+}
+
+.telaPrincipal .tableSolucoes {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 20vh;
+    margin: 0;
+    padding: 0%;
+}
+
+.telaPrincipal .tableSolucoes .linha {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 40%;
+    margin: 5% 0;
+}
+
+.telaPrincipal .caixa3 .tableSolucoes .linha .circulo01 {
+    width: 28%;
+    height: fit-content;
+    background-color: #9ADFEE;
+    padding: 7% 1%;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+}
+
+.telaPrincipal .caixa3 .tableSolucoes .linha .circulo02 {
+    width: 28%;
+    height: fit-content;
+    background-color: #D9D9D9;
+    padding: 8% 1%;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+/*Celular Grande*/
+
+@media screen and (min-width: 600px) {
+
+    .itensNavMobile {
+        width: 50%;
+
+    }
+
+
+    .itensNavMobile ul li {
+        margin: 6% 0;
+        font-size: 20px;
+
+    }
+
+    .telaPrincipal .navBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 91%;
+        margin: 0%;
+        padding: 1% 5%;
+        height: fit-content;
+    }
+
+    .telaPrincipal .navBar div img {
+        height: 12vh;
+        margin: 0 0 1% 0;
+        padding: 0;
+
+    }
+
+    .telaPrincipal .caixa {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin: 7% 0 5% 0;
+        height: 80vh;
+    }
+
+    .telaPrincipal .caixa img {
+        width: 28%;
+        margin: 5% 5% 0 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum {
+        width: 60%;
+        margin: 0% 5% 0 0;
+    }
+
+    .telaPrincipal .caixa .textoComum b {
+        font-size: 31px;
+        width: 90%;
+        text-align: left;
+        margin: 0% 0 3% 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum p {
+        font-size: 18px;
+    }
+
+    .telaPrincipal .sobreNos {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+        margin: 7% 0 0 0;
+    }
+
+    .telaPrincipal .caixa2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+        margin: 0% 0 7% 0;
+    }
+
+    .telaPrincipal .caixa2 img {
+        width: 43%;
+        margin: 0% 2% 5% 2%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos {
+        font-size: 15px;
+        width: 45%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 7% 0 10% 0%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos p {
+        margin: 0 0 2% 0;
+        text-align: left;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos .botaoCadastro {
+        margin: 4% 0 0 0;
+    }
+
+    .telaPrincipal .nossasSolucoes {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+    }
+
+    .telaPrincipal .caixa3 {
+        display: none;
+    }
+
+    .telaPrincipal .botaoCadastro {
+        display: none;
+    }
+
+    .telaPrincipal .caixa3Desktop {
+        display: flex;
+        flex-direction: column;
+        height: 80vh;
+        width: 100%;
+        margin: 5% 0 -1% 0;
+        padding: 0 0 0 5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 {
+        width: 100%;
+        display: flex;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 img {
+        width: 48%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum {
+        width: 80%;
+        height: 60%;
+        justify-content: space-around;
+        padding: 0%;
+        margin: 3% 0 0 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum h1 {
+        width: 70%;
+        font-size: 28px;
+        margin: 0 0 5% -35%;
+        padding: 0 0 1% 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum p {
+        width: 80%;
+        margin: 0 10% 0 0;
+        font-size: 18px;
+        height: 60%;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 95%;
+        height: fit-content;
+        margin: 5% 0 5% 0;
+        padding: 0%;
+    }
+
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo01 {
+        width: 14%;
+        height: fit-content;
+        background-color: #9ADFEE;
+        padding: 5% 4%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo02 {
+        width: 14%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 4% 4%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo03 {
+        width: 12%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 7% 5%;
+        border-radius: 50%;
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0 0 0 -5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha .botaoCadastro {
+        display: flex;
+        padding: 1%;
+        font-weight: 700;
+        margin: 2% 0 0 0;
+    }
+
+    .telaPrincipal .caixa4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0%;
+    }
+
+    .telaPrincipal .caixa4 h1 {
+        font-size: 40px;
+        margin: 5% 0 0 0;
+        padding: 0 5% 1% 5%;
+    }
+
+    .telaPrincipal .caixa4 .textoComum {
+        margin: 1% 0;
+        padding: 0%;
+        font-size: 20px;
+        width: 90%;
+    }
+
+    .telaPrincipal .caixa4 .table {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40vh;
+        margin: 2% 0 15vh 0;
+    }
+
+    .telaPrincipal .caixa4 .table .linha {
+        width: 50%;
+        display: flex;
+        height: 50%;
+    }
+
+    .telaPrincipal .caixa4 .table .linha div:hover {
+        border: 8px solid #203FAB;
+        transition: 1s;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Tablet*/
+
+@media screen and (min-width: 768px) {
+    /*Menu*/
+
+
+    .itensNavMobile {
+        width: 40%;
+    }
+
+    .itensNavMobile ul li {
+        font-size: 20px;
+    }
+
+    .telaPrincipal .navBar img {
+        height: 42vh;
+        margin: 0 0 2% 0;
+    }
+
+    .telaPrincipal .caixa img {
+        width: 28%;
+        margin: 5% 5% 0 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum {
+        width: 60%;
+        margin: 0% 5% 0 0;
+    }
+
+    .telaPrincipal .caixa .textoComum b {
+        font-size: 31px;
+        width: 90%;
+        text-align: left;
+        margin: 0% 0 3% 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum p {
+        font-size: 18px;
+    }
+
+    .telaPrincipal .sobreNos {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+        margin: 7% 0 0 0;
+    }
+
+    .telaPrincipal .caixa2 {
+        margin: 0% 0 7% 0;
+    }
+
+    .telaPrincipal .caixa2 img {
+        width: 43%;
+        margin: 0% 2% 5% 2%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos {
+        font-size: 15px;
+        width: 45%;
+        margin: 7% 0 10% 0%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos p {
+        margin: 0 0 2% 0;
+        text-align: left;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos .botaoCadastro {
+        margin: 4% 0 0 0;
+    }
+
+    .telaPrincipal .nossasSolucoes {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+    }
+
+    .telaPrincipal .caixa3Desktop {
+        height: 80vh;
+        width: 100%;
+        margin: 5% 0 -1% 0;
+        padding: 0 0 0 5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 {
+        width: 100%;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 img {
+        width: 48%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum {
+        width: 80%;
+        height: 60%;
+        padding: 0%;
+        margin: 3% 0 0 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum h1 {
+        width: 70%;
+        font-size: 28px;
+        margin: 0 0 5% -35%;
+        padding: 0 0 1% 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum p {
+        width: 80%;
+        margin: 0 10% 0 0;
+        font-size: 18px;
+        height: 60%;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes {
+        width: 95%;
+        margin: 5% 0 5% 0;
+        padding: 0%;
+    }
+
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo01 {
+        width: 12%;
+        height: fit-content;
+        padding: 5% 3%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo02 {
+        width: 12%;
+        height: fit-content;
+        padding: 4% 3%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo03 {
+        width: 12%;
+        height: fit-content;
+        padding: 5% 3%;
+        border-radius: 50%;
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha {
+        width: 100%;
+        margin: 0 0 0 -5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha .botaoCadastro {
+        padding: 1%;
+        margin: 2% 0 0 0;
+    }
+
+    .telaPrincipal .caixa4 {
+        height: 100vh;
+        margin: 0%;
+    }
+
+    .telaPrincipal .caixa4 h1 {
+        font-size: 40px;
+        margin: 5% 0 0 0;
+        padding: 0 5% 1% 5%;
+    }
+
+    .telaPrincipal .caixa4 .textoComum {
+        margin: 1% 0;
+        padding: 0%;
+        font-size: 20px;
+        width: 90%;
+    }
+
+    .telaPrincipal .caixa4 .table {
+        width: 90%;
+        height: 40vh;
+        margin: 2% 0 15vh 0;
+    }
+
+    .telaPrincipal .caixa4 .table .linha {
+        width: 50%;
+        display: flex;
+        height: 50%;
+    }
+
+    .telaPrincipal .caixa4 .table .linha div:hover {
+        border: 8px solid #203FAB;
+        transition: 1s;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Desktop pequeno*/
+
+@media screen and (min-width: 992px) {
+
+    * {
+        margin: 0%;
+        padding: 0%;
+    }
+
+
+
+    /*Menu*/
+    .itensNav {
+        padding: 0 4%;
+        display: flex;
+        align-items: center;
+        list-style: none;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .navBar div img {
+        width: 120px;
+        margin: 0%;
+        padding: 0;
+    }
+
+    .itensNav li {
+        margin: 0% 20px;
+    }
+
+    .itensNav li a {
+        text-decoration: none;
+        font-size: 16px;
+        color: #0073CF;
+        font-weight: 700;
+    }
+
+    .itensNav li a:hover {
+        border-bottom: 3px solid #203FAB;
+        border-radius: 0%;
+    }
+
+    .menuMobile {
+        display: none;
+    }
+
+    .itensNavMobile {
+        display: none;
+    }
+
+    .menuBtn {
+        display: none;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    .mensagem {
+        display: none;
+    }
+
+
+
+
+
+    .telaPrincipal {
+        overflow: hidden;
+        display: flex;
+        align-items: baseline;
+        padding: 0%;
+        margin: 0%;
+        left: 0%;
+    }
+
+    .telaPrincipal .navBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 98%;
+        margin: 0%;
+        padding: 0% 1%;
+        height: 17vh;
+    }
+
+    .telaPrincipal .navBar img {
+        width: 120px;
+        margin: 0%;
+        padding: 0;
+
+    }
+
+    .telaPrincipal .navBar .login {
+        font-size: 22px;
+    }
+
+    .telaPrincipal .caixa {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin: 2% 0 5% 0;
+        height: 100hv;
+    }
+
+    .telaPrincipal .caixa img {
+        width: 25%;
+        margin: 5% 5% 0 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum {
+        width: 60%;
+        margin: 0% 5% 0 0;
+    }
+
+    .telaPrincipal .caixa .textoComum b {
+        font-size: 31px;
+        width: 90%;
+        text-align: left;
+        margin: 0% 0 3% 0;
+    }
+
+    .telaPrincipal .caixa .textoComum p {
+        font-size: 18px;
+    }
+
+    .telaPrincipal .sobreNos {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+        margin: 7% 0 0 0;
+    }
+
+    .telaPrincipal .caixa2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+        margin: 0% 0 7% 0;
+    }
+
+    .telaPrincipal .caixa2 img {
+        width: 40%;
+        margin: 0% 3%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos {
+        font-size: 18px;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 7% 0 10% 0%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos p {
+        margin: 0 0 2% 0;
+        text-align: left;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos .botaoCadastro {
+        margin: 4% 0 0 0;
+    }
+
+    .telaPrincipal .nossasSolucoes {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+    }
+
+    .telaPrincipal .caixa3 {
+        display: none;
+    }
+
+    .telaPrincipal .botaoCadastro {
+        display: none;
+    }
+
+    .telaPrincipal .caixa3Desktop {
+        display: flex;
+        flex-direction: column;
+        height: 80vh;
+        width: 100%;
+        margin: 0;
+        padding: 0 0 0 5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 {
+        width: 100%;
+        display: flex;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 img {
+        width: 48%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum {
+        width: 80%;
+        height: 60%;
+        justify-content: space-around;
+        padding: 0%;
+        margin: 3% 0 0 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum h1 {
+        width: 60%;
+        font-size: 30px;
+        margin: 0 0 5% -35%;
+        padding: 0 0 1% 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum p {
+        width: 80%;
+        margin: 0 10% 0 0;
+        font-size: 18px;
+        height: 60%;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 95%;
+        height: fit-content;
+        margin: 2% 0 0 0;
+        padding: 0%;
+    }
+
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo01 {
+        width: 10%;
+        height: fit-content;
+        background-color: #9ADFEE;
+        padding: 4% 2%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo02 {
+        width: 10%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 3% 2%;
+        border-radius: 50%;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo03 {
+        width: 10%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 4% 2%;
+        border-radius: 50%;
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0 0 0 -5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha .botaoCadastro {
+        display: flex;
+        padding: 1%;
+        font-weight: 700;
+        margin: 2% 0 0 0;
+    }
+
+    .telaPrincipal .caixa4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .telaPrincipal .caixa4 h1 {
+        font-size: 40px;
+        margin: 5% 0 0 0;
+        padding: 0 5% 1% 5%;
+    }
+
+    .telaPrincipal .caixa4 .textoComum {
+        margin: 0%;
+        padding: 0%;
+        font-size: 23px;
+        width: 90%;
+    }
+
+    .telaPrincipal .caixa4 .table {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40vh;
+        margin: 2% 0 15vh 0;
+    }
+
+    .telaPrincipal .caixa4 .table .linha {
+        width: 50%;
+        display: flex;
+        height: 50%;
+    }
+
+    .telaPrincipal .caixa4 .table .linha div:hover {
+        border: 8px solid #203FAB;
+        transition: 1s;
+    }
+}
+
+
+
+/*Desktop grande*/
+
+@media screen and (min-width: 1200px) {
+
+    * {
+        margin: 0%;
+    }
+
+    /*Menu*/
+    .itensNav {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 17vh;
+    }
+
+    .itensNav li {
+        margin: 0% 15px;
+    }
+
+    .itensNav li a {
+        text-decoration: none;
+        font-size: 20px;
+        border-radius: 5px;
+        color: #0073CF;
+        font-weight: 700;
+    }
+
+    .menuMobile {
+        display: none;
+    }
+
+    .itensNavMobile {
+        display: none;
+    }
+
+    .menuBtn {
+        display: none;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    .mensagem {
+        display: none;
+    }
+
+
+
+
+
+
+    .telaPrincipal {
+        overflow: hidden;
+        display: flex;
+        align-items: baseline;
+        padding: 0%;
+        margin: 0%;
+        left: 0%;
+    }
+
+    .telaPrincipal .navBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 96%;
+        margin: 0%;
+        padding: 0 3%;
+    }
+
+    .telaPrincipal .navBar img {
+        width: 120px;
+        margin: 0%;
+        padding: 0;
+
+    }
+
+    .telaPrincipal .caixa {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin: 2% 0 5% 0;
+    }
+
+    .telaPrincipal .caixa img {
+        width: 25%;
+        margin: 0% 5%;
+    }
+
+    .telaPrincipal .caixa .textoComum {
+        width: 60%;
+        margin: 0% 5% 0 0;
+    }
+
+    .telaPrincipal .caixa .textoComum b {
+        font-size: 31px;
+        width: 90%;
+        text-align: left;
+        margin: 0% 0 3% 0;
+    }
+
+    .telaPrincipal .caixa .textoComum p {
+        font-size: 18px;
+    }
+
+    .telaPrincipal .sobreNos {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+    }
+
+    .telaPrincipal .caixa2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+        margin: 0% 0 5% 0;
+    }
+
+    .telaPrincipal .caixa2 img {
+        width: 40%;
+        margin: 0% 3%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos {
+        font-size: 20px;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 7% 0 10% 0%;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos p {
+        margin: 0 0 2% 0;
+        text-align: left;
+    }
+
+    .telaPrincipal .caixa2 .textoComumSobreNos .botaoCadastro {
+        margin: 4% 0 0 0;
+    }
+
+    .telaPrincipal .nossasSolucoes {
+        font-size: 40px;
+        left: 12%;
+        padding: 0% 5% 0% 5%;
+    }
+
+    .telaPrincipal .caixa3 {
+        display: none;
+    }
+
+    .telaPrincipal .botaoCadastro {
+        display: none;
+    }
+
+    .telaPrincipal .caixa3Desktop {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        margin: 2% 0 0 0;
+        padding: 0 0 0 5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 {
+        width: 100%;
+        display: flex;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 img {
+        width: 34%;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum {
+        width: 80%;
+        height: 60%;
+        justify-content: space-around;
+        padding: 0%;
+        margin: 3% 0 0 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum h1 {
+        width: 50%;
+        font-size: 40px;
+        margin: 0 0 3% -35%;
+        padding: 0 0 1% 0;
+    }
+
+    .telaPrincipal .caixa3Desktop .caixaInterna3 .textoComum p {
+        width: 80%;
+        font-size: 28px;
+        height: 60%;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 95%;
+        height: fit-content;
+        margin: 2% 0 0 0;
+        padding: 0%;
+    }
+
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo01 {
+        width: 10%;
+        height: fit-content;
+        background-color: #9ADFEE;
+        padding: 4% 1%;
+        border-radius: 50%;
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo02 {
+        width: 6%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 3% 3%;
+        border-radius: 50%;
+        font-size: 13;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .tableSolucoes .circulo03 {
+        width: 6%;
+        height: fit-content;
+        background-color: #D9D9D9;
+        padding: 4% 3%;
+        border-radius: 50%;
+        font-size: 13;
+        text-align: center;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0 0 0 -5%;
+    }
+
+    .telaPrincipal .caixa3Desktop .linha .botaoCadastro {
+        display: flex;
+        padding: 1%;
+        font-weight: 700;
+        margin: 2% 0 0 0;
+    }
+
+    .telaPrincipal .caixa4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .telaPrincipal .caixa4 h1 {
+        font-size: 40px;
+        margin: 5% 0 0 0;
+        padding: 0 5% 1% 5%;
+    }
+
+    .telaPrincipal .caixa4 .textoComum {
+        margin: 0%;
+        padding: 0%;
+        font-size: 23px;
+        width: 90%;
+    }
+
+    .telaPrincipal .caixa4 .table {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 40vh;
+        margin: 2% 0 15vh 0;
+    }
+
+    .telaPrincipal .caixa4 .table .linha {
+        width: 50%;
+        display: flex;
+        height: 50%;
+    }
+
+    .telaPrincipal .caixa4 .table .linha div:hover {
+        border: 8px solid #203FAB;
+        transition: 1s;
+    }
+}
