@@ -36,11 +36,11 @@ function scrollToSection(sectionId) {
 
 
 function redirecionarLogin(){
-    window.location.href = "telaLogin.html";
+    window.location.href = "/login";
 }
 
 function redirecionarCadastro(){
-    window.location.href = "cadastro.html";
+    window.location.href = "/cadastro";
 }
 
 
