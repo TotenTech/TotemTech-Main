@@ -40,14 +40,14 @@ function fazerLoginA() {
         var senha = senhaA.replace(/\s/g, '');
 
         if (email == emailReserva && senha == senhaReserva) {
-            mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
+            mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
             setTimeout(redirecionarDash, 4000);
         } else if (email == "" || senha == "") {
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            mensagemAlerta.innerHTML = `<img src="/img/erro.png">
          Preencha todos os campos`;
 
         } else {
-            mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+            mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Email ou senha incorreto`;
 
         }
@@ -63,14 +63,14 @@ function fazerLoginD(){
     var senha = senhaD.replace(/\s/g, '');
 
     if (email == emailReserva && senha == senhaReserva) {
-        mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
+        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
         setTimeout(redirecionarDash, 4000);
     } else if (email == "" || senha == "") {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
      Preencha todos os campos`;
 
     } else {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
         Email ou senha incorreto`;
 
     }
@@ -79,7 +79,7 @@ function fazerLoginD(){
 
 
 function redirecionarDash(){
-    window.location.href = "dashTotens.html";
+    window.location.href = "/dashboard";
 }
 
 function mostrarAlerta() {
