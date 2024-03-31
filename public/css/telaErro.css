@@ -1,0 +1,169 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-shadow: none;
+    font-family: "Poppins", sans-serif;
+    transition: 1s;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #888;
+}
+
+
+::-webkit-scrollbar {
+    height: 0;
+    width: 3px;
+    margin-right: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.navBar {
+    width: 94%;
+    padding: 1% 3%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBar img {
+    height: 12vh;
+    width: fit-content;
+}
+
+.navBar .itensNav {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.navBar .itensNav li {
+    width: fit-content;
+    height: 100%;
+    list-style-type: none;
+    align-items: end;
+    padding: 2% 1%;
+}
+
+.navBar .itensNav li a {
+    text-decoration: none;
+    color: #0B3EA1;
+    font-size: 130%;
+    font-weight: 600;
+    border-bottom: 3px solid #FFFFFF;
+    padding: 0 4%;
+    white-space: nowrap;
+    border-radius: 10%;
+}
+
+.navBar .itensNav li a:hover{
+    border-bottom: 3px solid #0B3EA1;
+}
+
+.navBar .bordaLogin{
+    padding: 0%;
+    background-color: #000000;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 2s;
+}
+
+.navBar .bordaLogin .login {
+    padding: 1vw;
+    width: 100%;
+    height: 100%;
+    background-color: #0B3EA1;
+    color: #FFFFFF;
+    border-radius: 20px;
+    font-size: 110%;
+    position: relative;
+    transition: 5s;
+}
+
+.navBar .bordaLogin .login:hover{
+    right: -6%;
+    top: -1vh;
+    transition: 5s;
+}
+
+.caixa {
+    height: 83vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.esquerda {
+    height: 100%;
+    width: 44%;
+    padding: 0 0 0 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: baseline;
+}
+
+.esquerda img{
+    height: 20vh;
+    width: fit-content;
+    margin: 5vh 0 3vh 0;
+}
+
+.esquerda h1{
+    margin: 2vh 0 1vh 0 ;
+    padding: 0;
+    color: #0B3EA1;
+    text-shadow: -4px 1px 1px rgba(0, 0, 0, 1);
+    font-size: 250%;
+}
+
+.esquerda p a{
+    color: #0B3EA1;
+    cursor: pointer;
+}
+
+.direita {
+    display: flex;
+    justify-content: right;
+    align-items: baseline;
+    width: 50%;
+    padding: 10vh;
+}
+
+.direita img{
+    height: 50vh;
+    width: fit-content;
+}
+
+.mensagemAlerta {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: fit-content;
+    height: 50px;
+    right: -100%;
+    top: 0;
+    position: absolute;
+    border: 2px solid #203FAB;
+    background-color: rgba(0, 115, 207, 0.9);
+    color: white;
+    margin: 5% 0;
+    padding: 1%;
+    border-radius: 15px;
+    align-items: center;
+    gap: 1%;
+    transition: 1s;
+    opacity: 0;
+    max-width: 55%;
+}
