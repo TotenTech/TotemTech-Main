@@ -272,7 +272,7 @@ body {
     justify-content: center;
     flex-direction: row;
     width: fit-content;
-    height: 50px;
+    height: fit-content;
     right: -100%;
     position: absolute;
     border: 2px solid #203FAB;
@@ -287,10 +287,11 @@ body {
     opacity: 0;
     position: fixed;
     max-width: 55%;
+    font-size: 90%;
 }
 
 .telaCadastro .mensagemAlerta img {
-    height: 100%;
+    height: 5vh;
 }
 
 /*Versão Android*/
@@ -457,7 +458,8 @@ body {
         font-size: 22px;
         color: #0073CF;
         gap: 0 2%;
-        height: 3vh;
+        height: fit-content;
+        padding: 1% 0;
     }
 
     .versionDesktop .caixa .caixaEsquerda p {
@@ -528,7 +530,7 @@ body {
         padding: 1% 8%;
         border: none;
         border-radius: 30px;
-        margin: 15vh 0 1vh 0;
+        margin: 1vh 0 1vh 0;
         font-weight: 600;
         transition: 1s;
     }
@@ -574,6 +576,6 @@ body {
     }
 
     .telaCadastro .versionDesktop .botaoCadastrar button {
-        margin: 15vh 0 1vh 0;
+        margin: 1vh 0 1vh 0;
     }
 }

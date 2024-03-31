@@ -45,22 +45,22 @@ function fazerCadastroA() {
 
 
     if (nome == "" || email == "" || senha == "" || codigo == "" || confirmar == "") {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Preencha todos os campos`;
     } else if (email.indexOf('@') < 0 || email.indexOf('.') < 0) {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Preencha o campo do email corretamente utilizando @ e . `;
     } else if (senha.length < 6) {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             A senha deve ter no minimo 6 digitos`;
     } else if (senha != confirmar) {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Senhas diferentes`;
     } else if (codigoCorreto == codigo) {
-        mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
+        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
         setTimeout(redirecionarLogin, 4000);
     } else {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Código Inválido`;
     }
 
@@ -124,22 +124,22 @@ function fazerCadastroD() {
 
 
     if (nome == "" || email == "" || senha == "" || codigo == "" || confirmar == "") {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Preencha todos os campos`;
     } else if (email.indexOf('@') < 0 || email.indexOf('.') < 0) {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Preencha o campo do email corretamente utilizando @ e . `;
     } else if (senha.length < 6) {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             A senha deve ter no minimo 6 digitos`;
     } else if (senha != confirmar) {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Senhas diferentes`;
     } else if (codigoCorreto == codigo) {
-        mensagemAlerta.innerHTML = `<img src='../public/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
+        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
         setTimeout(redirecionarLogin, 4000);
     } else {
-        mensagemAlerta.innerHTML = `<img src="../public/img/erro.png">
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Código Inválido`;
     }
 
@@ -161,7 +161,7 @@ function fazerCadastroD() {
 }
 
 function redirecionarLogin() {
-    window.location.href = "telaLogin.html";
+    window.location.href = "/login";
 }
 
 function mostrarAlerta() {
@@ -182,7 +182,7 @@ function esconderAlerta() {
 //tooltip
 function tooltip() {
     mensagemAlerta.innerHTML = `O código de acesso é fornecido à empresa para identificar a qual empresa você será associado.`;
-    mensagemAlerta.style.fontSize = "10px";
+    mensagemAlerta.style.fontSize = "90%";
     mensagemAlerta.style.padding = "1%";
     mensagemAlerta.style.right = '2%';
     mensagemAlerta.style.opacity = '1';
