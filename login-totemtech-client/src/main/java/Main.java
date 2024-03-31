@@ -1,14 +1,28 @@
 import controller.UserController;
 import model.User;
+import shell.PowerShell;
+import shell.TerminalLinux;
+
 import java.util.Scanner;
 
 public class Main {
 
-    public static int login = 0;
+    public static Boolean logged = false;
+    public static int system;
 
     public static void main(String[] args) throws Exception {
 
         inicio();
+
+        if (logged) {
+            verificarSo();
+            if (system == 1) {
+                PowerShell prompt = new PowerShell();
+                prompt.restart();
+            } else {
+                TerminalLinux prompt = new TerminalLinux();
+            }
+        }
     }
 
     public static void inicio() throws Exception {
@@ -146,7 +160,7 @@ public class Main {
 
         if (UserController.buscarUsuario(new User(inputEmail, inputSenha))) {
             System.out.println("Login realizado com sucesso");
-            login = 1;
+            logged = true;
         } else {
             int opcao;
             do {
@@ -165,5 +179,15 @@ public class Main {
             } while (opcao != 1 && opcao != 2 && opcao != 3);
         }
         input.close();
+    }
+
+    public static void verificarSo() {
+        String so = System.getProperty("os.name").toLowerCase();
+
+        if (so.contains("win")) {
+            system = 1;
+        } else {
+            system = 2;
+        }
     }
 }

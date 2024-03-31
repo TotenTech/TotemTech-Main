@@ -11,7 +11,7 @@ public class MockCompanies {
 
     public MockCompanies() {
         this.companies = new ArrayList();
-        this.companies.add(new Companie("MC Donald's", "mc123"));
+        this.companies.add(new Companie("MC Donald's", "1234567890ABC"));
         this.companies.add(new Companie("Madero", "madero123"));
     }
 
