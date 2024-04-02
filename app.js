@@ -1,9 +1,11 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const path = require("path");
 const app = express();
 
 const port = 8080;
 
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 app.engine("html", require("ejs").renderFile);
@@ -15,13 +17,11 @@ app.listen(port, () => {
 });
 
 const indexRouter = require("./src/routes/indexRouter");
-const loginRouter = require("./src/routes/loginRouter");
 const cadastroRouter = require("./src/routes/cadastroRouter");
-const dashboardRouter = require("./src/routes/dashboardRouter")
-const codigoRouter = require("./src/routes/codigoRouter");
+const dashboardRouter = require("./src/routes/dashboardRouter");
+const loginRouter = require("./src/routes/loginRouter");
 
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/cadastro", cadastroRouter);
-app.use("/dashboard", dashboardRouter)
-app.use("codigo", codigoRouter);
+app.use("/dashboard", dashboardRouter);
