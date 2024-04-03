@@ -27,7 +27,8 @@ function fecharMenu() {
 /*Verificação de mensagem */
 
 var mensagemAlerta = document.getElementById('mensagemAlerta');
-var codigoCorreto = "";
+var codigoCorreto = false;
+var empresaAssociada = "";
 
 function fazerCadastroA() {
 
@@ -69,27 +70,27 @@ function fazerCadastroA() {
 
 //Informações do usuário 
 var nome = "";
-var emailD = "";
-var senhaD = "";
-var confirmarD = "";
-var codigoD = "";
+var email = "";
+var senha = "";
+var confirmar = "";
+var codigo = "";
 
 function fazerCadastroD() {
-    nome = inputNomeD.value;
-    emailD = inputEmailD.value;
-    senhaD = inputSenhaD.value;
-    confirmarD = inputConfirmarD.value;
-    codigoD = inputCodigoD.value;
-
-    var email = emailD.replace(/\s/g, '');
-    var senha = senhaD.replace(/\s/g, '');
-    var confirmar = confirmarD.replace(/\s/g, '');
-    var codigo = codigoD.replace(/\s/g, '')
+   var nomeInput = inputNomeD.value;
+   var emailInput = inputEmailD.value;
+   var senhaInput = inputSenhaD.value;
+   var confirmarInput = inputConfirmarD.value;
+   var codigoInput = inputCodigoD.value;
 
 
-    
+    nome = nomeInput;
+    email = emailInput.replace(/\s/g, '');
+    senha = senhaInput.replace(/\s/g, '');
+    confirmar = confirmarInput.replace(/\s/g, '');
+    codigo = codigoInput.replace(/\s/g, '');
+
     //Verificar codigo
-    fetch("/codigoRouter/validarCodigo", {
+    fetch("/cadastro/validarCodigo", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -98,66 +99,65 @@ function fazerCadastroD() {
             codigoServer: codigo,
         })
     })
-    .then(function (resposta) {
-        if (resposta.ok) {
-            console.log(resposta);
+        .then(function (resposta) {
             resposta.json().then(json => {
                 console.log(json);
-                console.log(JSON.stringify(json));
-                sessionStorage.CODIGO_EMPRESA = json.codigo;
+                if (resposta.ok) {
+                    codigoCorreto = true;
+                    empresaAssociada = JSON.stringify(json.empresa);
+                    validarCadastro();
+                } else {
+                    return false;
+                }
+            }).catch(error => {
+                validarCadastro();
+                return false;
             });
-        } else {
-            console.log("Houve um erro ao tentar validar o codigo!");
-            
-            resposta.text().then(texto => {
-                console.error(texto);
-                finalizarAguardar(texto);    
-            });
-            return false;
-        }
-        
-    }).catch(
-        function (erro) {
-            res.status(500).json(erro.sqlMessage );
-            
-    })
 
+        }).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            })
+}
 
+function validarCadastro(){
+    
     if (nome == "" || email == "" || senha == "" || codigo == "" || confirmar == "") {
         mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Preencha todos os campos`;
     } else if (email.indexOf('@') < 0 || email.indexOf('.') < 0) {
         mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Preencha o campo do email corretamente utilizando @ e . `;
-    } else if (senha.length < 6) {
+    } else if (senha.length < 6 || senha.length > 13) {
         mensagemAlerta.innerHTML = `<img src="/img/erro.png">
-            A senha deve ter no minimo 6 digitos`;
+            A senha deve ter no minimo 6 e no maximo 12 digitos`;
     } else if (senha != confirmar) {
         mensagemAlerta.innerHTML = `<img src="/img/erro.png">
             Senhas diferentes`;
-    } else if (codigoCorreto == codigo) {
+    }else if(codigoCorreto == false){
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
+        Código Inválido`;
+    } else {
         mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Cadastro realizado com sucesso!!`;
         setTimeout(redirecionarLogin, 4000);
-    } else {
-        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
-            Código Inválido`;
+
+        fetch("/cadastro/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify({
+                nomeServer: nome,
+                emailServer: email,
+                senhaServer: senha,
+                empresaServer: empresaAssociada,
+            })
+        })
+
     }
 
     mostrarAlerta();
 
-
-    fetch("/cadastro/cadastrar", {
-        method: "POST",
-        headers: {
-            "Content-Type": 'application/json',
-        },
-        body: JSON.stringify({
-            nomeServer: nome,
-            emailServer: email,
-            senhaServer: senha,
-            codigoServer: codigo,
-        })
-    })
 }
 
 function redirecionarLogin() {
