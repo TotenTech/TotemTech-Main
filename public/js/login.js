@@ -29,56 +29,95 @@ function fecharMenu() {
 var mensagemAlerta = document.getElementById('mensagemAlerta');
 
 
-var emailReserva = "totemTech@gmail.com";
-var senhaReserva = "totem1234";
+
+var email = "";
+var senha = "";
 
 function fazerLoginA() {
-        var emailA = inputEmailA.value;
-        var senhaA = inputSenhaA.value;
+    var emailA = inputEmailA.value;
+    var senhaA = inputSenhaA.value;
 
-        var email = emailA.replace(/\s/g, '');
-        var senha = senhaA.replace(/\s/g, '');
 
-        if (email == emailReserva && senha == senhaReserva) {
-            mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
-            setTimeout(redirecionarDash, 4000);
-        } else if (email == "" || senha == "") {
-            mensagemAlerta.innerHTML = `<img src="/img/erro.png">
-         Preencha todos os campos`;
+    email = emailA.replace(/\s/g, '');
+    senha = senhaA.replace(/\s/g, '');
 
-        } else {
-            mensagemAlerta.innerHTML = `<img src="/img/erro.png">
-            Email ou senha incorreto`;
-
-        }
-    mostrarAlerta();
-}
-
-function fazerLoginD(){
-    var emailD = inputEmailD.value;
-    var senhaD = inputSenhaD.value;
-    
-
-    var email = emailD.replace(/\s/g, '');
-    var senha = senhaD.replace(/\s/g, '');
-
-    if (email == emailReserva && senha == senhaReserva) {
-        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
-        setTimeout(redirecionarDash, 4000);
-    } else if (email == "" || senha == "") {
+    if (email == "" || senha == "") {
         mensagemAlerta.innerHTML = `<img src="/img/erro.png">
      Preencha todos os campos`;
+     mostrarAlerta();
 
     } else {
-        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
-        Email ou senha incorreto`;
-
+        validarCadastro();
     }
-    mostrarAlerta();
+}
+
+function fazerLoginD() {
+    var emailD = inputEmailD.value;
+    var senhaD = inputSenhaD.value;
+
+
+    email = emailD.replace(/\s/g, '');
+    senha = senhaD.replace(/\s/g, '');
+
+    if (email == "" || senha == "") {
+        mensagemAlerta.innerHTML = `<img src="/img/erro.png">
+     Preencha todos os campos`;
+     mostrarAlerta();
+
+    } else {
+        validarCadastro();
+    }
+}
+
+function validarCadastro(){
+    fetch("/login/verificarLogin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: email,
+            senhaServer: senha,
+        })
+    })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.IDUSUSUARIO_USUARIO = json.id;
+                    sessionStorage.NOMEUSUARIO_USUARIO = json.nome;
+                    sessionStorage.EMAILUSUARIO_USUARIO = json.email;
+                    sessionStorage.SENHAUSUARIO_USUARIO = json.senha;
+                    sessionStorage.EMPRESAUSUARIO_USUARIO = json.imagem;
+                    mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
+                    mostrarAlerta();
+                    setTimeout(redirecionarDash, 4000);
+                });
+            } else {
+                mensagemAlerta.innerHTML = `<img src="/img/erro.png">
+            Email ou senha incorreto`;
+                mostrarAlerta();
+                resposta.text().then(texto => {
+                    finalizarAguardar(texto);
+                });
+                return false;
+            }
+
+        }).catch(
+            function (erro) {
+                mensagemAlerta.innerHTML = `<img src="/img/erro.png">
+            Email ou senha incorreto`;
+                mostrarAlerta();
+                res.status(500).json(erro.sqlMessage);
+
+            })
 }
 
 
-function redirecionarDash(){
+function redirecionarDash() {
     window.location.href = "/dashboard";
 }
 

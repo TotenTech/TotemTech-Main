@@ -6,5 +6,8 @@ router.get("/", (req, res) => {
     res.render("login");
 })
 
+router.post("/verificarLogin", function (req, res) {
+    usuarioController.verificarLogin(req, res);
+});
 
 module.exports = router;

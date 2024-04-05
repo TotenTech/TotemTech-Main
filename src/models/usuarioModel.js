@@ -18,7 +18,18 @@ function cadastrar(nome, email, senha, empresa) {
     return database.executar(instrucao);
 }
 
+function verificarLogin(email, senha) {
+    console.log("ACESSEI O MODEL \n \n\t\t function entrar(): ", email, senha);
+
+    var instrucao = `
+        SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     validarCodigo,
-    cadastrar
+    cadastrar,
+    verificarLogin,
 };
