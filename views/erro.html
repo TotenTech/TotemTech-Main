@@ -17,23 +17,35 @@
 <body>
     <div class="navBar" id="navBar">
 
+        <input type="checkbox" id="menu-btn" class="menuBtn">
+        <label class="menu-btn" for="menu-btn"><span id="linha1"></span><span id="linha2"></span><span></span></label>
+
         <img src="/img/Logo-Preta.png">
 
         <ul class="itensNav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html">Nossas soluções</a></li>
-            <li><a href="index.html">Sobre Nós</a></li>
-            <li><a href="index.html">Clientes</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">Nossas soluções</a></li>
+            <li><a href="/">Sobre Nós</a></li>
+            <li><a href="/">Clientes</a></li>
         </ul>
 
         <div class="bordaLogin">
-            <a class="login" href="/telaLogin.html">Login/Cadastro</a>
+            <a class="login" href="/login">Login/Cadastro</a>
         </div>
         
     </div>
 
+    <div class="itensNavMobile">
+        <ul>
+            <li><a onclick="scrollToSection('home')">Home</a></li>
+            <li><a onclick="scrollToSection('nossasSolucoes')">Nossas soluções</a></li>
+            <li><a onclick="scrollToSection('sobreNos')">Sobre Nós</a></li>
+            <li><a onclick="scrollToSection('clientes')">Clientes</a></li>
+        </ul>
+    </div>
+
     <div class="caixa">
-        <div class="mensagemAlerta" id="mensagemAlerta" >Você sera direcionado a área de cadastro</div>
+        <div class="mensagemAlerta" id="mensagemAlerta" >Você sera direcionado a área de login</div>
         <div class="esquerda">
             <img src="/img/logo.png">
             <h1>Ops!!!</h1>

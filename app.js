@@ -20,8 +20,10 @@ const indexRouter = require("./src/routes/indexRouter");
 const cadastroRouter = require("./src/routes/cadastroRouter");
 const dashboardRouter = require("./src/routes/dashboardRouter");
 const loginRouter = require("./src/routes/loginRouter");
+const erroRouter = require("./src/routes/erroRouter")
 
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/cadastro", cadastroRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/erro", erroRouter);
