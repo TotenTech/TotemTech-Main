@@ -13,8 +13,9 @@ router.get("/estatisticas", (req, res) => {
     res.render("dashEstatisticas")
 })
 
-router.get("/perfil", (req, res) => {
-    res.render("dashPerfil")
+router.get("/gerenciarT", (req, res) => {
+    res.render("gerenciarT")
 })
+
 
 module.exports = router;
