@@ -1,3 +1,9 @@
+window.addEventListener("DOMContentLoaded", () => {
+    if (sessionStorage.ID_USUARIO == undefined) {
+        window.location.href = "/erro";
+    }
+})
+
 function openModal() {
     document.getElementById('myModal').style.display = 'block';
 }
@@ -103,3 +109,8 @@ const chart2 = new Chart(ctx2, {
         }
     }
 });
+
+document.getElementById("btn_sair").addEventListener("click", () => {
+    sessionStorage.clear();
+    window.location.href = "/";
+})

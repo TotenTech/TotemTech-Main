@@ -1,3 +1,10 @@
+
+window.addEventListener("DOMContentLoaded", () => {
+    if (sessionStorage.ID_USUARIO == undefined) {
+        window.location.href = "/erro";
+    }
+})
+
 function abrirModal() {
     document.getElementById('modal-relatorio').showModal();
     document.getElementById('modal-relatorio').style.display = 'flex';
@@ -28,3 +35,10 @@ function abrirModal() {
     mode: "range",
     dateFormat: "Y-m-d",
   });
+
+
+
+document.getElementById("btn_sair").addEventListener("click", () => {
+    sessionStorage.clear();
+    window.location.href = "/";
+})
