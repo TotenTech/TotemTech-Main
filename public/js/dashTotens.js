@@ -1,3 +1,9 @@
+window.addEventListener("DOMContentLoaded", () => {
+    if (sessionStorage.ID_USUARIO == undefined) {
+        window.location.href = "/erro";
+    }
+})
+ 
  //legenda cores - status totens
  document.getElementById('circle-legenda').addEventListener('click', function () {
     var helpLegenda = document.getElementById('legenda-help');
@@ -64,3 +70,8 @@ const chart = new Chart(ctx, {
         }
     }
 });
+
+document.getElementById("btn_sair").addEventListener("click", () => {
+    sessionStorage.clear();
+    window.location.href = "/";
+})

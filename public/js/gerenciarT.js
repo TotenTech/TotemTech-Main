@@ -1,3 +1,9 @@
+window.addEventListener("DOMContentLoaded", () => {
+    if (sessionStorage.ID_USUARIO == undefined) {
+        window.location.href = "/erro";
+    }
+})
+
 // Pegar todos as checkbox para verificar se ela esta selecionada ou não
 const checkboxeDaVez = document.querySelectorAll('input[type="checkbox"]');
 // Se ela tiver ele adiciona ".checked" na class das checked fazendo com que ele troque de class
@@ -234,3 +240,8 @@ function fecharDeletarTotem(escolha){
         esconderAlerta();
     }, 2000);
 }
+
+document.getElementById("btn_sair").addEventListener("click", () => {
+    sessionStorage.clear();
+    window.location.href = "/";
+})
