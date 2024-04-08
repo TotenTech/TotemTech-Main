@@ -87,11 +87,11 @@ function validarCadastro(){
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.IDUSUSUARIO_USUARIO = json.id;
-                    sessionStorage.NOMEUSUARIO_USUARIO = json.nome;
-                    sessionStorage.EMAILUSUARIO_USUARIO = json.email;
-                    sessionStorage.SENHAUSUARIO_USUARIO = json.senha;
-                    sessionStorage.EMPRESAUSUARIO_USUARIO = json.imagem;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.SENHA_USUARIO = json.senha;
+                    sessionStorage.EMPRESA_USUARIO = json.imagem;
                     mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
                     mostrarAlerta();
                     setTimeout(redirecionarDash, 4000);
