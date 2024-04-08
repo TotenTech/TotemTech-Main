@@ -230,3 +230,52 @@ td {
 .tabela-historico table .rede {
     background-color: #BD4E46;
 }
+
+#modal-relatorio {
+    width: 40%;
+    height: 50vh;
+    display: none;
+    position: relative;
+    z-index: 10;
+    bottom: 3vh;
+    right: 3%;
+
+}
+
+#modal {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    /* justify-content: space-around; */
+    flex-direction: column;
+    /* align-items: center; */
+
+}
+
+.relatorio {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+}
+
+.fechar-modal{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.fechar-modal button {
+    font-size: 110%;
+    font-weight: 700;
+    width: fit-content;
+    height: fit-content;
+    padding: 1% 2%;
+
+}
+
+.fechar-modal button:hover{
+    background-color: #BD4E46;
+}
+
