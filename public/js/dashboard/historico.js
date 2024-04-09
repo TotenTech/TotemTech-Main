@@ -6,12 +6,12 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function abrirModal() {
-    document.getElementById('modal-relatorio').showModal();
+    // document.getElementById('modal-relatorio').showModal();
     document.getElementById('modal-relatorio').style.display = 'flex';
   }
   
   function fecharModal() {
-    document.getElementById('modal-relatorio').close();
+    // document.getElementById('modal-relatorio').close();
     document.getElementById('modal-relatorio').style.display = 'none';
   }
   
@@ -28,14 +28,6 @@ function abrirModal() {
   
     fecharModal();
   }
-  
-  // Inicializa o Flatpickr
-  flatpickr("#data-relatorio", {
-    // mode: "multiple",
-    mode: "range",
-    dateFormat: "Y-m-d",
-  });
-
 
 
 document.getElementById("btn_sair").addEventListener("click", () => {

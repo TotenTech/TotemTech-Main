@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | TotemTech</title>
-    <link rel="stylesheet" href="/css/dashHistorico.css">
+    <link rel="stylesheet" href="/css/dashboard/historico.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link
@@ -78,8 +78,17 @@
                             </div>
 
                             <div class="relatorio">
-                                <label for="data-relatorio">Selecione um ou mais dias para o relatório:</label>
-                                <input type="date" id="data-relatorio" name="data">
+                                <p>Selecione um ou mais dias para o relatório:</p>
+
+                                <div class="relatorio-data">
+                                    <label for="data-inicio">Início:</label>
+                                    <input type="date" id="data-inicio" name="data">
+                                </div>
+
+                                <div class="relatorio-data">
+                                    <label for="data-fim">Fim:</label>
+                                    <input type="date" id="data-fim" name="data">
+                                </div>
 
                                 <button onclick="gerarPDF()">Gerar PDF</button>
                             </div>
@@ -171,8 +180,6 @@
 
 </body>
 
+<script src="/js/dashboard/historico.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script src="/js/historico.js"></script>
 </html>

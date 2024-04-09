@@ -232,14 +232,15 @@ td {
 }
 
 #modal-relatorio {
-    width: 40%;
-    height: 50vh;
+    width: 35%;
+    height: 30vh;
     display: none;
-    position: relative;
+    position: absolute;
     z-index: 10;
     bottom: 3vh;
-    right: 3%;
-
+    left: 68%;
+    border: #0d4a7c;
+    border-radius: 5px;
 }
 
 #modal {
@@ -256,8 +257,18 @@ td {
     width: 100%;
     height: 100%;
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     align-items: center;
+    justify-content: baseline;
+}
+
+.relatorio-data {
+    width: 50%;
+    padding: 0 3%;
+    display: flex;
+    margin: 2% 0;
+    gap: 10px;
+    justify-content: space-between;
 }
 
 .fechar-modal{
