@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <link rel="icon" href="../img/logo.png" type="image/png">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 
 <body>
@@ -54,7 +54,7 @@
         </div>
 
         <!--Versão Mobile-->
-        <div class="versionAndroid" id="idVersionAndroid"> 
+        <div class="versionAndroid" id="idVersionAndroid">
             <div class="tituloCadastro">
                 <h1>Cadastro</h1>
             </div>
@@ -69,7 +69,11 @@
             <input type="password" placeholder="Digite novamente sua senha" id="inputConfirmarA">
             <p>Código de acesso:<img src="/img/pergunta-para-fazer-login-em-circulos.png" onclick="tooltip()"></p>
             <input type="text" placeholder="Digite código de acesso" id="inputCodigoA">
-
+            <p>Nível de acesso:</p>
+            <select class="selectAcesso" id="inputNivelAcesso">
+                <option value="1">Funcionário</option>
+                <option value="2">Gerente</option>
+            </select>
             <div class="botaoCadastrar">
                 <button onclick="fazerCadastroA()">
                     Cadastre-se
@@ -102,7 +106,8 @@
                     <input type="text" placeholder="Digite seu nome" id="inputNomeD">
                     <p>Email:</p>
                     <input type="email" placeholder="Digite seu email" id="inputEmailD">
-                    <p>Código de acesso:<img src="/img/pergunta-para-fazer-login-em-circulos.png" onclick="tooltip()"></p>
+                    <p>Código de acesso:<img src="/img/pergunta-para-fazer-login-em-circulos.png" onclick="tooltip()">
+                    </p>
                     <input type="text" placeholder="Digite código de acesso" id="inputCodigoD">
                 </div>
 
@@ -112,7 +117,11 @@
                     <input type="password" placeholder="Digite seu senha" id="inputSenhaD">
                     <p>Confirme sua senha:</p>
                     <input type="password" placeholder="Digite novamente sua senha" id="inputConfirmarD">
-
+                    <p>Nível de acesso:</p>
+                    <select class="selectAcesso" id="inputNivelAcessoD">
+                        <option value="1">Funcionário</option>
+                        <option value="2">Gerente</option>
+                    </select>
                 </div>
 
 
