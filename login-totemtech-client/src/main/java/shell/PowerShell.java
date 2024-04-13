@@ -5,25 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class PowerShell {
-    public static void main(String[] args) {
-        try {
-            // Comando PowerShell para obter informações sobre a memória
-            String powerShellCommand = "powershell.exe (Get-WmiObject Win32_OperatingSystem).TotalVisibleMemorySize, (Get-WmiObject Win32_OperatingSystem).FreePhysicalMemory";
-            String[] memoryInfo = executePowerShellCommand(powerShellCommand).split("\n");
-
-            // Convertendo valores de string para int
-            int totalMemory = Integer.parseInt(memoryInfo[0].trim());
-            int freeMemory = Integer.parseInt(memoryInfo[1].trim());
-
-            // Calculando a porcentagem de memória livre
-            double freeMemoryPercentage = ((double) freeMemory / totalMemory) * 100;
-
-            System.out.println("Free Memory Percentage: " + freeMemoryPercentage + "%");
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
+//    TODO: Classe para comandos linux que serão executados
     public static String executePowerShellCommand(String command) throws IOException, InterruptedException {
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -36,10 +18,6 @@ public class PowerShell {
         process.destroy();
         return output.toString();
     }
-
-//    double memoriaDisponivel() {
-//
-//    }
 
     public void restart() {
         try {
