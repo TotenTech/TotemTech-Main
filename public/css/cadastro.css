@@ -210,6 +210,26 @@ body {
     padding: 0 1% 0 2%;
 }
 
+.versionAndroid .selectAcesso{
+    border: none;
+    color: #0073CF;
+}
+
+.versionAndroid .selectAcesso option{
+    background-color: #f1f1f1;
+    color: #0073CF;
+}
+
+.versionAndroid .selectAcesso option:checked{
+    background-color: #f1f1f1;
+    color: #0073CF;
+}
+
+.versionAndroid .selectAcesso option:not(:checked){
+    background-color: #f1f1f1;
+    color: #0073CF;
+}
+
 .versionAndroid .botaoCadastrar {
     width: 100%;
     display: flex;
@@ -514,6 +534,29 @@ body {
         color: #0073CF;
         font-size: 18px;
         padding: 0 2%;
+    }
+
+    .versionDesktop .selectAcesso{
+        border: none;
+        color: #0073CF;
+        font-size: 90%;
+        width: 90%;
+        padding: 0 1%;
+    }
+    
+    .versionDesktop .selectAcesso option{
+        background-color: #f1f1f1;
+        color: #0073CF;
+    }
+    
+    .versionDesktop .selectAcesso option:checked{
+        background-color: #f1f1f1;
+        color: #0073CF;
+    }
+    
+    .versionDesktop .selectAcesso option:not(:checked){
+        background-color: #f1f1f1;
+        color: #0073CF;
     }
 
     .telaCadastro .versionDesktop .botaoCadastrar {

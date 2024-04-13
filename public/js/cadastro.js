@@ -35,6 +35,7 @@ var email = "";
 var senha = "";
 var confirmar = "";
 var codigo = "";
+var nivelAcesso = "";
 
 function fazerCadastroA() {
 
@@ -43,6 +44,7 @@ function fazerCadastroA() {
     var senhaA = inputSenhaA.value;
     var confirmarA = inputConfirmarA.value;
     var codigoA = inputCodigoA.value;
+    nivelAcesso = inputNivelAcesso.value;
 
      nome = nomeA.replace(/\s/g, '');
      email = emailA.replace(/\s/g, '');
@@ -90,7 +92,7 @@ function fazerCadastroD() {
    var senhaInput = inputSenhaD.value;
    var confirmarInput = inputConfirmarD.value;
    var codigoInput = inputCodigoD.value;
-
+   nivelAcesso = inputNivelAcessoD.value;
 
     nome = nomeInput;
     email = emailInput.replace(/\s/g, '');
@@ -160,6 +162,7 @@ function validarCadastro(){
                 emailServer: email,
                 senhaServer: senha,
                 empresaServer: empresaAssociada,
+                nivelAcessoServer: nivelAcesso,
             })
         })
 

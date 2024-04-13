@@ -35,11 +35,12 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var empresa = req.body.empresaServer;
+    var nivelAcesso = req.body.nivelAcessoServer;
 
-    if (nome == undefined || email == undefined || senha == undefined || empresa == undefined) {
+    if (nome == undefined || email == undefined || senha == undefined || empresa == undefined || nivelAcesso == undefined) {
         res.status(400).send("Algum dado está indefinido!");
     }
-    usuarioModel.cadastrar(nome, email, senha, empresa).then(function(resposta){
+    usuarioModel.cadastrar(nome, email, senha, empresa, nivelAcesso).then(function(resposta){
         res.status(200).send("Empresa cadastrada com sucesso");
     }).catch(function(erro){
         console.log(erro);
@@ -68,6 +69,7 @@ function verificarLogin(req, res) {
                     email: resultadoAutenticar[0].email,
                     senha: resultadoAutenticar[0].senha,
                     empresa: resultadoAutenticar[0].empresa,
+                    nivelAcesso: resultadoAutenticar[0].nivelAcesso,
                                 });    
                 } else if(resultadoAutenticar.length == 0){
                 res.status(403).send("Email e/ou senha inválido(s)");
