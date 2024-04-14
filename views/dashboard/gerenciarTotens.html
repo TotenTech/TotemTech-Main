@@ -51,8 +51,8 @@
         <div class="homePage">
 
             <div class="linha">
-                <button onclick="abrirGerenTotem01()">Gerenciar Totens</button>
-                <button onclick="abrirAddTotem1()">Adicionar Totem</button>
+                <button onclick="abrirGerenTotem()">Gerenciar Totens</button>
+                <button onclick="abrirAddTotem()">Adicionar Totem</button>
             </div>
             
             <div class="mensagemAlerta" id="mensagemAlerta"></div>
@@ -62,56 +62,63 @@
                 <li>
                     <p>Totem da mãe Joana</p>
                     <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem01()">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()">
+                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
+                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
+                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
                     </span>
                 </li>
             
                 <li>
                     <p>Totem da mãe Joana</p>
                     <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem01()">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()">
+                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()"  class="imagemNivel2">
+                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
+                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
                     </span>
                 </li>
             
                 <li>
                     <p>Totem da mãe Joana</p>
                     <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem01()">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()">
+                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()"  class="imagemNivel2">
+                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
+                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
                     </span>
                 </li>
             
                 <li>
                     <p>Totem da mãe Joana</p>
                     <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem01()">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()">
+                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
+                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
+                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
                     </span>
                 </li>
             
                 <li>
                     <p>Totem da mãe Joana</p>
                     <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem01()">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()">
+                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
+                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
+                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
                     </span>
                 </li>
             
                 <li>
                     <p>Totem da mãe Joana</p>
                     <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem01()">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()">
+                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
+                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
+                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
                     </span>
                 </li>
             
                 <li>
                     <p>Totem da mãe Joana</p>
                     <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem01()">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()">
+                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
+                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
+                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
                     </span>
                 </li>
             
@@ -155,7 +162,7 @@
 
             <div class="telaEditar" id="telaEditarDiv">
             
-                <h3>Editar Totem <button onclick="fecharEditarTotem01()">X</button></h3>
+                <h3>Editar Totem <button onclick="fecharEditarTotem()">X</button></h3>
             
                 <p id="linhaEditarTotemNome">Nome:
                     <span class="spanTotem" id="nomeTotemSpan">teste</span>
@@ -206,6 +213,55 @@
                 </div>
             
             </div>
+
+
+            <div class="telaInfo" id="telaInfoDiv">
+                <h3>Informações do Totem 
+                    <button onclick="fecharInformacao()">X</button>
+                </h3>
+            
+                <p id="infoTotemNome">Nome:
+                    <span class="spanTotem" id="nomeTotemSpanInfo">teste</span>
+                </p>
+            
+                <p id="infoTotemEmail">Email:
+                    <span class="spanTotem" id="emailTotemSpanInfo">teste@gmail.com</span>
+                </p>
+            
+                <p id="infoTotemSenha">Senha:
+                    <span class="spanTotem" id="senhaTotemSpanInfo">**********</span>
+                </p>
+            
+                <ul class="listaDesempenho">
+            
+                    <li>
+                        <input type="checkbox" id="checkboxTotemCPUInfo">
+                        <span class="textoSpan">CPU</span>
+                    </li>
+            
+                    <li>
+                        <input type="checkbox" id="checkboxTotemRedeInfo">
+                        <span class="textoSpan">REDE</span>
+                    </li>
+            
+                    <li>
+                        <input type="checkbox" id="checkboxTotemRAMInfo">
+                        <span class="textoSpan">Memória RAM</span>
+                    </li>
+            
+                    <li>
+                        <input type="checkbox" id="checkboxTotemDiscoInfo">
+                        <span class="textoSpan">Disco</span>
+                    </li>
+            
+                    <li>
+                        <input type="checkbox" id="checkboxTotemInovacaoInfo">
+                        <span class="textoSpan">Reiniciar automaticamente</span>
+                    </li>
+            
+                </ul>         
+            </div>
+
         </div>
     
     </div>
