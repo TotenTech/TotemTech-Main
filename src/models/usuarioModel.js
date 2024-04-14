@@ -3,7 +3,7 @@ var database = require("../database/config")
 
 function validarCodigo(codigo) {
     var instrucao = `
-        SELECT id FROM empresa WHERE codigoAcesso = '${codigo}';
+        SELECT idEmpresa FROM empresa WHERE codigoAcesso = '${codigo}';
         `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

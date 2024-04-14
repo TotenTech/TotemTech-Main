@@ -70,6 +70,7 @@ function fazerCadastroA() {
                     empresaAssociada = JSON.stringify(json.empresa);
                     validarCadastro();
                 } else {
+                    validarCadastro();
                     return false;
                 }
             }).catch(error => {

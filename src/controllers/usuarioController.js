@@ -12,7 +12,7 @@ function validarCodigo(req, res) {
                 function (resultadovalidarCodigo) {
                     if (resultadovalidarCodigo.length == 1) {
                         res.json({
-                            empresa: resultadovalidarCodigo[0].id,
+                            empresa: resultadovalidarCodigo[0].idEmpresa,
                         });
                     } else {
                         res.status(403).send("codigo inválido");
@@ -64,7 +64,7 @@ function verificarLogin(req, res) {
             function (resultadoAutenticar){
                 if (resultadoAutenticar.length == 1) {
                 res.json({
-                    id: resultadoAutenticar[0].id,
+                    id: resultadoAutenticar[0].idUsuario,
                     nome: resultadoAutenticar[0].nome,
                     email: resultadoAutenticar[0].email,
                     senha: resultadoAutenticar[0].senha,

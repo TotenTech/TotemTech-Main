@@ -4,8 +4,60 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 })
 
+
+/*TODAS AS CONST COM AS TELAS*/
+//Vericar se é gerente
+const imgNivel1 = document.querySelectorAll(".imagemNivel1");
+const imgNivel2 = document.querySelectorAll('.imagemNivel2');
+
 // Pegar todos as checkbox para verificar se ela esta selecionada ou não
 const checkboxeDaVez = document.querySelectorAll('input[type="checkbox"]');
+
+// Transição de troca de formularios
+const listaTotem = document.getElementById("listaTotemDiv");
+const telaAdicionar = document.getElementById("telaAdicionarDiv");
+const telaEditar = document.getElementById("telaEditarDiv");
+const telaInfo = document.getElementById("telaInfoDiv");
+
+
+//Pegar o id das linhas que contém o texto e span
+const editarTotemNome = document.getElementById("linhaEditarTotemNome");
+const editarTotemEmail = document.getElementById("linhaEditarTotemEmail");
+const editarTotemSenha = document.getElementById("linhaEditarTotemSenha");
+
+// Mensagem de alerta
+const mensagemAlerta = document.getElementById('mensagemAlerta');
+
+if (sessionStorage.NIVELACESSO_USUARIO == 1) {
+    imgNivel2.forEach(lixeira => {
+        lixeira.style.display = "none";
+    })
+    imgNivel1.forEach(informacao =>{
+        informacao.style.display = "block";
+    })
+} else {
+    imgNivel1.forEach(informacao =>{
+        informacao.style.display = "none";
+    })
+    imgNivel2.forEach(lixeira => {
+        lixeira.style.display = "block";
+    })
+}
+
+
+/*VARIAVEIS GLOBAIS */
+//Usadas para armanezar o valor do texto que conte as informações do totem
+var nomeTotem = "";
+var emailTotem = "";
+var senhaTotem = "";
+
+//Variáveis com os novos dados de um totem já existente
+var novoNomeAtual = "";
+var novoEmailAtual = "";
+var novoSenhaAtual = "";
+
+
+
 // Se ela tiver ele adiciona ".checked" na class das checked fazendo com que ele troque de class
 checkboxeDaVez.forEach(checkbox => {
     checkbox.addEventListener('change', function () {
@@ -18,92 +70,62 @@ checkboxeDaVez.forEach(checkbox => {
 });
 
 
-// Transição de troca de formularios
-var listaTotem = document.getElementById("listaTotemDiv");
-var telaAdicionar = document.getElementById("telaAdicionarDiv");
-var telaEditar = document.getElementById("telaEditarDiv");
 
 // Primeiro ele diminui o tamanho da div
-function abrirAddTotem1() {
-    listaTotem.style.width = "0";
-    listaTotem.style.padding = "0";
-    setTimeout(abrirAddTotem2, 1100);
-}
-// Depois ele deixa uma invisível e deixa a outra visível 
-function abrirAddTotem2() {
+function abrirAddTotem() {
     listaTotem.style.display = "none";
     telaAdicionar.style.display = "flex";
     telaEditar.style.display = "none";
-    telaAdicionar.style.padding = "2%"
-    setTimeout(abrirAddTotem3, 100);
-}
-// Aumenta o tamanho da nova div
-function abrirAddTotem3() {
-    telaAdicionar.style.width = "80%";
+    telaInfo.style.display = "none";
 }
 
 
-function abrirGerenTotem01() {
-    telaAdicionar.style.width = "0";
-    telaAdicionar.style.padding = "0";
-    setTimeout(abrirGerenTotem02, 1100);
-}
-
-function abrirGerenTotem02() {
+function abrirGerenTotem() {
     telaAdicionar.style.display = "none";
     listaTotem.style.display = "flex";
-    listaTotem.style.padding = "2%";
-    setTimeout(abrirGerenTotem03, 100);
-}
-
-function abrirGerenTotem03() {
-    listaTotem.style.width = "80%";
+    telaEditar.style.display = "none";
+    telaInfo.style.display = "none";
 }
 
 
 
 // Abrir tela de editar totem
-function abrirEditarTotem01(){
-    listaTotem.style.opacity = "0";
-    setTimeout(abrirEditarTotem02,1100);
-}
-
-function abrirEditarTotem02(){
+function abrirEditarTotem() {
     listaTotem.style.display = "none";
     telaEditar.style.display = "flex";
-    setTimeout(abrirEditarTotem03, 100);
-}
-
-function abrirEditarTotem03(){
-    telaEditar.style.opacity = "1";
+    telaAdicionar.style.display = "none";
+    telaInfo.style.display = "none";
 }
 
 //Fechar tela de editar totem
-function fecharEditarTotem01(){
-    telaEditar.style.opacity = "0";
-    setTimeout(fecharEditarTotem02, 1100);
-}
-
-function fecharEditarTotem02(){
+function fecharEditarTotem() {
     telaEditar.style.display = "none";
     listaTotem.style.display = "flex";
-    setTimeout(fecharEditarTotem03, 100);
+    telaAdicionar.style.display = "none";
+    telaInfo.style.display = "none";
+    esconderInput();
 }
 
-function fecharEditarTotem03(){
-    listaTotem.style.opacity = "1";
+// Abrir tela de informações do totem para usuário comum
+function abrirInformacao(){
+    telaEditar.style.display = "none";
+    listaTotem.style.display = "none";
+    telaAdicionar.style.display = "none";
+    telaInfo.style.display = "flex";
 }
+
+//Fechar tela de informações do totem para usuário comum
+function fecharInformacao(){
+    telaEditar.style.display = "none";
+    listaTotem.style.display = "flex";
+    telaAdicionar.style.display = "none";
+    telaInfo.style.display = "none"; 
+}
+
+
+
 
 //Troca as informações por input
-var nomeTotem = "";
-var emailTotem = "";
-var senhaTotem = "";
-
-//Pegar o id das linhas que contém o texto e span
-var editarTotemNome = document.getElementById("linhaEditarTotemNome");
-var editarTotemEmail = document.getElementById("linhaEditarTotemEmail");
-var editarTotemSenha = document.getElementById("linhaEditarTotemSenha");
-
 function editarValores() {
 
     // Pegar o valor que esta na input, aqui eu pego as informações do totem
@@ -117,15 +139,17 @@ function editarValores() {
     editarTotemSenha.innerHTML = `Senha: <input type="password" id="inputEditarSenhaTotem" placeholder="${senhaTotem}">`;
 }
 
+
+
 function salvarDadoNovos() {
     var novoNomeTotemTab = inputNovoEditarTotem.value;
     var novoEmailTotemTab = inputEditarEmailTotem.value;
     var novoSenhaTotemTab = inputEditarSenhaTotem.value;
 
     //Ignorar os espaços das inputs
-    var novoNomeAtual = novoNomeTotemTab.replace(/\s/g, '');
-    var novoEmailAtual = novoEmailTotemTab.replace(/\s/g, '');
-    var novoSenhaAtual = novoSenhaTotemTab.replace(/\s/g, '');
+    novoNomeAtual = novoNomeTotemTab.replace(/\s/g, '');
+    novoEmailAtual = novoEmailTotemTab.replace(/\s/g, '');
+    novoSenhaAtual = novoSenhaTotemTab.replace(/\s/g, '');
 
     // Trocas as informações do totem pela novas, mas antes eu verifica se o usuário digitou uma nova informação
     if (novoNomeAtual == "" && novoEmailAtual == "" && novoSenhaAtual == "") {
@@ -134,49 +158,52 @@ function salvarDadoNovos() {
         setTimeout(function () {
             esconderAlerta();
         }, 3000);
-    }else{
-
-        if (novoNomeAtual == "") {
-            editarTotemNome.innerHTML = `Nome: 
-        <span class="spanTotem" id="nomeTotemSpan">${nomeTotem}</span>`;
-        } else {
-            editarTotemNome.innerHTML = `Nome: 
-            <span class="spanTotem" id="nomeTotemSpan">${novoNomeAtual}</span>`;
-        }
-    
-        if (novoEmailAtual == "") {
-            editarTotemEmail.innerHTML = `Email:
-            <span class="spanTotem" id="emailTotemSpan">${emailTotem}</span>`;
-        } else {
-            editarTotemEmail.innerHTML = `Email:
-            <span class="spanTotem" id="emailTotemSpan">${novoEmailAtual}</span>`;
-        }
-    
-        if (novoSenhaAtual == "") {
-            editarTotemSenha.innerHTML = `Senha: 
-            <span class="spanTotem" id="senhaTotemSpan">${senhaTotem}</span>`;
-        } else {
-            var senhaMascarada = "";
-            for (var i = 0; i <= novoSenhaAtual.length; i++) {
-                senhaMascarada += "*";
-            }
-    
-            editarTotemSenha.innerHTML = `Senha: 
-            <span class="spanTotem" id="senhaTotemSpan">${senhaMascarada}</span>`;
-        }
-    
-        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
-        mostrarAlerta();
-        setTimeout(function () {
-            esconderAlerta();
-        }, 3000);
+    } else {
+        esconderInput();
     }
 
 }
 
 
-// Mensagem de alerta
-var mensagemAlerta = document.getElementById('mensagemAlerta');
+function esconderInput() {
+
+    if (novoNomeAtual == "") {
+        editarTotemNome.innerHTML = `Nome: 
+    <span class="spanTotem" id="nomeTotemSpan">${nomeTotem}</span>`;
+    } else {
+        editarTotemNome.innerHTML = `Nome: 
+        <span class="spanTotem" id="nomeTotemSpan">${novoNomeAtual}</span>`;
+    }
+
+    if (novoEmailAtual == "") {
+        editarTotemEmail.innerHTML = `Email:
+        <span class="spanTotem" id="emailTotemSpan">${emailTotem}</span>`;
+    } else {
+        editarTotemEmail.innerHTML = `Email:
+        <span class="spanTotem" id="emailTotemSpan">${novoEmailAtual}</span>`;
+    }
+
+    if (novoSenhaAtual == "") {
+        editarTotemSenha.innerHTML = `Senha: 
+        <span class="spanTotem" id="senhaTotemSpan">${senhaTotem}</span>`;
+    } else {
+        var senhaMascarada = "";
+        for (var i = 0; i <= novoSenhaAtual.length; i++) {
+            senhaMascarada += "*";
+        }
+
+        editarTotemSenha.innerHTML = `Senha: 
+        <span class="spanTotem" id="senhaTotemSpan">${senhaMascarada}</span>`;
+    }
+    mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
+    mostrarAlerta();
+    setTimeout(function () {
+        esconderAlerta();
+    }, 3000);
+}
+
+
+
 
 function mostrarAlerta() {
     mensagemAlerta.style.right = '2%';
@@ -191,36 +218,36 @@ function esconderAlerta() {
 
 
 // Criar o cadastro de um totem novo
-function addTotem(){
+function addTotem() {
     var novoNomeTotemTab = inputNovoNomeTotem.value;
     var novoEmailTotemTab = inputNovoEmailTotem.value;
     var novoSenhaTotemTab = inputNovoSenhaTotem.value;
 
-     //Ignorar os espaços das inputs
-     var novoNomeTotem = novoNomeTotemTab.replace(/\s/g, '');
-     var novoEmailTotem = novoEmailTotemTab.replace(/\s/g, '');
-     var novoSenhaTotem = novoSenhaTotemTab.replace(/\s/g, '');
- 
-    if(novoNomeTotem == "" || novoEmailTotem == "" || novoSenhaTotem == ""){
+    //Ignorar os espaços das inputs
+    var novoNomeTotem = novoNomeTotemTab.replace(/\s/g, '');
+    var novoEmailTotem = novoEmailTotemTab.replace(/\s/g, '');
+    var novoSenhaTotem = novoSenhaTotemTab.replace(/\s/g, '');
+
+    if (novoNomeTotem == "" || novoEmailTotem == "" || novoSenhaTotem == "") {
         mensagemAlerta.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha todos campos para adicionar um totem`;
         mostrarAlerta();
         setTimeout(function () {
             esconderAlerta();
-        }, 3000);       
-    }else{
+        }, 3000);
+    } else {
         mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Totem cadastrado com sucesso!!`;
         mostrarAlerta();
         setTimeout(function () {
             esconderAlerta();
         }, 3000);
-        abrirGerenTotem01()
+        abrirGerenTotem()
     }
-    
+
 }
 
 
 // Deletar totem 
-function deletarTotem(){
+function deletarTotem() {
     mensagemAlerta.innerHTML = `
     <div class="linha">Tem certeza que deseja apagar esse totem</div>
     <div class="linha">
@@ -230,10 +257,10 @@ function deletarTotem(){
     mostrarAlerta();
 }
 
-function fecharDeletarTotem(escolha){
-    if(escolha){
+function fecharDeletarTotem(escolha) {
+    if (escolha) {
         mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Totem deletado com sucesso`;
-    }else{
+    } else {
         mensagemAlerta.innerHTML = `<img src="/img/erro.png" height="40vh"> Cancelado`
     }
     setTimeout(function () {
@@ -244,4 +271,4 @@ function fecharDeletarTotem(escolha){
 document.getElementById("btn_sair").addEventListener("click", () => {
     sessionStorage.clear();
     window.location.href = "/";
-})
+});
