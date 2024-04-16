@@ -1,0 +1,193 @@
+import controller.UserController;
+import model.User;
+import shell.PowerShell;
+import shell.TerminalLinux;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static Boolean logged = false;
+    public static int system;
+
+    public static void main(String[] args) throws Exception {
+
+        inicio();
+
+        if (logged) {
+            verificarSo();
+            if (system == 1) {
+                PowerShell prompt = new PowerShell();
+                prompt.restart();
+            } else {
+                TerminalLinux prompt = new TerminalLinux();
+            }
+        }
+    }
+
+    public static void inicio() throws Exception {
+        Scanner input = new Scanner(System.in);
+
+        int opcao;
+        do {
+            System.out.println("""
+                Bem vindo(a)!
+                Digite o número equivalente para escolher uma opção
+                1-Entrar || 2-Cadastrar-se || 3-Sair""");
+
+            opcao = input.nextInt();
+
+            switch (opcao) {
+                case 1 -> entrar();
+                case 2 -> cadastrar();
+                case 3 -> System.exit(0);
+                default -> {
+                    System.out.println("Escolha uma opção válida!");
+                }
+            }
+        } while (opcao != 1 && opcao != 2 && opcao != 3);
+        input.close();
+    }
+
+    public static void cadastrar() throws Exception {
+        Scanner input = new Scanner(System.in);
+
+        String inputEmail;
+        do {
+            System.out.print("Digite seu email: ");
+            inputEmail = input.nextLine();
+
+            if (!UserController.validarEmail(inputEmail)) {
+                System.out.println("Insira um email válido");
+            }
+
+            if (UserController.buscarEmail(inputEmail)) {
+                int escolha;
+                do {
+                    System.out.println("""
+                        Já existe uma conta com este email
+                        Digite para escolher uma opção
+                        1-Fazer login | 2-Tentar novamente | 3-Sair""");
+                    escolha = input.nextInt();
+
+                    switch (escolha) {
+                        case 1 -> {
+                            entrar();
+                            return;
+                        }
+                        case 3 -> System.exit(0);
+                    }
+                } while (escolha != 1 && escolha != 2);
+            }
+        } while (!UserController.validarEmail(inputEmail) || UserController.buscarEmail(inputEmail));
+
+        String inputSenha;
+        String inputConfirmaSenha;
+        do {
+            System.out.print("Digite sua senha: ");
+            inputSenha = input.nextLine();
+
+            System.out.print("Confirme sua senha: ");
+            inputConfirmaSenha = input.nextLine();
+
+            if (!UserController.validarSenha(inputSenha, inputConfirmaSenha)) {
+                System.out.println("As senhas devem ser iguais!");
+            }
+        } while (!UserController.validarSenha(inputSenha, inputConfirmaSenha));
+
+        String inputCodigoEmpresa;
+        do {
+            System.out.print("Digite o código da sua empresa: ");
+            inputCodigoEmpresa = input.nextLine();
+
+            if (!UserController.validarCodigoEmpresa(inputCodigoEmpresa)) {
+                System.out.println("Digite um código válido");
+            }
+        } while (!UserController.validarCodigoEmpresa(inputCodigoEmpresa));
+
+        if (UserController.cadastrar(new User(inputEmail, inputSenha))) {
+            System.out.println("""
+                    Cadastro realizado com sucesso!
+                    """);
+
+            int opcao;
+            do {
+                System.out.println("""
+                        Digite o número equivalente para escolher uma opção
+                        1-Fazer login || 2-Sair""");
+
+                opcao = input.nextInt();
+
+                switch (opcao) {
+                    case 1 -> entrar();
+                    case 2 -> System.exit(0);
+                    default -> System.out.println("Escolha uma opção válida");
+                }
+            } while (opcao != 1 && opcao != 2);
+
+        } else {
+            int opcao;
+
+            do {
+                System.out.println("""
+                    Já existe uma conta com este email
+                    Digite o número equivalente para escolher uma opção
+                    1-Tentar novamente || 2-Fazer login || 2-Sair""");
+
+                opcao = input.nextInt();
+
+                switch (opcao) {
+                    case 1 -> inicio();
+                    case 2 -> entrar();
+                    case 3 -> System.exit(0);
+                    default -> {
+                        System.out.println("Escolha uma opção válida!");
+                    }
+                }
+            } while (opcao != 1 && opcao != 2 && opcao != 3);
+        }
+        input.close();
+    }
+
+    public static void entrar() throws Exception {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Digite seu email: ");
+        String inputEmail = input.nextLine();
+
+        System.out.print("Digite sua senha: ");
+        String inputSenha = input.nextLine();
+
+        if (UserController.buscarUsuario(new User(inputEmail, inputSenha))) {
+            System.out.println("Login realizado com sucesso");
+            logged = true;
+        } else {
+            int opcao;
+            do {
+                System.out.println("""
+                    Usuário não encontrado!
+                    Digite o número equivalente para escolher uma opção
+                    1-Tentar novamente || 2-Cadastrar-se || 3-Sair""");
+
+                opcao = input.nextInt();
+
+                switch (opcao) {
+                    case 1 -> entrar();
+                    case 2 -> cadastrar();
+                    case 3 -> System.exit(0);
+                }
+            } while (opcao != 1 && opcao != 2 && opcao != 3);
+        }
+        input.close();
+    }
+
+    public static void verificarSo() {
+        String so = System.getProperty("os.name").toLowerCase();
+
+        if (so.contains("win")) {
+            system = 1;
+        } else {
+            system = 2;
+        }
+    }
+}
