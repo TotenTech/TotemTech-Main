@@ -2,6 +2,7 @@
     padding: 0%;
     margin: 0%;
     box-shadow: none;
+    /* position: relative; */
     font-family: "Poppins", sans-serif;
 }
 
@@ -11,7 +12,7 @@
     flex-direction: column;
     /* justify-content: space-between; */
     /* align-items: center; */
-    width: 100vw;
+    width: 100wh;
     height: 100vh;
 }
 
@@ -129,22 +130,36 @@
     gap: 10px;
     justify-content: space-around;
     align-items: center;
+    align-items: center;
 }
 
 .homePage .square-totems {
     /* background-color: #679BC5;  */
     display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
+    width: 80vw;
+    height: 20vh;
+    justify-content: baseline;
     align-items: center;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     scrollbar-color: #0d4a7c #637AA7;
+    overflow-x: scroll;
+    margin-bottom: 2%;
+}
+
+.homePage .square-totems ::-webkit-scrollbar {
+    width: 5px; /* Largura da barra de rolagem */
+    height: 10px;
+}
+
+.homePage .square-totems ::-webkit-scrollbar-thumb{
+    background-color: #888; /* Cor da barra de rolagem */
+    border-radius: 4px; /* Raio das bordas da barra de rolagem */
 }
 
 .square-circles {
     display: flex;
-    width: 100%;
+    width: fit-content;
+    padding: 0 1%;
     height: 100%;
     /* align-items: center; */
     justify-content: center;
@@ -201,15 +216,54 @@
 
 }
 
+.dadosGrafico{
+    width: 100%;
+    height: 60vh;
+    overflow-y: scroll;
+}
 
-.grafico {
-    width: 60%;
-    height: 100%;
+.telaGraficos{
+    width: 94%;
+    height: 50vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 3%;
+}
+
+.telaGraficos2{
+    width: 94%;
+    height: 50vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 5% 3%;
+}
+
+
+.status{
+    width: 50%;
+    height: auto;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.grafico {
+    width: 35%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 20px;
 }
+
+.grafico2 {
+    width: 35%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 
 #selecao-filtro {
     background-color: #0d4a7c;
@@ -217,9 +271,9 @@
 }
 
 
-.homePage .chart {
-    width: 500PX;
-    height: 300PX;
+ .chart {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

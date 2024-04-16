@@ -17,107 +17,167 @@
 <body>
     <div class="telaPrincipal" id="divTelaPrincipal">
 
-        <div class="navBar">
-            <div class="perfil">
-                <span class="material-symbols-outlined">
-                    account_circle
-                </span>
-                <!-- <img src="/assets/dashboard/user-solid.svg" alt="" style="width: 35px;"> -->
-                <p>Olá, Nome</p>
-            </div>
+        <div class="telaPrincipal" id="divTelaPrincipal">
 
-            <a href="/dashboard"><img src="/img/logo.png" width="75px"></a>
-
-            <button class="btn-sair" id="btn_sair">Sair</button>
-        </div>
-
-        <div class="dashboard">
-            <div class="menu-lateral">
-
-                <ul class="menu">
-                    <li>
-                        <a href="/dashboard">Totens</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
-                    </li> 
-                    <li>
-                        <a href="/dashboard/historico">Histórico</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/estatisticas">Estatísticas</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <div class="homePage">
-                <div class="square-totems" id="square-totems">
-
-                    <div class="square-circles">
-                        <div class="square">TOTEM 1</div>
-                        <div class="circle" style="background-color: brown; cursor: pointer;" id="circle-legenda"></div>
-                    </div>
-
-                    <div class="square-circles">
-                        <div class="square">TOTEM 2</div>
-                        <div class="circle" style="background-color: brown;"></div>
-                    </div>
-
-                    <div class="square-circles">
-                        <div class="square">TOTEM 3</div>
-                        <div class="circle" style="background-color: burlywood;"></div>
-                    </div>
-
-                    <div class="square-circles">
-                        <div class="square">TOTEM 4</div>
-                        <div class="circle" style="background-color: green;"></div>
-                    </div>
-
+            <div class="navBar">
+                <div class="perfil">
+                    <span class="material-symbols-outlined">
+                        account_circle
+                    </span>
+                    <!-- <img src="/assets/dashboard/user-solid.svg" alt="" style="width: 35px;"> -->
+                    <p>Olá, Nome</p>
                 </div>
-
-                <div class="legenda-help" id="legenda-help">
-                    <div class="legenda-cores">
-                        <div class="cores">
+    
+                <a href="/dashboard"><img src="/img/logo.png" width="75px"></a>
+    
+                <button class="btn-sair"><a href="/">Sair</a></button>
+            </div>
+    
+            <div class="dashboard">
+               <div class="menu-lateral">
+    
+                    <ul class="menu">
+                        <li>
+                            <a href="/dashboard">Totens</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
+                        </li> 
+                        <li>
+                            <a href="/dashboard/historico">Histórico</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/estatisticas">Estatísticas</a>
+                        </li>
+                    </ul>
+    
+    
+    
+                </div>
+    
+                <div class="homePage">
+                    <div class="square-totems" id="square-totems">
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 1</div>
+                            <div class="circle" style="background-color: brown; cursor: pointer;" id="circle-legenda"></div>
+                        </div>
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 2</div>
                             <div class="circle" style="background-color: brown;"></div>
-                            <p>Crítico</p>
                         </div>
-
-                        <div class="cores">
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 3</div>
                             <div class="circle" style="background-color: burlywood;"></div>
-                            <p>Alerta</p>
                         </div>
-
-                        <div class="cores">
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 4</div>
                             <div class="circle" style="background-color: green;"></div>
-                            <p>Normal</p>
+                        </div>
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 5</div>
+                            <div class="circle" style="background-color: green;"></div>
+                        </div>
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 6</div>
+                            <div class="circle" style="background-color: green;"></div>
+                        </div>
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 7</div>
+                            <div class="circle" style="background-color: green;"></div>
+                        </div>
+    
+                        <div class="square-circles">
+                            <div class="square">TOTEM 8</div>
+                            <div class="circle" style="background-color: green;"></div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="legenda-help" id="legenda-help">
+                        <div class="legenda-cores">
+                            <div class="cores">
+                                <div class="circle" style="background-color: brown;"></div>
+                                <p>Crítico</p>
+                            </div>
+    
+                            <div class="cores">
+                                <div class="circle" style="background-color: burlywood;"></div>
+                                <p>Alerta</p>
+                            </div>
+    
+                            <div class="cores">
+                                <div class="circle" style="background-color: green;"></div>
+                                <p>Normal</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-
-                <div class="grafico">
-                    <div class="filtro">
-                        <select name="" id="selecao-filtro">
-                            <option value="totem1">Totem 1</option>
-                            <option value="totem2">Totem 2</option>
-                            <option value="totem2">Totem 3</option>
-                            <option value="totem2">Totem 4</option>
-                        </select>
+    
+    
+                    <div class="dadosGrafico">
+                        <div class="telaGraficos">
+                        
+                            <div class="grafico">
+                                <div class="status">
+                                    <div class="circle" style="background-color: brown;"></div>
+                                    <p>Crítico</p>
+                                </div>
+                                <div class="chart">
+                                    <canvas id="graficoCPU"></canvas>
+                                </div>
+                            </div>
+                            <!-- Grafico 2 RAM -->
+                            <div class="grafico">
+                                <div class="status">
+                                    <div class="circle" style="background-color: brown;"></div>
+                                    <p>Alerta</p>
+                                </div>
+                                <div class="chart">
+                                    <canvas id="graficoRAM"></canvas>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="telaGraficos2">
+                            <!-- Grafico 3 Disco-->
+                            <div class="grafico2">
+                                <div class="status">
+                                    <div class="circle" style="background-color: brown;"></div>
+                                    <p>Alerta</p>
+                                </div>
+                                <div class="chart">
+                                    <canvas id="graficoDisco"></canvas>
+                                </div>
+                            </div>
+                            <!-- Grafico 4 Disco-->
+                            <div class="grafico2">
+                                <div class="status">
+                                    <div class="circle" style="background-color: brown;"></div>
+                                    <p>Crítico</p>
+                                </div>
+                                <div class="chart">
+                                    <canvas id="graficoRede"></canvas>
+                                </div>
+                            </div>
+                        </div>
+        
                     </div>
-
-                    <div class="chart">
-                        <canvas id="graficoTotem"></canvas>
-                    </div>
-
+                    
+    
+    
+    
                 </div>
-
-
+    
             </div>
-
+    
         </div>
-
-    </div>
+    
 
 </body>
 

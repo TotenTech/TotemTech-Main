@@ -6,9 +6,9 @@ var mysql = require("mysql2");
 // CONEXÃO DO MYSQL WORKBENCH
 var mySqlConfig = {
     host: "localhost",
-    database: "totemtech",
+    database: "totemTech",
     user: "root",
-    password: "267309",
+    password: "Gui@684875",
 };
 
  
