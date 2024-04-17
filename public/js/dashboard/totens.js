@@ -20,13 +20,16 @@ window.addEventListener("DOMContentLoaded", () => {
 const dadosCPU = [40, 50, 60, 70, 65, 55, 45]; // Utilização da CPU (%)
 const dadosRAM = [60, 65, 70, 75, 80, 85, 90]; // Uso de RAM (%)
 const dadosDISCO = [5, 6, 7, 6, 5, 4, 3]; // Tempo médio de resposta do disco (ms)
-const dadosDownload = [20, 25, 30, 35, 30, 25, 20]; // Utilização da rede - Download (%)
+const dadosRede = [20, 25, 30, 35, 30, 25, 20]; // Utilização da rede - Download (%)
 const dadosUpload = [10, 15, 20, 15, 10, 15, 20]; // Utilização da rede - Upload (%)
 const labels = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
 
-const ctx = document.getElementById('graficoTotem');
+const ctxCpu = document.getElementById('graficoCPU');
+const ctxRam = document.getElementById('graficoRAM');
+const ctxDisco = document.getElementById('graficoDisco');
+const ctxRede = document.getElementById('graficoRede');
 
-const chart = new Chart(ctx, {
+const chart = new Chart(ctxCpu, {
     type: 'line',
     data: {
         labels: labels,
@@ -35,25 +38,80 @@ const chart = new Chart(ctx, {
             data: dadosCPU,
             borderColor: '#D6618F',
             fill: false
-        }, {
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'right'
+            }
+        }
+    }
+});
+
+const chartDois = new Chart(ctxRam, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
             label: 'RAM',
             data: dadosRAM,
             borderColor: '#F1931B',
             fill: false
-        }, {
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'right'
+            }
+        }
+    }
+});
+
+const chartTres = new Chart(ctxDisco, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
             label: 'Disco',
             data: dadosDISCO,
             borderColor: '#888C46',
             fill: false
-        }, {
-            label: 'Download',
-            data: dadosDownload,
+    }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'right'
+            }
+        }
+    }
+});
+
+const chartQuatro = new Chart(ctxRede, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Rede',
+            data: dadosRede,
             borderColor: '#3E6BA8',
-            fill: false
-        }, {
-            label: 'Upload',
-            data: dadosUpload,
-            borderColor: '#BD4E46',
             fill: false
         }]
     },
