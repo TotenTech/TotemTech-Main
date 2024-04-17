@@ -8,7 +8,7 @@ var mySqlConfig = {
     host: "localhost",
     database: "totemTech",
     user: "root",
-    password: "Gui@684875",
+    password: "pi60",
 };
 
  

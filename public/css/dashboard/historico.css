@@ -152,6 +152,12 @@
     justify-content: space-around;
 }
 
+#selecao-filtro {
+    background-color: #0d4a7c;
+    color: #E3E3DD;
+}
+
+
 .tabela-historico {
     /* background-color: aliceblue; */
     width: 100%;
@@ -237,9 +243,9 @@ td {
     display: none;
     position: absolute;
     z-index: 10;
-    bottom: 3vh;
-    left: 68%;
-    border: #0d4a7c;
+    top: 40vh;
+    left: 64%;
+    border: 1px solid #0d4a7c;
     border-radius: 5px;
 }
 
@@ -253,9 +259,14 @@ td {
 
 }
 
+#modal .btn-pdf {
+    margin: 0 0 10vh 0;
+}
+
 .relatorio {
     width: 100%;
-    height: 100%;
+    height: fit-content;
+    padding: 1% 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -277,7 +288,7 @@ td {
     flex-direction: row-reverse;
 }
 
-.fechar-modal button {
+.fechar-modal .btn-fechar {
     font-size: 110%;
     font-weight: 700;
     width: fit-content;
