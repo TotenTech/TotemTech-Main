@@ -10,10 +10,10 @@ function validarCodigo(codigo) {
 }
 
 
-function cadastrar(nome, email, senha, empresa, nivelAcesso) {
+function cadastrar(nome, email, senha, empresa, tipo) {
     var instrucao = `
-    INSERT INTO Usuario (nome, email, senha, empresa, nivelAcesso) VALUES
-    ('${nome}', '${email}', '${senha}', ${empresa}, ${nivelAcesso});`;
+    INSERT INTO Usuario (nome, email, senha, empresa, tipo) VALUES
+    ('${nome}', '${email}', '${senha}', ${empresa}, ${tipo});`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
