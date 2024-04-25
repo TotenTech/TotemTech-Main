@@ -69,7 +69,7 @@ function verificarLogin(req, res) {
                     email: resultadoAutenticar[0].email,
                     senha: resultadoAutenticar[0].senha,
                     empresa: resultadoAutenticar[0].empresa,
-                    nivelAcesso: resultadoAutenticar[0].nivelAcesso,
+                    tipo: resultadoAutenticar[0].tipo,
                                 });    
                 } else if(resultadoAutenticar.length == 0){
                 res.status(403).send("Email e/ou senha inválido(s)");

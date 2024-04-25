@@ -91,8 +91,8 @@ function validarCadastro(){
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.SENHA_USUARIO = json.senha;
-                    sessionStorage.EMPRESA_USUARIO = json.imagem;
-                    sessionStorage.NIVELACESSO_USUARIO = json.nivelAcesso;
+                    sessionStorage.EMPRESA_USUARIO = json.empresa;
+                    sessionStorage.TIPO_USUARIO = json.tipo;
                     mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
                     mostrarAlerta();
                     setTimeout(redirecionarDash, 4000);

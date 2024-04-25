@@ -54,217 +54,140 @@
                 <button onclick="abrirGerenTotem()">Gerenciar Totens</button>
                 <button onclick="abrirAddTotem()">Adicionar Totem</button>
             </div>
-            
+
             <div class="mensagemAlerta" id="mensagemAlerta"></div>
-            
+
             <ul class="listaTotem" id="listaTotemDiv">
-            
-                <li>
-                    <p>Totem da mãe Joana</p>
-                    <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
-                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
-                    </span>
-                </li>
-            
-                <li>
-                    <p>Totem da mãe Joana</p>
-                    <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()"  class="imagemNivel2">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
-                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
-                    </span>
-                </li>
-            
-                <li>
-                    <p>Totem da mãe Joana</p>
-                    <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()"  class="imagemNivel2">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
-                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
-                    </span>
-                </li>
-            
-                <li>
-                    <p>Totem da mãe Joana</p>
-                    <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
-                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
-                    </span>
-                </li>
-            
-                <li>
-                    <p>Totem da mãe Joana</p>
-                    <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
-                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
-                    </span>
-                </li>
-            
-                <li>
-                    <p>Totem da mãe Joana</p>
-                    <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
-                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
-                    </span>
-                </li>
-            
-                <li>
-                    <p>Totem da mãe Joana</p>
-                    <span>
-                        <img src="/img/lapis.png" title="Editar" onclick="abrirEditarTotem()" class="imagemNivel2">
-                        <img src="/img/lixeira.png" title="Excluir" onclick="deletarTotem()" class="imagemNivel2">
-                        <b class="imagemNivel1" title="Informação" onclick="abrirInformacao()">?</b>
-                    </span>
-                </li>
-            
+
             </ul>
 
             <div class="telaAdicionar" id="telaAdicionarDiv">
-            
+
                 <h3>Adicionar Totem</h3>
                 <p>Nome: <input type="text" id="inputNovoNomeTotem" required></p>
-                <p>Email: <input type="email" id="inputNovoEmailTotem" required></p>
-                <p>Senha: <input type="password" id="inputNovoSenhaTotem" required></p>
-            
+                <p>Login: <input type="email" id="inputNovoEmailTotem" required></p>
+                <p>Senha: <input type="text" id="inputNovoSenhaTotem" required></p>
+
                 <ul class="listaDesempenho">
-            
+
                     <li>
                         <input type="checkbox" id="checkboxCPU"><span class="textoSpan">CPU</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxRede"><span class="textoSpan">REDE</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxRAM"><span class="textoSpan">Memória RAM</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxDisco"><span class="textoSpan">Disco</span>
                     </li>
-            
-                    <li>
-                        <input type="checkbox" id="checkboxInovacao"><span class="textoSpan">Reiniciar
-                            automaticamente</span>
-                    </li>
-            
+
                 </ul>
-            
+
                 <button type="submit" onclick="addTotem()">Salvar</button>
-            
+
             </div>
 
             <div class="telaEditar" id="telaEditarDiv">
-            
+
                 <h3>Editar Totem <button onclick="fecharEditarTotem()">X</button></h3>
-            
+
                 <p id="linhaEditarTotemNome">Nome:
-                    <span class="spanTotem" id="nomeTotemSpan">teste</span>
+                    <span class="spanTotem" id="nomeTotemSpan"></span>
                 </p>
-            
+
                 <p id="linhaEditarTotemEmail">Email:
-                    <span class="spanTotem" id="emailTotemSpan">teste@gmail.com</span>
+                    <span class="spanTotem" id="emailTotemSpan"></span>
                 </p>
-            
+
                 <p id="linhaEditarTotemSenha">Senha:
-                    <span class="spanTotem" id="senhaTotemSpan">**********</span>
+                    <span class="spanTotem" id="senhaTotemSpan"></span>
                 </p>
-            
+
                 <ul class="listaDesempenho">
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemCPU">
-                        <span class="textoSpan">CPU</span>
+                        <span class="textoSpan" id="textoSpanCpu" >CPU</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemRede">
-                        <span class="textoSpan">REDE</span>
+                        <span class="textoSpan" id="textoSpanRede" >REDE</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemRAM">
-                        <span class="textoSpan">Memória RAM</span>
+                        <span class="textoSpan" id="textoSpanRam" >Memória RAM</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemDisco">
-                        <span class="textoSpan">Disco</span>
+                        <span class="textoSpan" id="textoSpanDisco" >Disco</span>
                     </li>
-            
-                    <li>
-                        <input type="checkbox" id="checkboxTotemInovacao">
-                        <span class="textoSpan">Reiniciar automaticamente</span>
-                    </li>
-            
+
                 </ul>
-            
+
                 <div class="linha">
-            
+
                     <button type="submit" onclick="editarValores()">Editar</button>
                     <button type="submit" onclick="salvarDadoNovos()">Salvar</button>
-            
+
                 </div>
-            
+
             </div>
 
 
             <div class="telaInfo" id="telaInfoDiv">
-                <h3>Informações do Totem 
+                <h3>Informações do Totem
                     <button onclick="fecharInformacao()">X</button>
                 </h3>
-            
+
                 <p id="infoTotemNome">Nome:
                     <span class="spanTotem" id="nomeTotemSpanInfo">teste</span>
                 </p>
-            
+
                 <p id="infoTotemEmail">Email:
                     <span class="spanTotem" id="emailTotemSpanInfo">teste@gmail.com</span>
                 </p>
-            
+
                 <p id="infoTotemSenha">Senha:
                     <span class="spanTotem" id="senhaTotemSpanInfo">**********</span>
                 </p>
-            
+
                 <ul class="listaDesempenho">
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemCPUInfo">
                         <span class="textoSpan">CPU</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemRedeInfo">
                         <span class="textoSpan">REDE</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemRAMInfo">
                         <span class="textoSpan">Memória RAM</span>
                     </li>
-            
+
                     <li>
                         <input type="checkbox" id="checkboxTotemDiscoInfo">
                         <span class="textoSpan">Disco</span>
                     </li>
-            
-                    <li>
-                        <input type="checkbox" id="checkboxTotemInovacaoInfo">
-                        <span class="textoSpan">Reiniciar automaticamente</span>
-                    </li>
-            
-                </ul>         
+
+                </ul>
             </div>
 
         </div>
-    
+
     </div>
 </body>
 <script src="/js/dashboard/gerenciarTotens.js"></script>
+
 </html>
