@@ -4,70 +4,48 @@ import java.sql.Timestamp;
 
 public class Memoria {
 
-    private Integer idMemoria;
-    private Double emUso;
-    private Timestamp horario;
-    private Integer hardware;
+    private Integer idmemoria;
+    private Double total;
+    private String medida;
     private Integer totem;
 
     public Memoria() {}
 
-    public Memoria(
-            Double emUso,
-            Timestamp horario,
-            Integer hardware,
-            Integer totem
-    ) {
-        this.emUso = emUso;
-        this.horario = horario;
-        this.hardware = hardware;
+    public Memoria(Double total, String medida, Integer totem) {
+        this.total = total;
+        this.medida = medida;
         this.totem = totem;
     }
 
-    public Memoria(
-            Integer idMemoria,
-            Double emUso,
-            Timestamp horario,
-            Integer hardware,
-            Integer totem
-    ) {
-        this.idMemoria = idMemoria;
-        this.emUso = emUso;
-        this.horario = horario;
-        this.hardware = hardware;
+    public Memoria(Integer idmemoria, Double total, String medida, Integer totem) {
+        this.idmemoria = idmemoria;
+        this.total = total;
+        this.medida = medida;
         this.totem = totem;
     }
 
-    public Integer getIdMemoria() {
-        return idMemoria;
+    public Integer getIdmemoria() {
+        return idmemoria;
     }
 
-    public void setIdMemoria(Integer idMemoria) {
-        this.idMemoria = idMemoria;
+    public void setIdmemoria(Integer idmemoria) {
+        this.idmemoria = idmemoria;
     }
 
-    public Double getEmUso() {
-        return emUso;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setEmUso(Double emUso) {
-        this.emUso = emUso;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
-    public Timestamp getHorario() {
-        return horario;
+    public String getMedida() {
+        return medida;
     }
 
-    public void setHorario(Timestamp horario) {
-        this.horario = horario;
-    }
-
-    public Integer getHardware() {
-        return hardware;
-    }
-
-    public void setHardware(Integer hardware) {
-        this.hardware = hardware;
+    public void setMedida(String medida) {
+        this.medida = medida;
     }
 
     public Integer getTotem() {
@@ -76,5 +54,15 @@ public class Memoria {
 
     public void setTotem(Integer totem) {
         this.totem = totem;
+    }
+
+    @Override
+    public String toString() {
+        return "Memoria{" +
+                "idmemoria=" + idmemoria +
+                ", total=" + total +
+                ", medida='" + medida + '\'' +
+                ", totem=" + totem +
+                '}';
     }
 }
