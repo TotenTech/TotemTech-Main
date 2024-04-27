@@ -2,76 +2,52 @@ package entities;
 
 public class Totem {
 
-    private Integer idTotem;
+    private Integer idtotem;
     private String nome;
-    private String email;
+    private String login;
     private String senha;
-    private Integer interrupcoes;
     private String sistemaOperacional;
     private Integer empresa;
-    private Integer cpuAtivo;
-    private Integer memoriaAtivo;
-    private Integer discoAtivo;
-    private Integer redeAtivo;
+
 
     public Totem() {}
 
     public Totem(
-            Integer idTotem,
+            Integer idtotem,
             String nome,
-            String email,
+            String login,
             String senha,
-            Integer interrupcoes,
             String sistemaOperacional,
-            Integer empresa,
-            Integer cpuAtivo,
-            Integer memoriaAtivo,
-            Integer discoAtivo,
-            Integer redeAtivo
+            Integer empresa
     ) {
-        this.idTotem = idTotem;
+        this.idtotem = idtotem;
         this.nome = nome;
-        this.email = email;
+        this.login = login;
         this.senha = senha;
-        this.interrupcoes = interrupcoes;
         this.sistemaOperacional = sistemaOperacional;
         this.empresa = empresa;
-        this.cpuAtivo = cpuAtivo;
-        this.memoriaAtivo = memoriaAtivo;
-        this.discoAtivo = discoAtivo;
-        this.redeAtivo = redeAtivo;
     }
 
     public Totem(
             String nome,
-            String email,
+            String login,
             String senha,
-            Integer interrupcoes,
             String sistemaOperacional,
-            Integer empresa,
-            Integer cpuAtivo,
-            Integer memoriaAtivo,
-            Integer discoAtivo,
-            Integer redeAtivo
+            Integer empresa
     ) {
         this.nome = nome;
-        this.email = email;
+        this.login = login;
         this.senha = senha;
-        this.interrupcoes = interrupcoes;
         this.sistemaOperacional = sistemaOperacional;
         this.empresa = empresa;
-        this.cpuAtivo = cpuAtivo;
-        this.memoriaAtivo = memoriaAtivo;
-        this.discoAtivo = discoAtivo;
-        this.redeAtivo = redeAtivo;
     }
 
     public Integer getIdTotem() {
-        return idTotem;
+        return idtotem;
     }
 
     public void setIdTotem(Integer idTotem) {
-        this.idTotem = idTotem;
+        this.idtotem = idTotem;
     }
 
     public String getNome() {
@@ -82,12 +58,12 @@ public class Totem {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {
@@ -96,14 +72,6 @@ public class Totem {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public Integer getInterrupcoes() {
-        return interrupcoes;
-    }
-
-    public void setInterrupcoes(Integer interrupcoes) {
-        this.interrupcoes = interrupcoes;
     }
 
     public String getSistemaOperacional() {
@@ -122,51 +90,13 @@ public class Totem {
         this.empresa = empresa;
     }
 
-    public Integer getCpuAtivo() {
-        return cpuAtivo;
-    }
-
-    public void setCpuAtivo(Integer cpuAtivo) {
-        this.cpuAtivo = cpuAtivo;
-    }
-
-    public Integer getMemoriaAtivo() {
-        return memoriaAtivo;
-    }
-
-    public void setMemoriaAtivo(Integer memoriaAtivo) {
-        this.memoriaAtivo = memoriaAtivo;
-    }
-
-    public Integer getDiscoAtivo() {
-        return discoAtivo;
-    }
-
-    public void setDiscoAtivo(Integer discoAtivo) {
-        this.discoAtivo = discoAtivo;
-    }
-
-    public Integer getRedeAtivo() {
-        return redeAtivo;
-    }
-
-    public void setRedeAtivo(Integer redeAtivo) {
-        this.redeAtivo = redeAtivo;
-    }
-
     @Override
     public String toString() {
         return "Totem{" +
                 "nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
                 ", senha='" + senha + '\'' +
-                ", interrupcoes=" + interrupcoes +
                 ", sistemaOperacional='" + sistemaOperacional + '\'' +
-                ", empresa=" + empresa +
-                ", cpuAtivo=" + cpuAtivo +
-                ", memoriaAtivo=" + memoriaAtivo +
-                ", discoAtivo=" + discoAtivo +
-                ", redeAtivo=" + redeAtivo +
                 '}';
     }
 }

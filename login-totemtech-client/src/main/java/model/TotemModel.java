@@ -14,17 +14,14 @@ public class TotemModel {
     static RemoteDatabaseConnection dbRemote = new RemoteDatabaseConnection();
     static JdbcTemplate db;
 
-    public static Totem login(String email, String senha) throws Exception {
-//        No momento só estamos utilizando o dbLocal, quando tivermos mais informações criaremos verificações para
-//        conectar no local ou remoto
+    public static Totem login(String login, String senha) throws Exception {
+
         try {
             db = dbLocal.getConexaoDoBanco();
-            List<Totem> listaTotem = db.query("SELECT * FROM totem", new BeanPropertyRowMapper<>(Totem.class));
-            for (int i = 0; i < listaTotem.size(); i++) {
-                if (listaTotem.get(i).getEmail().equals(email) && listaTotem.get(i).getSenha().equals(senha)) {
-                    return listaTotem.get(i);
+            List<Totem> listaTotem = db.query("SELECT * FROM totem WHERE login = ? and senha = ?", new BeanPropertyRowMapper<>(Totem.class), login, senha);
+                if (!listaTotem.isEmpty() && listaTotem != null) {
+                    return listaTotem.get(0);
                 }
-            }
         } catch (Exception e) {
             throw new Exception("Exceção no model" + e.getMessage(), e);
         }

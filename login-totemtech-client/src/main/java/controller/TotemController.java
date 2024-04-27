@@ -4,9 +4,9 @@ import model.TotemModel;
 
 public class TotemController {
 
-    public static Totem login(String email, String senha) throws Exception {
+    public static Totem login(String login, String senha) throws Exception {
         try {
-            Totem totem = TotemModel.login(email, senha);
+            Totem totem = TotemModel.login(login, senha);
             if (totem != null) {
                 return totem;
             } else {

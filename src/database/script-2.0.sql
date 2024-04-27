@@ -2,6 +2,8 @@ DROP DATABASE totemTech;
 CREATE DATABASE totemTech;
 USE totemTech;
 
+-- Criação das tabelas
+
 CREATE TABLE endereco (
   idEndereco INT primary key AUTO_INCREMENT,
   logradouro VARCHAR(45),
@@ -46,7 +48,7 @@ CREATE TABLE tipo (
 CREATE TABLE usuario (
   idusuario INT primary key auto_increment,
   nome VARCHAR(45),
-  email VARCHAR(70),
+  email VARCHAR(70) unique,
   senha VARCHAR(12),
   empresa INT,
   tipo INT,
@@ -61,7 +63,7 @@ CREATE TABLE usuario (
 CREATE TABLE totem (
   idtotem INT primary key auto_increment,
   nome VARCHAR(45),
-  login VARCHAR(45),
+  login VARCHAR(45) unique,
   senha VARCHAR(45),
   sistemaOperacional VARCHAR(45),
   empresa INT,
@@ -72,19 +74,19 @@ CREATE TABLE totem (
 
 CREATE TABLE interrupcoes (
   idinterrupcoes INT primary key AUTO_INCREMENT,
-  horario DATETIME,
+  horario DATETIME default current_timestamp,
   motivo VARCHAR(45),
   totem INT,
   CONSTRAINT fk_interrupcoes_totem
-	FOREIGN KEY (totem)
-    REFERENCES totem(idTotem));
-
+    FOREIGN KEY (totem)
+    REFERENCES totem (idtotem));
+    
 
 CREATE TABLE cpu (
-  idcpu INT NOT NULL,
-  medidaVelocidade VARCHAR(45) NULL,
-  velocidadeBase VARCHAR(45) NULL,
-  totem INT NOT NULL,
+  idcpu INT auto_increment,
+  medidaVelocidade VARCHAR(45),
+  velocidadeBase Double,
+  totem INT,
   PRIMARY KEY (idcpu, totem),
   CONSTRAINT fk_cpu_totem
     FOREIGN KEY (totem)
@@ -94,7 +96,7 @@ CREATE TABLE cpu (
 CREATE TABLE cpuRegistro (
   idcpuRegistro INT auto_increment,
   utilizacao DOUBLE,
-  horario DATETIME,
+  horario DATETIME default current_timestamp,
   velocidade DOUBLE,
   processos INT,
   cpu INT,
@@ -109,7 +111,7 @@ CREATE TABLE redeRegistro (
   idredeRegistro INT auto_increment,
   download DOUBLE,
   upload DOUBLE,
-  horario DATETIME,
+  horario DATETIME default current_timestamp,
   totem INT,
   PRIMARY KEY (idredeRegistro, totem),
   CONSTRAINT fk_redeRegistro_totem
@@ -118,7 +120,7 @@ CREATE TABLE redeRegistro (
 
 
 CREATE TABLE memoria (
-  idmemoria INT,
+  idmemoria INT auto_increment,
   total DOUBLE,
   medida VARCHAR(45),
   totem INT,
@@ -129,7 +131,7 @@ CREATE TABLE memoria (
 
 
 CREATE TABLE disco (
-  iddisco INT,
+  iddisco INT auto_increment,
   tipo VARCHAR(45),
   total DOUBLE,
   medida VARCHAR(45),
@@ -143,7 +145,7 @@ CREATE TABLE disco (
 CREATE TABLE discoRegistro (
   iddiscoRegistro INT auto_increment,
   valor DOUBLE,
-  horario DATETIME,
+  horario DATETIME default current_timestamp,
   disco INT,
   totem INT,
   PRIMARY KEY (iddiscoRegistro, disco, totem),
@@ -167,7 +169,7 @@ CREATE TABLE visualizacao (
 CREATE TABLE memoriaRegistro (
   idmemoriaRegistro INT auto_increment,
   valor DOUBLE,
-  horario DATETIME,
+  horario DATETIME default current_timestamp,
   memoria INT,
   totem INT,
   PRIMARY KEY (idmemoriaRegistro, memoria, totem),
@@ -190,32 +192,20 @@ VALUES ('MC Donalds', 'ABC456', 1, 1, 'Mec', 'Mec', '12345678901234');
 INSERT INTO tipo (descricao)
 VALUES ('Funcionários'), ('Gerente');
 
-INSERT INTO usuario (nome, email, senha, empresa, tipo) VALUES 
-('Gabriel', 'gabriel.amaral@sptech.school', '123', 1, 2), 
-('João Silva', 'joao.silva@empresa.com', 'senha123', 1, 1),
-('Tallyon', 'tallyon.lima@sptech.school', '123456', 1, 2);
+INSERT INTO usuario (nome, email, senha, empresa, tipo)
+VALUES ('Gabriel', 'gabriel.amaral@sptech.school', '123', 1, 2), ('João Silva', 'joao.silva@empresa.com', 'senha123', 1, 1);
 
-
-INSERT INTO totem (nome, login, senha, sistemaOperacional, empresa) VALUES 
-('Totem 1', 'login1', 'senha123', 'Linux', 1),
-('Totem 2', 'login2', 'senha123', 'Windows', 1),
-('Totem 3', 'login3', 'senha123', 'Linux', 1),
-('Totem 4', 'login4', 'senha123', 'Windows', 1),
-('Totem 5', 'login5', 'senha123', 'Linux', 1),
-('Totem 6', 'login6', 'senha123', 'Windows', 1),
-('Totem 7', 'login7', 'senha123', 'Linux', 1),
-('Totem 8', 'login8', 'senha123', 'Windows', 1),
-('Totem 9', 'login9', 'senha123', 'Linux', 1),
-('Totem 10', 'login10', 'senha123', 'Windows', 1);
+INSERT INTO totem (nome, login, senha, sistemaOperacional, empresa)
+VALUES ('Totem A', 'totemA', 'senhaA', 'Linux', 1);
 
 INSERT INTO interrupcoes (horario, motivo, totem)
 VALUES ('2024-04-20 10:30:00', 'Memória RAM', 1);
 
-INSERT INTO cpu (idcpu, medidaVelocidade, velocidadeBase, totem)
-VALUES (1, 'GHz', '3.2', 1);
+-- INSERT INTO cpu (idcpu, medidaVelocidade, velocidadeBase, totem)
+-- VALUES (1, 'GHz', '3.2', 1);
 
-INSERT INTO cpuRegistro (utilizacao, horario, velocidade, processos, cpu, totem)
-VALUES (25.6, '2024-04-20 11:00:00', 3.0, 10, 1, 1);
+-- INSERT INTO cpuRegistro (utilizacao, horario, velocidade, processos, cpu, totem)
+-- VALUES (25.6, '2024-04-20 11:00:00', 3.0, 10, 1, 1);
 
 INSERT INTO redeRegistro (download, upload, horario, totem)
 VALUES (50.2, 20.1, '2024-04-20 11:30:00', 1);
@@ -235,30 +225,8 @@ VALUES (1, 1, 1, 1, 1);
 INSERT INTO memoriaRegistro (valor, horario, memoria, totem)
 VALUES (65.6, '2024-04-20 12:30:00', 1, 1);
 
+SELECT * FROM totem;
 
+SELECT * FROM interrupcoes WHERE totem = 1;
 
--- SELECTS DE TESTE
-select * from empresa;
-select * from usuario;
-select * from totem;
-select * from cpu;
-select * from memoria;
-select * from disco;
-select * from interrupcoes;
-select * from visualizacao; 
-
-select nome from totem WHERE empresa = 1;
-
-SELECT MAX(idtotem) FROM totem;
-
-INSERT INTO visualizacao (cpu, memoria, disco, rede, totem)VALUES 
-(1, 0, 1, 0, (SELECT MAX(idtotem) FROM totem)); 
-
-DELETE FROM visualizacao WHERE totem = 3;
-DELETE FROM totem WHERE idtotem = 3;
-
-
-SELECT totem.nome, totem.login, totem.senha, totem.sistemaOperacional,
-visualizacao.cpu, visualizacao.memoria, visualizacao.disco, visualizacao.rede FROM totem JOIN visualizacao WHERE idtotem = 1 limit 1;
-
-SELECT cpu, memoria, disco, rede FROM visualizacao WHERE totem = 13;
+SELECT * FROM cpu WHERE totem = 1;

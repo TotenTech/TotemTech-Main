@@ -4,11 +4,17 @@ import java.sql.Timestamp;
 
 public class Rede {
 
-    private Integer idRede;
+    /*
+    idredeRegistro INT auto_increment,
+  download DOUBLE,
+  upload DOUBLE,
+  horario DATETIME,
+  totem INT,
+     */
+    private Integer idrede;
     private Double download;
     private Double upload;
     private Timestamp horario;
-    private Integer hardware;
     private Integer totem;
 
     public Rede() {}
@@ -17,31 +23,28 @@ public class Rede {
             Double download,
             Double upload,
             Timestamp horario,
-            Integer hardware,
             Integer totem
     ) {
         this.download = download;
         this.upload = upload;
         this.horario = horario;
-        this.hardware = hardware;
         this.totem = totem;
     }
 
-    public Rede(Integer idRede, Double download, Double upload, Timestamp horario, Integer hardware, Integer totem) {
-        this.idRede = idRede;
+    public Rede(Integer idrede, Double download, Double upload, Timestamp horario, Integer hardware, Integer totem) {
+        this.idrede = idrede;
         this.download = download;
         this.upload = upload;
         this.horario = horario;
-        this.hardware = hardware;
         this.totem = totem;
     }
 
     public Integer getIdRede() {
-        return idRede;
+        return idrede;
     }
 
     public void setIdRede(Integer idRede) {
-        this.idRede = idRede;
+        this.idrede = idRede;
     }
 
     public Double getDownload() {
@@ -66,14 +69,6 @@ public class Rede {
 
     public void setHorario(Timestamp horario) {
         this.horario = horario;
-    }
-
-    public Integer getHardware() {
-        return hardware;
-    }
-
-    public void setHardware(Integer hardware) {
-        this.hardware = hardware;
     }
 
     public Integer getTotem() {
