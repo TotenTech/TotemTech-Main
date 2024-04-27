@@ -11,176 +11,157 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <link rel="icon" href="../img/logo.png" type="image/png">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 
 <body>
-    <div class="telaPrincipal" id="divTelaPrincipal">
-
-        <div class="telaPrincipal" id="divTelaPrincipal">
-
-            <div class="navBar">
-                <div class="perfil">
-                    <span class="material-symbols-outlined">
-                        account_circle
-                    </span>
-                    <!-- <img src="/assets/dashboard/user-solid.svg" alt="" style="width: 35px;"> -->
-                    <p>Olá, Nome</p>
-                </div>
-    
-                <a href="/dashboard"><img src="/img/logo.png" width="75px"></a>
-    
-                <button class="btn-sair" id="btn_sair">Sair</button>
-            </div>
-    
-            <div class="dashboard">
-               <div class="menu-lateral">
-    
-                    <ul class="menu">
-                        <li>
-                            <a href="/dashboard">Totens</a>
-                        </li>
-                        <li>
-                            <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
-                        </li> 
-                        <li>
-                            <a href="/dashboard/historico">Histórico</a>
-                        </li>
-                        <li>
-                            <a href="/dashboard/estatisticas">Estatísticas</a>
-                        </li>
-                    </ul>
-    
-    
-    
-                </div>
-    
-                <div class="homePage">
-                    <div class="square-totems" id="square-totems">
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 1</div>
-                            <div class="circle" style="background-color: brown; cursor: pointer;" id="circle-legenda"></div>
-                        </div>
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 2</div>
-                            <div class="circle" style="background-color: brown;"></div>
-                        </div>
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 3</div>
-                            <div class="circle" style="background-color: burlywood;"></div>
-                        </div>
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 4</div>
-                            <div class="circle" style="background-color: green;"></div>
-                        </div>
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 5</div>
-                            <div class="circle" style="background-color: green;"></div>
-                        </div>
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 6</div>
-                            <div class="circle" style="background-color: green;"></div>
-                        </div>
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 7</div>
-                            <div class="circle" style="background-color: green;"></div>
-                        </div>
-    
-                        <div class="square-circles">
-                            <div class="square">TOTEM 8</div>
-                            <div class="circle" style="background-color: green;"></div>
-                        </div>
-    
-                    </div>
-    
-                    <div class="legenda-help" id="legenda-help">
-                        <div class="legenda-cores">
-                            <div class="cores">
-                                <div class="circle" style="background-color: brown;"></div>
-                                <p>Crítico</p>
-                            </div>
-    
-                            <div class="cores">
-                                <div class="circle" style="background-color: burlywood;"></div>
-                                <p>Alerta</p>
-                            </div>
-    
-                            <div class="cores">
-                                <div class="circle" style="background-color: green;"></div>
-                                <p>Normal</p>
-                            </div>
-                        </div>
-                    </div>
-    
-    
-                    <div class="dadosGrafico">
-                        <div class="telaGraficos">
-                        
-                            <div class="grafico">
-                                <div class="status">
-                                    <div class="circle" style="background-color: brown;"></div>
-                                    <p>Crítico</p>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="graficoCPU"></canvas>
-                                </div>
-                            </div>
-                            <!-- Grafico 2 RAM -->
-                            <div class="grafico">
-                                <div class="status">
-                                    <div class="circle" style="background-color: brown;"></div>
-                                    <p>Alerta</p>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="graficoRAM"></canvas>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="telaGraficos2">
-                            <!-- Grafico 3 Disco-->
-                            <div class="grafico2">
-                                <div class="status">
-                                    <div class="circle" style="background-color: brown;"></div>
-                                    <p>Alerta</p>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="graficoDisco"></canvas>
-                                </div>
-                            </div>
-                            <!-- Grafico 4 Disco-->
-                            <div class="grafico2">
-                                <div class="status">
-                                    <div class="circle" style="background-color: brown;"></div>
-                                    <p>Crítico</p>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="graficoRede"></canvas>
-                                </div>
-                            </div>
-                        </div>
-        
-                    </div>
-                    
-    
-    
-    
-                </div>
-    
-            </div>
-    
+    <div class="menuLateral">
+        <div class="boxSoon">
+            <img src="../../img/Logo-Preta.png">
+            <span>TotemTech</span>
         </div>
-    
 
+
+        <div class="boxUser">
+            <span class="nameUser" id="spanNameUser">
+                Usuário
+            </span>
+            <span class="nameCompany" id="spanNameCompany">
+                nome da empresa
+            </span>
+
+        </div>
+
+        <ul class="optionMenu" id="boxOptionMenu">
+            <li class="totens">
+                <a href="/dashboard">Totens</a>
+            </li>
+            <li class="gerenciar">
+                <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
+            </li>
+            <li class="historico">
+                <a href="/dashboard/historico">Histórico</a>
+            </li>
+            <li class="estatisticas">
+                <a href="/dashboard/estatisticas">Estatísticas</a>
+            </li>
+        </ul>
+
+        <div class="boxExit" id="btn_sair">
+            <img src="../../img/sair (1).png">
+            <span>Sair</span>
+        </div>
+
+    </div>
+
+    <div class="dashboard" id="boxDashboard">
+
+        <div class="lineTotens">
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+            <div class="totem" id="boxTotem">
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">Totem 1</span>
+            </div>
+
+        </div>
+
+        <h1 id="h1TituloTotem" class="tituloTotem">
+            Totem 1
+        </h1>
+
+        <div class="boxGlobal" id="divBoxGlobal">
+
+            <div class="boxLeftCpu" id="divBoxGrafico">
+
+                <div class="line" id="boxLineDescricao">
+                    Monitoramento da Cpu nas últimas 24 horas em %
+                </div>
+
+                <div class="microBox">
+                    <span class="situacao" id="spanSituacaoCPU">Situação Atual: 50%</span>
+                    <div class="localChart" id="boxLocalChart">
+                        <canvas class="graficoCPU" id="graficoCPU"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="boxRight">
+
+                <div class="boxCpu" onclick="abrirGrafico('cpu')">
+                    <img src="../../img/torre-da-cpu.png">
+                    <h3>Cpu:</h3>
+                    <span id="situacaoAtualCpu">50%</span>
+                </div>
+
+                <div class="boxDisco" onclick="abrirGrafico('disco')">
+                    <img src="../../img/drive-de-disco-rigido.png">
+                    <h3>Disco:</h3>
+                    <span id="situacaoAtualDisco">50%</span>
+                </div>
+
+                <div class="boxMemoria" onclick="abrirGrafico('ram')">
+                    <img src="../../img/ram.png">
+                    <h3>Memória:</h3>
+                    <span id="situacaoAtualRam">50%</span>
+                </div>
+
+                <div class="boxRede" onclick="abrirGrafico('rede')">
+                    <img src="../../img/rede.png">
+                    <h3>Rede:</h3>
+                    <span id="situacaoAtualRede">50%</span>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
 </body>
 
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/js/dashboard/totens.js"></script>
+<script src="../../js/dashboard/totens.js"></script>

@@ -15,167 +15,163 @@
 </head>
 
 <body>
-    <div class="telaPrincipal" id="divTelaPrincipal">
-
-        <div class="navBar">
-            <div class="perfil">
-                <span class="material-symbols-outlined">
-                    account_circle
-                </span>
-                <!-- <img src="/assets/dashboard/user-solid.svg" alt="" style="width: 35px;"> -->
-                <p>Olá, Nome</p>
-            </div>
-
-            <a href="/dashboard"><img src="/img/logo.png" width="75px"></a>
-
-            <button class="btn-sair" id="btn_sair">Sair</button>
+    <div class="menuLateral">
+        <div class="boxSoon">
+            <img src="../../img/Logo-Preta.png">
+            <span>TotemTech</span>
         </div>
 
-        <div class="dashboard">
-            <div class="menu-lateral">
 
-                <ul class="menu">
-                    <li>
-                        <a href="/dashboard">Totens</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/historico">Histórico</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/estatisticas">Estatísticas</a>
-                    </li>
-                </ul>
+        <div class="boxUser">
+            <span class="nameUser" id="spanNameUser">
+                Usuário
+            </span>
+            <span class="nameCompany" id="spanNameCompany">
+                nome da empresa
+            </span>
 
-            </div>
-
-            <div class="telaHistorico">
-                <b>Histórico</b>
-
-                <div class="filtros-historico">
-                    <select name="selecao-filtro" id="selecao-filtro" onchange="filtrarTotens()">
-                        <option value="totens">Todos os totens</option>
-                        <option value="totem1">Totem 1</option>
-                        <option value="totem2">Totem 2</option>
-                        <option value="totem3">Totem 3</option>
-                        <option value="totem4">Totem 4</option>
-                    </select>
-
-                    <div class="calendario">
-                        <label for="data">Selecione uma data:</label>
-                        <input type="date" id="data" name="data">
-                        <button onclick="filtrarDados()">Filtrar</button>
-                    </div>
-
-                    <button onclick="abrirModal()">Gerar relatório</button>
-
-                    <dialog id="modal-relatorio">
-                        <div id="modal">
-                            <div class="fechar-modal" id="button-fechar">
-                                <button class="btn-fechar" onclick="fecharModal()">X</button>
-                            </div>
-
-                            <div class="relatorio">
-                                <p>Selecione um ou mais dias para o relatório:</p>
-
-                                <div class="relatorio-data">
-                                    <label for="data-inicio">Início:</label>
-                                    <input type="date" id="data-inicio" name="data">
-                                </div>
-
-                                <div class="relatorio-data">
-                                    <label for="data-fim">Fim:</label>
-                                    <input type="date" id="data-fim" name="data">
-                                </div>
-
-                                <button class="btn-pdf" onclick="gerarPDF()">Gerar PDF</button>
-                            </div>
-                        </div>
-                    </dialog>
-                </div>
-
-                <div class="tabela-historico">
-
-                    <div class="legenda">
-                        <span class="cpu">CPU</span>
-                        <span class="ram">RAM</span>
-                        <span class="disco">Disco</span>
-                        <span class="rede">Rede</span>
-                    </div>
-
-
-                    <table id="tabela-dados">
-                        <thead>
-                            <tr>
-                                <th>Totem</th>
-                                <th>Horário</th>
-                                <th class="cpu">Utilização</th>
-                                <th class="cpu">Processos</th>
-                                <th class="ram">Disponível</th>
-                                <th class="disco">Tempo médio de resposta</th>
-                                <th class="rede">Dowload</th>
-                                <th class="rede">Upload</th>
-                                <th>Reiniciou</th>
-                            </tr>
-                        </thead>
-                        <tbody id="corpo_tabela">
-                            <tr id="totem1">
-                                <td>Totem 1</td>
-                                <td>2024-03-14 08:00:00</td>
-                                <td>35%</td>
-                                <td>60</td>
-                                <td>8 GB</td>
-                                <td>5 ms</td>
-                                <td>45 Mbps</td>
-                                <td>25 Mbps</td>
-                                <td>Não</td>
-                            </tr>
-
-                            <tr id="totem2">
-                                <td>Totem 2</td>
-                                <td>2024-03-14 08:30:00</td>
-                                <td>25%</td>
-                                <td>40</td>
-                                <td>7 GB</td>
-                                <td>4 ms</td>
-                                <td>55 Mbps</td>
-                                <td>18 Mbps</td>
-                                <td>Não</td>
-                            </tr>
-
-                            <tr id="totem3">
-                                <td>Totem 3</td>
-                                <td>2024-03-12 08:00:00</td>
-                                <td>30%</td>
-                                <td>50</td>
-                                <td>8 GB</td>
-                                <td>5 ms</td>
-                                <td>50 Mbps</td>
-                                <td>20 Mbps</td>
-                                <td>Não</td>
-                            </tr>
-
-                            <tr id="totem4">
-                                <td>Totem 4</td>
-                                <td>2024-03-14 08:45:00</td>
-                                <td>40%</td>
-                                <td>55</td>
-                                <td>9 GB</td>
-                                <td>7 ms</td>
-                                <td>60 Mbps</td>
-                                <td>22 Mbps</td>
-                                <td>Sim</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-
-            </div>
         </div>
 
+        <ul class="optionMenu" id="boxOptionMenu">
+            <li class="totens">
+                <a href="/dashboard">Totens</a>
+            </li>
+            <li class="gerenciar">
+                <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
+            </li>
+            <li class="historico">
+                <a href="/dashboard/historico">Histórico</a>
+            </li>
+            <li class="estatisticas">
+                <a href="/dashboard/estatisticas">Estatísticas</a>
+            </li>
+        </ul>
+
+        <div class="boxExit" id="btn_sair">
+            <img src="../../img/sair (1).png">
+            <span>Sair</span>
+        </div>
+
+    </div>
+
+    <div class="dashboard" id="boxDashboard">
+
+        
+        <h1 class="title">Histórico</h1>
+
+        <div class="bigBox" id="bigBoxDiv">
+
+            <div class="boxSmall">
+
+                <h1>Total de interrupções</h1>
+                <div class="circleFundo">
+                    <div class="circle">
+                        <span id="spanNumberTotal">24</span>
+                    </div>
+                </div>
+                
+                <h6>Com base nos últimos 30 dias.</h6>
+
+                <p>Motivos:</p>
+
+                <span class="spanComponente" id="spanTotalCpu">Cpu: 4</span>
+                <span class="spanComponente" id="spanTotalDisco">Disco: 3</span>
+                <span class="spanComponente" id="spanTotalRam">Memória: 2</span>
+                <span class="spanComponente" id="spanTotalRede">Rede: 1</span>
+            </div>
+
+            <div class="tableBox" id="tableBoxDiv">
+                <div class="tituloDetalhe">Detalhes</div>
+
+                <div class="lineDescription">
+                    <span class="description">Nome</span>
+                    <span class="description">Horário</span>
+                    <span class="description">Motivo</span>
+                </div>
+
+                <div class="lineDark">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+                
+                <div class="lineWhite">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+                <div class="lineDark">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+                
+                <div class="lineWhite">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+                     
+                <div class="lineDark">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+                <div class="lineWhite">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+                     
+                <div class="lineDark">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+                
+                <div class="lineWhite">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+                <div class="lineDark">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+                <div class="lineWhite">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+                     
+                <div class="lineDark">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+                <div class="lineWhite">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+                     
+                <div class="lineDark">
+                    <span class="dado">Totem 1</span>
+                    <span class="dado">26/11/2023 14:23:32</span>
+                    <span class="dado">Cpu</span>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
 </body>

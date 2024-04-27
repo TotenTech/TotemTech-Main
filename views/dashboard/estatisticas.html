@@ -15,166 +15,133 @@
 </head>
 
 <body>
-    <div class="telaPrincipal" id="divTelaPrincipal">
-
-        <div class="navBar">
-            <div class="perfil">
-                <span class="material-symbols-outlined">
-                    account_circle
-                </span>
-                <!-- <img src="/assets/dashboard/user-solid.svg" alt="" style="width: 35px;"> -->
-                <p>Olá, Nome</p>
-            </div>
-
-            <a href="/dashboard"><img src="/img/logo.png" width="75px"></a>
-
-            <button class="btn-sair" id="btn_sair">Sair</button>
+    <div class="menuLateral">
+        <div class="boxSoon">
+            <img src="../../img/Logo-Preta.png">
+            <span>TotemTech</span>
         </div>
 
-        <div class="dashboard">
-            <div class="menu-lateral">
 
-                <ul class="menu">
-                    <li>
-                        <a href="/dashboard">Totens</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/historico">Histórico</a>
-                    </li>
-                    <li>
-                        <a href="/dashboard/estatisticas">Estatísticas</a>
-                    </li>
-                </ul>
+        <div class="boxUser">
+            <span class="nameUser" id="spanNameUser">
+                Usuário
+            </span>
+            <span class="nameCompany" id="spanNameCompany">
+                nome da empresa
+            </span>
 
-            </div>
+        </div>
 
-            <div class="telaEstatisticas">
-                <b>Estatísticas</b>
+        <ul class="optionMenu" id="boxOptionMenu">
+            <li class="totens">
+                <a href="/dashboard">Totens</a>
+            </li>
+            <li class="gerenciar">
+                <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
+            </li>
+            <li class="historico">
+                <a href="/dashboard/historico">Histórico</a>
+            </li>
+            <li class="estatisticas">
+                <a href="/dashboard/estatisticas">Estatísticas</a>
+            </li>
+        </ul>
 
-                <div class="tela1">
-                    <div class="tabela">
-                        <div class="filtros">
-                            <select name="" id="selecao-filtro">
-                                <option value="totem1">Totem 1</option>
-                                <option value="totem2">Totem 2</option>
-                                <option value="totem2">Totem 3</option>
-                                <option value="totem2">Totem 4</option>
-                            </select>
-
-                            <button onclick="openModal()" style="display: none;">Ver Tabela com parâmetros</button>
-
-                            <!-- <select name="" id="selecao-filtro">
-                                <option value="totem1">CPU</option>
-                                <option value="totem2">RAM</option>
-                                <option value="totem2">Disco</option>
-                                <option value="totem2">Rede: Utilização</option>
-                                <option value="totem2">Rede: Download</option>
-                            </select> -->
-                        </div>
-
-                        <div id="myModal" class="modal" style="display: none;">
-                            <div class="modal-content">
-                                <span class="close" onclick="closeModal()">&times;</span>
-
-                                <div class="tabela">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Métrica</th>
-                                                <th>Média</th>
-                                                <th>Mínimo</th>
-                                                <th>Máximo</th>
-                                                <th>Desvio Padrão</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Download (Internet)</td>
-                                                <td>50 Mbps</td>
-                                                <td>0 Mbps</td>
-                                                <td>100 Mbps</td>
-                                                <td>20 Mbps</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Upload (Internet)</td>
-                                                <td>30 Mbps</td>
-                                                <td>0 Mbps</td>
-                                                <td>80 Mbps</td>
-                                                <td>15 Mbps</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Utilização da CPU (%)</td>
-                                                <td>30%</td>
-                                                <td>5%</td>
-                                                <td>80%</td>
-                                                <td>10%</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Número de Processos da CPU</td>
-                                                <td>50</td>
-                                                <td>10</td>
-                                                <td>100</td>
-                                                <td>15</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Disponível (RAM)</td>
-                                                <td>8 GB</td>
-                                                <td>2 GB</td>
-                                                <td>16 GB</td>
-                                                <td>2 GB</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tempo Médio de Resposta (Disco)</td>
-                                                <td>5 ms</td>
-                                                <td>2 ms</td>
-                                                <td>10 ms</td>
-                                                <td>1 ms</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="filtros">
-
-
-                        <button>Fazer download</button>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="tela2">
-                    <div class="grafico-linhas">
-                        <p>Monitoramento das Métricas do Totem por Minutos</p>
-                        <!-- <p>Monitoramento das Métricas do Totem por Minuto</p> -->
-                        <div class="chartPizza">
-                            <canvas id="graficoLinhas"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="grafico-pizza">
-                        <p>Percentual de Utilização de CPU, RAM, Disco e Rede</p>
-
-                        <div class="chartPizza">
-                            <canvas id="graficoPizza" width="50px"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="boxExit" id="btn_sair">
+            <img src="../../img/sair (1).png">
+            <span>Sair</span>
         </div>
 
     </div>
 
+    <div class="dashboard" id="boxDashboard">
+
+        <h1 class="title">Estatísticas</h1>
+
+        <div class="boxStatistics">
+
+            <div class="left">
+                <h3>Total de interrupções nos últimos 7 dias</h3>
+
+                <div class="chartLinha">
+                    <canvas id="graficoBar"></canvas>
+                </div>
+    
+            </div>
+            
+            <div class="right">
+                <p>Selecione o mês: </p>
+
+                <ul>
+                    <li>Janeiro</li>
+                    <li>Fevereiro</li>
+                    <li>Marco</li>
+                    <li>Abril</li>
+                    <li>Maio</li>
+                    <li>Junho</li>
+                    <li>Julho</li>
+                    <li>Agosto</li>
+                    <li>Setembro</li>
+                    <li>Outubro</li>
+                    <li>Novembro</li>
+                    <li>Dezembro</li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="lineInterruptions">
+
+            <div class="boxInterruptions">
+
+                <div class="left">
+                    <div class="chartPizza">
+                        <canvas id="graficoPizza"></canvas>
+                    </div>
+                </div>
+    
+                <div class="right">
+                    <h4>Total de interrupções por componentes</h4>
+                    <div class="line">
+                        <span id="componenteCpu">Cpu: 12</span>
+                        <span id="componenteDisco">Disco: 2</span>
+                    </div>
+                    <div class="line">
+                        <span id="componenteMemoria">Memória: 4</span>
+                        <span id="componenteRede">Rede: 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="boxOptionsTotem">
+                <h3>Escolha um totem</h3>
+
+                <ul>
+                    <li>Geral</li>
+                    <li>Totem 1</li>
+                    <li>Totem 2</li>
+                    <li>Totem 3</li>
+                    <li>Totem 4</li>
+                    <li>Totem 5</li>
+                    <li>Totem 6</li>
+                    <li>Totem 1</li>
+                    <li>Totem 2</li>
+                    <li>Totem 3</li>
+                    <li>Totem 4</li>
+                    <li>Totem 5</li>
+                    <li>Totem 6</li>
+                    <li>Totem 1</li>
+                    <li>Totem 2</li>
+                    <li>Totem 3</li>
+                    <li>Totem 4</li>
+                    <li>Totem 5</li>
+                    <li>Totem 6</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

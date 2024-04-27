@@ -14,19 +14,20 @@ const imgNivel2 = document.querySelectorAll('.imagemNivel2');
 const checkboxeDaVez = document.querySelectorAll('input[type="checkbox"]');
 
 // Transição de troca de formularios
-const listaTotem = document.getElementById("listaTotemDiv");
-const telaAdicionar = document.getElementById("telaAdicionarDiv");
-const telaEditar = document.getElementById("telaEditarDiv");
-const telaInfo = document.getElementById("telaInfoDiv");
+const listTotem = document.getElementById("listTotemDiv");
+const screenAdd = document.getElementById("screenAddDiv");
+const screenEdit = document.getElementById("screenEditDiv");
+const screenInfo = document.getElementById("screenInfoDiv");
+const bigBox = document.getElementById('bigBoxDiv');
 
 
 //Pegar o id das linhas que contém o texto e span
-const editarTotemNome = document.getElementById("linhaEditarTotemNome");
-const editarTotemEmail = document.getElementById("linhaEditarTotemEmail");
-const editarTotemSenha = document.getElementById("linhaEditarTotemSenha");
+const editarTotemNome = document.getElementById("lineEditTotemNome");
+const editarTotemEmail = document.getElementById("lineEditTotemEmail");
+const editarTotemSenha = document.getElementById("lineEditTotemSenha");
 
 // Mensagem de alerta
-const mensagemAlerta = document.getElementById('mensagemAlerta');
+const alertMessage = document.getElementById('alertMessage');
 
 
 // Campos da tela de editação do totem
@@ -47,6 +48,9 @@ const cpuTotemInfo = document.getElementById('checkboxTotemCPUInfo');
 const redeTotemInfo = document.getElementById('checkboxTotemRedeInfo');
 const ramTotemInfo = document.getElementById('checkboxTotemRAMInfo');
 const discoTotemInfo = document.getElementById('checkboxTotemDiscoInfo');
+
+//Numero total de totens e o total de cada componente
+const numberTotal = document.getElementById('spanNumberTotal');
 
 
 /*VARIAVEIS GLOBAIS */
@@ -118,28 +122,31 @@ checkboxeDaVez.forEach(checkbox => {
 
 // Primeiro ele diminui o tamanho da div
 function abrirAddTotem() {
-    listaTotem.style.display = "none";
-    telaAdicionar.style.display = "flex";
-    telaEditar.style.display = "none";
-    telaInfo.style.display = "none";
+    listTotem.style.display = "none";
+    screenAdd.style.display = "flex";
+    screenEdit.style.display = "none";
+    screenInfo.style.display = "none";
+    bigBox.style.display = "none";
 }
 
 
 function abrirGerenTotem() {
-    telaAdicionar.style.display = "none";
-    listaTotem.style.display = "flex";
-    telaEditar.style.display = "none";
-    telaInfo.style.display = "none";
+    screenAdd.style.display = "none";
+    listTotem.style.display = "flex";
+    screenEdit.style.display = "none";
+    screenInfo.style.display = "none";
+    bigBox.style.display = "flex";
 }
 
 
 
 // Abrir tela de editar totem
 function abrirEditarTotem(idTotem) {
-    listaTotem.style.display = "none";
-    telaEditar.style.display = "flex";
-    telaAdicionar.style.display = "none";
-    telaInfo.style.display = "none";
+    listTotem.style.display = "none";
+    screenEdit.style.display = "flex";
+    bigBox.style.display = "none";
+    screenAdd.style.display = "none";
+    screenInfo.style.display = "none";
     sessionStorage.ID_TOTEM = idTotem;
 
     fetch("/dashboard/buscarInfoTotem", {
@@ -249,7 +256,7 @@ function buscarInfoTotemComponente(idTotem) {
                             redeTotemEdit.checked = false;
                     }
 
-                    mostrarInformacoesTelaEditar();
+                    mostrarInformacoesscreenEdit();
                 });
             }
         })
@@ -259,7 +266,7 @@ function buscarInfoTotemComponente(idTotem) {
 }
 
 
-function mostrarInformacoesTelaEditar(){
+function mostrarInformacoesscreenEdit(){
 
     var senhaMascarada = "";
     for (var i = 0; i <= sessionStorage.S_T.length; i++) {
@@ -278,21 +285,21 @@ function fecharEditarTotem() {
     loginTotemEdit.innerHTML = ``;
     senhaTotemEdit.innerHTML = ``;
 
-    telaEditar.style.display = "none";
-    listaTotem.style.display = "flex";
-    telaAdicionar.style.display = "none";
-    telaInfo.style.display = "none";
-
+    screenEdit.style.display = "none";
+    listTotem.style.display = "flex";
+    screenAdd.style.display = "none";
+    screenInfo.style.display = "none";
+    bigBox.style.display = "flex";
     esconderInput(false);
     location.reload();
 }
 
 // Abrir tela de informações do totem para usuário comum
 function abrirInformacao(idTotem) {
-    telaEditar.style.display = "none";
-    listaTotem.style.display = "none";
-    telaAdicionar.style.display = "none";
-    telaInfo.style.display = "flex";
+    screenEdit.style.display = "none";
+    listTotem.style.display = "none";
+    screenAdd.style.display = "none";
+    screenInfo.style.display = "flex";
 
     fetch("/dashboard/buscarInfoTotem", {
         method: "POST",
@@ -326,10 +333,11 @@ function abrirInformacao(idTotem) {
 
 //Fechar tela de informações do totem para usuário comum
 function fecharInformacao() {
-    telaEditar.style.display = "none";
-    listaTotem.style.display = "flex";
-    telaAdicionar.style.display = "none";
-    telaInfo.style.display = "none";
+    screenEdit.style.display = "none";
+    listTotem.style.display = "flex";
+    screenAdd.style.display = "none";
+    screenInfo.style.display = "none";
+    bigBox.style.display = "flex";
 }
 
 
@@ -346,8 +354,7 @@ function editarValores() {
     //Substituir os valores do de cada p 
     editarTotemNome.innerHTML = `Nome: <input type="text" id="inputNovoEditarTotem" placeholder="${sessionStorage.NOME_TOTEM}">`;
     editarTotemEmail.innerHTML = `Email: <input type="text" id="inputEditarEmailTotem" placeholder="${sessionStorage.LOGIN_TOTEM}">`;
-    editarTotemSenha.innerHTML = `Senha: <input type="text" id="inputEditarSenhaTotem" placeholder="${sessionStorage.S_T
-    }">`;
+    editarTotemSenha.innerHTML = `Senha: <input type="text" id="inputEditarSenhaTotem" placeholder="${sessionStorage.S_T}">`;
 }
 
 
@@ -363,13 +370,13 @@ function salvarDadoNovos() {
     novoSenhaAtual = novoSenhaTotemTab.replace(/\s/g, '');
 
     if (novoNomeAtual == "" && novoEmailAtual == "" && novoSenhaAtual == "") {
-        mensagemAlerta.innerHTML = `<img src="/img/erro.png" height="40vh"> Nenhum dado foi alterado`;
-        mostrarAlerta();
+        alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Nenhum dado foi alterado`;
         setTimeout(function () {
             esconderAlerta();
         }, 3000);
+        mostrarAlerta();
     } else {
-         location.reload();
+        location.reload();
         esconderInput();
         abrirGerenTotem();
     }
@@ -395,8 +402,9 @@ function salvarDadoNovos() {
         discoTotemBD = 0;
     }
 
-    mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
-
+    mostrarAlerta();
+    alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
+    
     fetch("/dashboard/alterarTotemComponente", {
         method: "POST",
         headers: {
@@ -480,7 +488,7 @@ function esconderInput(validacao) {
         })
 
 
-        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
+        alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
         // alterarTotemComponentes();
         mostrarAlerta();
         setTimeout(function () {
@@ -538,13 +546,13 @@ function alterarTotemComponentes() {
 
 
 function mostrarAlerta() {
-    mensagemAlerta.style.right = '2%';
-    mensagemAlerta.style.opacity = '1';
+    alertMessage.style.right = '2%';
+    alertMessage.style.opacity = '1';
 }
 
 function esconderAlerta() {
-    mensagemAlerta.style.right = '-100%';
-    mensagemAlerta.style.opacity = '0';
+    alertMessage.style.right = '-100%';
+    alertMessage.style.opacity = '0';
     totensCadastrados();
 
 }
@@ -592,14 +600,14 @@ function addTotem() {
     novoSenhaTotem = novoSenhaTotemTab.replace(/\s/g, '');
 
     if (novoNomeTotem == "" || novoEmailTotem == "" || novoSenhaTotem == "") {
-        mensagemAlerta.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha todos campos para adicionar um totem`;
+        alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha todos campos para adicionar um totem`;
         mostrarAlerta();
         setTimeout(function () {
             esconderAlerta();
         }, 3000);
     } else {
 
-        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Totem cadastrado com sucesso!!`;
+        alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Totem cadastrado com sucesso!!`;
         mostrarAlerta();
         setTimeout(function () {
             esconderAlerta();
@@ -648,9 +656,9 @@ function addTotemComponentes() {
 
 // Deletar totem 
 function deletarTotemDecisao(idTotem) {
-    mensagemAlerta.innerHTML = `
-    <div class="linha">Tem certeza que deseja apagar esse totem</div>
-    <div class="linha">
+    alertMessage.innerHTML = `
+    <div class="line">Tem certeza que deseja apagar esse totem</div>
+    <div class="line">
     <button onclick="deletarTotemVisualizacao('${idTotem}')">Sim</button>
     <button onclick="deletarTotemVisualizacao('false')">Não</button>
     </div>`;
@@ -660,12 +668,12 @@ function deletarTotemDecisao(idTotem) {
 
 function deletarTotemVisualizacao(idTotem) {
     if (idTotem == "false") {
-        mensagemAlerta.innerHTML = `<img src="/img/erro.png" height="40vh"> Cancelado`;
+        alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Cancelado`;
         setTimeout(function () {
             esconderAlerta();
         }, 2000);
     } else {
-        mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Totem deletado com sucesso`;
+        alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Totem deletado com sucesso`;
 
 
         fetch("/dashboard/deletarTotemVisualizacao", {
@@ -722,13 +730,14 @@ function totensCadastrados() {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     if (resposta.length > 0) {
-                        listaTotem.innerHTML = "";
+                        listTotem.innerHTML = "";
+                        numberTotal.innerHTML = `${resposta.length}`;
                         for (var c = 0; c < resposta.length; c++) {
                             var totem = resposta[c];
-                            const listaTotem = document.getElementById('listaTotemDiv');
+                            const listTotem = document.getElementById('listTotemDiv');
 
                             if (sessionStorage.TIPO_USUARIO == 1) {
-                                listaTotem.innerHTML += `
+                                listTotem.innerHTML += `
                             <li>
                                 <p>${totem.nome}</p>
                                 <span>
@@ -737,7 +746,7 @@ function totensCadastrados() {
                             </li>
                         `;
                             } else {
-                                listaTotem.innerHTML += `
+                                listTotem.innerHTML += `
                             <li>
                                 <p>${totem.nome}</p>
                                 <span>

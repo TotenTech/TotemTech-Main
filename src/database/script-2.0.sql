@@ -220,7 +220,17 @@ INSERT INTO discoRegistro (valor, horario, disco, totem)
 VALUES (180.0, '2024-04-20 12:00:00', 1, 1);
 
 INSERT INTO visualizacao (cpu, memoria, disco, rede, totem)
-VALUES (1, 1, 1, 1, 1);
+VALUES 
+    (1, 1, 1, 1, 1),
+    (0, 1, 0, 1, 2),
+    (1, 0, 1, 1, 3),
+    (0, 1, 0, 1, 4),
+    (1, 1, 1, 0, 5),
+    (1, 0, 1, 1, 6),
+    (1, 1, 0, 0, 7),
+    (0, 0, 1, 1, 8),
+    (1, 1, 1, 1, 9),
+    (0, 0, 0, 1, 10);
 
 INSERT INTO memoriaRegistro (valor, horario, memoria, totem)
 VALUES (65.6, '2024-04-20 12:30:00', 1, 1);
@@ -229,4 +239,39 @@ SELECT * FROM totem;
 
 SELECT * FROM interrupcoes WHERE totem = 1;
 
+<<<<<<< HEAD:src/database/script.sql
+-- SELECTS DE TESTE
+select * from empresa;
+select * from usuario;
+select * from totem;
+select * from cpu;
+select * from memoria;
+select * from disco;
+select * from interrupcoes;
+select * from visualizacao; 
+
+select nome from totem WHERE empresa = 1;
+
+SELECT MAX(idtotem) FROM totem;
+
+INSERT INTO visualizacao (cpu, memoria, disco, rede, totem)
+VALUES (1, 0, 1, 0, (SELECT MAX(idtotem) FROM totem));
+
+
+DELETE FROM visualizacao WHERE totem = 3;
+DELETE FROM totem WHERE idtotem = 3;
+
+
+SELECT totem.nome, totem.login, totem.senha, totem.sistemaOperacional,
+visualizacao.cpu, visualizacao.memoria, visualizacao.disco, visualizacao.rede FROM totem JOIN visualizacao WHERE idtotem = 1 limit 1;
+
+SELECT cpu, memoria, disco, rede FROM visualizacao WHERE totem = 13;
+
+UPDATE visualizacao 
+SET cpu = 1, memoria = 1, disco = 0, rede =1 
+WHERE totem = 11;
+
+    SELECT cpu, memoria, disco, rede FROM visualizacao WHERE totem = 11;
+=======
 SELECT * FROM cpu WHERE totem = 1;
+>>>>>>> 526a74290ad6602feb6d3fa7bca041a77d275458:src/database/script-2.0.sql
