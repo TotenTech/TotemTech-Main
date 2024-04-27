@@ -3,11 +3,11 @@
     margin: 0%;
     box-shadow: none;
     font-family: "Poppins", sans-serif;
-    transition: 1s;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #f1f1f1;
+    background-color: #D9D9D9;
+
 }
 
 ::-webkit-scrollbar-track {
@@ -19,146 +19,206 @@
     height: 0;
     width: 3px;
     margin-right: 1px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 3);
 }
 
-body{
+
+body {
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
 }
 
-.navBar {
-    background-color: #E3E3DD;
+.menuLateral {
+    width: 13%;
+    height: 98vh;
+    background-image: url(../../img/menu-fundo.png);
+    background-size: cover;
+    display: flex;
+    justify-content: baseline;
+    flex-direction: column;
+    padding: 1% 1%;
+    gap: 3vh;
+}
+
+
+.menuLateral .boxSoon {
+    display: flex;
+    background-color: #FFFFFF;
+    color: black;
     width: 100%;
-    height: 15vh;
-    display: flex;
-    justify-content: space-around;
+    height: fit-content;
+    padding: 2% 0;
+    border-radius: 10px;
+    justify-content: center;
     align-items: center;
-    border-bottom: 2px solid #8EC0C0;
-    color: #0d4a7c;
+    flex-direction: column;
 }
 
-.navBar .btn-sair {
-    background-color: #679BC5;
-    border: none;
-    color: #0d4a7c;
-    width: 10%;
-    height: 60%;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 12px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    outline: none;
+.menuLateral .boxSoon img {
+    width: 50%;
+    margin: 0%;
+    padding: 0%;
 }
 
-.navBar .btn-sair:hover {
-    background-color: #0d4a7c;
-    color: #E3E3DD;
+.menuLateral .boxSoon span {
+    font-weight: 900;
+    font-size: 120%;
 }
 
-.navBar a {
-    text-decoration: none;
-    color: inherit;
-}
 
-.navBar a img{
-    margin: 2%;
-}
-
-.perfil {
+.menuLateral .boxUser {
+    width: 100%;
+    font-size: 100%;
     display: flex;
-    justify-content: space-around;
-    width: 10%;
-    white-space: nowrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+    color: #FFFFFF;
+}
+
+.menuLateral .boxUser .nameUser {
+    font-size: 130%;
+    text-align: center;
+    width: 100%;
+}
+
+.menuLateral .boxUser .nameCompany {
+    font-size: 90%;
+    text-align: center;
+    width: 100%;
+}
+
+.menuLateral .optionMenu {
+    width: 98%;
+    height: fit-content;
+    gap: 3vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    margin: 5vh 0;
+    list-style-type: none;
+}
+
+.menuLateral .optionMenu li {
+    font-size: 100%;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    height: fit-content;
+}
+
+.menuLateral .optionMenu li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 100%;
+}
+
+.menuLateral .optionMenu .gerenciar {
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 3% 2%;
+    border-radius: 5px;
+    font-size: 100%;
+}
+
+.menuLateral .optionMenu .gerenciar a {
+    color: black;
+}
+
+.menuLateral .boxExit {
+    display: flex;
+    flex-direction: row;
+    background-color: #FFFFFF;
+    width: 90%;
+    padding: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: baseline;
+    align-items: center;
+    gap: 5%;
+    position: relative;
+    bottom: 1px;
+}
+
+.menuLateral .boxExit img {
+    height: 4vh;
+    margin-left: 2%;
+    padding: 0;
+}
+
+.menuLateral .boxExit span {
+    font-size: 130%;
+    font-weight: 900;
 }
 
 .dashboard {
-    width: 100%;
-    height: 85%;
-    display: flex;
-    align-items: center;
-    background-color: #E3E3DD;
-}
-
-
-/* menu de navegação */
-.dashboard .menu-lateral {
-    background-color: #D3D1D1;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    width: 20%;
-    height: 90vh;
+    width: 85%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    overflow: hidden;
+    gap: 3%;
 }
 
-.menu {
-    display: flex;
-    height: 70%;
-    flex-direction: column;
-    justify-content: space-around;
-    list-style: none;
-    cursor: pointer;
-    color: #000;
+.dashboard .title {
+    padding: 0%;
+    color: #0D4A7C;
+    font-size: 250%;
+    margin-top: 2%;
 }
 
-.menu a {
-    text-decoration: none;
-    color: inherit;
-    border-bottom: 1px solid #0d4a7c;
-}
-
-.menu a:hover {
-    color: #0d4a7c;
-}
-
-/* home page */
-.homePage {
-    background-color: #E3E3DD;
-    width: 80%;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: baseline;
-    align-items: center;
-}
-
-.homePage .linha {
-    width: 100%;
-    height: fit-content;
-    margin: 0%;
-    padding: 1% 0;
+.dashboard .line {
+    width: 87%;
+    height: 8vh;
+    margin: 0 3%;
+    padding: 1% 3%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 0 20%;
+    background-color: #88BBCC;
+    gap: 10%;
+    align-items: center;
+    border-radius: 15px;
 }
 
-.homePage .linha button {
-    background-color: #0d4a7c;
+.dashboard .line span {
+    font-size: 100%;
+    font-weight: 500;
+}
+
+.dashboard .line button {
+    background-image: url(../../img/fundo_azul.png);
+    background-size: cover;
     color: #FFFFFF;
     border: none;
-    padding: 1%;
-    border-radius: 10px;
+    padding: 1.5% 3%;
+    border-radius: 20px;
     font-size: 100%;
-    border: 2px solid #0d4a7c;
     cursor: pointer;
+    font-weight: 700;
 }
 
-.homePage .linha button:hover {
+.dashboard .line button:hover {
     background-color: #FFFFFF;
     color: #0d4a7c;
     font-weight: 600;
 }
 
-.homePage .listaTotem {
-    width: 80%;
+.dashboard .bigBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 94%;
+    margin: 0 3%;
     height: 65vh;
-    background-color: #FFFFFF;
+}
+
+.dashboard .bigBox .listTotem {
+    width: 63%;
+    height: 90%;
+    background-color: #88BBCC;
     display: flex;
     flex-direction: column;
     overflow-X: hidden;
@@ -168,31 +228,33 @@ body{
     transition: 1.1s;
 }
 
-.homePage .listaTotem li {
+.dashboard .bigBox .listTotem li {
     width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #0d4a7c;
+    background-image: url(../../img/fundo_azul.png);
+    background-size: cover;
     border-radius: 10PX;
     white-space: nowrap;
     min-height: 6vh;
     padding: 1% 5%;
 }
 
-.homePage .listaTotem li p {
-    font-size: 120%;
+.dashboard .bigBox .listTotem li p {
+    font-size: 110%;
     color: #FFFFFF;
+    font-weight: 700;
 }
 
-.homePage .listaTotem span {
+.dashboard .bigBox .listTotem span {
     margin: 0;
     gap: 0 2%;
     display: flex;
 }
 
-.homePage .listaTotem span .imagemNivel1 {
+.dashboard .bigBox .listTotem span .imagemNivel1 {
     width: fit-content;
     cursor: pointer;
     color: #FFFFFF;
@@ -203,17 +265,73 @@ body{
     padding: 0 80%;
 }
 
-.homePage .listaTotem span .imagemNivel2 {
+.dashboard .bigBox .listTotem span .imagemNivel2 {
     height: 6vh;
     width: fit-content;
     cursor: pointer;
 }
 
-.telaAdicionar {
+.dashboard .bigBox .boxTotal {
+    width: 30%;
+    height: 60%;
+    background-color: #88BBCC;
+    border-radius: 15px;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    gap: 2%;
+    flex-direction: column;
+}
+
+.dashboard .bigBox .boxTotal h1 {
+    font-size: 200%;
+    margin-top: 2%;
+}
+
+.dashboard .bigBox .boxTotal .circleFundo {
+    width: 150px;
+    height: 150px;
+    background-image: url(../../img/menu-fundo.png);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 5%;
+}
+
+.dashboard .bigBox .boxTotal .circle {
+    width: 140px;
+    height: 140px;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 350%;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.dashboard .bigBox .boxTotal .spanTotal {
+    font-size: 110%;
+    width: 90%;
+    text-align: left;
+    padding: 0 5%;
+}
+
+.bigBoxAdd {
+    width: 94%;
+    padding: 0 3%;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5%;
+}
+
+.bigBoxAdd .screenAdd {
     width: 80%;
     height: 65vh;
-    background-color: #679BC5;
-    display: none;
+    background-color: #88BBCC;
+    display: flex;
     flex-direction: column;
     align-items: center;
     overflow-X: hidden;
@@ -225,13 +343,13 @@ body{
     white-space: nowrap;
 }
 
-.telaAdicionar h3 {
+.bigBoxAdd .screenAdd h3 {
     width: 98%;
     padding: 0 1%;
     text-align: center;
 }
 
-.telaAdicionar p {
+.bigBoxAdd .screenAdd p {
     width: 98%;
     padding: 0 1%;
     text-align: left;
@@ -239,22 +357,22 @@ body{
     color: #0d4a7c;
 }
 
-.telaAdicionar p input {
+.bigBoxAdd .screenAdd p input {
     border: none;
-    background-color: #679BC5;
+    background-color: #88BBCC;
     width: 40%;
     border-bottom: 2px solid #0d4a7c;
     color: #FFFFFF;
     padding: 0 1%;
 }
 
-.telaAdicionar .listaDesempenho {
+.bigBoxAdd .screenAdd .listaDesempenho {
     width: 98%;
     padding: 1%;
     height: fit-content;
 }
 
-.telaAdicionar .listaDesempenho li {
+.bigBoxAdd .screenAdd .listaDesempenho li {
     list-style-type: none;
     font-size: 110%;
     font-weight: 500;
@@ -263,26 +381,26 @@ body{
     width: 100%;
 }
 
-.telaAdicionar .listaDesempenho li input {
+.bigBoxAdd .screenAdd .listaDesempenho li input {
     margin: 0 1%;
     padding: 0;
     border: 1px solid #0d4a7c;
     background-color: red;
 }
 
-.telaAdicionar .listaDesempenho li .textoSpan {
+.bigBoxAdd .screenAdd .listaDesempenho li .textoSpan {
     font-size: 100%;
     font-weight: 300;
     text-decoration: line-through;
     color: #c3c3c3;
 }
 
-.telaAdicionar .listaDesempenho li .textoSpan.checked {
+.bigBoxAdd .screenAdd .listaDesempenho li .textoSpan.checked {
     text-decoration: none;
     color: #FFFFFF;
 }
 
-.telaAdicionar button {
+.bigBoxAdd .screenAdd button {
     background-color: #FFFFFF;
     color: #0d4a7c;
     width: fit-content;
@@ -295,18 +413,55 @@ body{
     cursor: pointer;
 }
 
-.telaAdicionar button:hover {
+.bigBoxAdd .screenAdd button:hover {
     background-color: #0d4a7c;
     border: 2px solid #679BC5;
     color: #FFFFFF;
 }
 
 
-.telaEditar {
+.bigBoxAdd .totemCasca {
+    width: 30%;
+    height: 60vh;
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    border-radius: 10px;
+}
+
+.bigBoxAdd .totemCasca .telaTotem {
     width: 80%;
-    height: 65vh;
-    background-color: #679BC5;
+    height: 80%;
+    background-color: #000000;
+    margin: 9% 0 0 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.bigBoxAdd .totemCasca .telaTotem img {
+    width: 100%;
+    height: fit-content;
+}
+
+.bigBoxEdit {
+    width: 94%;
+    padding: 0 3%;
     display: none;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5%;
+}
+
+.bigBoxEdit .screenEdit {
+    width: 75%;
+    height: 60vh;
+    background-color: #88BBCC;
+    display: flex;
     flex-direction: column;
     align-items: center;
     overflow-X: hidden;
@@ -318,7 +473,7 @@ body{
     white-space: nowrap;
 }
 
-.telaEditar h3 {
+.bigBoxEdit .screenEdit h3 {
     width: 90%;
     padding: 0 5%;
     text-align: center;
@@ -326,15 +481,15 @@ body{
     justify-content: space-between;
 }
 
-.telaEditar h3 button{
+.bigBoxEdit .screenEdit h3 button {
     border: none;
-    background-color: #679BC5;
+    background-color: #88BBCC;
     color: #FFFFFF;
     font-weight: 800;
     font-size: 100%;
 }
 
-.telaEditar p {
+.bigBoxEdit .screenEdit p {
     width: 98%;
     padding: 0 1%;
     text-align: left;
@@ -342,16 +497,16 @@ body{
     color: #0d4a7c;
 }
 
-.telaEditar p .spanTotem {
+.bigBoxEdit .screenEdit p .spanTotem {
     border: none;
-    background-color: #679BC5;
+    background-color: #88BBCC;
     border-bottom: 2px solid #0d4a7c;
     color: #FFFFFF;
     padding: 0 5% 0 1%;
 }
 
-.telaEditar p input {
-    background-color: #679BC5;
+.bigBoxEdit .screenEdit p input {
+    background-color: #88BBCC;
     color: #FFFFFF;
     padding: 0 1%;
     border: none;
@@ -359,18 +514,18 @@ body{
     border-bottom: 2px solid #0d4a7c;
 }
 
-.telaEditar p input::placeholder {
+.bigBoxEdit .screenEdit p input::placeholder {
     color: #FFFFFF;
     padding: 0 1%;
 }
 
-.telaEditar .listaDesempenho {
+.bigBoxEdit .screenEdit .listaDesempenho {
     width: 98%;
     padding: 1%;
     height: fit-content;
 }
 
-.telaEditar .listaDesempenho li {
+.bigBoxEdit .screenEdit .listaDesempenho li {
     list-style-type: none;
     font-size: 110%;
     font-weight: 500;
@@ -379,41 +534,69 @@ body{
     width: 100%;
 }
 
-.telaEditar .listaDesempenho li input {
+.bigBoxEdit .screenEdit .listaDesempenho li input {
     margin: 0 1%;
     padding: 0;
     border: 1px solid #0d4a7c;
     background-color: red;
 }
 
-.telaEditar .listaDesempenho li .textoSpan {
+.bigBoxEdit .screenEdit .listaDesempenho li .textoSpan {
     font-size: 100%;
     font-weight: 300;
     text-decoration: none;
     color: #FFFFFF;
 }
 
-.telaEditar .linha button {
-    background-color: #FFFFFF;
-    color: #0d4a7c;
+.bigBoxEdit .screenEdit .line button {
+    color: #FFFFFF;
     width: fit-content;
     height: fit-content;
     padding: 1% 5%;
     border-radius: 15px;
     font-size: 120%;
     font-weight: 700;
-    border: 2px solid #0d4a7c;
     cursor: pointer;
 }
 
-.telaEditar .linha button:hover {
+.bigBoxEdit .screenEdit .linha button:hover {
     background-color: #0d4a7c;
     border: 2px solid #679BC5;
     color: #FFFFFF;
 }
 
+.bigBoxEdit .totemCasca {
+    width: 30%;
+    height: 60vh;
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    border-radius: 10px;
+}
 
-.telaInfo {
+.bigBoxEdit .totemCasca .telaTotem {
+    width: 80%;
+    height: 80%;
+    background-color: #000000;
+    margin: 9% 0 0 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.bigBoxEdit .totemCasca .telaTotem img {
+    width: 100%;
+    height: fit-content;
+}
+
+
+
+
+.screenInfo {
     width: 80%;
     height: 60vh;
     background-color: #679BC5;
@@ -429,7 +612,7 @@ body{
     white-space: nowrap;
 }
 
-.telaInfo h3 {
+.screenInfo h3 {
     width: 90%;
     padding: 0 5%;
     text-align: center;
@@ -437,7 +620,7 @@ body{
     justify-content: space-between;
 }
 
-.telaInfo h3 button{
+.screenInfo h3 button {
     border: none;
     background-color: #679BC5;
     color: #FFFFFF;
@@ -446,7 +629,7 @@ body{
     cursor: pointer;
 }
 
-.telaInfo p {
+.screenInfo p {
     width: 98%;
     padding: 0 1%;
     text-align: left;
@@ -454,7 +637,7 @@ body{
     color: #0d4a7c;
 }
 
-.telaInfo p .spanTotem {
+.screenInfo p .spanTotem {
     border: none;
     background-color: #679BC5;
     border-bottom: 2px solid #0d4a7c;
@@ -462,13 +645,13 @@ body{
     padding: 0 5% 0 1%;
 }
 
-.telaInfo .listaDesempenho {
+.screenInfo .listaDesempenho {
     width: 98%;
     padding: 1%;
     height: fit-content;
 }
 
-.telaInfo .listaDesempenho li {
+.screenInfo .listaDesempenho li {
     list-style-type: none;
     font-size: 110%;
     font-weight: 500;
@@ -477,15 +660,14 @@ body{
     width: 100%;
 }
 
-.telaInfo .listaDesempenho li .textoSpan {
+.screenInfo .listaDesempenho li .textoSpan {
     font-size: 100%;
     font-weight: 300;
     text-decoration: none;
     color: #FFFFFF;
 }
 
-
-.mensagemAlerta{
+.alertMessage {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -503,11 +685,11 @@ body{
     gap: 1%;
     transition: 1s;
     opacity: 0;
-    position: fixed; 
+    position: fixed;
     font-size: 90%;
 }
 
-.mensagemAlerta .linha{
+.alertMessage .line {
     width: 94%;
     height: fit-content;
     padding: 1% 2%;
@@ -515,9 +697,10 @@ body{
     flex-direction: row;
     justify-content: center;
     gap: 0 15%;
+    background-color: transparent;
 }
 
-.mensagemAlerta .linha button{
+.alertMessage .line button {
     background-color: #203FAB;
     color: #FFFFFF;
     width: fit-content;
