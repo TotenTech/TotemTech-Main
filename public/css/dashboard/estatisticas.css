@@ -107,6 +107,7 @@ body {
     width: 100%;
     height: fit-content;
     list-style-type: none;
+    cursor: pointer;
 }
 
 .menuLateral .optionMenu li a {
@@ -115,7 +116,7 @@ body {
     width: 100%;
 }
 
-.menuLateral .optionMenu .gerenciar {
+.menuLateral .optionMenu .estatisticas {
     width: 100%;
     background-color: #FFFFFF;
     padding: 3% 2%;
@@ -123,7 +124,7 @@ body {
     font-size: 100%;
 }
 
-.menuLateral .optionMenu .gerenciar a {
+.menuLateral .optionMenu .estatisticas a {
     color: black;
 }
 
@@ -229,6 +230,7 @@ body {
     text-align: center;
     font-size: 130%;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .dashboard .lineInterruptions {
@@ -327,4 +329,5 @@ body {
     text-align: center; 
     font-size: 130%;
     font-weight: 600;  
+    cursor: pointer;
 }
