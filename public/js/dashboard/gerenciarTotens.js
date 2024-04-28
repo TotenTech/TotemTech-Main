@@ -300,14 +300,14 @@ function abrirInformacao(idTotem) {
     listTotem.style.display = "none";
     screenAdd.style.display = "none";
     screenInfo.style.display = "flex";
-
+    bigBox.style.display = "none";
     fetch("/dashboard/buscarInfoTotem", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            totemServer: sessionStorage.ID_TOTEM,
+            totemServer: idTotem,
         })
     })
 
@@ -327,6 +327,7 @@ function abrirInformacao(idTotem) {
             }
         })
         .catch(function (erro) {
+            console.log("Deu Erro")
             console.error("Erro ao processar requisição:", erro);
         });
 }
@@ -731,7 +732,7 @@ function totensCadastrados() {
                 resposta.json().then(function (resposta) {
                     if (resposta.length > 0) {
                         listTotem.innerHTML = "";
-                        numberTotal.innerHTML = `${resposta.length}`;
+                        numberTotal.innerHTML = `${resposta.length }`;
                         for (var c = 0; c < resposta.length; c++) {
                             var totem = resposta[c];
                             const listTotem = document.getElementById('listTotemDiv');
