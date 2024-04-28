@@ -1,7 +1,6 @@
-package model;
+package dao;
 
 import entities.Interrupcoes;
-import entities.Totem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import repository.local.LocalDatabaseConnection;
@@ -9,7 +8,7 @@ import repository.remote.RemoteDatabaseConnection;
 
 import java.util.List;
 
-public class InterrupcoesModel {
+public class InterrupcoesDAO {
 
     static LocalDatabaseConnection dbLocal = new LocalDatabaseConnection();
     static RemoteDatabaseConnection dbRemote = new RemoteDatabaseConnection();
@@ -23,7 +22,7 @@ public class InterrupcoesModel {
                     return listaInterrupcoes.get(0);
                 }
         } catch (Exception e) {
-            throw new Exception("Exceção no model" + e.getMessage(), e);
+            throw new Exception("Exceção no dao" + e.getMessage(), e);
         }
         return null;
     }

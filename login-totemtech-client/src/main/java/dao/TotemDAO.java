@@ -1,4 +1,4 @@
-package model;
+package dao;
 
 import entities.Totem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -8,7 +8,7 @@ import repository.remote.RemoteDatabaseConnection;
 
 import java.util.List;
 
-public class TotemModel {
+public class TotemDAO {
 
     static LocalDatabaseConnection dbLocal = new LocalDatabaseConnection();
     static RemoteDatabaseConnection dbRemote = new RemoteDatabaseConnection();
@@ -23,7 +23,7 @@ public class TotemModel {
                     return listaTotem.get(0);
                 }
         } catch (Exception e) {
-            throw new Exception("Exceção no model" + e.getMessage(), e);
+            throw new Exception("Exceção no dao" + e.getMessage(), e);
         }
         return null;
     }

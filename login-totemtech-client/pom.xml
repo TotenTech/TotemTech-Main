@@ -40,11 +40,17 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.1.0</version>
         </dependency>
-        <!-- Looca -->
+        <!-- LoocaService -->
         <dependency>
             <groupId>com.github.britooo</groupId>
             <artifactId>looca-api</artifactId>
             <version>2.2.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/fr.bmartel/jspeedtest -->
+        <dependency>
+            <groupId>fr.bmartel</groupId>
+            <artifactId>jspeedtest</artifactId>
+            <version>1.32.1</version>
         </dependency>
     </dependencies>
 </project>

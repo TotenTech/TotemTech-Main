@@ -25,17 +25,15 @@ public class CpuRegistro {
     public CpuRegistro(Double utilizacao, Timestamp horario, Double velocidade, Integer processos, Integer cpu, Integer totem) {
         this.utilizacao = utilizacao;
         this.horario = horario;
-        this.velocidade = velocidade;
         this.processos = processos;
         this.cpu = cpu;
         this.totem = totem;
     }
 
-    public CpuRegistro(Integer idcpuRegistro, Double utilizacao, Timestamp horario, Double velocidade, Integer processos, Integer cpu, Integer totem) {
+    public CpuRegistro(Integer idcpuRegistro, Double utilizacao, Timestamp horario, Integer processos, Integer cpu, Integer totem) {
         this.idcpuRegistro = idcpuRegistro;
         this.utilizacao = utilizacao;
         this.horario = horario;
-        this.velocidade = velocidade;
         this.processos = processos;
         this.cpu = cpu;
         this.totem = totem;
@@ -63,14 +61,6 @@ public class CpuRegistro {
 
     public void setHorario(Timestamp horario) {
         this.horario = horario;
-    }
-
-    public Double getVelocidade() {
-        return velocidade;
-    }
-
-    public void setVelocidade(Double velocidade) {
-        this.velocidade = velocidade;
     }
 
     public Integer getProcessos() {

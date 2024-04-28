@@ -1,7 +1,7 @@
-package model;
+package dao;
 
 import entities.Cpu;
-import entities.Interrupcoes;
+import entities.register.CpuRegistro;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import repository.local.LocalDatabaseConnection;
@@ -9,7 +9,7 @@ import repository.remote.RemoteDatabaseConnection;
 
 import java.util.List;
 
-public class CpuModel {
+public class CpuDAO {
 
     static LocalDatabaseConnection dbLocal = new LocalDatabaseConnection();
     static RemoteDatabaseConnection dbRemote = new RemoteDatabaseConnection();
@@ -23,7 +23,7 @@ public class CpuModel {
                 return listaCpu.get(0);
             }
         } catch (Exception e) {
-            throw new Exception("Exceção no model" + e.getMessage(), e);
+            throw new Exception("Exceção no dao" + e.getMessage(), e);
         }
         return null;
     }
@@ -33,7 +33,12 @@ public class CpuModel {
             db = dbLocal.getConexaoDoBanco();
             db.update("INSERT INTO cpu (medidaVelocidade, velocidadeBase, totem) VALUES (?, ?, ?)", cpu.getMedidaVelocidade(), cpu.getVelocidade(),idTotem);
         } catch (Exception e) {
-            throw new Exception("Exceção no model" + e.getMessage(), e);
+            throw new Exception("Exceção no dao" + e.getMessage(), e);
         }
+    }
+
+    public static void insertCpuRegistro(CpuRegistro cpuRegistro) {
+        db = dbLocal.getConexaoDoBanco();
+        db.update("INSERT INTO cpuRegistro (utilizacao, processos, cpu, totem) VALUES (?, ?, ?, ?)", cpuRegistro.getUtilizacao(), cpuRegistro.getProcessos(), cpuRegistro.getCpu(), cpuRegistro.getTotem());
     }
 }

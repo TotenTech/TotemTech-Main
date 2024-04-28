@@ -1,15 +1,13 @@
 package controller;
 
 import entities.Interrupcoes;
-import entities.Totem;
-import model.InterrupcoesModel;
-import model.TotemModel;
+import dao.InterrupcoesDAO;
 
 public class InterrupcoesController {
 
     public static Interrupcoes getInterrupcoes(Integer idTotem) throws Exception {
         try {
-            Interrupcoes interrupcoes = InterrupcoesModel.getInterrupcoes(idTotem);
+            Interrupcoes interrupcoes = InterrupcoesDAO.getInterrupcoes(idTotem);
             if (interrupcoes != null) {
                 return interrupcoes;
             } else {

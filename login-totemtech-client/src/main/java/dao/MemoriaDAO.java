@@ -1,7 +1,7 @@
-package model;
+package dao;
 
-import entities.Cpu;
 import entities.Memoria;
+import entities.register.MemoriaRegistro;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import repository.local.LocalDatabaseConnection;
@@ -9,7 +9,7 @@ import repository.remote.RemoteDatabaseConnection;
 
 import java.util.List;
 
-public class MemoriaModel {
+public class MemoriaDAO {
 
     static LocalDatabaseConnection dbLocal = new LocalDatabaseConnection();
     static RemoteDatabaseConnection dbRemote = new RemoteDatabaseConnection();
@@ -23,7 +23,7 @@ public class MemoriaModel {
                 return listaMemoria.get(0);
             }
         } catch (Exception e) {
-            throw new Exception("Exceção no model" + e.getMessage(), e);
+            throw new Exception("Exceção no dao" + e.getMessage(), e);
         }
         return null;
     }
@@ -33,7 +33,12 @@ public class MemoriaModel {
             db = dbLocal.getConexaoDoBanco();
             db.update("INSERT INTO memoria (total, medida, totem) VALUES (?, ?, ?)", memoria.getTotal(), memoria.getMedida(), idTotem);
         } catch (Exception e) {
-            throw new Exception("Exceção no model" + e.getMessage(), e);
+            throw new Exception("Exceção no dao" + e.getMessage(), e);
         }
+    }
+
+    public static void insertMemoriaRegistro(MemoriaRegistro memoriaRegistro) {
+        db = dbLocal.getConexaoDoBanco();
+        db.update("INSERT INTO memoriaRegistro (valor, memoria, totem) VALUES (?, ?, ?)", memoriaRegistro.getValor(), memoriaRegistro.getMemoria(), memoriaRegistro.getTotem());
     }
 }
