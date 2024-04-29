@@ -2,10 +2,10 @@ var database = require("../database/config")
 
 
 
-function cadastrarTotem(nome, login, senha, empresa) {
+function cadastrarTotem(nome, login, senha,sistemaOperacional, empresa) {
     var instrucao = `
-    INSERT INTO totem (nome, login, senha, empresa)
-     VALUES ('${nome}', '${login}', '${senha}', ${empresa});     
+    INSERT INTO totem (nome, login, senha, sistemaOperacional, empresa)
+     VALUES ('${nome}', '${login}', '${senha}', '${sistemaOperacional}', '${empresa}');     
     `;   
     console.log("Executando a instrução SQL: \n" + instrucao);
     
@@ -47,10 +47,9 @@ function deletarTotem(totem){
     return database.executar(instrucao);
 }
 
-function alterarTotem(nome, login, senha, totem){
+function alterarTotem(nome, login, senha,sistemaOperacional , totem){
     var instrucao = `UPDATE totem 
-    SET  nome = '${nome}', login = '${login}', senha = '${senha}'
-    WHERE idtotem = ${totem};
+    SET  nome = '${nome}', login = '${login}', senha = '${senha}', sistemaOperacional = '${sistemaOperacional}' WHERE idtotem = ${totem};
     `;   
     console.log("Executando a instrução SQL: \n" + instrucao);
     
@@ -70,7 +69,7 @@ WHERE totem = ${totem};
 
 function buscarInfoTotem(totem) {
     var instrucao = `
-    SELECT nome, login, senha FROM totem WHERE idtotem = ${totem};
+    SELECT nome, login, senha, sistemaOperacional FROM totem WHERE idtotem = ${totem};
         `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
