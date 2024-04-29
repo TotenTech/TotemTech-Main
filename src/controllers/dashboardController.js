@@ -6,14 +6,16 @@ function cadastrarTotem(req, res) {
     var login = req.body.loginServer;
     var senha = req.body.senhaServer;
     var empresa = req.body.empresaServer;
+    var sistemaOperacional = req.body.sistemaOperacionalServer;
 
     if (nome == undefined ||
         login == undefined ||
         senha == undefined ||
-        empresa == undefined) {
+        empresa == undefined ||
+        sistemaOperacional == undefined) {
         res.status(400).send("Algum dado está undefined!");
     } else {
-        dashboardModel.cadastrarTotem(nome, login, senha, empresa)
+        dashboardModel.cadastrarTotem(nome, login, senha, sistemaOperacional, empresa)
             .then(function (resposta) {
                 res.status(200).send("Totem cadastrado com sucesso");
             }).catch(function (erro) {
@@ -97,15 +99,17 @@ function alterarTotem(req, res) {
     var nome = req.body.nomeServer;
     var login = req.body.loginServer;
     var senha = req.body.senhaServer;
+    var sistemaOperacional = req.body.sistemaOperacionalServer;
     var totem = req.body.totemServer;
 
     if (nome == undefined ||
         login == undefined ||
         senha == undefined ||
+        sistemaOperacional == undefined ||
         totem == undefined) {
         res.status(400).send("Algum dado está undefined!");
     } else {
-        dashboardModel.alterarTotem(nome, login, senha, totem)
+        dashboardModel.alterarTotem(nome, login, senha, sistemaOperacional, totem)
             .then(function (resposta) {
                 res.status(200).send("Alteração feita com sucesso!");
 
@@ -156,6 +160,7 @@ function buscarInfoTotem(req, res) {
                             nome: resultadoAutenticar[0].nome,
                             login: resultadoAutenticar[0].login,
                             senha: resultadoAutenticar[0].senha,
+                            sistemaOperacional: resultadoAutenticar[0].sistemaOperacional,
                         });
                     }
                 }

@@ -25,6 +25,7 @@ const bigBox = document.getElementById('bigBoxDiv');
 const editarTotemNome = document.getElementById("lineEditTotemNome");
 const editarTotemEmail = document.getElementById("lineEditTotemEmail");
 const editarTotemSenha = document.getElementById("lineEditTotemSenha");
+const editarTotemSistemaOperacional = document.getElementById("lineEditTotemSistemaOperacional");
 
 // Mensagem de alerta
 const alertMessage = document.getElementById('alertMessage');
@@ -34,6 +35,7 @@ const alertMessage = document.getElementById('alertMessage');
 const nomeTotemEdit = document.getElementById('nomeTotemSpan');
 const loginTotemEdit = document.getElementById('emailTotemSpan');
 const senhaTotemEdit = document.getElementById('senhaTotemSpan');
+const sistemaOperacionalTotemEdit = document.getElementById('sistemaOperacionalTotemSpan');
 const cpuTotemEdit = document.getElementById('checkboxTotemCPU');
 const redeTotemEdit = document.getElementById('checkboxTotemRede');
 const ramTotemEdit = document.getElementById('checkboxTotemRAM');
@@ -44,6 +46,7 @@ const discoTotemEdit = document.getElementById('checkboxTotemDisco');
 const nomeTotemInfo = document.getElementById('nomeTotemSpanInfo');
 const loginTotemInfo = document.getElementById('emailTotemSpanInfo');
 const senhaTotemInfo = document.getElementById('senhaTotemSpanInfo');
+const sistemaOperacionalTotemInfo = document.getElementById('sistemaOperacionalTotemSpanInfo');
 const cpuTotemInfo = document.getElementById('checkboxTotemCPUInfo');
 const redeTotemInfo = document.getElementById('checkboxTotemRedeInfo');
 const ramTotemInfo = document.getElementById('checkboxTotemRAMInfo');
@@ -61,22 +64,26 @@ var nivelAcesso = "";
 var nomeTotem = "";
 var emailTotem = "";
 var senhaTotem = "";
+var sistemaOperacional = "";
 
 //Variáveis com os novos dados de um totem já existente
 var novoNomeAtual = "";
 var novoEmailAtual = "";
 var novoSenhaAtual = "";
+var novoSistemaOperacionalAtual = "";
 
 // Variáveis com os dados do novo totem
 var novoNomeTotem = "";
 var novoEmailTotem = "";
 var novoSenhaTotem = "";
+var novoSistemaOperacionalTotem = "";
 
 
 // Variáveis para saber se uma checkbox ta verdadeira ou falsa e as informações do totem que o usuário deseja ver
 var nomeTotemBD = "";
 var loginTotemBD = "";
 var senhaTotemBD = "";
+var sistemaOperacionalTotemBD = "";
 var cpuTotemBD = "";
 var redeTotemBD = "";
 var ramTotemBD = "";
@@ -165,6 +172,7 @@ function abrirEditarTotem(idTotem) {
                     sessionStorage.NOME_TOTEM = json.nome;
                     sessionStorage.LOGIN_TOTEM = json.login;
                     sessionStorage.S_T = json.senha;
+                    sessionStorage.SISTEMA_OPERACIONAL_TOTEM = json.sistemaOperacional;
                     console.log(sessionStorage.ID_TOTEM);
                     buscarInfoTotemComponente(idTotem);
                 });
@@ -276,6 +284,7 @@ function mostrarInformacoesscreenEdit(){
     nomeTotemEdit.innerHTML += `${sessionStorage.NOME_TOTEM}`;
     loginTotemEdit.innerHTML += `${sessionStorage.LOGIN_TOTEM}`;
     senhaTotemEdit.innerHTML += `${senhaMascarada}`;
+    sistemaOperacionalTotemEdit.innerHTML += `${sessionStorage.SISTEMA_OPERACIONAL_TOTEM}`;
 
 }
 
@@ -284,6 +293,7 @@ function fecharEditarTotem() {
     nomeTotemEdit.innerHTML = ``;
     loginTotemEdit.innerHTML = ``;
     senhaTotemEdit.innerHTML = ``;
+    sistemaOperacionalTotemEdit.innerHTML = ``;
 
     screenEdit.style.display = "none";
     listTotem.style.display = "flex";
@@ -317,11 +327,13 @@ function abrirInformacao(idTotem) {
                     sessionStorage.NOME_TOTEM = json.nome;
                     sessionStorage.LOGIN_TOTEM = json.login;
                     sessionStorage.S_T = json.senha;
-                    console.log(sessionStorage.ID_TOTEM);    
+                    sessionStorage.SISTEMA_OPERACIONAL_TOTEM = json.sistemaOperacional;  
 
                     nomeTotemInfo.innerHTML = `${sessionStorage.NOME_TOTEM}`;
                     loginTotemInfo.innerHTML = `${sessionStorage.LOGIN_TOTEM}`;
                     senhaTotemInfo.innerHTML = `${sessionStorage.S_T}`;
+                    sistemaOperacionalTotemInfo.innerHTML = `${sessionStorage.SISTEMA_OPERACIONAL_TOTEM}`;
+
                     buscarInfoTotemComponente(idTotem);
                 });
             }
@@ -351,11 +363,13 @@ function editarValores() {
     nomeTotem = sessionStorage.NOME_TOTEM;
     loginTotem = sessionStorage.LOGIN_TOTEM;
     senhaTotem = sessionStorage.S_T;
+    sistemaOperacionalTotem = sessionStorage.SISTEMA_OPERACIONAL_TOTEM;
 
     //Substituir os valores do de cada p 
     editarTotemNome.innerHTML = `Nome: <input type="text" id="inputNovoEditarTotem" placeholder="${sessionStorage.NOME_TOTEM}">`;
     editarTotemEmail.innerHTML = `Email: <input type="text" id="inputEditarEmailTotem" placeholder="${sessionStorage.LOGIN_TOTEM}">`;
     editarTotemSenha.innerHTML = `Senha: <input type="text" id="inputEditarSenhaTotem" placeholder="${sessionStorage.S_T}">`;
+    editarTotemSistemaOperacional.innerHTML = `Sistema Operacional: <input type="text" id="inputEditarSistemaOperacionalTotem" placeholder="${sessionStorage.SISTEMA_OPERACIONAL_TOTEM}">`;
 }
 
 
@@ -364,13 +378,16 @@ function salvarDadoNovos() {
     var novoNomeTotemTab = inputNovoEditarTotem.value;
     var novoEmailTotemTab = inputEditarEmailTotem.value;
     var novoSenhaTotemTab = inputEditarSenhaTotem.value;
+    var novoSistemaOperacionalTotemTab = inputEditarSistemaOperacionalTotem.value;
 
     //Ignorar os espaços das inputs
     novoNomeAtual = novoNomeTotemTab;
     novoEmailAtual = novoEmailTotemTab.replace(/\s/g, '');
     novoSenhaAtual = novoSenhaTotemTab.replace(/\s/g, '');
+    novoSistemaOperacionalAtual = novoSistemaOperacionalTotemTab.replace(/\s/g, '');
 
-    if (novoNomeAtual == "" && novoEmailAtual == "" && novoSenhaAtual == "") {
+
+    if (novoNomeAtual == "" && novoEmailAtual == "" && novoSenhaAtual == "" && novoSistemaOperacionalAtual == "") {
         alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Nenhum dado foi alterado`;
         setTimeout(function () {
             esconderAlerta();
@@ -428,6 +445,7 @@ function esconderInput(validacao) {
     var autenticarNome = "";
     var autenticarEmail = "";
     var autenticarSenha = "";
+    var autenticarSistemaOperacional = "";
 
     if (novoNomeAtual == "") {
         editarTotemNome.innerHTML = `Nome: 
@@ -471,6 +489,16 @@ function esconderInput(validacao) {
         autenticarSenha = novoSenhaAtual;
     }
 
+    if (novoSistemaOperacionalAtual == ""){
+        editarTotemSistemaOperacional.innerHTML = `Sistema Operacional: 
+        <span class="spanTotem" id="sistemaOperacionalTotemSpan">${sessionStorage.SISTEMA_OPERACIONAL_TOTEM}</span>`;
+        autenticarSistemaOperacional = sessionStorage.SISTEMA_OPERACIONAL_TOTEM;
+    }else{
+        editarTotemSistemaOperacional.innerHTML = `Sistema Operacional: 
+        <span class="spanTotem" id="sistemaOperacionalTotemSpan">${novoSistemaOperacionalAtual}</span>`;
+        autenticarSistemaOperacional = novoSistemaOperacionalAtual;
+    }
+
     if (validacao == false) {
         return false;
     } else {
@@ -484,7 +512,9 @@ function esconderInput(validacao) {
                 nomeServer: autenticarNome,
                 loginServer: autenticarEmail,
                 senhaServer: autenticarSenha,
+                sistemaOperacionalServer: autenticarSistemaOperacional,
                 totemServer: sessionStorage.ID_TOTEM,
+                sistemaOperacionalServer: autenticarSistemaOperacional,
             })
         })
 
@@ -568,6 +598,7 @@ function addTotem() {
     var novoNomeTotemTab = inputNovoNomeTotem.value;
     var novoEmailTotemTab = inputNovoEmailTotem.value;
     var novoSenhaTotemTab = inputNovoSenhaTotem.value;
+    var novoSistemaOperacionalTotemTab = inputNovoSistemaOperacionalTotem.value;
 
 
     if (cpuC.checked) {
@@ -599,8 +630,10 @@ function addTotem() {
     novoNomeTotem = novoNomeTotemTab;
     novoEmailTotem = novoEmailTotemTab.replace(/\s/g, '');
     novoSenhaTotem = novoSenhaTotemTab.replace(/\s/g, '');
+    novoSistemaOperacionalTotem = novoSistemaOperacionalTotemTab.replace(/\s/g, '');
 
-    if (novoNomeTotem == "" || novoEmailTotem == "" || novoSenhaTotem == "") {
+
+    if (novoNomeTotem == "" || novoEmailTotem == "" || novoSenhaTotem == "" || novoSistemaOperacionalTotem == "") {
         alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha todos campos para adicionar um totem`;
         mostrarAlerta();
         setTimeout(function () {
@@ -627,6 +660,7 @@ function addTotem() {
                 loginServer: novoEmailTotem,
                 senhaServer: novoSenhaTotem,
                 empresaServer: sessionStorage.EMPRESA_USUARIO,
+                sistemaOperacionalServer: novoSistemaOperacionalTotem,
                 cpuServer: cpuTotemBD,
                 redeServer: redeTotemBD,
                 ramServer: ramTotemBD,
