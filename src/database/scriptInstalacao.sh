@@ -1,8 +1,4 @@
-
 #!/bin/bash
-
-# Define a senha do usuário root do MySQL automaticamente
-MYSQL_ROOT_PASSWORD="root1234@"
 
 # Verifica se o MySQL está instalado
 if ! command -v mysql &> /dev/null
@@ -15,6 +11,9 @@ then
 else
     echo "MySQL já está instalado."
 fi
+
+# Start o Mysql service
+sudo service mysql start
 
 # Configura a senha do usuário root do MySQL
 if sudo mysql -e "SELECT 1;" &> /dev/null
@@ -32,7 +31,6 @@ fi
 # Reinicia o serviço do MySQL
 echo "Reiniciando o serviço do MySQL..."
 sudo service mysql restart
-echo "Senha do usuário root do MySQL configurada com sucesso."
 
 # Configurações do MySQL
 MYSQL_USER="root"
@@ -40,186 +38,27 @@ MYSQL_PASSWORD="$MYSQL_ROOT_PASSWORD"  # Usa a senha do usuário root
 MYSQL_DATABASE="totemTech"
 
 # Criando o banco de dados 
-mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
+sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
 echo "Banco de dados '$MYSQL_DATABASE' criado com sucesso."
-
+sudo mysql - root -e "USE DATABASE $MYSQL_DATABASE;"
+echo "Banco de dados selecionado"
 # Executa as queries para criar as tabelas
-SQL_TABELAS="
-CREATE TABLE endereco (
-  idEndereco INT primary key AUTO_INCREMENT,
-  logradouro VARCHAR(45),
-  bairro VARCHAR(45),
-  numero INT,
-  cep CHAR(8),
-  complemento VARCHAR(45));
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS endereco(idEndereco INT primary key AUTO_INCREMENT, logradouro VARCHAR(45), bairro VARCHAR(45), numero INT, cep CHAR(8), complemento VARCHAR(45));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS contrato(idPlano INT primary key auto_increment, codigo CHAR(9), contasContratadas INT, dtInicio DATE, dtFinal DATE);"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS empresa(idEmpresa INT primary key auto_increment, nome VARCHAR(45),  codigoAcesso CHAR(6), endereco INT, assinatura INT, razaoSocial VARCHAR(65), nomeFantasia VARCHAR(45), cnpj CHAR(15), CONSTRAINT fk_empresa_endereco FOREIGN KEY (endereco) REFERENCES endereco (idEndereco), CONSTRAINT fk_empresa_assinatura FOREIGN KEY (assinatura) REFERENCES contrato (idplano));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS tipo(idtipo INT primary key AUTO_INCREMENT, descricao VARCHAR(45));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS usuario(idusuario INT primary key auto_increment, nome VARCHAR(45), email VARCHAR(70) unique, senha VARCHAR(12), empresa INT, tipo INT, CONSTRAINT fk_usuario_empresa FOREIGN KEY (empresa) REFERENCES empresa (idEmpresa), CONSTRAINT fk_usuario_tipo FOREIGN KEY (tipo) REFERENCES tipo (idtipo));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS totem(idtotem INT primary key auto_increment, nome VARCHAR(45), login VARCHAR(45) unique, senha VARCHAR(45), sistemaOperacional VARCHAR(45), empresa INT, CONSTRAINT fk_totem_empresa FOREIGN KEY (empresa) REFERENCES empresa (idEmpresa));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS interrupcoes(idinterrupcoes INT primary key AUTO_INCREMENT, horario DATETIME default current_timestamp, motivo VARCHAR(45), totem INT, CONSTRAINT fk_interrupcoes_totem FOREIGN KEY (totem) REFERENCES totem (idtotem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS cpu(idcpu INT auto_increment, medidaVelocidade VARCHAR(45), velocidadeBase Double, totem INT, PRIMARY KEY (idcpu, totem), CONSTRAINT fk_cpu_totem FOREIGN KEY (totem) REFERENCES totem (idtotem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS cpuRegistro(idcpuRegistro INT auto_increment, utilizacao DOUBLE, horario DATETIME default current_timestamp, processos INT, cpu INT, totem INT, PRIMARY KEY (idcpuRegistro, cpu, totem), CONSTRAINT fk_cpuRegistro_cpu FOREIGN KEY (cpu, totem) REFERENCES cpu (idcpu, totem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS redeRegistro(idredeRegistro INT auto_increment, velocidade DOUBLE, horario DATETIME default current_timestamp, totem INT, PRIMARY KEY (idredeRegistro, totem), CONSTRAINT fk_redeRegistro_totem FOREIGN KEY (totem) REFERENCES totem (idtotem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS memoria(idmemoria INT auto_increment, total DOUBLE, medida VARCHAR(45), totem INT, PRIMARY KEY (idmemoria, totem), CONSTRAINT fk_memoria_totem FOREIGN KEY (totem) REFERENCES totem (idtotem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS disco (iddisco INT auto_increment, tipo VARCHAR(45), total DOUBLE, medida VARCHAR(45), totem INT, PRIMARY KEY (iddisco, totem), CONSTRAINT fk_disco_totem FOREIGN KEY (totem) REFERENCES totem (idtotem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS discoRegistro (iddiscoRegistro INT auto_increment, valor DOUBLE, horario DATETIME default current_timestamp, disco INT, totem INT, PRIMARY KEY (iddiscoRegistro, disco, totem), CONSTRAINT fk_discoRegistro_disco FOREIGN KEY (disco, totem) REFERENCES disco (iddisco , totem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS visualizacao (idvisualizacao INT primary key AUTO_INCREMENT, cpu INT, memoria INT, disco INT, rede INT, totem INT, CONSTRAINT fk_componente_totem FOREIGN KEY (totem) REFERENCES totem (idtotem));"
+sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS memoriaRegistro (idmemoriaRegistro INT auto_increment, valor DOUBLE, horario DATETIME default current_timestamp, memoria INT, totem INT, PRIMARY KEY (idmemoriaRegistro, memoria, totem), CONSTRAINT fk_memoriaRegistro_memoria FOREIGN KEY (memoria, totem) REFERENCES memoria (idmemoria, totem));"
 
-
-CREATE TABLE contrato (
-  idplano INT primary key auto_increment,
-  codigo CHAR(9),
-  contasContratadas INT,
-  dtInicio DATE,
-  dtFinal DATE);
-
-
-CREATE TABLE empresa (
-  idEmpresa INT primary key auto_increment,
-  nome VARCHAR(45),
-  codigoAcesso CHAR(6),
-  endereco INT,
-  assinatura INT,
-  razaoSocial VARCHAR(65),
-  nomeFantasia VARCHAR(45),
-  cnpj CHAR(15),
-  CONSTRAINT fk_empresa_endereco
-    FOREIGN KEY (endereco)
-    REFERENCES endereco (idEndereco),
-  CONSTRAINT fk_empresa_assinatura
-    FOREIGN KEY (assinatura)
-    REFERENCES contrato (idplano));
-
-
-
-CREATE TABLE tipo (
-  idtipo INT primary key AUTO_INCREMENT,
-  descricao VARCHAR(45));
-
-
-
-CREATE TABLE usuario (
-  idusuario INT primary key auto_increment,
-  nome VARCHAR(45),
-  email VARCHAR(70),
-  senha VARCHAR(12),
-  empresa INT,
-  tipo INT,
-  CONSTRAINT fk_usuario_empresa
-    FOREIGN KEY (empresa)
-    REFERENCES empresa (idEmpresa),
-  CONSTRAINT fk_usuario_tipo
-    FOREIGN KEY (tipo)
-    REFERENCES tipo (idtipo));
-
-
-CREATE TABLE totem (
-  idtotem INT primary key auto_increment,
-  nome VARCHAR(45),
-  login VARCHAR(45),
-  senha VARCHAR(45),
-  sistemaOperacional VARCHAR(45),
-  empresa INT,
-  CONSTRAINT fk_totem_empresa
-    FOREIGN KEY (empresa)
-    REFERENCES empresa (idEmpresa));
-
-
-CREATE TABLE interrupcoes (
-  idinterrupcoes INT primary key AUTO_INCREMENT,
-  horario DATETIME,
-  motivo VARCHAR(45),
-  totem INT,
-  CONSTRAINT fk_interrupcoes_totem
-	FOREIGN KEY (totem)
-    REFERENCES totem(idTotem));
-
-
-CREATE TABLE cpu (
-  idcpu INT NOT NULL,
-  medidaVelocidade VARCHAR(45) NULL,
-  velocidadeBase VARCHAR(45) NULL,
-  totem INT NOT NULL,
-  PRIMARY KEY (idcpu, totem),
-  CONSTRAINT fk_cpu_totem
-    FOREIGN KEY (totem)
-    REFERENCES totem (idtotem));
-
-
-CREATE TABLE cpuRegistro (
-  idcpuRegistro INT auto_increment,
-  utilizacao DOUBLE,
-  horario DATETIME,
-  velocidade DOUBLE,
-  processos INT,
-  cpu INT,
-  totem INT,
-  PRIMARY KEY (idcpuRegistro, cpu, totem),
-  CONSTRAINT fk_cpuRegistro_cpu
-    FOREIGN KEY (cpu, totem)
-    REFERENCES cpu (idcpu, totem));
-
-
-CREATE TABLE redeRegistro (
-  idredeRegistro INT auto_increment,
-  download DOUBLE,
-  upload DOUBLE,
-  horario DATETIME,
-  totem INT,
-  PRIMARY KEY (idredeRegistro, totem),
-  CONSTRAINT fk_redeRegistro_totem
-    FOREIGN KEY (totem)
-    REFERENCES totem (idtotem));
-
-
-CREATE TABLE memoria (
-  idmemoria INT,
-  total DOUBLE,
-  medida VARCHAR(45),
-  totem INT,
-  PRIMARY KEY (idmemoria, totem),
-  CONSTRAINT fk_memoria_totem
-    FOREIGN KEY (totem)
-    REFERENCES totem (idtotem));
-
-
-CREATE TABLE disco (
-  iddisco INT,
-  tipo VARCHAR(45),
-  total DOUBLE,
-  medida VARCHAR(45),
-  totem INT,
-  PRIMARY KEY (iddisco, totem),
-  CONSTRAINT fk_disco_totem
-    FOREIGN KEY (totem)
-    REFERENCES totem (idtotem));
-
-
-CREATE TABLE discoRegistro (
-  iddiscoRegistro INT auto_increment,
-  valor DOUBLE,
-  horario DATETIME,
-  disco INT,
-  totem INT,
-  PRIMARY KEY (iddiscoRegistro, disco, totem),
-  CONSTRAINT fk_discoRegistro_disco
-    FOREIGN KEY (disco, totem)
-    REFERENCES disco (iddisco , totem));
-
-
-CREATE TABLE visualizacao (
-  idvisualizacao INT primary key AUTO_INCREMENT,
-  cpu INT,
-  memoria INT,
-  disco INT,
-  rede INT,
-  totem INT,
-  CONSTRAINT fk_componente_totem
-    FOREIGN KEY (totem)
-    REFERENCES totem (idtotem));
-
-
-CREATE TABLE memoriaRegistro (
-  idmemoriaRegistro INT auto_increment,
-  valor DOUBLE,
-  horario DATETIME,
-  memoria INT,
-  totem INT,
-  PRIMARY KEY (idmemoriaRegistro, memoria, totem),
-  CONSTRAINT fk_memoriaRegistro_memoria
-    FOREIGN KEY (memoria, totem)
-    REFERENCES memoria (idmemoria, totem));
-";
-
-mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$SQL";
 
 java -version  # Verifica a versão atual do Java
 
