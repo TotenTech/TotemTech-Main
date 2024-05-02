@@ -58,3 +58,16 @@ window.addEventListener('scroll', function() {
   }
   prevScrollPos = currentScrollPos;
 });
+
+// modal suporte
+var modalSuporte = document.getElementById("modalSuporte");
+var btnModalSuporte = document.getElementById("abrirModalSuporte");
+var spanModalSuporte = document.getElementsByClassName("fecharModalSuporte")[0];
+
+btnModalSuporte.onclick = function() {
+  modalSuporte.style.display = "block";
+}
+
+spanModalSuporte.onclick = function() {
+  modalSuporte.style.display = "none";
+}
