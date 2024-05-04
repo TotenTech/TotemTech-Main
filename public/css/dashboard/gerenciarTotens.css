@@ -195,9 +195,9 @@ body {
     background-size: cover;
     color: #FFFFFF;
     border: none;
-    padding: 1.5% 3%;
+    padding: 1% 3%;
     border-radius: 20px;
-    font-size: 100%;
+    font-size: 110%;
     cursor: pointer;
     font-weight: 700;
 }
@@ -343,13 +343,25 @@ body {
     color: #FFFFFF;
     transition: 1.1s;
     white-space: nowrap;
-    overflow: scroll;
 }
 
 .bigBoxAdd .screenAdd h3 {
     width: 98%;
     padding: 0 1%;
     text-align: center;
+    font-size: 150%;
+}
+
+.bigBoxAdd .screenAdd .spanDisco {
+    width: 100%;
+    text-align: left;
+    font-weight: 700;
+    color: #0d4a7c;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    justify-content: baseline;
+    align-items: center;
 }
 
 .bigBoxAdd .screenAdd p {
@@ -358,6 +370,11 @@ body {
     text-align: left;
     font-weight: 700;
     color: #0d4a7c;
+    display: flex;
+    gap: 10%;
+    justify-content: baseline;
+    align-items: center;
+    margin: 0.5% 0;
 }
 
 .bigBoxAdd .screenAdd p input {
@@ -369,15 +386,58 @@ body {
     padding: 0 1%;
 }
 
+.bigBoxAdd .screenAdd p input::placeholder {
+    color: #0d4a7c;
+    font-size: 110%;
+    font-weight: 700;
+}
+
+.bigBoxAdd .screenAdd p select {
+    margin-left: 3%;
+    padding: 0.5% 1%;
+    border-radius: 5px;
+    color: #FFFFFF;
+    background-color: #203FAB;
+    font-weight: 700;
+    font-size: 105%;
+}
+
+.bigBoxAdd .screenAdd p button {
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    width: fit-content;
+    padding: 0 3%;
+}
+
+.bigBoxAdd .screenAdd p button:hover {
+    color: #203FAB;
+    background-color: #FFFFFF;
+    border: 2px solid #0D4A7C;
+}
+
+.bigBoxAdd .screenAdd p button img {
+    height: 3vh;
+    width: auto;
+}
+
+.bigBoxAdd .screenAdd p button span {
+    font-size: 80%;
+}
+
 .bigBoxAdd .screenAdd .listaDesempenho {
     width: 98%;
     padding: 1%;
     height: fit-content;
+    display: flex;
 }
 
 .bigBoxAdd .screenAdd .listaDesempenho li {
     list-style-type: none;
-    font-size: 110%;
+    font-size: 120%;
     font-weight: 500;
     margin: 1% 0;
     gap: 0 5%;
@@ -395,7 +455,7 @@ body {
     font-size: 100%;
     font-weight: 300;
     text-decoration: line-through;
-    color: #c3c3c3;
+    color: #D9D9D9;
 }
 
 .bigBoxAdd .screenAdd .listaDesempenho li .textoSpan.checked {
@@ -491,15 +551,27 @@ body {
     font-size: 100%;
 }
 
-.bigBoxEdit .screenEdit p {
+.bigBoxEdit .screenEdit span {
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+    gap: 10%;
+    width: 94%;
+    padding: 0 3%;
+}
+
+.bigBoxEdit .screenEdit span p {
     width: 98%;
     padding: 0 1%;
     text-align: left;
     font-weight: 700;
     color: #0d4a7c;
+    display: flex;
+    flex-direction: column;
 }
 
-.bigBoxEdit .screenEdit p .spanTotem {
+.bigBoxEdit .screenEdit span p .spanTotem {
     border: none;
     background-color: #88BBCC;
     border-bottom: 2px solid #0d4a7c;
@@ -507,24 +579,64 @@ body {
     padding: 0 5% 0 1%;
 }
 
-.bigBoxEdit .screenEdit p input {
+.bigBoxEdit .screenEdit span p input {
     background-color: #88BBCC;
     color: #FFFFFF;
     padding: 0 1%;
     border: none;
-    width: 40%;
+    width: 100%;
     border-bottom: 2px solid #0d4a7c;
 }
 
-.bigBoxEdit .screenEdit p input::placeholder {
+.bigBoxEdit .screenEdit span p input::placeholder {
     color: #FFFFFF;
     padding: 0 1%;
+}
+
+.bigBoxEdit .screenEdit span p select {
+    margin-left: 3%;
+    padding: 0.5% 1%;
+    border-radius: 5px;
+    color: #FFFFFF;
+    background-color: #203FAB;
+    font-weight: 700;
+    font-size: 105%;
+}
+
+.bigBoxEdit .screenEdit .listEditDisco {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    padding: 0 1%;
+}
+
+.bigBoxEdit .screenEdit .listEditDisco span{
+    width: 96%;
+    padding: 0 2%;
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin: 0.5% 0;
+}
+
+.bigBoxEdit .screenEdit .listEditDisco span p{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.bigBoxEdit .screenEdit .listEditDisco span p input{
+    width: 100%;
 }
 
 .bigBoxEdit .screenEdit .listaDesempenho {
     width: 98%;
     padding: 1%;
     height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bigBoxEdit .screenEdit .listaDesempenho li {
@@ -532,8 +644,8 @@ body {
     font-size: 110%;
     font-weight: 500;
     margin: 1% 0;
-    gap: 0 5%;
     width: 100%;
+    display: flex;
 }
 
 .bigBoxEdit .screenEdit .listaDesempenho li input {
@@ -605,17 +717,17 @@ body {
 }
 
 .screenInfo {
-    width: 100%;
-    height: 90%;
+    width: 70%;
+    height: 95%;
     background-color: #88BBCC;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-X: hidden;
-    gap: 3vh 0;
-    padding: 2%;
+    overflow: hidden;
+    gap: 0.5vh 0;
+    padding: 0 2%;
     border-radius: 15px;
-    color: hsl(0, 0%, 100%);
+    color: #FFFFFF;
     transition: 1.1s;
     white-space: nowrap;
 }
@@ -637,35 +749,49 @@ body {
     cursor: pointer;
 }
 
-.screenInfo p {
-    width: 98%;
+.screenInfo .line {
+    width: 100%;
+    display: flex;
+    justify-content: baseline;
+    gap: 10%;
+    align-items: center;
+}
+
+.screenInfo .line p {
+    width: 40%;
     padding: 0 1%;
     text-align: left;
     font-weight: 700;
     color: #0d4a7c;
+    flex-direction: column;
+    display: flex;
 }
 
-.screenInfo p .spanTotem {
+.screenInfo .line p .spanTotem {
     border: none;
     background-color: #88BBCC;
     border-bottom: 2px solid #0d4a7c;
     color: #FFFFFF;
     padding: 0 5% 0 1%;
+    width: 100%;
 }
 
 .screenInfo .listaDesempenho {
-    width: 98%;
-    padding: 1%;
+    width: 94%;
+    padding: 0 3%;
     height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .screenInfo .listaDesempenho li {
     list-style-type: none;
     font-size: 110%;
     font-weight: 500;
-    margin: 1% 0;
-    gap: 0 5%;
+    gap: 5%;
     width: 100%;
+    display: flex;
 }
 
 .screenInfo .listaDesempenho li .textoSpan {
@@ -676,7 +802,7 @@ body {
 }
 
 
-.boxInfo  .totemCasca {
+.boxInfo .totemCasca {
     height: 58vh;
     background-color: #D9D9D9;
     display: flex;
@@ -686,7 +812,7 @@ body {
     border-radius: 10px;
 }
 
-.boxInfo  .totemCasca .telaTotem {
+.boxInfo .totemCasca .telaTotem {
     width: 80%;
     height: 80%;
     background-color: #000000;
@@ -698,7 +824,7 @@ body {
     flex-direction: column;
 }
 
-.boxInfo  .totemCasca .telaTotem img {
+.boxInfo .totemCasca .telaTotem img {
     width: 100%;
     height: fit-content;
 }

@@ -178,8 +178,6 @@ CREATE TABLE memoriaRegistro (
     REFERENCES memoria (idmemoria, totem));
 
 
-
-
 -- INSERTS
 
 INSERT INTO endereco (logradouro, bairro, numero, cep, complemento)
@@ -224,11 +222,36 @@ VALUES ('2024-04-20 10:30:00', 'Memória RAM', 1);
 INSERT INTO redeRegistro (download, upload, horario, totem)
 VALUES (50.2, 20.1, '2024-04-20 11:30:00', 1);
 
-INSERT INTO memoria (idmemoria, total, medida, totem)
-VALUES (1, 8.0, 'GB', 1);
+INSERT INTO memoria (total, medida, totem)
+VALUES 
+    (8, 'GB', 1),
+    (16, 'GB', 2),
+    (32, 'GB', 3),
+    (4, 'GB', 4),
+    (8, 'GB', 5),
+    (8, 'GB', 6),
+    (12, 'GB', 7),
+    (16, 'GB', 8),
+    (8, 'GB', 9),
+    (8, 'GB', 10);
 
-INSERT INTO disco (iddisco, tipo, total, medida, totem)
-VALUES (1, 'SSD', 256.0, 'GB', 1);
+INSERT INTO disco (tipo, total, medida, totem)
+VALUES 
+    ('SSD', 512, 'GB', 1),
+    ('HDD', 2000, 'GB', 1),
+    ('SSD', 256, 'GB', 2),
+    ('SSD', 512, 'GB', 3),
+    ('HDD', 4000, 'GB', 3),
+    ('SSD', 256, 'GB', 4),
+    ('SSD', 512, 'GB', 5),
+    ('HDD', 3000, 'GB', 5),
+    ('SSD', 256, 'GB', 6),
+    ('SSD', 512, 'GB', 7),
+    ('HDD', 2000, 'GB', 7),
+    ('SSD', 256, 'GB', 8),
+    ('SSD', 512, 'GB', 9),
+    ('HDD', 2000, 'GB', 9),
+    ('HDD', 3000, 'GB', 10);
 
 INSERT INTO discoRegistro (valor, horario, disco, totem)
 VALUES (180.0, '2024-04-20 12:00:00', 1, 1);
@@ -249,17 +272,26 @@ VALUES
 INSERT INTO memoriaRegistro (valor, horario, memoria, totem)
 VALUES (65.6, '2024-04-20 12:30:00', 1, 1);
 
-
 -- SELECTS DE TESTE
 select * from empresa;
 select * from usuario;
 select * from totem;
 select * from cpu;
 select * from memoria;
-select * from disco;
+select * from disco;	
 select * from interrupcoes;
-select * from visualizacao; 
+select * from visualizacao;
 
-select nome from totem WHERE empresa = 1;
 
-    SELECT nome, login, senha, sistemaOperacional FROM totem WHERE idtotem = 12;
+DELIMITER $$
+CREATE PROCEDURE excluirTudoTotem (iddTotem int)
+BEGIN 
+DELETE FROM visualizacao WHERE totem = iddTotem;
+
+DELETE FROM memoria WHERE totem = iddTotem;
+
+DELETE FROM disco WHERE totem = iddTotem;
+
+DELETE FROM totem WHERE idtotem  = iddTotem;
+END$$
+DELIMITER 

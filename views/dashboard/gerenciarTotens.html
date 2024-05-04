@@ -87,10 +87,39 @@
             <div class="screenAdd">
 
                 <h3>Adicionar Totem</h3>
-                <p>Nome:* <input type="text" id="inputNovoNomeTotem" required></p>
-                <p>Login:* <input type="email" id="inputNovoEmailTotem" required></p>
-                <p>Senha:* <input type="text" id="inputNovoSenhaTotem" required></p>
-                <p>Sistema Operacional:* <input type="text" id="inputNovoSistemaOperacionalTotem"></p>
+
+                <p>
+                    <input type="text" id="inputNovoNomeTotem" placeholder="Nome:* " required>
+                    <input type="email" id="inputNovoEmailTotem" placeholder="Login:* " required>
+                </p>
+
+                <p>
+                    <input type="text" id="inputNovoSenhaTotem" placeholder="Senha:* " required>
+                    <span>
+                        Sistema Operacional:* <select name="SistemaOperacional" id="inputNovoSistemaOperacionalTotem">
+                            <option value="Windows">Windows</option>
+                            <option value="Linux">Linux</option>
+                        </select>
+                    </span>
+                </p>
+
+                <p>
+                    <input type="text" id="inputNovoTipoDisco1Totem" placeholder="Tipo do Disco*">
+                    <input type="number" id="inputNovoTotalDisco1Totem" placeholder="Capacidade do disco*">
+                </p>
+
+                <span class="spanDisco" id="campoDiscoP"></span>
+
+                <p>
+                    <button onclick="addDisco()">
+                        <img src="../../img/sinal-de-adicao.png">
+                       <span> Adicionar mais um disco</span>
+                    </button>
+                </p>
+
+                <p>
+                    <input type="number" id="inputNovoTotalRamTotem" placeholder="Quantidade de memória RAM*">
+                </p>
 
                 <ul class="listaDesempenho">
 
@@ -128,41 +157,56 @@
 
                 <h3>Editar Totem <button onclick="fecharEditarTotem()">X</button></h3>
 
-                <p id="lineEditTotemNome">Nome:
-                    <span class="spanTotem" id="nomeTotemSpan"></span>
-                </p>
+                <span>
+                    <p id="lineEditTotemNome">Nome:
+                        <span class="spanTotem" id="nomeTotemSpan"></span>
+                    </p>
 
-                <p id="lineEditTotemEmail">Email:
-                    <span class="spanTotem" id="emailTotemSpan"></span>
-                </p>
+                    <p id="lineEditTotemEmail">Email:
+                        <span class="spanTotem" id="emailTotemSpan"></span>
+                    </p>
 
-                <p id="lineEditTotemSenha">Senha:
-                    <span class="spanTotem" id="senhaTotemSpan"></span>
-                </p>
+                </span>
 
-                <p id="lineEditTotemSistemaOperacional">Sistema Operacional:
-                    <span class="spanTotem" id="sistemaOperacionalTotemSpan"></span>
-                </p>
+                <span>
+                    <p id="lineEditTotemSenha">Senha:
+                        <span class="spanTotem" id="senhaTotemSpan"></span>
+                    </p>
+
+                    <p id="lineEditTotemSistemaOperacional">Sistema Operacional:
+                        <span class="spanTotem" id="sistemaOperacionalTotemSpan"></span>
+                    </p>
+
+                </span>
+
+                <div  class="listEditDisco" id="listEditDiscoDiv"></div>
+
+                <span>
+                    <p id="lineEditTotemTotalRam">Total memória Ram:
+                        <span class="spanTotem" id="totalRamSpanTotem"></span>
+                    </p>
+                </span>
+
 
                 <ul class="listaDesempenho">
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemCPU">
+                        <input type="checkbox" id="checkboxTotemCPU" disabled>
                         <span class="textoSpan" id="textoSpanCpu">CPU</span>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemRede">
+                        <input type="checkbox" id="checkboxTotemRede" disabled>
                         <span class="textoSpan" id="textoSpanRede">REDE</span>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemRAM">
+                        <input type="checkbox" id="checkboxTotemRAM" disabled>
                         <span class="textoSpan" id="textoSpanRam">Memória RAM</span>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemDisco">
+                        <input type="checkbox" id="checkboxTotemDisco" disabled>
                         <span class="textoSpan" id="textoSpanDisco">Disco</span>
                     </li>
 
@@ -190,41 +234,66 @@
                     <button onclick="fecharInformacao()">X</button>
                 </h3>
 
-                <p id="infoTotemNome">Nome:
-                    <span class="spanTotem" id="nomeTotemSpanInfo">teste</span>
-                </p>
+                <div class="line">
+                    <p id="infoTotemNome">Nome:
+                        <span class="spanTotem" id="nomeTotemSpanInfo">teste</span>
+                    </p>
 
-                <p id="infoTotemEmail">Email:
-                    <span class="spanTotem" id="emailTotemSpanInfo">teste@gmail.com</span>
-                </p>
+                    <p id="infoTotemEmail">Email:
+                        <span class="spanTotem" id="emailTotemSpanInfo">teste@gmail.com</span>
+                    </p>
+                </div>
 
-                <p id="infoTotemSenha">Senha:
-                    <span class="spanTotem" id="senhaTotemSpanInfo">**********</span>
-                </p>
+                <div class="line">
+                    <p id="infoTotemSenha">Senha:
+                        <span class="spanTotem" id="senhaTotemSpanInfo">**********</span>
+                    </p>
 
-                <p id="infoTotemSistemaOperacional">Sistema Operacional:
-                    <span class="spanTotem" id="sistemaOperacionalTotemSpanInfo">testeSistema</span>
-                </p>
+                    <p id="infoTotemSistemaOperacional">Sistema Operacional:
+                        <span class="spanTotem" id="sistemaOperacionalTotemSpanInfo">testeSistema</span>
+                    </p>
+
+                </div>
+
+                <div class="line">
+                    <p id="infoTotemTipoDisco1">
+                        Tipo de Disco:
+                        <span class="spanTotem" id="tipoDisco1TotemSpanInfo"></span>
+                    </p>
+                    <p id="infoTotemTotalDisco1">
+                        Total do Disco:
+                        <span class="spanTotem" id="totalDisco1TotemSpanInfo"></span>
+                    </p>
+                </div>
+
+
+                <div class="line">
+                    <p id="infoTotemTotalRam">
+                        Total Memória Ram:
+                        <span class="spanTotem" id="totalRamTotemSpanInfo"></span>
+                    </p>
+                    </p>
+                </div>
 
                 <ul class="listaDesempenho">
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemCPUInfo">
+                        <input type="checkbox" id="checkboxTotemCPUInfo" disabled>
                         <span class="textoSpan">CPU</span>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemRedeInfo">
+                        <input type="checkbox" id="checkboxTotemRedeInfo" disabled>
                         <span class="textoSpan">REDE</span>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemRAMInfo">
+                        <input type="checkbox" id="checkboxTotemRAMInfo" disabled>
                         <span class="textoSpan">Memória RAM</span>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="checkboxTotemDiscoInfo">
+                        <input type="checkbox" id="checkboxTotemDiscoInfo" disabled>
                         <span class="textoSpan">Disco</span>
                     </li>
 

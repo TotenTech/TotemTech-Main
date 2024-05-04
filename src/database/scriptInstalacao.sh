@@ -9,7 +9,8 @@ if ! command -v mysql &> /dev/null
 then
     echo "MySQL não encontrado. Instalando..."
     sudo apt update
-    sudo apt install mysql-server
+    sudo apt-get install mysql-server
+
     echo "MySQL instalado com sucesso."
     
 else
@@ -23,7 +24,7 @@ then
     #read -sp "Digite a senha do usuário root do MySQL: " MYSQL_ROOT_PASSWORD
     # Ou caso queira um script completamente automatico 
     echo "A senha do usuário root é root1234@"
-    MYSQL_ROOT_PASSWORD = "root1234@"
+    MYSQL_ROOT_PASSWORD="root1234@"
 else
     echo "Erro: MySQL não está em execução."
     exit 1
@@ -219,7 +220,7 @@ CREATE TABLE memoriaRegistro (
     REFERENCES memoria (idmemoria, totem));
 ";
 
-mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$SQL";
+mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$SQL_TABELAS";
 
 java -version  # Verifica a versão atual do Java
 
