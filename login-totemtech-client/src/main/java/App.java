@@ -52,15 +52,15 @@ public class App {
                     List<com.github.britooo.looca.api.group.discos.Disco> d = DiscoController.getDiscosLooca();
                     for (int i = 0; i < d.size(); i++) {
                         Disco di = new Disco(looca.getGrupoDeDiscos().getDiscos().get(i).getModelo(), Convertions.toDoubleTwoDecimals(Convertions.bytesParaGb(looca.getGrupoDeDiscos().getDiscos().get(i).getTamanho().doubleValue())), "Gb", logged.getIdTotem());
-                        discos.add(di);
                         DiscoController.insertDisco(di);
                     }
+                    Thread.sleep(3000);
+                    discos = DiscoController.getDiscos(logged.getIdTotem());
                 }
-//                System.out.println(discos);
-//                System.out.println(cpu.toString());
-//                System.out.println(memoria.toString());
+                System.out.println("Iniciando monitoramento...");
+                Thread.sleep(3000);
             } catch (Exception e) {
-                System.out.println("Um erro ocorreu no processo de login, tente novamente mais tarde");
+                System.out.println("Um erro ocorreu no processo de login, tente novamente mais tarde " + e);
             }
 
             while (true) {
@@ -207,6 +207,6 @@ public class App {
 //                System.out.println("Progresso teste de internet : " + percent + "%");
             }
         });
-        speedTestSocket.startDownload("https://fsn1-speed.hetzner.com/100MB.bin");
+        speedTestSocket.startDownload("https://link.testfile.org/15MB");
     }
 }
