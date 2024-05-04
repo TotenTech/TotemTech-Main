@@ -47,6 +47,39 @@ function cadastrarTotemComponetes(req, res) {
     }
 }
 
+function cadastrarTotemRam(req, res) {
+    var total = req.body.totalServer;
+
+    if (total == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+        dashboardModel.cadastrarTotemRam(total)
+            .then(function (resposta) {
+                res.status(200).send("Componentes do totem cadastrado com sucesso");
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
+function cadastrarTotemDisco(req, res) {
+    var disco = req.body.discoServer;
+    var total = req.body.totalServer;
+
+    if (disco == undefined || total == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+        dashboardModel.cadastrarTotemDisco(disco, total)
+            .then(function (resposta) {
+                res.status(200).send("Componentes do totem cadastrado com sucesso");
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
 function listarTotens(req, res) {
     var empresa = req.body.empresaServer
 
@@ -58,25 +91,6 @@ function listarTotens(req, res) {
         res.status(500).json(erro.sqlMessage);
     })
 }
-
-
-function deletarTotemVisualizacao(req, res) {
-    var totem = req.body.totemServer;
-
-    if (totem == undefined) {
-        res.status(400).send("Algum dado está undefined!");
-    } else {
-        dashboardModel.deletarTotemVisualizacao(totem)
-            .then(function (resposta) {
-                res.status(200).send("Sucesso em deletar as visualizações do totem");
-
-            }).catch(function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
-            })
-    }
-}
-
 
 function deletarTotem(req, res) {
     var totem = req.body.totemServer;
@@ -145,6 +159,47 @@ function alterarTotemComponente(req, res) {
     }
 }
 
+function alterarTotemRam(req, res) {
+    var ram = req.body.ramServer;
+    var totem = req.body.totemServer;
+
+    if (ram == undefined ||
+        totem == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+        dashboardModel.alterarTotemRam(ram, totem)
+            .then(function (resposta) {
+                res.status(200).send("Alteração feita com sucesso!");
+
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
+function alterarTotemDisco(req, res) {
+    var id = req.body.idServer;
+    var total = req.body.totalServer;
+    var tipo = req.body.tipoServer;
+    var totem = req.body.totemServer;
+
+    if (totem == undefined ||
+        total == undefined ||
+        tipo == undefined ||
+        id == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+            dashboardModel.alterarTotemDisco(id, total, tipo, totem)
+                .then(function (resposta) {
+                    res.status(200).send("Alteração feita com sucesso!");
+
+                }).catch(function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                })
+    }
+}
 
 function buscarInfoTotem(req, res) {
     var totem = req.body.totemServer;
@@ -204,14 +259,61 @@ function buscarInfoTotemComponente(req, res) {
 }
 
 
+function buscarInfoTotemTotalRam(req, res) {
+    var totem = req.body.totemServer;
+    if (totem == undefined) {
+        res.status(400).send("Seu totem está undefined!");
+    } else {
+
+        dashboardModel.buscarInfoTotemTotalRam(totem)
+            .then(
+                function (resultadoAutenticar) {
+                    if (resultadoAutenticar.length == 1) {
+                        res.json({
+                            total: resultadoAutenticar[0].total,
+                        });
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar buscar! Erro:", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function buscarInfoTotemTipoDisco(req, res) {
+    var totem = req.body.totemServer;
+    if (totem == undefined) {
+        res.status(400).send("Seu totem está undefined!");
+    } else {
+
+        dashboardModel.buscarInfoTotemTipoDisco(totem).then(function (resposta) {
+            res.status(200).send(resposta);
+    
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+    }
+}
+
+
 module.exports = {
     cadastrarTotem,
     cadastrarTotemComponetes,
+    cadastrarTotemRam,
+    cadastrarTotemDisco,
     listarTotens,
-    deletarTotemVisualizacao,
     deletarTotem,
     alterarTotem,
     alterarTotemComponente,
+    alterarTotemRam,
+    alterarTotemDisco,
     buscarInfoTotem,
     buscarInfoTotemComponente,
+    buscarInfoTotemTotalRam,
+    buscarInfoTotemTipoDisco,
 }

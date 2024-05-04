@@ -29,12 +29,24 @@ router.post("/cadastrarTotemComponetes", function (req, res) {
     dashboardController.cadastrarTotemComponetes(req, res);
 })
 
-router.post("/listarTotens", function(req, res){
-    dashboardController.listarTotens(req, res);
+router.post("/cadastrarTotemRam", function (req, res) {
+    dashboardController.cadastrarTotemRam(req, res);
 })
 
-router.post("/deletarTotemVisualizacao", function(req, res){
-    dashboardController.deletarTotemVisualizacao(req, res);
+router.post("/cadastrarTotemDisco", function (req, res) {
+    dashboardController.cadastrarTotemDisco(req, res);
+})
+
+router.post("/buscarInfoTotemTotalRam", function (req, res) {
+    dashboardController.buscarInfoTotemTotalRam(req, res);
+})
+
+router.post("/buscarInfoTotemTipoDisco", function (req, res) {
+    dashboardController.buscarInfoTotemTipoDisco(req, res);
+})
+
+router.post("/listarTotens", function(req, res){
+    dashboardController.listarTotens(req, res);
 })
 
 router.post("/deletarTotem", function(req, res){
@@ -47,6 +59,14 @@ router.post("/alterarTotem", function(req, res){
 
 router.post("/alterarTotemComponente", function(req, res){
     dashboardController.alterarTotemComponente(req, res);
+})
+
+router.post("/alterarTotemRam", function(req, res){
+    dashboardController.alterarTotemRam(req, res);
+})
+
+router.post("/alterarTotemDisco", function(req, res){
+    dashboardController.alterarTotemDisco(req, res);
 })
 
 router.post("/buscarInfoTotem", function(req, res){

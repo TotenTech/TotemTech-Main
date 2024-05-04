@@ -5,7 +5,8 @@ if ! command -v mysql &> /dev/null
 then
     echo "MySQL não encontrado. Instalando..."
     sudo apt update
-    sudo apt install mysql-server
+    sudo apt-get install mysql-server
+
     echo "MySQL instalado com sucesso."
     
 else
@@ -22,7 +23,7 @@ then
     #read -sp "Digite a senha do usuário root do MySQL: " MYSQL_ROOT_PASSWORD
     # Ou caso queira um script completamente automatico 
     echo "A senha do usuário root é root1234@"
-    MYSQL_ROOT_PASSWORD = "root1234@"
+    MYSQL_ROOT_PASSWORD="root1234@"
 else
     echo "Erro: MySQL não está em execução."
     exit 1
@@ -58,7 +59,6 @@ sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS disco (id
 sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS discoRegistro (iddiscoRegistro INT auto_increment, valor DOUBLE, horario DATETIME default current_timestamp, disco INT, totem INT, PRIMARY KEY (iddiscoRegistro, disco, totem), CONSTRAINT fk_discoRegistro_disco FOREIGN KEY (disco, totem) REFERENCES disco (iddisco , totem));"
 sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS visualizacao (idvisualizacao INT primary key AUTO_INCREMENT, cpu INT, memoria INT, disco INT, rede INT, totem INT, CONSTRAINT fk_componente_totem FOREIGN KEY (totem) REFERENCES totem (idtotem));"
 sudo mysql -u root -e "USE $MYSQL_DATABASE; CREATE TABLE IF NOT EXISTS memoriaRegistro (idmemoriaRegistro INT auto_increment, valor DOUBLE, horario DATETIME default current_timestamp, memoria INT, totem INT, PRIMARY KEY (idmemoriaRegistro, memoria, totem), CONSTRAINT fk_memoriaRegistro_memoria FOREIGN KEY (memoria, totem) REFERENCES memoria (idmemoria, totem));"
-
 
 java -version  # Verifica a versão atual do Java
 
