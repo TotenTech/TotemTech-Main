@@ -1,4 +1,4 @@
-DROP DATABASE totemTech;
+DROP DATABASE if exists totemTech;
 CREATE DATABASE totemTech;
 USE totemTech;
 
@@ -97,7 +97,6 @@ CREATE TABLE cpuRegistro (
   idcpuRegistro INT auto_increment,
   utilizacao DOUBLE,
   horario DATETIME default current_timestamp,
-  velocidade DOUBLE,
   processos INT,
   cpu INT,
   totem INT,
@@ -109,8 +108,7 @@ CREATE TABLE cpuRegistro (
 
 CREATE TABLE redeRegistro (
   idredeRegistro INT auto_increment,
-  download DOUBLE,
-  upload DOUBLE,
+  velocidade DOUBLE,
   horario DATETIME default current_timestamp,
   totem INT,
   PRIMARY KEY (idredeRegistro, totem),
@@ -132,7 +130,7 @@ CREATE TABLE memoria (
 
 CREATE TABLE disco (
   iddisco INT auto_increment,
-  tipo VARCHAR(45),
+  tipo VARCHAR(90),
   total DOUBLE,
   medida VARCHAR(45),
   totem INT,
@@ -213,18 +211,12 @@ INSERT INTO totem (nome, login, senha, sistemaOperacional, empresa) VALUES
 INSERT INTO interrupcoes (horario, motivo, totem)
 VALUES ('2024-04-20 10:30:00', 'Memória RAM', 1);
 
--- INSERT INTO cpu (idcpu, medidaVelocidade, velocidadeBase, totem)
--- VALUES (1, 'GHz', '3.2', 1);
-
--- INSERT INTO cpuRegistro (utilizacao, horario, velocidade, processos, cpu, totem)
--- VALUES (25.6, '2024-04-20 11:00:00', 3.0, 10, 1, 1);
-
-INSERT INTO redeRegistro (download, upload, horario, totem)
-VALUES (50.2, 20.1, '2024-04-20 11:30:00', 1);
+INSERT INTO cpu (idcpu, medidaVelocidade, velocidadeBase, totem)
+VALUES (1, 'GHz', '3.2', 1);
 
 INSERT INTO memoria (total, medida, totem)
 VALUES 
-    (8, 'GB', 1),
+    (16.0, 'GB', 1),
     (16, 'GB', 2),
     (32, 'GB', 3),
     (4, 'GB', 4),
@@ -235,26 +227,26 @@ VALUES
     (8, 'GB', 9),
     (8, 'GB', 10);
 
-INSERT INTO disco (tipo, total, medida, totem)
-VALUES 
-    ('SSD', 512, 'GB', 1),
-    ('HDD', 2000, 'GB', 1),
-    ('SSD', 256, 'GB', 2),
-    ('SSD', 512, 'GB', 3),
-    ('HDD', 4000, 'GB', 3),
-    ('SSD', 256, 'GB', 4),
-    ('SSD', 512, 'GB', 5),
-    ('HDD', 3000, 'GB', 5),
-    ('SSD', 256, 'GB', 6),
-    ('SSD', 512, 'GB', 7),
-    ('HDD', 2000, 'GB', 7),
-    ('SSD', 256, 'GB', 8),
-    ('SSD', 512, 'GB', 9),
-    ('HDD', 2000, 'GB', 9),
-    ('HDD', 3000, 'GB', 10);
+-- INSERT INTO disco (tipo, total, medida, totem)
+-- VALUES 
+--     ('SSD', 512, 'GB', 1),
+--     ('HDD', 2000, 'GB', 1),
+--     ('SSD', 256, 'GB', 2),
+--    ('SSD', 512, 'GB', 3),
+--    ('HDD', 4000, 'GB', 3),
+--    ('SSD', 256, 'GB', 4),
+--    ('SSD', 512, 'GB', 5),
+--    ('HDD', 3000, 'GB', 5),
+--    ('SSD', 256, 'GB', 6),
+--    ('SSD', 512, 'GB', 7),
+--    ('HDD', 2000, 'GB', 7),
+--    ('SSD', 256, 'GB', 8),
+--    ('SSD', 512, 'GB', 9),
+--    ('HDD', 2000, 'GB', 9),
+--    ('HDD', 3000, 'GB', 10);
 
-INSERT INTO discoRegistro (valor, horario, disco, totem)
-VALUES (180.0, '2024-04-20 12:00:00', 1, 1);
+-- INSERT INTO discoRegistro (valor, horario, disco, totem)
+-- VALUES (180.0, '2024-04-20 12:00:00', 1, 1);
 
 INSERT INTO visualizacao (cpu, memoria, disco, rede, totem)
 VALUES 
@@ -295,3 +287,12 @@ DELETE FROM disco WHERE totem = iddTotem;
 DELETE FROM totem WHERE idtotem  = iddTotem;
 END$$
 DELIMITER 
+
+select * from disco;
+
+ select * from discoRegistro;
+-- select * from memoria;
+-- select * from memoriaRegistro;
+-- select * from redeRegistro;
+-- select * from cpu;
+-- select * from cpuRegistro;
