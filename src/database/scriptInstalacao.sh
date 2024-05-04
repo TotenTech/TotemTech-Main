@@ -1,8 +1,4 @@
-
 #!/bin/bash
-
-# Define a senha do usuário root do MySQL automaticamente
-MYSQL_ROOT_PASSWORD="root1234@"
 
 # Verifica se o MySQL está instalado
 if ! command -v mysql &> /dev/null
@@ -16,6 +12,9 @@ then
 else
     echo "MySQL já está instalado."
 fi
+
+# Start o Mysql service
+sudo service mysql start
 
 # Configura a senha do usuário root do MySQL
 if sudo mysql -e "SELECT 1;" &> /dev/null
@@ -33,7 +32,6 @@ fi
 # Reinicia o serviço do MySQL
 echo "Reiniciando o serviço do MySQL..."
 sudo service mysql restart
-echo "Senha do usuário root do MySQL configurada com sucesso."
 
 # Configurações do MySQL
 MYSQL_USER="root"
@@ -41,9 +39,10 @@ MYSQL_PASSWORD="$MYSQL_ROOT_PASSWORD"  # Usa a senha do usuário root
 MYSQL_DATABASE="totemTech"
 
 # Criando o banco de dados 
-mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
+sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
 echo "Banco de dados '$MYSQL_DATABASE' criado com sucesso."
-
+sudo mysql - root -e "USE DATABASE $MYSQL_DATABASE;"
+echo "Banco de dados selecionado"
 # Executa as queries para criar as tabelas
 SQL_TABELAS="
 CREATE TABLE endereco (
@@ -220,7 +219,7 @@ CREATE TABLE memoriaRegistro (
     REFERENCES memoria (idmemoria, totem));
 ";
 
-mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$SQL_TABELAS";
+mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$SQL";
 
 java -version  # Verifica a versão atual do Java
 
