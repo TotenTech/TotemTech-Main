@@ -9,10 +9,13 @@ import fr.bmartel.speedtest.SpeedTestReport;
 import fr.bmartel.speedtest.SpeedTestSocket;
 import fr.bmartel.speedtest.inter.ISpeedTestListener;
 import fr.bmartel.speedtest.model.SpeedTestError;
-import fr.bmartel.speedtest.utils.SpeedTestUtils;
 import service.Convertions;
+import shell.PowerShell;
+import shell.TerminalLinux;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,10 +32,19 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
+
+        verificarSo();
         inicio();
 
         if (logged != null) {
-//            System.out.println(logged);
+            if (system == 1) {
+                PowerShell prompt = new PowerShell();
+//            prompt.restart();
+                prompt.executePowerShellCommand("cls");
+            } else {
+                TerminalLinux prompt = new TerminalLinux();
+                prompt.executeLinuxCommand("clear");
+            }
             try {
                 cpu = CpuController.getCpu(logged.getIdTotem());
                 if (!(cpu != null)) {
@@ -67,18 +79,18 @@ public class App {
                 inserts();
                 Thread.sleep(120000);
             }
-        }
 
-//            Teste reiniciar
-//        if (logged) {
-//            verificarSo();
+//            Executar a inovação, reiniciar pc
 //            if (system == 1) {
 //                PowerShell prompt = new PowerShell();
-//                prompt.restart();
+////            prompt.restart();
+//                prompt.executePowerShellCommand("restart-computer");
 //            } else {
 //                TerminalLinux prompt = new TerminalLinux();
+//                prompt.executeLinuxCommand("shutdown -r now");
 //            }
-//        }
+
+        }
     }
 
     public static void inicio() throws Exception {
@@ -148,6 +160,12 @@ public class App {
     }
 
     public static void inserts() {
+        LocalTime inicioTestes = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String horarioFormatado = inicioTestes.format(formatter);
+        System.out.println();
+        System.out.println("Executando testes de monitoramento - " + horarioFormatado);
+
         MemoriaRegistro memoriaRegistro = new MemoriaRegistro();
         memoriaRegistro.setTotem(logged.getIdTotem());
         memoriaRegistro.setMemoria(memoria.getIdmemoria());
@@ -193,6 +211,11 @@ public class App {
                 System.out.println("Velocidade da rede em mb/s: " + Convertions.toDoubleTwoDecimals(report.getTransferRateBit().divide(new BigDecimal(1000000)).doubleValue()));
                 rede.setDownload(Convertions.toDoubleTwoDecimals(report.getTransferRateBit().divide(new BigDecimal(1000000)).doubleValue()));
                 RedeController.insertRede(rede);
+
+                LocalTime fimTestes = LocalTime.now();
+                String horarioFormatado = fimTestes.format(formatter);
+                System.out.println("Monitoramento finalizado em " + horarioFormatado + " os componentes passarão por testes de monitoramento novamente em aproximadamente 2 minutos");
+                System.out.println();
             }
 
             @Override
@@ -200,6 +223,11 @@ public class App {
                 System.out.println("Totem sem conexão de rede");
                 rede.setDownload(null);
                 RedeController.insertRede(rede);
+
+                LocalTime fimTestes = LocalTime.now();
+                String horarioFormatado = fimTestes.format(formatter);
+                System.out.println("Monitoramento finalizado em " + horarioFormatado + " os componentes passarão por testes de monitoramento novamente em aproximadamente 2 minutos");
+                System.out.println();
             }
 
             @Override
