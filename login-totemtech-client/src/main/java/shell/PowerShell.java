@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 
 public class PowerShell {
 
-    public static String executePowerShellCommand(String command) throws IOException, InterruptedException {
-        Process process = Runtime.getRuntime().exec(command);
+    public String executePowerShellCommand(String command) throws IOException, InterruptedException {
+        Process process = Runtime.getRuntime().exec(String.format("powershell.exe (%s)", command));
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         StringBuilder output = new StringBuilder();
         String line;
@@ -21,7 +21,7 @@ public class PowerShell {
 
     public void restart() {
         try {
-            executePowerShellCommand("powershell.exe (Restart-Computer)");
+            executePowerShellCommand("Restart-Computer");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
