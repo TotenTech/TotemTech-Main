@@ -471,13 +471,13 @@
  .modalSuporte {
     display: none; 
     position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
+    z-index: 1;
     width: 100%; 
-    height: 100%; 
-    overflow: auto; 
+    height: 100vh; 
+    overflow: hidden; 
     background-color: rgba(0,0,0,0.4);
+    align-items: center;
+    justify-content: center;
   }
   
   .conteudoModalSuporte {
@@ -485,7 +485,13 @@
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; 
+    width: 80%; 
+    height: 75vh;
+  }
+
+  .pipefy{
+    width: 100%;
+    height: 100%;
   }
   
   .fecharModalSuporte {
@@ -506,43 +512,44 @@
  .areaContato {
     width: 90%;
     padding: 1% 3%;
-    height: 50vh;
-    /* height: fit-content; */
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .areaContato .contatoSuporte {
+    gap: 5vh;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    /* flex-direction: column; */
+    flex-direction: column;
 }
 
 .areaContato .esquerdaContato {
-    width: 40%;
-    height: 40vh;
-    /* background-color: aqua; */
+    width: 100%;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
+    gap: 3vh;
 }
 
 .areaContato .esquerdaContato .contato {
     text-align: center;
     width: 100%;
-    /* align-items: center;
-    display: flex;
-    justify-content: center; */
-    /* margin: 8vh 0 1vh 0; */
     background-image: url(../img/fundo_azul.png);
     background-size: cover;
     color: transparent;
     background-clip: text;
+    font-size: 180%;
+}
+
+.areaContato .esquerdaContato .textoContato{
+    width: 96%;
+    padding: 1% 2%;
+    font-size: 90%;
+    text-align: center;
 }
 
 .areaContato .esquerdaContato .emailContato {
@@ -550,31 +557,39 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
+    background-image: url(../img/fundo_azul.png);
+    background-size: cover;
+    width: fit-content;
+    padding: 0 3%;
+    border-radius: 10px;
+    color: #FFFFFF;
 }
 
-.textoContato {
-    width: 90%;
-    margin: 0% 5% 5% 5%;
-    font-size: 90%;
-    text-align: center;
+.areaContato .esquerdaContato .emailContato img{
+    height: 4vh;
+    width: auto;
+}
+
+
+.areaContato .contatoSuporte .direitaContato {
+    width: 100%;
+    height: fit-content;
+    padding: 2% 0;
 }
 
 .areaContato .direitaContato .suporteContato {
-    /* width: 50%; */
-    height: 30vh;
-
     background-image: url(../img/fundo_azul.png);
     background-size: cover;
-
-    /* background-color: #888; */
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     text-align: center;
-
     color: #E8E6E3;
+    width: 100%;
+    gap: 2vh;
+    padding: 2% 0;
 }
 
 .areaContato .direitaContato .suporteContato button {
@@ -587,53 +602,52 @@
     outline: none;
 }
 
-.areaContato .direitaContato {
-    display: flex;
-    width: 50%;
-    height: 40vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 footer {
-    /* height: fit-content; */
     width: 100%;
-    height: 15vh;
-    /* background-image: url(../img/fundo_azul.png); */
-    /* background-size: cover; */
-    border-top: 2px  solid #0B3EA1;
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
     align-items: center;
+    background-image: url(../img/fundo_azul.png);
+    background-size: cover;
+    border-radius: 30% 30% 0 0 ;
 }
 
 .contatoFooter {
-    width: 20%;
-    /* height: fit-content; */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
     border-radius: 20px;
-    /* border: 1px solid #000000; */
     padding: 10px;
-    color: #E8E6E3;
-    background-image: url(../img/fundo_azul.png);
-    background-size: cover;
+    color: #FFFFFF;
+    font-size: 110%;
+}
+
+.contatoFooter img{
+    height: 5vh;
+    width: auto;
+    filter: none;
 }
 
 .logoFooter {
-    width: 20%;
+    width: fit-content;
     align-items: center;
     display: flex;
     justify-content: center;
-    
+}
+
+footer img{
+    height: 10vh;
+    width: auto;
+    filter: drop-shadow(0px 0px 2px white);
+
 }
 
 .direitosFooter {
-    width: 20%;
-    color: #203FAB;
+    width: 100%;
+    color: #FFFFFF;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -940,6 +954,9 @@ footer {
          width: 50%;
 
      }
+     .areaContato{
+        height: 75vh;
+     }
  }
 
 
@@ -1152,6 +1169,20 @@ footer {
      .bemVindo {
          margin: 1vh 0 0 0;
      }
+
+     .areaContato .contatoSuporte{
+        flex-direction: row;
+        gap: 5%;
+     }
+
+     .contatoSuporte .esquerdaContato{
+        width: 50%;
+     }
+
+     .contatoSuporte .direitaContato{
+        max-width: 45%;
+     }
+
  }
 
 
