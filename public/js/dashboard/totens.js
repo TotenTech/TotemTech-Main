@@ -13,11 +13,15 @@ const lineDescricao = document.getElementById('boxLineDescricao');
 // Local de plotar o gráfico
 const localChart = document.getElementById('boxLocalChart');
 
+// Div do modal com o total de totens
+const totalTotem = document.getElementById('boxTotalTotem');
 
+// Div utilizada para listar o total de totens
+const listTotalTotem = document.getElementById('boxListTotalTotem');
 
 //gráfico:
 // Dados de exemplo 
-const dadosCPU = [  48, 49, 50, 56, 57, 58, 59, 60, 51, 52, 53, 42, 43, 44, 45,40, 41,54, 55, 46, 47]; // Utilização da CPU (%)
+const dadosCPU = [48, 49, 50, 56, 57, 58, 59, 60, 51, 52, 53, 42, 43, 44, 45, 40, 41, 54, 55, 46, 47]; // Utilização da CPU (%)
 const dadosRAM = [60, 65, 68, 70, 63, 67, 69, 64, 62, 90, 66, 61, 91, 71, 89, 88, 87, 86, 85, 84, 83]; // Uso de RAM (%)
 const dadosDISCO = [5, 6, 7, 6, 5, 4, 3, 3, 4, 6, 5, 7, 3, 4, 6, 5, 7]; // Tempo médio de resposta do disco (ms)
 const dadosRede = [20, 25, 30, 35, 30, 25, 20, 15, 20, 15, 10, 15, 20, 15, 20, 15, 10, 15, 20]; // Utilização da rede - Download (%)
@@ -25,6 +29,14 @@ const dadosRede = [20, 25, 30, 35, 30, 25, 20, 15, 20, 15, 10, 15, 20, 15, 20, 1
 
 const labels = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
 
+
+function totalTotemFunction(decisao) {
+    if (decisao == "abrir") {
+        totalTotem.style.display = "flex";
+    } else {
+        totalTotem.style.display = "none";
+    }
+}
 
 abrirGrafico();
 function abrirGrafico(tipo) {

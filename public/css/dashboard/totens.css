@@ -160,6 +160,87 @@ body{
     overflow: hidden;
 }
 
+.dashboard .boxTotalTotem{
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 70%;
+    height: 80vh;
+    top: 10vh;
+    border: 2px solid #000000;
+    display: none;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.dashboard .boxTotalTotem .line{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding: 0.5% 2%;
+    width: 96%;
+    align-items: center;
+}
+
+.dashboard .boxTotalTotem .line button{
+    border: 0;
+    font-size: 160%;
+    background-color: #FFFFFF;
+    font-weight: 700;
+}
+
+.dashboard .boxTotalTotem h2{
+    width: 100%;
+    text-align: center;
+    margin: 0%;
+    padding: 0%;
+    background-image: url(../../img/fundo_azul.png);
+    background-size: cover;
+    color: transparent;
+    background-clip: text;
+    font-size: 200%;
+}
+
+.dashboard .boxTotalTotem .boxListTotalTotem{
+    width: 96%;
+    padding: 0 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 80%;
+}
+
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem{
+    display: flex;
+    justify-content: space-around;
+    width: 96%;
+    padding: 1% 2%;
+    height: 30vh;
+    align-items: center;
+}
+
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totem{
+    width: 22%;
+    height: 90%;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totem img{
+    height: 70%;
+}
+
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totem span{
+    font-size: 110%;
+    font-weight: 700;
+}
+
 .dashboard .lineTotens{
     width: 92%;
     height: 20vh;
@@ -178,6 +259,21 @@ body{
     height: 16vh;
     width: 140px;
     background-color: #D9D9D9;
+    border-radius: 10px;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2%;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.dashboard .lineTotens .totemVerde{
+    height: 16vh;
+    width: 140px;
+    background-color: #D9D9D9;
     border-left: 10px solid green;
     border-radius: 10px;
     display: inline-block;
@@ -190,11 +286,45 @@ body{
     cursor: pointer;
 }
 
-.dashboard .lineTotens .totem img{
+
+.dashboard .lineTotens .totemAmarelo{
+    height: 16vh;
+    width: 140px;
+    background-color: #D9D9D9;
+    border-left: 10px solid yellow;
+    border-radius: 10px;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2%;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+
+.dashboard .lineTotens .totemVermelho{
+    height: 16vh;
+    width: 140px;
+    background-color: #D9D9D9;
+    border-left: 10px solid red;
+    border-radius: 10px;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2%;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.dashboard .lineTotens div img{
     height: 8vh;
 }
 
-.dashboard .lineTotens .totem span{
+.dashboard .lineTotens div span{
     font-size: 90%;
     font-weight: 700;
 }
