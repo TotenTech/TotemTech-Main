@@ -65,7 +65,7 @@ var btnModalSuporte = document.getElementById("abrirModalSuporte");
 var spanModalSuporte = document.getElementsByClassName("fecharModalSuporte")[0];
 
 btnModalSuporte.onclick = function() {
-  modalSuporte.style.display = "block";
+  modalSuporte.style.display = "flex";
 }
 
 spanModalSuporte.onclick = function() {

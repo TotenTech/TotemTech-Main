@@ -220,23 +220,50 @@ body{
     align-items: center;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totem{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemVerde{
     width: 22%;
     height: 90%;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #D9D9D9;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 5%;
+    border-left: 8px solid green;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totem img{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemAmarelo{
+    width: 22%;
+    height: 90%;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
+    border-left: 8px solid yellow;
+}
+
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemVermelho{
+    width: 22%;
+    height: 90%;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
+    border-left: 8px solid red;
+}
+
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem div img{
     height: 70%;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totem span{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem div span{
     font-size: 110%;
     font-weight: 700;
 }
