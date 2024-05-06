@@ -11,8 +11,8 @@ public class LocalDatabaseConnection {
 
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/totemTech");
-        dataSource.setUsername("root");
-        dataSource.setPassword("267309");
+        dataSource.setUsername("totemMaster");
+        dataSource.setPassword("12345");
 
         this.conexaoDoBanco = new JdbcTemplate(dataSource);
     }

@@ -1,3 +1,7 @@
+CREATE USER 'totemMaster'@'localhost' IDENTIFIED BY '12345';
+GRANT ALL PRIVILEGES ON *.* TO 'totemMaster'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
 DROP DATABASE if exists totemTech;
 CREATE DATABASE totemTech;
 USE totemTech;
