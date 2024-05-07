@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class PowerShell {
-//    TODO: Classe para comandos linux que serão executados
+
     public static String executePowerShellCommand(String command) throws IOException, InterruptedException {
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));

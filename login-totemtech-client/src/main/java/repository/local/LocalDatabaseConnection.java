@@ -12,7 +12,7 @@ public class LocalDatabaseConnection {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/totemTech");
         dataSource.setUsername("root");
-        dataSource.setPassword("581147");
+        dataSource.setPassword("267309");
 
         this.conexaoDoBanco = new JdbcTemplate(dataSource);
     }

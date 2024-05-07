@@ -1,12 +1,12 @@
 package controller;
 import entities.Totem;
-import model.TotemModel;
+import dao.TotemDAO;
 
 public class TotemController {
 
     public static Totem login(String login, String senha) throws Exception {
         try {
-            Totem totem = TotemModel.login(login, senha);
+            Totem totem = TotemDAO.login(login, senha);
             if (totem != null) {
                 return totem;
             } else {
@@ -20,7 +20,7 @@ public class TotemController {
 
 //    public static Boolean buscarEmail(String email) throws Exception {
 //        try {
-//            if (TotemModel.buscarEmail(email)) {
+//            if (TotemDAO.buscarEmail(email)) {
 //                return true;
 //            } else {
 //                return false;
@@ -32,7 +32,7 @@ public class TotemController {
 //
 //    public static Boolean cadastrar(User usuario) throws Exception {
 //        try {
-//            if (TotemModel.cadastrar(usuario)) {
+//            if (TotemDAO.cadastrar(usuario)) {
 //                return true;
 //            } else {
 //                return false;
@@ -52,7 +52,7 @@ public class TotemController {
 //    }
 //
 //    public static Boolean validarCodigoEmpresa(String codigo) throws Exception {
-//        return TotemModel.buscarCodigoEmpresa(codigo);
+//        return TotemDAO.buscarCodigoEmpresa(codigo);
 //    }
 //
 //    public static Boolean validarSenha(String senha, String confirmaSenha) {

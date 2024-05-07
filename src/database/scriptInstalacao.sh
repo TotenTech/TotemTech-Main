@@ -1,9 +1,50 @@
-DROP DATABASE totemTech;
-CREATE DATABASE totemTech;
-USE totemTech;
 
--- Criação das tabelas
+#!/bin/bash
 
+# Define a senha do usuário root do MySQL automaticamente
+MYSQL_ROOT_PASSWORD="root1234@"
+
+# Verifica se o MySQL está instalado
+if ! command -v mysql &> /dev/null
+then
+    echo "MySQL não encontrado. Instalando..."
+    sudo apt update
+    sudo apt install mysql-server
+    echo "MySQL instalado com sucesso."
+    
+else
+    echo "MySQL já está instalado."
+fi
+
+# Configura a senha do usuário root do MySQL
+if sudo mysql -e "SELECT 1;" &> /dev/null
+then
+    echo "MySQL está em execução."
+    #read -sp "Digite a senha do usuário root do MySQL: " MYSQL_ROOT_PASSWORD
+    # Ou caso queira um script completamente automatico 
+    echo "A senha do usuário root é root1234@"
+    MYSQL_ROOT_PASSWORD = "root1234@"
+else
+    echo "Erro: MySQL não está em execução."
+    exit 1
+fi
+
+# Reinicia o serviço do MySQL
+echo "Reiniciando o serviço do MySQL..."
+sudo service mysql restart
+echo "Senha do usuário root do MySQL configurada com sucesso."
+
+# Configurações do MySQL
+MYSQL_USER="root"
+MYSQL_PASSWORD="$MYSQL_ROOT_PASSWORD"  # Usa a senha do usuário root
+MYSQL_DATABASE="totemTech"
+
+# Criando o banco de dados 
+mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
+echo "Banco de dados '$MYSQL_DATABASE' criado com sucesso."
+
+# Executa as queries para criar as tabelas
+SQL_TABELAS="
 CREATE TABLE endereco (
   idEndereco INT primary key AUTO_INCREMENT,
   logradouro VARCHAR(45),
@@ -48,7 +89,7 @@ CREATE TABLE tipo (
 CREATE TABLE usuario (
   idusuario INT primary key auto_increment,
   nome VARCHAR(45),
-  email VARCHAR(70) unique,
+  email VARCHAR(70),
   senha VARCHAR(12),
   empresa INT,
   tipo INT,
@@ -63,7 +104,7 @@ CREATE TABLE usuario (
 CREATE TABLE totem (
   idtotem INT primary key auto_increment,
   nome VARCHAR(45),
-  login VARCHAR(45) unique,
+  login VARCHAR(45),
   senha VARCHAR(45),
   sistemaOperacional VARCHAR(45),
   empresa INT,
@@ -74,19 +115,19 @@ CREATE TABLE totem (
 
 CREATE TABLE interrupcoes (
   idinterrupcoes INT primary key AUTO_INCREMENT,
-  horario DATETIME default current_timestamp,
+  horario DATETIME,
   motivo VARCHAR(45),
   totem INT,
   CONSTRAINT fk_interrupcoes_totem
-    FOREIGN KEY (totem)
-    REFERENCES totem (idtotem));
-    
+	FOREIGN KEY (totem)
+    REFERENCES totem(idTotem));
+
 
 CREATE TABLE cpu (
-  idcpu INT auto_increment,
-  medidaVelocidade VARCHAR(45),
-  velocidadeBase Double,
-  totem INT,
+  idcpu INT NOT NULL,
+  medidaVelocidade VARCHAR(45) NULL,
+  velocidadeBase VARCHAR(45) NULL,
+  totem INT NOT NULL,
   PRIMARY KEY (idcpu, totem),
   CONSTRAINT fk_cpu_totem
     FOREIGN KEY (totem)
@@ -96,7 +137,7 @@ CREATE TABLE cpu (
 CREATE TABLE cpuRegistro (
   idcpuRegistro INT auto_increment,
   utilizacao DOUBLE,
-  horario DATETIME default current_timestamp,
+  horario DATETIME,
   velocidade DOUBLE,
   processos INT,
   cpu INT,
@@ -111,7 +152,7 @@ CREATE TABLE redeRegistro (
   idredeRegistro INT auto_increment,
   download DOUBLE,
   upload DOUBLE,
-  horario DATETIME default current_timestamp,
+  horario DATETIME,
   totem INT,
   PRIMARY KEY (idredeRegistro, totem),
   CONSTRAINT fk_redeRegistro_totem
@@ -120,7 +161,7 @@ CREATE TABLE redeRegistro (
 
 
 CREATE TABLE memoria (
-  idmemoria INT auto_increment,
+  idmemoria INT,
   total DOUBLE,
   medida VARCHAR(45),
   totem INT,
@@ -131,7 +172,7 @@ CREATE TABLE memoria (
 
 
 CREATE TABLE disco (
-  iddisco INT auto_increment,
+  iddisco INT,
   tipo VARCHAR(45),
   total DOUBLE,
   medida VARCHAR(45),
@@ -145,7 +186,7 @@ CREATE TABLE disco (
 CREATE TABLE discoRegistro (
   iddiscoRegistro INT auto_increment,
   valor DOUBLE,
-  horario DATETIME default current_timestamp,
+  horario DATETIME,
   disco INT,
   totem INT,
   PRIMARY KEY (iddiscoRegistro, disco, totem),
@@ -169,97 +210,22 @@ CREATE TABLE visualizacao (
 CREATE TABLE memoriaRegistro (
   idmemoriaRegistro INT auto_increment,
   valor DOUBLE,
-  horario DATETIME default current_timestamp,
+  horario DATETIME,
   memoria INT,
   totem INT,
   PRIMARY KEY (idmemoriaRegistro, memoria, totem),
   CONSTRAINT fk_memoriaRegistro_memoria
     FOREIGN KEY (memoria, totem)
     REFERENCES memoria (idmemoria, totem));
+";
 
+mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$SQL";
 
+java -version  # Verifica a versão atual do Java
 
-
--- INSERTS
-
-INSERT INTO endereco (logradouro, bairro, numero, cep, complemento)
-VALUES ('Rua das Flores', 'Centro', 123, '12345678', 'Bloco A');
-
-INSERT INTO contrato (codigo, contasContratadas, dtInicio, dtFinal)
-VALUES ('C12345678', 50, '2024-05-01', '2025-04-30');
-
-INSERT INTO empresa (nome, codigoAcesso, endereco, assinatura, razaoSocial, nomeFantasia, cnpj)
-VALUES ('MC Donalds', 'ABC456', 1, 1, 'Mec', 'Mec', '12345678901234');
-
-INSERT INTO tipo (descricao)
-VALUES ('Funcionários'), ('Gerente');
-
-INSERT INTO usuario (nome, email, senha, empresa, tipo)
-VALUES ('Gabriel', 'gabriel.amaral@sptech.school', '123', 1, 2), 
-('João Silva', 'joao.silva@empresa.com', 'senha123', 1, 1),
-('Tallyon Lima', 'tallyon.lima@sptech.school', '123456', 1, 2);
-
-INSERT INTO totem (nome, login, senha, sistemaOperacional, empresa) VALUES
-('Totem 1', 'login1', 'senha123', 'Windows', 1),
-('Totem 2', 'login2', 'senha123', 'Linux', 1),
-('Totem 3', 'login3', 'senha123', 'Windows', 1),
-('Totem 4', 'login4', 'senha123', 'Linux', 1),
-('Totem 5', 'login5', 'senha123', 'Windows', 1),
-('Totem 6', 'login6', 'senha123', 'Linux', 1),
-('Totem 7', 'login7', 'senha123', 'Windows', 1),
-('Totem 8', 'login8', 'senha123', 'Linux', 1),
-('Totem 9', 'login9', 'senha123', 'Windows', 1),
-('Totem 10', 'login10', 'senha123', 'Linux', 1);
-
-
-INSERT INTO interrupcoes (horario, motivo, totem)
-VALUES ('2024-04-20 10:30:00', 'Memória RAM', 1);
-
--- INSERT INTO cpu (idcpu, medidaVelocidade, velocidadeBase, totem)
--- VALUES (1, 'GHz', '3.2', 1);
-
--- INSERT INTO cpuRegistro (utilizacao, horario, velocidade, processos, cpu, totem)
--- VALUES (25.6, '2024-04-20 11:00:00', 3.0, 10, 1, 1);
-
-INSERT INTO redeRegistro (download, upload, horario, totem)
-VALUES (50.2, 20.1, '2024-04-20 11:30:00', 1);
-
-INSERT INTO memoria (idmemoria, total, medida, totem)
-VALUES (1, 8.0, 'GB', 1);
-
-INSERT INTO disco (iddisco, tipo, total, medida, totem)
-VALUES (1, 'SSD', 256.0, 'GB', 1);
-
-INSERT INTO discoRegistro (valor, horario, disco, totem)
-VALUES (180.0, '2024-04-20 12:00:00', 1, 1);
-
-INSERT INTO visualizacao (cpu, memoria, disco, rede, totem)
-VALUES 
-    (1, 1, 1, 1, 1),
-    (0, 1, 0, 1, 2),
-    (1, 0, 1, 1, 3),
-    (0, 1, 0, 1, 4),
-    (1, 1, 1, 0, 5),
-    (1, 0, 1, 1, 6),
-    (1, 1, 0, 0, 7),
-    (0, 0, 1, 1, 8),
-    (1, 1, 1, 1, 9),
-    (0, 0, 0, 1, 10);
-
-INSERT INTO memoriaRegistro (valor, horario, memoria, totem)
-VALUES (65.6, '2024-04-20 12:30:00', 1, 1);
-
-
--- SELECTS DE TESTE
-select * from empresa;
-select * from usuario;
-select * from totem;
-select * from cpu;
-select * from memoria;
-select * from disco;
-select * from interrupcoes;
-select * from visualizacao; 
-
-select nome from totem WHERE empresa = 1;
-
-    SELECT nome, login, senha, sistemaOperacional FROM totem WHERE idtotem = 12;
+if [ $? = 0 ]; then
+    echo "Java instalado"
+else
+    echo "Java não instalado"
+        sudo apt install openjdk-17-jre -y
+fi
