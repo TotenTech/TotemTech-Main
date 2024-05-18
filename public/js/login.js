@@ -93,6 +93,46 @@ function validarCadastro(){
                     sessionStorage.SENHA_USUARIO = json.senha;
                     sessionStorage.EMPRESA_USUARIO = json.empresa;
                     sessionStorage.TIPO_USUARIO = json.tipo;
+                    verificarLoginNomeEmpresa();
+                });
+            } else {
+                mensagemAlerta.innerHTML = `<img src="/img/erro.png">
+            Email ou senha incorreto`;
+                mostrarAlerta();
+                resposta.text().then(texto => {
+                    finalizarAguardar(texto);
+                });
+                return false;
+            }
+
+        }).catch(
+            function (erro) {
+                mensagemAlerta.innerHTML = `<img src="/img/erro.png">
+            Email ou senha incorreto`;
+                mostrarAlerta();
+                res.status(500).json(erro.sqlMessage);
+
+            })
+}
+
+function verificarLoginNomeEmpresa(){
+    fetch("/login/verificarLoginNomeEmpresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            empresaServer: sessionStorage.EMPRESA_USUARIO,
+        })
+    })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.NOME_EMPRESA = json.nomeFantasia;
                     mensagemAlerta.innerHTML = `<img src='/img/sinal-de-visto.png'> Você será direcionado para a Dashboard`;
                     mostrarAlerta();
                     setTimeout(redirecionarDash, 4000);

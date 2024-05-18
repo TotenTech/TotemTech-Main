@@ -5,6 +5,15 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 })
 
+
+
+//Definir o nome do usuário e empresa
+const nameUser = document.getElementById('spanNameUser');
+const nameCompany = document.getElementById('spanNameCompany');
+nameUser.innerHTML = `${sessionStorage.NOME_USUARIO}`;
+nameCompany.innerHTML = `${sessionStorage.NOME_EMPRESA}`;
+
+
 // select totens
 function filtrarTotens() {
   // Obtém o valor selecionado no menu de filtro
