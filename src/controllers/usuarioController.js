@@ -40,9 +40,9 @@ function cadastrar(req, res) {
     if (nome == undefined || email == undefined || senha == undefined || empresa == undefined || nivelAcesso == undefined) {
         res.status(400).send("Algum dado está indefinido!");
     }
-    usuarioModel.cadastrar(nome, email, senha, empresa, nivelAcesso).then(function(resposta){
+    usuarioModel.cadastrar(nome, email, senha, empresa, nivelAcesso).then(function (resposta) {
         res.status(200).send("Empresa cadastrada com sucesso");
-    }).catch(function(erro){
+    }).catch(function (erro) {
         console.log(erro);
         res.status(500).json(erro.sqlMessage);
     })
@@ -58,37 +58,64 @@ function verificarLogin(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
-        usuarioModel.verificarLogin(email, senha)    
+
+        usuarioModel.verificarLogin(email, senha)
+            .then(
+                function (resultadoAutenticar) {
+                    if (resultadoAutenticar.length == 1) {
+                        res.json({
+                            id: resultadoAutenticar[0].idUsuario,
+                            nome: resultadoAutenticar[0].nome,
+                            email: resultadoAutenticar[0].email,
+                            senha: resultadoAutenticar[0].senha,
+                            empresa: resultadoAutenticar[0].empresa,
+                            tipo: resultadoAutenticar[0].tipo,
+                        });
+                    } else if (resultadoAutenticar.length == 0) {
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um usuario com o mesmo login e senha!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro:", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+function verificarLoginNomeEmpresa(req, res) {
+    var empresa = req.body.empresaServer;
+
+    usuarioModel.verificarLoginNomeEmpresa(empresa)
         .then(
-            function (resultadoAutenticar){
+            function (resultadoAutenticar) {
                 if (resultadoAutenticar.length == 1) {
-                res.json({
-                    id: resultadoAutenticar[0].idUsuario,
-                    nome: resultadoAutenticar[0].nome,
-                    email: resultadoAutenticar[0].email,
-                    senha: resultadoAutenticar[0].senha,
-                    empresa: resultadoAutenticar[0].empresa,
-                    tipo: resultadoAutenticar[0].tipo,
-                                });    
-                } else if(resultadoAutenticar.length == 0){
-                res.status(403).send("Email e/ou senha inválido(s)");
-            } else {
-                res.status(403).send("Mais de um usuario com o mesmo login e senha!");
+                    res.json({
+                        nomeFantasia: resultadoAutenticar[0].nomeFantasia,
+                    });
+                } else if (resultadoAutenticar.length == 0) {
+                    res.status(403).send("Email e/ou senha inválido(s)");
+                } else {
+                    res.status(403).send("Mais de um usuario com o mesmo login e senha!");
+                }
             }
-        }
         ).catch(
-            function (erro){
+            function (erro) {
                 console.log(erro);
                 console.log("\nHouve um erro ao realizar o login! Erro:", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
-        }
-    }
+}
 
 module.exports = {
     validarCodigo,
     cadastrar,
     verificarLogin,
+    verificarLoginNomeEmpresa,
 }

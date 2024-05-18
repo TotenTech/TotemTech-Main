@@ -30,8 +30,19 @@ function verificarLogin(email, senha) {
     return database.executar(instrucao);
 }
 
+function verificarLoginNomeEmpresa(empresa) {
+    console.log("ACESSEI O MODEL \n \n\t\t function entrar(): ", empresa);
+
+    var instrucao = `
+        SELECT nomeFantasia FROM empresa WHERE idEmpresa = '${empresa}' ;
+        `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     validarCodigo,
     cadastrar,
     verificarLogin,
+    verificarLoginNomeEmpresa
 };

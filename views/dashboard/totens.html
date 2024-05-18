@@ -37,7 +37,7 @@
                 <a href="/dashboard">Totens</a>
             </li>
             <li class="gerenciar">
-                <a href="/dashboard/gerenciarT">Gerenciar Totem</a>
+                <a href="/dashboard/gerenciarT">Gerenciar Totens</a>
             </li>
             <li class="historico">
                 <a href="/dashboard/historico">Histórico</a>
@@ -181,6 +181,35 @@
             Totem 1
         </h1>
 
+        <div class="boxComponent">
+
+            <div class="boxCpu" onclick="abrirGrafico('cpu')">
+                <img src="../../img/torre-da-cpu.png">
+                <h3>Cpu:</h3>
+                <span id="situacaoAtualCpu">47%</span>
+            </div>
+
+            <div class="boxDisco" onclick="abrirGrafico('disco')">
+                <img src="../../img/drive-de-disco-rigido.png">
+                <h3>Disco:</h3>
+                <span id="situacaoAtualDisco">79%</span>
+            </div>
+
+            <div class="boxMemoria" onclick="abrirGrafico('ram')">
+                <img src="../../img/ram.png">
+                <h3>Memória:</h3>
+                <span id="situacaoAtualRam">84%</span>
+            </div>
+
+            <div class="boxRede" onclick="abrirGrafico('rede')">
+                <img src="../../img/rede.png">
+                <h3>Rede:</h3>
+                <span id="situacaoAtualRede">12MB/s</span>
+            </div>
+
+
+        </div>
+
         <div class="boxGlobal" id="divBoxGlobal">
 
             <div class="boxLeftCpu" id="divBoxGrafico">
@@ -198,35 +227,26 @@
 
             </div>
 
-            <div class="boxRight">
-
-                <div class="boxCpu" onclick="abrirGrafico('cpu')">
-                    <img src="../../img/torre-da-cpu.png">
-                    <h3>Cpu:</h3>
-                    <span id="situacaoAtualCpu">47%</span>
+            <div class="boxRight" id="boxRightDiv">
+                <div class="line">
+                    <div class="circuleGreen"></div> Bom
                 </div>
+                <span class="descricao" id="boxDescricaoBom">Entre 50% e 79%. Indica que a CPU está trabalhando sem sobrecarga, com folga para lidar com picos de demanda.</span>
 
-                <div class="boxDisco" onclick="abrirGrafico('disco')">
-                    <img src="../../img/drive-de-disco-rigido.png">
-                    <h3>Disco:</h3>
-                    <span id="situacaoAtualDisco">79%</span>
-                </div>
 
-                <div class="boxMemoria" onclick="abrirGrafico('ram')">
-                    <img src="../../img/ram.png">
-                    <h3>Memória:</h3>
-                    <span id="situacaoAtualRam">84%</span>
+                <div class="line">
+                    <div class="circuleYellow"></div>Médio
                 </div>
+                <span class="descricao" id="boxDescricaoMedio">Entre 80% e 90%. É sinal de que a CPU está sendo utilizada com eficiência, mas pode haver lentidão em momentos de pico.
+                </span>
 
-                <div class="boxRede" onclick="abrirGrafico('rede')">
-                    <img src="../../img/rede.png">
-                    <h3>Rede:</h3>
-                    <span id="situacaoAtualRede">12MB/s</span>
+                <div class="line">
+                    <div class="circuleRed"></div>Ruim
                 </div>
+                <span class="descricao" id="boxDescricaoRuim">Acima de 90%. Indica sobrecarga da CPU, resultando em lentidão, travamentos e instabilidade do sistema.
+                </span>
 
             </div>
-
-
         </div>
 
     </div>

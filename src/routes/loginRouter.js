@@ -10,4 +10,8 @@ router.post("/verificarLogin", function (req, res) {
     usuarioController.verificarLogin(req, res);
 });
 
+router.post("/verificarLoginNomeEmpresa", function (req, res) {
+    usuarioController.verificarLoginNomeEmpresa(req, res);
+});
+
 module.exports = router;

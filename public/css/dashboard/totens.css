@@ -360,6 +360,87 @@ body{
     color: #0B3EA1;
 }
 
+.dashboard .boxComponent{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 94%;
+    gap: 5%;
+    overflow-x: scroll;
+    padding: 0 3%;
+}
+
+
+.dashboard .boxComponent .boxCpu{
+    width: fit-content;
+    padding: 1% 2%;
+    border-radius: 20px;
+    background-color:  rgba(136, 187, 204, 1);
+    color: #000000;
+    font-size: 100%;
+    font-weight: 700;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    flex-direction: row;
+    gap: 2%;
+    cursor: pointer;
+}
+
+.dashboard .boxComponent .boxDisco{
+    width: fit-content;
+    padding: 1% 2%;
+    border-radius: 20px;
+    background-color:  rgba(117, 199, 126, 1);
+    color: #000000;
+    font-size: 100%;
+    font-weight: 700;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    flex-direction: row;    
+    gap: 2%;
+    cursor: pointer;
+}
+
+.dashboard .boxComponent .boxMemoria{
+    width: fit-content;
+    padding: 1% 2%;
+    border-radius: 20px;
+    background-color:  rgba(245, 199, 126, 1);
+    color: #000000;
+    font-size: 100%;
+    font-weight: 700;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    flex-direction: row;    
+    gap: 2%;
+    cursor: pointer;
+}
+
+.dashboard .boxComponent .boxRede{
+    width: fit-content;
+    padding: 1% 2%;
+    border-radius: 20px;
+    background-color:  rgba(131, 74, 161, 0.5);
+    color: #000000;
+    font-size: 100%;
+    font-weight: 700;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    flex-direction: row;    
+    gap: 2%;
+    cursor: pointer;
+}
+
+.dashboard .boxComponent div img{
+    height: 8vh;
+}
+
+
 .dashboard .boxGlobal{
     height: 70vh;
     width: 94%;
@@ -414,74 +495,52 @@ body{
     display: flex;
     flex-direction: column;
     gap: 5%;
-    padding: 0% 0 0% 5%;
+    padding: 1%;
+    margin: 0% 0 0% 3%;
+    background-color: rgba(136, 187, 204, 1);
+    border-radius: 20px;
+    overflow-y: scroll;
 }
 
-.dashboard .boxGlobal .boxRight .boxCpu{
-    width: 96%;
-    padding: 1% 2%;
+.dashboard .boxGlobal .boxRight::-webkit-scrollbar {
+    width: 0px;
+}
+
+.dashboard .boxGlobal .boxRight .line{
+    width: 94%;
+    padding: 0 3%;
+    margin-top: 3%;
+    font-weight: 600;
+    gap: 2%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .boxGlobal .boxRight .line .circuleGreen{
+    width: 20px;
+    height: 20px;
     border-radius: 10px;
-    background-color:  rgba(136, 187, 204, 1);
-    color: #000000;
-    font-size: 100%;
-    font-weight: 700;
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
-    flex-direction: row;
-    gap: 2%;
-    cursor: pointer;
+    background-color: green;
 }
 
-.dashboard .boxGlobal .boxRight .boxDisco{
-    width: 96%;
-    padding: 1% 2%;
+.dashboard .boxGlobal .boxRight .line .circuleYellow{
+    width: 20px;
+    height: 20px;
     border-radius: 10px;
-    background-color:  rgba(117, 199, 126, 1);
-    color: #000000;
-    font-size: 100%;
-    font-weight: 700;
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
-    flex-direction: row;    
-    gap: 2%;
-    cursor: pointer;
+    background-color: yellow;
 }
 
-.dashboard .boxGlobal .boxRight .boxMemoria{
-    width: 96%;
-    padding: 1% 2%;
+.dashboard .boxGlobal .boxRight .line .circuleRed{
+    width: 20px;
+    height: 20px;
     border-radius: 10px;
-    background-color:  rgba(245, 199, 126, 1);
-    color: #000000;
-    font-size: 100%;
-    font-weight: 700;
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
-    flex-direction: row;    
-    gap: 2%;
-    cursor: pointer;
+    background-color: red;
 }
 
-.dashboard .boxGlobal .boxRight .boxRede{
-    width: 96%;
-    padding: 1% 2%;
-    border-radius: 5px;
-    background-color:  rgba(131, 74, 161, 0.8);
-    color: #000000;
-    font-size: 100%;
-    font-weight: 700;
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
-    flex-direction: row;    
-    gap: 2%;
-    cursor: pointer;
+.dashboard .boxGlobal .boxRight .descricao{
+    width: 94%;
+    padding: 0 3% 5% 3%;
+    text-align: left;
+    border-bottom: 1px solid #000000;
+    font-size: 90%;
 }
-
-.dashboard .boxGlobal .boxRight div img{
-    height: 10vh;
-}
-

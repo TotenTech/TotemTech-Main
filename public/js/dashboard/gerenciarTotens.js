@@ -167,6 +167,13 @@ function tipoTelaUsuario() {
 }
 
 
+//Definir o nome do usuário e empresa
+const nameUser = document.getElementById('spanNameUser');
+const nameCompany = document.getElementById('spanNameCompany');
+nameUser.innerHTML = `${sessionStorage.NOME_USUARIO}`;
+nameCompany.innerHTML = `${sessionStorage.NOME_EMPRESA}`;
+
+
 
 
 // Se ela tiver ele adiciona ".checked" na class das checked fazendo com que ele troque de class
