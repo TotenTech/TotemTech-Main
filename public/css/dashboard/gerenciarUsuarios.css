@@ -1,0 +1,507 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-shadow: none;
+    font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #D9D9D9;
+
+}
+
+::-webkit-scrollbar-track {
+    background-color: #888;
+}
+
+
+::-webkit-scrollbar {
+    height: 0;
+    width: 0px;
+    margin-right: 1px;
+    background-color: rgba(255, 255, 255, 3);
+}
+
+
+body {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.menuLateral {
+    width: 13%;
+    height: 98vh;
+    background-image: url(../../img/menu-fundo.png);
+    background-size: cover;
+    display: flex;
+    justify-content: baseline;
+    flex-direction: column;
+    padding: 1% 1%;
+    gap: 3vh;
+}
+
+
+.menuLateral .boxSoon {
+    display: flex;
+    background-color: #FFFFFF;
+    color: black;
+    width: 100%;
+    height: fit-content;
+    padding: 2% 0;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menuLateral .boxSoon img {
+    width: 50%;
+    margin: 0%;
+    padding: 0%;
+}
+
+.menuLateral .boxSoon span {
+    font-weight: 900;
+    font-size: 120%;
+}
+
+
+.menuLateral .boxUser {
+    width: 100%;
+    font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+    color: #FFFFFF;
+}
+
+.menuLateral .boxUser .nameUser {
+    font-size: 130%;
+    text-align: center;
+    width: 100%;
+}
+
+.menuLateral .boxUser .nameCompany {
+    font-size: 90%;
+    text-align: center;
+    width: 100%;
+}
+
+.menuLateral .optionMenu {
+    width: 98%;
+    height: fit-content;
+    gap: 3vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    margin: 5vh 0;
+    list-style-type: none;
+}
+
+.menuLateral .optionMenu li {
+    font-size: 100%;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.menuLateral .optionMenu li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 100%;
+}
+
+.menuLateral .optionMenu .gerenciarU {
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 3% 2%;
+    border-radius: 5px;
+    font-size: 100%;
+}
+
+.menuLateral .optionMenu .gerenciarU a {
+    color: black;
+}
+
+.menuLateral .boxExit {
+    display: flex;
+    flex-direction: row;
+    background-color: #FFFFFF;
+    width: 90%;
+    padding: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: baseline;
+    align-items: center;
+    gap: 5%;
+    position: relative;
+    bottom: 1px;
+}
+
+.menuLateral .boxExit img {
+    height: 4vh;
+    margin-left: 2%;
+    padding: 0;
+}
+
+.menuLateral .boxExit span {
+    font-size: 130%;
+    font-weight: 900;
+}
+
+.dashboard {
+    width: 85%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    gap: 3%;
+}
+
+.dashboard .title {
+    padding: 0%;
+    color: #0D4A7C;
+    font-size: 250%;
+    margin-top: 1%;
+}
+
+.dashboard .lineTotal {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 84%;
+    background-color: #88BBCC;
+    height: 8vh;
+    border-radius: 10px;
+    padding: 1vh 3%;
+    justify-content: baseline;
+    gap: 5%;
+    overflow-x: scroll;
+}
+
+.dashboard .lineTotal span {
+    font-weight: 600;
+}
+
+.dashboard .tableUsers {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow-y: scroll;
+    height: 70vh;
+    box-shadow: 0px 0px 15 px -5px #000000;
+}
+
+.dashboard .tableUsers .lineDescription {
+    display: flex;
+    flex-direction: row;
+    width: 96%;
+    align-items: center;
+    background-color: #88BBCC;
+    height: fit-content;
+    padding: 1.2% 2%;
+    border-radius: 5px 5px 0 0;
+}
+
+.dashboard .tableUsers .lineDescription span {
+    font-weight: 700;
+    font-size: 110%;
+}
+
+.dashboard .tableUsers .lineDescription .deletar {
+    width: 10%;
+}
+
+.dashboard .tableUsers .lineDescription .editar {
+    width: 10%;
+}
+
+.dashboard .tableUsers .lineDescription .nome {
+    width: 30%;
+}
+
+.dashboard .tableUsers .lineDescription .email {
+    width: 35%;
+}
+
+.dashboard .tableUsers .lineDescription .acesso {
+    width: 15%;
+}
+
+.dashboard .tableUsers .lineDark {
+    width: 96%;
+    height: 7vh;
+    padding: 1% 2%;
+    background-color: rgba(136, 187, 204, 0.5);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard .tableUsers .lineDark .imagem {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dashboard .tableUsers .lineDark img {
+    height: 5vh;
+    width: auto;
+}
+
+.dashboard .tableUsers .lineDark .nome {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .tableUsers .lineDark .email {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .tableUsers .lineDark .acesso {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .tableUsers .lineWhite {
+    width: 96%;
+    height: 7vh;
+    padding: 1% 2%;
+    background-color: #88BBCC;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard .tableUsers .lineWhite .imagem {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dashboard .tableUsers .lineWhite img {
+    height: 5vh;
+    width: auto;
+}
+
+.dashboard .tableUsers .lineWhite .nome {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .tableUsers .lineWhite .email {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .tableUsers .lineWhite .acesso {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .screenEdit {
+    width: 40%;
+    height: 70vh;
+    position: fixed;
+    top: 15vh;
+    background-color: #FFFFFF;
+    padding: 2%;
+    border-radius: 10px;
+    border: 2px solid black;
+    display: none;
+}
+
+.dashboard .screenEdit .boxEdit{
+    overflow: scroll;
+    width: 100%;
+    height: 75%;
+    gap: 5%;
+    background-color: #FFFFFF;
+}
+
+.dashboard .screenEdit .inputGrupo {
+    display: flex;
+    position: relative;
+    margin-top: 5%;
+    gap: 1%;
+    align-items: center;
+}
+
+.dashboard .screenEdit .inputGrupo label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 0 5px;
+    pointer-events: none;
+    transition: 5s;
+}
+
+.dashboard .screenEdit .inputGrupo input {
+    width: 100%;
+    height: fit-content;
+    font-size: 16px;
+    color: #0D4A7C;
+    padding: 0 15px;
+    padding: 2%;
+    background: transparent;
+    border: 1px solid #D9D9D9;
+    outline: none;
+    border-radius: 5px;
+}
+
+.dashboard .screenEdit .inputGrupo input::placeholder{
+    color: #0D4A7C;
+}
+
+.dashboard .screenEdit .inputGrupo input:focus~label,
+.dashboard .screenEdit .inputGrupo input:valid~label {
+    top: 0;
+    font-size: 12px;
+    background-color: #FFFFFF;
+    color: #0D4A7C;
+    font-weight: 600;
+}
+
+.dashboard .screenEdit .inputGrupo i {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    font-size: 20px;
+}
+
+.dashboard .screenEdit .inputGrupo select {
+    width: 100%;
+    height: fit-content;
+    font-size: 16px;
+    color: #0D4A7C;
+    padding: 0 15px;
+    padding: 2%;
+    background: transparent;
+    border: 1px solid #D9D9D9;
+    outline: none;
+    border-radius: 5px;
+}
+
+.dashboard .screenEdit .inputGrupo select:focus~label,
+.dashboard .screenEdit .inputGrupo select:valid~label {
+    top: 0;
+    font-size: 12px;
+    background-color: #FFFFFF;
+    color: #0D4A7C;
+    font-weight: 600;
+}
+
+.dashboard  .screenEdit .line{
+    width: 96%;
+    padding: 2%;
+    position: sticky;
+    margin-top: 18%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 2%;
+    height: fit-content;
+}
+
+.dashboard  .screenEdit .line .fechar{
+    padding: 0.5% 2%;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    color: red;
+    border: none;
+    font-weight: 600;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.dashboard .screenEdit .line .fechar::placeholder{
+    background-color: #FFFFFF;
+    border: 1px solid black;
+    transition: 1s;
+}
+
+.screenEdit .line .add{
+    padding: 0.5% 2%;
+    background-color: green;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.screenEdit .line .add::placeholder{
+    background-color: gray;
+    transition: 1s;
+}
+
+
+.alertMessage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    right: -100%;
+    position: absolute;
+    border: 2px solid #203FAB;
+    background-color: rgba(0, 115, 207, 0.9);
+    color: white;
+    margin: 5% 0;
+    padding: 1%;
+    border-radius: 15px;
+    align-items: center;
+    gap: 1%;
+    transition: 1s;
+    opacity: 0;
+    position: fixed;
+    font-size: 90%;
+}
+
+.alertMessage .line {
+    width: 94%;
+    height: fit-content;
+    padding: 1% 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0 15%;
+    background-color: transparent;
+}
+
+.alertMessage .line button {
+    background-color: #203FAB;
+    color: #FFFFFF;
+    width: fit-content;
+    height: fit-content;
+    padding: 1% 4%;
+    border: none;
+    border-radius: 5px;
+}
