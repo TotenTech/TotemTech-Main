@@ -20,6 +20,9 @@ router.get("/gerenciarT", (req, res) => {
     res.render("dashboard/gerenciarTotens")
 })
 
+router.get("/gerenciarU", (req, res) => {
+    res.render("dashboard/gerenciarUsuarios")
+})
 
 router.post("/cadastrarTotem", function (req, res) {
     dashboardController.cadastrarTotem(req, res);
