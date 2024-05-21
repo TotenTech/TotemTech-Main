@@ -7,8 +7,8 @@ var mysql = require("mysql2");
 var mySqlConfig = {
     host: "localhost",
     database: "totemTech",
-    user: "root",
-    password: "267309",
+    user: "totemMaster",
+    password: "12345",
 };
 
  

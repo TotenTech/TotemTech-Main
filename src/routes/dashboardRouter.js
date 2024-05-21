@@ -76,4 +76,13 @@ router.post("/buscarInfoTotem", function(req, res){
 router.post("/buscarInfoTotemComponente", function(req, res){
     dashboardController.buscarInfoTotemComponente(req, res);
 })
+
+router.get("/buscarInterrupcoes", function(req, res){
+    dashboardController.buscarInterrupcoes(req, res);
+})
+
+router.get("/contarInterrupcoes", function(req, res){
+    dashboardController.contarInterrupcoes(req, res);
+})
+
 module.exports = router;

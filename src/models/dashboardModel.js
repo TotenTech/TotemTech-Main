@@ -134,6 +134,25 @@ function buscarInfoTotem(totem) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+
+function buscarInterrupcoes(){
+    var instrucao =  `
+    select totem as nome, horario , motivo  from interrupcoes;`
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function contarInterrupcoes(){
+    var instrucao =  `
+    select count(*) as total from interrupcoes;`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
 module.exports = {
     cadastrarTotem,
     cadastrarTotemComponetes,
@@ -149,4 +168,6 @@ module.exports = {
     buscarInfoTotemComponente,
     buscarInfoTotemTotalRam,
     buscarInfoTotemTipoDisco,
+    buscarInterrupcoes,
+    contarInterrupcoes,
 };
