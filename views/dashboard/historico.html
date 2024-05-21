@@ -14,7 +14,7 @@
     <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 
-<body>
+<body onload="chamarMetodos()">
     <div class="menuLateral">
         <div class="boxSoon">
             <img src="../../img/Logo-Preta.png">
@@ -59,7 +59,7 @@
 
     <div class="dashboard" id="boxDashboard">
 
-        
+
         <h1 class="title">Histórico</h1>
 
         <div class="bigBox" id="bigBoxDiv">
@@ -69,10 +69,10 @@
                 <h1>Total de interrupções</h1>
                 <div class="circleFundo">
                     <div class="circle">
-                        <span id="spanNumberTotal">10</span>
+                        <span id="spanNumberTotal"></span>
                     </div>
                 </div>
-                
+
                 <h6>Com base nos últimos 30 dias.</h6>
 
                 <p>Motivos:</p>
@@ -92,84 +92,8 @@
                     <span class="description">Motivo</span>
                 </div>
 
-                <div class="lineDark">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-
-                
-                <div class="lineWhite">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-
-                <div class="lineDark">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-                
-                <div class="lineWhite">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-                     
-                <div class="lineDark">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-
-                <div class="lineWhite">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-
-                     
-                <div class="lineDark">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-                
-                <div class="lineWhite">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-
-                <div class="lineDark">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-
-                <div class="lineWhite">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-                     
-                <div class="lineDark">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-
-                <div class="lineWhite">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
-                </div>
-                     
-                <div class="lineDark">
-                    <span class="dado">Totem 1</span>
-                    <span class="dado">26/11/2023 14:23:32</span>
-                    <span class="dado">Cpu</span>
+                <div class="historico" id="lineWhite">
+                    <!-- As linhas serão inseridas aqui pelo JavaScript -->
                 </div>
 
             </div>

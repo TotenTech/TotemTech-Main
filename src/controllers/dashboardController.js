@@ -300,6 +300,28 @@ function buscarInfoTotemTipoDisco(req, res) {
     }
 }
 
+// Controlador para inserir uma nova interrupção
+
+
+function buscarInterrupcoes(req, res) {
+    dashboardModel.buscarInterrupcoes().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+// Controlador para contar o número total de interrupções
+function contarInterrupcoes(req, res) {
+    dashboardModel.contarInterrupcoes().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 
 module.exports = {
     cadastrarTotem,
@@ -316,4 +338,6 @@ module.exports = {
     buscarInfoTotemComponente,
     buscarInfoTotemTotalRam,
     buscarInfoTotemTipoDisco,
+    buscarInterrupcoes,
+    contarInterrupcoes,
 }
