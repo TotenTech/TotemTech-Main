@@ -42,7 +42,7 @@ function mostrarSenha(visivel) {
     inputGrupoSenha.innerHTML = '';
     if (visivel) {
         inputGrupoSenha.innerHTML = `
-        <input type="text" placeholder="banana" >
+        <input type="text" placeholder="Senha" >
         <label for="">Senha</label>
         <i class="bi bi-eye-fill" id="olhoImg" onclick="mostrarSenha(false)"></i>`;
     } else {
@@ -53,6 +53,35 @@ function mostrarSenha(visivel) {
     }
     
 }
+
+
+function mostrarSenhaAdd(visivel) {
+    const inputGrupoSenha = document.getElementById('inputGrupoSenhaBoxAdd');
+    inputGrupoSenha.innerHTML = '';
+    if (visivel) {
+        inputGrupoSenha.innerHTML = `
+        <input type="text" placeholder="Senha" >
+        <label for="">Senha</label>
+        <i class="bi bi-eye-fill" id="olhoImgAdd" onclick="mostrarSenhaAdd(false)"></i>`;
+    } else {
+        inputGrupoSenha.innerHTML = `
+        <input type="text" placeholder="*******" >
+        <label for="">Senha</label>
+        <i class="bi bi-eye-slash-fill" id="olhoImgAdd" onclick="mostrarSenhaAdd(true)"></i>`;
+    }
+    
+}
+
+
+function screenAddUserMostrar(mostrar){
+    const screenAddUserFundo = document.getElementById('screenAddUserFundoDiv');
+    if(mostrar){
+        screenAddUserFundo.style.display= "flex";
+    }else{
+        screenAddUserFundo.style.display = "none";
+    }
+}
+
 
 document.getElementById("btn_sair").addEventListener("click", () => {
     sessionStorage.clear();
