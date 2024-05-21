@@ -28,6 +28,7 @@
      align-items: center;
      gap: 2vh;
      /* background-color: #E8E6E3; */
+     overflow-x: hidden;
  }
 
  .navBar {
@@ -221,7 +222,7 @@
 
  .home .totemCasca {
      position: absolute;
-     bottom: -40%;
+     top: 30vh;
      width: 150px;
      height: 240px;
      background-color: #E3E3DD;
@@ -469,189 +470,189 @@
 
  /* contato */
  .modalSuporte {
-    display: none; 
-    position: fixed; 
-    z-index: 1;
-    width: 100%; 
-    height: 100vh; 
-    overflow: hidden; 
-    background-color: rgba(0,0,0,0.4);
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .conteudoModalSuporte {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
-    height: 75vh;
-  }
+     display: none;
+     position: fixed;
+     z-index: 1;
+     width: 100%;
+     height: 100vh;
+     overflow: hidden;
+     background-color: rgba(0, 0, 0, 0.4);
+     align-items: center;
+     justify-content: center;
+ }
 
-  .pipefy{
-    width: 100%;
-    height: 100%;
-  }
-  
-  .fecharModalSuporte {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .fecharModalSuporte:hover,
-  .fecharModalSuporte:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+ .conteudoModalSuporte {
+     background-color: #fefefe;
+     margin: 15% auto;
+     padding: 20px;
+     border: 1px solid #888;
+     width: 80%;
+     height: 75vh;
+ }
+
+ .pipefy {
+     width: 100%;
+     height: 100%;
+ }
+
+ .fecharModalSuporte {
+     color: #aaa;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+ }
+
+ .fecharModalSuporte:hover,
+ .fecharModalSuporte:focus {
+     color: black;
+     text-decoration: none;
+     cursor: pointer;
+ }
 
 
  .areaContato {
-    width: 90%;
-    padding: 1% 3%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+     width: 90%;
+     padding: 1% 3%;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
 
-.areaContato .contatoSuporte {
-    gap: 5vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-}
+ .areaContato .contatoSuporte {
+     gap: 5vh;
+     width: 100%;
+     display: flex;
+     justify-content: space-around;
+     flex-direction: column;
+ }
 
-.areaContato .esquerdaContato {
-    width: 100%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 3vh;
-}
+ .areaContato .esquerdaContato {
+     width: 100%;
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     gap: 3vh;
+ }
 
-.areaContato .esquerdaContato .contato {
-    text-align: center;
-    width: 100%;
-    background-image: url(../img/fundo_azul.png);
-    background-size: cover;
-    color: transparent;
-    background-clip: text;
-    font-size: 180%;
-}
+ .areaContato .esquerdaContato .contato {
+     text-align: center;
+     width: 100%;
+     background-image: url(../img/fundo_azul.png);
+     background-size: cover;
+     color: transparent;
+     background-clip: text;
+     font-size: 180%;
+ }
 
-.areaContato .esquerdaContato .textoContato{
-    width: 96%;
-    padding: 1% 2%;
-    font-size: 90%;
-    text-align: center;
-}
+ .areaContato .esquerdaContato .textoContato {
+     width: 96%;
+     padding: 1% 2%;
+     font-size: 90%;
+     text-align: center;
+ }
 
-.areaContato .esquerdaContato .emailContato {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    background-image: url(../img/fundo_azul.png);
-    background-size: cover;
-    width: fit-content;
-    padding: 0 3%;
-    border-radius: 10px;
-    color: #FFFFFF;
-}
+ .areaContato .esquerdaContato .emailContato {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 15px;
+     background-image: url(../img/fundo_azul.png);
+     background-size: cover;
+     width: fit-content;
+     padding: 0 3%;
+     border-radius: 10px;
+     color: #FFFFFF;
+ }
 
-.areaContato .esquerdaContato .emailContato img{
-    height: 4vh;
-    width: auto;
-}
+ .areaContato .esquerdaContato .emailContato img {
+     height: 4vh;
+     width: auto;
+ }
 
 
-.areaContato .contatoSuporte .direitaContato {
-    width: 100%;
-    height: fit-content;
-    padding: 2% 0;
-}
+ .areaContato .contatoSuporte .direitaContato {
+     width: 100%;
+     height: fit-content;
+     padding: 2% 0;
+ }
 
-.areaContato .direitaContato .suporteContato {
-    background-image: url(../img/fundo_azul.png);
-    background-size: cover;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-    color: #E8E6E3;
-    width: 100%;
-    gap: 2vh;
-    padding: 2% 0;
-}
+ .areaContato .direitaContato .suporteContato {
+     background-image: url(../img/fundo_azul.png);
+     background-size: cover;
+     border-radius: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-around;
+     text-align: center;
+     color: #E8E6E3;
+     width: 100%;
+     gap: 2vh;
+     padding: 2% 0;
+ }
 
-.areaContato .direitaContato .suporteContato button {
-    background-color: #E8E6E3;
-    color: #000000;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-}
+ .areaContato .direitaContato .suporteContato button {
+     background-color: #E8E6E3;
+     color: #000000;
+     border-radius: 5px;
+     padding: 10px;
+     cursor: pointer;
+     border: none;
+     outline: none;
+ }
 
-footer {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-    background-image: url(../img/fundo_azul.png);
-    background-size: cover;
-    border-radius: 30% 30% 0 0 ;
-}
+ footer {
+     width: 100%;
+     display: flex;
+     justify-content: space-around;
+     flex-direction: column;
+     align-items: center;
+     background-image: url(../img/fundo_azul.png);
+     background-size: cover;
+     border-radius: 30% 30% 0 0;
+ }
 
-.contatoFooter {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    border-radius: 20px;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 110%;
-}
+ .contatoFooter {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 15px;
+     border-radius: 20px;
+     padding: 10px;
+     color: #FFFFFF;
+     font-size: 110%;
+ }
 
-.contatoFooter img{
-    height: 5vh;
-    width: auto;
-    filter: none;
-}
+ .contatoFooter img {
+     height: 5vh;
+     width: auto;
+     filter: none;
+ }
 
-.logoFooter {
-    width: fit-content;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
+ .logoFooter {
+     width: fit-content;
+     align-items: center;
+     display: flex;
+     justify-content: center;
+ }
 
-footer img{
-    height: 10vh;
-    width: auto;
-    filter: drop-shadow(0px 0px 2px white);
+ footer img {
+     height: 10vh;
+     width: auto;
+     filter: drop-shadow(0px 0px 2px white);
 
-}
+ }
 
-.direitosFooter {
-    width: 100%;
-    color: #FFFFFF;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
+ .direitosFooter {
+     width: 100%;
+     color: #FFFFFF;
+     align-items: center;
+     display: flex;
+     justify-content: center;
+ }
 
 
 
@@ -954,18 +955,19 @@ footer img{
          width: 50%;
 
      }
-     .areaContato{
-        height: 75vh;
+
+     .areaContato {
+         height: 75vh;
      }
  }
 
 
  @media screen and (min-width: 900px) {
 
-    .navBar{
-        width: 94%;
-        padding: 1% 3%;
-    }
+     .navBar {
+         width: 94%;
+         padding: 1% 3%;
+     }
 
      .navBar .itensNav {
          padding: 0 4%;
@@ -1170,17 +1172,17 @@ footer img{
          margin: 1vh 0 0 0;
      }
 
-     .areaContato .contatoSuporte{
-        flex-direction: row;
-        gap: 5%;
+     .areaContato .contatoSuporte {
+         flex-direction: row;
+         gap: 5%;
      }
 
-     .contatoSuporte .esquerdaContato{
-        width: 50%;
+     .contatoSuporte .esquerdaContato {
+         width: 50%;
      }
 
-     .contatoSuporte .direitaContato{
-        max-width: 45%;
+     .contatoSuporte .direitaContato {
+         max-width: 45%;
      }
 
  }
@@ -1387,3 +1389,27 @@ footer img{
          height: fit-content;
      }
  }
+
+ @media screen and (min-height: 600px) {
+     .home .totemCasca {
+         top: 38vh;
+     }
+ }
+
+ @media screen and (min-height: 700px) {
+    .home .totemCasca {
+        top: 36vh;
+    }
+}
+
+@media screen and (min-height: 800px) {
+    .home .totemCasca {
+        top: 30vh;
+    }
+}
+
+    @media screen and (min-height: 900px) {
+        .home .totemCasca {
+            top: 28vh;
+        }
+}

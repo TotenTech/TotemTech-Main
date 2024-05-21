@@ -233,7 +233,10 @@
 
         <div class="screenEdit" id="screenEditBox">
             <div class="boxEdit">
-                <h2>Editar Usuário</h2>
+                <div class="titulo">
+                    <h2>Editar Usuário</h2>
+                    <button class="fechar" onclick="screenEdit(true)">X</button>
+                </div>
 
                 <div class="inputGrupo">
                     <input type="text" placeholder="Usuario Teste">
@@ -261,11 +264,46 @@
             </div>
 
             <div class="line">
-                <button class="fechar" onclick="screenEdit(true)">Fechar</button>
-                <button class="add">Adicionar</button>
+               <button class="editar">Editar</button>
             </div>
         </div>
 
+        <button class="add" onclick="screenAddUserMostrar(true)">+</button>
+        <div class="fundoAdd" id="screenAddUserFundoDiv">
+            <div class="screenAddUser">
+                <div class="lineTitulo">
+                    <h3>Adicionar Usuário</h3>
+                    <button class="fechar" onclick="screenAddUserMostrar(false)">X</button>
+                </div>
+                <div class="inputGrupo">
+                    <input type="text" placeholder="Nome">
+                    <label for="">Nome</label>
+                </div>
+
+                <div class="inputGrupo">
+                    <input type="email" placeholder="E-mail">
+                    <label for="">E-mail</label>
+                </div>
+
+                <div class="inputGrupo" id="inputGrupoSenhaBoxAdd">
+                    <input type="text" placeholder="Senha">
+                    <label for="">Senha</label>
+                    <i class="bi bi-eye-fill" id="olhoImgAdd" onclick="mostrarSenhaAdd(true)"></i>
+                </div>
+
+                <div class="inputGrupo">
+                    <select id="">
+                        <option value="Funcionario">Funcionario</option>
+                        <option value="Administrador">Administrador</option>
+                    </select>
+                    <label for="">Nível De Acesso</label>
+                </div>
+                <div class="line">
+                    <button onclick="" class="addUser">Adicionar</button>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </body>
 <script src="../../js/dashboard/gerenciarUsuarios.js"></script>
