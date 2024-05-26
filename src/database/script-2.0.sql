@@ -176,6 +176,8 @@ CREATE TABLE memoriaRegistro (
     REFERENCES memoria (idmemoria, totem));
 
 
+
+
 -- INSERTS
 
 INSERT INTO endereco (logradouro, bairro, numero, cep, complemento)
@@ -263,6 +265,7 @@ VALUES
 
 INSERT INTO memoriaRegistro (valor, horario, memoria, totem)
 VALUES (65.6, '2024-04-20 12:30:00', 1, 1);
+
 
 -- SELECTS DE TESTE
 select * from empresa;
