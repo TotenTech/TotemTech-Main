@@ -5,6 +5,12 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 
+// Definir telas disponiveis por nivel de acesso
+if(sessionStorage.TIPO_USUARIO == "1"){
+    const screenGerenciarUsuario = document.getElementById("screenGerenciarUsuarioLi");
+    screenGerenciarUsuario.style.display = "none";
+}
+
 //Definir o nome do usuário e empresa
 const nameUser = document.getElementById('spanNameUser');
 const nameCompany = document.getElementById('spanNameCompany');

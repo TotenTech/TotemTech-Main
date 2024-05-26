@@ -195,7 +195,8 @@ body {
     border-radius: 10px;
     overflow-y: scroll;
     height: 70vh;
-    box-shadow: 0px 0px 15 px -5px #000000;
+    box-shadow: 0px 0px 10px -5px #000000;
+    background-color: rgba(136, 187, 204, 0.5);
 }
 
 .dashboard .tableUsers .lineDescription {
@@ -342,14 +343,14 @@ body {
     background-color: #FFFFFF;
 }
 
-.dashboard .screenEdit .titulo{
+.dashboard .screenEdit .lineTitulo{
     display: flex;
     justify-content: space-between;
     width: 100%;
     padding: 0 ;
 }
 
-.dashboard  .screenEdit .titulo .fechar{
+.dashboard  .screenEdit .lineTitulo .fechar{
     padding: 0.5% 2%;
     background-color: transparent;
     border-radius: 5px;
@@ -361,7 +362,7 @@ body {
     color: #444444;
 }
 
-.dashboard .screenEdit .titulo .fechar::placeholder{
+.dashboard .screenEdit .lineTitulo .fechar::placeholder{
     background-color: #FFFFFF;
     border: 1px solid black;
     transition: 1s;
@@ -582,7 +583,7 @@ body {
 .dashboard .screenAddUser .inputGrupo {
     display: flex;
     position: relative;
-    margin-top: 5%;
+    margin-top: 3%;
     gap: 1%;
     align-items: center;
 }
@@ -656,7 +657,7 @@ body {
 
 .dashboard .screenAddUser .line{
     width: 96%;
-    padding: 2%;
+    padding: 0%;
     display: flex;
     justify-content: end;
     align-items: center;

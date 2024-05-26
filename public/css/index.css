@@ -1203,7 +1203,7 @@
          width: 190px;
          height: 280px;
          right: 10%;
-         bottom: 3vh;
+         top: 24vh;
 
      }
 
@@ -1390,26 +1390,26 @@
      }
  }
 
- @media screen and (min-height: 600px) {
+ @media screen and (min-height: 600px) and (max-width: 900px){
      .home .totemCasca {
          top: 38vh;
      }
  }
 
- @media screen and (min-height: 700px) {
-    .home .totemCasca {
-        top: 36vh;
-    }
-}
+ @media screen and (min-height: 700px) and (max-width: 900px) {
+     .home .totemCasca {
+         top: 36vh;
+     }
+ }
 
-@media screen and (min-height: 800px) {
-    .home .totemCasca {
-        top: 30vh;
-    }
-}
+ @media screen and (min-height: 800px) and (max-width: 900px){
+     .home .totemCasca {
+         top: 30vh;
+     }
+ }
 
-    @media screen and (min-height: 900px) {
-        .home .totemCasca {
-            top: 28vh;
-        }
-}
+ @media screen and (min-height: 900px) {
+     .home .totemCasca {
+         top: 28vh;
+     }
+ }

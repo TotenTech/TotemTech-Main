@@ -4,6 +4,12 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Definir telas disponiveis por nivel de acesso
+if(sessionStorage.TIPO_USUARIO == "1"){
+    const screenGerenciarUsuario = document.getElementById("screenGerenciarUsuarioLi");
+    screenGerenciarUsuario.style.display = "none";
+}
+
 // Div que totem todos os graficos e linhas
 const boxGrafico = document.getElementById('divBoxGrafico');
 
@@ -208,7 +214,7 @@ function trocarBoxParametro(tipo){
         
     }else{
         boxRight.style.backgroundColor = "rgba(136, 187, 204, 1)";
-        descricaoBom.innerHTML = `Entre 50% e 79%. Indica que a CPU está trabalhando sem sobrecarga, com folga para lidar com picos de demanda.`;
+        descricaoBom.innerHTML = `Menos de 79%. Indica que a CPU está trabalhando sem sobrecarga, com folga para lidar com picos de demanda.`;
         descricaoMedio.innerHTML = `Entre 80% e 90%. É sinal de que a CPU está sendo utilizada com eficiência, mas pode haver lentidão em momentos de pico.`;
         descricaoRuim.innerHTML = `Acima de 90%. Indica sobrecarga da CPU, resultando em lentidão, travamentos e instabilidades do sistema.`;
 

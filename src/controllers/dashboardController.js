@@ -49,11 +49,12 @@ function cadastrarTotemComponetes(req, res) {
 
 function cadastrarTotemRam(req, res) {
     var total = req.body.totalServer;
+    var tipoComponente = req.body.tipoServer;
 
     if (total == undefined) {
         res.status(400).send("Algum dado está undefined!");
     } else {
-        dashboardModel.cadastrarTotemRam(total)
+        dashboardModel.cadastrarTotemRam(total, tipoComponente)
             .then(function (resposta) {
                 res.status(200).send("Componentes do totem cadastrado com sucesso");
             }).catch(function (erro) {
@@ -321,6 +322,109 @@ function contarInterrupcoes(req, res) {
     });
 }
 
+function cadastrarUsuario(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var nivelAcesso = req.body.nivelAcessoServer;
+    var empresa = req.body.empresaServer;
+
+    if (nome == undefined ||
+        email == undefined ||
+        senha == undefined ||
+        empresa == undefined ||
+        nivelAcesso == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+        dashboardModel.cadastrarUsuario(nome, email, senha, empresa, nivelAcesso)
+            .then(function (resposta) {
+                res.status(200).send("Usuário cadastrado com sucesso");
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
+function listarUsuarios(req, res) {
+    var empresa = req.body.empresaServer
+
+    dashboardModel.listarUsuarios(empresa).then(function (resposta) {
+        res.status(200).send(resposta);
+
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function buscarInfoUsuario(req, res) {
+    var id = req.body.idServer;
+    if (id == undefined) {
+        res.status(400).send("Seu usuario está undefined!");
+    } else {
+
+        dashboardModel.buscarInfoUsuario(id)
+            .then(
+                function (resultadoAutenticar) {
+                    if (resultadoAutenticar.length == 1) {
+                        res.json({
+                            nome: resultadoAutenticar[0].nome,
+                            email: resultadoAutenticar[0].email,
+                            senha: resultadoAutenticar[0].senha,
+                            tipo: resultadoAutenticar[0].tipo,
+                        });
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar buscar! Erro:", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function deletarUsuario(req, res) {
+    var id = req.body.idServer;
+
+    if (id == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+        dashboardModel.deletarUsuario(id)
+            .then(function (resposta) {
+                res.status(200).send("Sucesso em deletar as visualizações do usuário");
+
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
+
+function editarUsuario(req, res) {
+    var id = req.body.idServer;
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var tipo = req.body.tipoServer;
+
+    if (id == undefined || nome == undefined || email == undefined || senha == undefined || tipo == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+        dashboardModel.editarUsuario(id, nome, email, senha, tipo)
+            .then(function (resposta) {
+                res.status(200).send("Sucesso em alterar os dados do usuário");
+
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
 
 
 module.exports = {
@@ -340,4 +444,9 @@ module.exports = {
     buscarInfoTotemTipoDisco,
     buscarInterrupcoes,
     contarInterrupcoes,
+    cadastrarUsuario,
+    listarUsuarios,
+    buscarInfoUsuario,
+    deletarUsuario,
+    editarUsuario,
 }
