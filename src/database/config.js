@@ -1,34 +1,42 @@
 
-var mysql = require("mysql2");
-// var sql = require('mssql');
+var sql = require('mssql');
 
 
 // CONEXÃO DO MYSQL WORKBENCH
-var mySqlConfig = {
-    host: "localhost",
+var sqlConfig = {
+    server: "localhost",
     database: "totemTech",
     user: "totemMaster",
     password: "12345",
+    options: {
+        encrypt: true,
+        trustServerCertificate: true
+    }
 };
 
- 
+
 function executar(instrucao) {
 
-        return new Promise(function (resolve, reject) {
-            var conexao = mysql.createConnection(mySqlConfig);
-            conexao.connect();
-            conexao.query(instrucao, function (erro, resultados) {
-                conexao.end();
+    return new Promise(function (resolve, reject) {
+        sql.connect(sqlConfig, (erro) => {
+            if (erro) {
+                reject('Erro ao conectar ao SQL Server: ' + erro);
+                return;
+            }
+            const requisicao = new sql.Request();
+            requisicao.query(instrucao, function (erro, resultados) {
                 if (erro) {
                     reject(erro);
+                    return;
                 }
                 console.log(resultados);
-                resolve(resultados);
+                resolve(resultados.recordset);
             });
-            conexao.on('error', function (erro) {
-                return ("ERRO NO MySQL WORKBENCH: ", erro.sqlMessage);
+            sql.on('error', function (erro) {
+                return ("ERRO NO SQL: ", erro.sqlMessage);
             });
         });
+    });
 
 }
 
