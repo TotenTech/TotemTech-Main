@@ -2,7 +2,6 @@
 var sql = require('mssql');
 
 
-// CONEXÃO DO MYSQL WORKBENCH
 var sqlConfig = {
     server: "localhost",
     database: "totemTech",
