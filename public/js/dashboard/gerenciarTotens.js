@@ -438,6 +438,7 @@ function fecharEditarTotem() {
     loginTotemEdit.innerHTML = ``;
     senhaTotemEdit.innerHTML = ``;
     sistemaOperacionalTotemEdit.innerHTML = ``;
+    sistemaOperacionalTotemEdit.innerHTML = ``;
 
     screenEdit.style.display = "none";
     listTotem.style.display = "flex";
@@ -477,13 +478,11 @@ function abrirInformacao(idTotem) {
                     loginTotemInfo.innerHTML = `${sessionStorage.LOGIN_TOTEM}`;
                     senhaTotemInfo.innerHTML = `${sessionStorage.S_T}`;
                     sistemaOperacionalTotemInfo.innerHTML = `${sessionStorage.SISTEMA_OPERACIONAL_TOTEM}`;
-
                     buscarInfoTotemComponente(idTotem);
                 });
             }
         })
         .catch(function (erro) {
-            console.log("Deu Erro")
             console.error("Erro ao processar requisição:", erro);
         });
 }
@@ -496,8 +495,6 @@ function fecharInformacao() {
     screenInfo.style.display = "none";
     bigBox.style.display = "flex";
 }
-
-
 
 
 //Troca as informações por input
@@ -718,6 +715,7 @@ function esconderInput(validacao) {
     }
 
 
+
     if (validacao == false) {
         return false;
     } else {
@@ -733,6 +731,7 @@ function esconderInput(validacao) {
                 senhaServer: autenticarSenha,
                 sistemaOperacionalServer: autenticarSistemaOperacional,
                 totemServer: sessionStorage.ID_TOTEM,
+                sistemaOperacionalServer: autenticarSistemaOperacional,
             })
         })
 
@@ -1068,7 +1067,7 @@ function listarTotens() {
                 resposta.json().then(function (resposta) {
                     if (resposta.length > 0) {
                         listTotem.innerHTML = "";
-                        numberTotal.innerHTML = `${resposta.length}`;
+                        numberTotal.innerHTML = `${resposta.length }`;
                         for (var c = 0; c < resposta.length; c++) {
                             var totem = resposta[c];
                             const listTotem = document.getElementById('listTotemDiv');

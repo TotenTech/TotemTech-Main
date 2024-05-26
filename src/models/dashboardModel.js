@@ -3,9 +3,9 @@ var database = require("../database/config")
 
 function cadastrarTotem(nome, login, senha, sistemaOperacional, empresa) {
     var instrucao = `
-    INSERT INTO totem (nome, login, senha, sistemaOperacional, empresa)
-     VALUES ('${nome}', '${login}', '${senha}', '${sistemaOperacional}', ${empresa});     
-    `;
+    INSERT INTO totem (nome, login, senha, empresa)
+     VALUES ('${nome}', '${login}', '${senha}', ${empresa});     
+    `;   
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);
@@ -56,10 +56,11 @@ CALL excluirTudoTotem(${totem});
     return database.executar(instrucao);
 }
 
-function alterarTotem(nome, login, senha, sistemaOperacional, totem) {
+function alterarTotem(nome, login, senha, totem){
     var instrucao = `UPDATE totem 
-    SET  nome = '${nome}', login = '${login}', senha = '${senha}', sistemaOperacional = '${sistemaOperacional}' WHERE idtotem = ${totem};
-    `;
+    SET  nome = '${nome}', login = '${login}', senha = '${senha}'
+    WHERE idtotem = ${totem};
+    `;   
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);
@@ -78,8 +79,7 @@ function alterarTotemComponente(cpu, rede, memoria, disco, totem) {
 
 function alterarTotemRam(ram, totem) {
     var instrucao = `
-    UPDATE memoria 
-SET total = "${ram}" WHERE totem = ${totem};
+    SELECT nome, login, senha FROM totem WHERE idtotem = ${totem};
         `;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
