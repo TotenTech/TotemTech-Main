@@ -1,11 +1,10 @@
 var database = require("../database/config")
 
 
-
 function cadastrarTotem(nome, login, senha, sistemaOperacional, empresa) {
     var instrucao = `
     INSERT INTO totem (nome, login, senha, sistemaOperacional, empresa)
-     VALUES ('${nome}', '${login}', '${senha}', '${sistemaOperacional}', '${empresa}');     
+     VALUES ('${nome}', '${login}', '${senha}', '${sistemaOperacional}', ${empresa});     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
@@ -22,9 +21,9 @@ function cadastrarTotemComponetes(cpu, rede, ram, disco) {
     return database.executar(instrucao);
 }
 
-function cadastrarTotemRam(total) {
+function cadastrarTotemRam(total, tipoComponente) {
 
-    var instrucao = `INSERT INTO memoria (total, medida, totem)VALUES 
+    var instrucao = `INSERT INTO componente (nome, medida, totem)VALUES 
     (${total}, 'GB', (SELECT MAX(idtotem) FROM totem));`
 
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -96,14 +95,6 @@ WHERE totem = ${totem} AND iddisco = ${id};`;
     return database.executar(instrucao);
 }
 
-function buscarInfoTotem(totem) {
-    var instrucao = `
-    SELECT nome, login, senha, sistemaOperacional FROM totem WHERE idtotem = ${totem};
-        `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
 function buscarInfoTotemComponente(totem) {
     var instrucao = `
     SELECT cpu, memoria, disco, rede FROM visualizacao WHERE totem = ${totem};
@@ -136,22 +127,59 @@ function buscarInfoTotem(totem) {
 }
 
 
-function buscarInterrupcoes(){
-    var instrucao =  `
+function buscarInterrupcoes() {
+    var instrucao = `
     select totem as nome, horario , motivo  from interrupcoes;`
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function contarInterrupcoes(){
-    var instrucao =  `
+function contarInterrupcoes() {
+    var instrucao = `
     select count(*) as total from interrupcoes;`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
+function cadastrarUsuario(nome, email, senha, empresa, nivelAcesso) {
+    var instrucao = `
+    INSERT INTO usuario (nome, email, senha, empresa, tipo) VALUES
+    ('${nome}', '${email}', '${senha}', ${empresa}, ${nivelAcesso});  
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
 
+    return database.executar(instrucao);
+}
+
+function listarUsuarios(empresa) {
+    var instrucao = `
+    SELECT * FROM usuario where empresa = ${empresa};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarInfoUsuario(id) {
+    var instrucao = `SELECT * FROM usuario WHERE idusuario = ${id};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function deletarUsuario(id) {
+    var instrucao = `DELETE FROM usuario WHERE idUsuario = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function editarUsuario(id, nome, email, senha, tipo) {
+    var instrucao = `
+    UPDATE usuario 
+    SET  nome = '${nome}', email = '${email}', senha = '${senha}', tipo = '${tipo}' WHERE idUsuario = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 module.exports = {
     cadastrarTotem,
@@ -170,4 +198,9 @@ module.exports = {
     buscarInfoTotemTipoDisco,
     buscarInterrupcoes,
     contarInterrupcoes,
+    cadastrarUsuario,
+    listarUsuarios,
+    buscarInfoUsuario,
+    deletarUsuario,
+    editarUsuario,
 };

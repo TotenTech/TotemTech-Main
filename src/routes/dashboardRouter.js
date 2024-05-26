@@ -88,4 +88,24 @@ router.get("/contarInterrupcoes", function(req, res){
     dashboardController.contarInterrupcoes(req, res);
 })
 
+router.post("/cadastrarUsuario", function (req, res) {
+    dashboardController.cadastrarUsuario(req, res);
+})
+
+router.post("/listarUsuarios", function(req, res){
+    dashboardController.listarUsuarios(req, res);
+})
+
+router.post("/buscarInfoUsuario", function(req, res){
+    dashboardController.buscarInfoUsuario(req, res);
+})
+
+router.post("/deletarUsuario", function(req, res){
+    dashboardController.deletarUsuario(req, res);
+})
+
+router.post("/editarUsuario", function (req, res) {
+    dashboardController.editarUsuario(req, res);
+})
+
 module.exports = router;

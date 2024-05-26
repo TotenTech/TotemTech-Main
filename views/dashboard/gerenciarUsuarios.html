@@ -47,7 +47,7 @@
             <li class="estatisticas">
                 <a href="/dashboard/estatisticas">Estatísticas</a>
             </li>
-            <li class="gerenciarU">
+            <li class="gerenciarU" id="screenGerenciarUsuarioLi">
                 <a href="/dashboard/gerenciarU">Gerenciar Usuários</a>
             </li>
 
@@ -65,16 +65,9 @@
         <h1 class="title">Gerenciar Usuários</h1>
 
         <div class="lineTotal">
-            <div>Total De Usuários: <span>10</span></div>
-            <div><span>Administradores</span> - <span>5</span></div>
-            <div><span>Funcionarios</span> - <span>5</span></div>
-        </div>
-        <div class="alertMessage" id="alertMessage">
-            <div class="line">Tem certeza que deseja apagar esse totem</div>
-            <div class="line">
-                <button onclick="esconderAlerta()">Sim</button>
-                <button onclick="esconderAlerta()">Não</button>
-            </div>
+            <div>Total De Usuários: <span id="spanTotalUsuario">0</span></div>
+            <div><span>Administradores</span> - <span id="spanAdministradorUsuario">0</span></div>
+            <div><span>Funcionarios</span> - <span id="spanFuncionarioUsuario">0</span></div>
         </div>
 
         <div class="tableUsers" id="tableUserBox">
@@ -86,225 +79,53 @@
                 <span class="acesso">Acesso</span>
             </div>
 
-            <div class="lineDark">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador</span>
-            </div>
-
-            <div class="lineWhite">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador </span>
-            </div>
-
-            <div class="lineDark">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador</span>
-            </div>
-
-            <div class="lineWhite">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador </span>
-            </div>
-
-            <div class="lineDark">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador</span>
-            </div>
-
-            <div class="lineWhite">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador </span>
-            </div>
-
-            <div class="lineDark">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador</span>
-            </div>
-
-            <div class="lineWhite">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador </span>
-            </div>
-            <div class="lineDark">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador</span>
-            </div>
-
-            <div class="lineWhite">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador </span>
-            </div>
-
-            <div class="lineDark">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador</span>
-            </div>
-
-            <div class="lineWhite">
-                <div class="imagem">
-                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta()">
-                </div>
-                <div class="imagem">
-                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false)">
-                </div>
-                <span class="nome">Usuário Teste</span>
-                <span class="email">usuario.teste@gmail.com</span>
-                <span class="acesso">Administrador </span>
-            </div>
-
+    
         </div>
 
-        <div class="screenEdit" id="screenEditBox">
-            <div class="boxEdit">
-                <div class="titulo">
-                    <h2>Editar Usuário</h2>
-                    <button class="fechar" onclick="screenEdit(true)">X</button>
-                </div>
-
-                <div class="inputGrupo">
-                    <input type="text" placeholder="Usuario Teste">
-                    <label for="">Nome</label>
-                </div>
-
-                <div class="inputGrupo">
-                    <input type="text" placeholder="usuario.teste@gmail.com">
-                    <label for="">E-mail</label>
-                </div>
-
-                <div class="inputGrupo" id="inputGrupoSenhaBox">
-                    <input type="text" placeholder="*******">
-                    <label for="">Senha</label>
-                    <i class="bi bi-eye-fill" id="olhoImg" onclick="mostrarSenha(true)"></i>
-                </div>
-
-                <div class="inputGrupo">
-                    <select id="">
-                        <option value="Funcionario">Funcionario</option>
-                        <option value="Administrador">Administrador</option>
-                    </select>
-                    <label for="">Nível De Acesso</label>
-                </div>
-            </div>
-
-            <div class="line">
-               <button class="editar">Editar</button>
-            </div>
+        <div class="screenEdit" id="screenEditBoxDiv">
+                        
         </div>
 
         <button class="add" onclick="screenAddUserMostrar(true)">+</button>
+
+
         <div class="fundoAdd" id="screenAddUserFundoDiv">
-            <div class="screenAddUser">
+            <div class="screenAddUser" id="screenAddUserDiv">
                 <div class="lineTitulo">
                     <h3>Adicionar Usuário</h3>
                     <button class="fechar" onclick="screenAddUserMostrar(false)">X</button>
                 </div>
                 <div class="inputGrupo">
-                    <input type="text" placeholder="Nome">
+                    <input type="text" placeholder="Nome" id="inputNomeUsuario">
                     <label for="">Nome</label>
                 </div>
 
                 <div class="inputGrupo">
-                    <input type="email" placeholder="E-mail">
+                    <input type="email" placeholder="E-mail" id="inputEmailUsuario">
                     <label for="">E-mail</label>
                 </div>
 
                 <div class="inputGrupo" id="inputGrupoSenhaBoxAdd">
-                    <input type="text" placeholder="Senha">
+                    <input type="text" placeholder="Senha" id="inputSenhaUsuario">
                     <label for="">Senha</label>
-                    <i class="bi bi-eye-fill" id="olhoImgAdd" onclick="mostrarSenhaAdd(true)"></i>
                 </div>
 
                 <div class="inputGrupo">
-                    <select id="">
-                        <option value="Funcionario">Funcionario</option>
-                        <option value="Administrador">Administrador</option>
+                    <select id="inputNivelAcessoUsuario">
+                        <option value="1">Funcionario</option>
+                        <option value="2">Administrador</option>
                     </select>
                     <label for="">Nível De Acesso</label>
                 </div>
                 <div class="line">
-                    <button onclick="" class="addUser">Adicionar</button>
+                    <button onclick="addUsuario()" class="addUser">Adicionar</button>
                 </div>
             </div>
+            
         </div>
         
     </div>
+    <div class="alertMessage" id="alertMessage"></div>
 </body>
 <script src="../../js/dashboard/gerenciarUsuarios.js"></script>
 

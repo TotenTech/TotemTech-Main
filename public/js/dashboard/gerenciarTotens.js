@@ -5,6 +5,13 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 
+// Definir telas disponiveis por nivel de acesso
+if(sessionStorage.TIPO_USUARIO == "1"){
+    const screenGerenciarUsuario = document.getElementById("screenGerenciarUsuarioLi");
+    screenGerenciarUsuario.style.display = "none";
+}
+
+
 /*TODAS AS CONST COM AS TELAS*/
 //Vericar se é gerente
 const imgNivel1 = document.querySelectorAll(".imagemNivel1");
@@ -958,6 +965,7 @@ function addTotemRam() {
         },
         body: JSON.stringify({
             totalServer: totalRamTotemBD,
+            tipoServer: 2,
         })
     })
     addTotemDisco();
