@@ -2,10 +2,11 @@ window.addEventListener("DOMContentLoaded", () => {
     if (sessionStorage.ID_USUARIO == undefined) {
         window.location.href = "/erro";
     }
+    listAll()
 });
 
 // Definir telas disponiveis por nivel de acesso
-if(sessionStorage.TIPO_USUARIO == "1"){
+if (sessionStorage.TIPO_USUARIO == "1") {
     const screenGerenciarUsuario = document.getElementById("screenGerenciarUsuarioLi");
     screenGerenciarUsuario.style.display = "none";
 }
@@ -21,9 +22,6 @@ const localChart = document.getElementById('boxLocalChart');
 
 // Div do modal com o total de totens
 const totalTotem = document.getElementById('boxTotalTotem');
-
-// Div utilizada para listar o total de totens
-const listTotalTotem = document.getElementById('boxListTotalTotem');
 
 
 // Definir o nome do usuário e empresa
@@ -42,29 +40,19 @@ const descricaoRuim = document.getElementById('boxDescricaoRuim');
 
 //gráfico:
 // Dados de exemplo 
-const dadosCPU = [48, 49, 50, 56, 57, 58, 59, 60, 51, 52, 53, 42, 43, 44, 45, 40, 41, 54, 55, 46, 47]; // Utilização da CPU (%)
-const dadosRAM = [60, 65, 68, 70, 63, 67, 69, 64, 62, 90, 66, 61, 91, 71, 89, 88, 87, 86, 85, 84, 83]; // Uso de RAM (%)
-const dadosDISCO = [5, 6, 7, 6, 5, 4, 3, 3, 4, 6, 5, 7, 3, 4, 6, 5, 7]; // Tempo médio de resposta do disco (ms)
-const dadosRede = [20, 25, 30, 35, 30, 25, 20, 15, 20, 15, 10, 15, 20, 15, 20, 15, 10, 15, 20]; // Utilização da rede - Download (%)
+let dadosCPU = []; // Utilização da CPU (%)
+let dadosRAM = []; // Uso de RAM (%)
+let dadosDISCO = []; // Tempo médio de resposta do disco (ms)
+let dadosRede = []; // Utilização da rede - Download (%)
+let dadosHorario = [];
 
-
-const labels = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
-
-
-function totalTotemFunction(decisao) {
-    if (decisao == "abrir") {
-        totalTotem.style.display = "flex";
-    } else {
-        totalTotem.style.display = "none";
-    }
-}
-
-abrirGrafico();
+let selectedComponent;
 function abrirGrafico(tipo) {
 
     if (tipo == "rede") {
-        boxGrafico.style.backgroundColor = "rgba(131, 74, 161, 0.5)";
-        lineDescricao.innerHTML = `Monitoramento da Rede nas últimas 24 horas em %`;
+        selectedComponent = "rede";
+        boxGrafico.style.backgroundColor = "rgba(135, 164, 214, 1)";
+        lineDescricao.innerHTML = `Monitoramento da Rede em tempo real em %`;
         localChart.innerHTML = `<canvas class="graficoRede" id="graficoRede"></canvas>`;
         const ctxRede = document.getElementById('graficoRede');
 
@@ -72,7 +60,7 @@ function abrirGrafico(tipo) {
         const chartQuatro = new Chart(ctxRede, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: dadosHorario,
                 datasets: [{
                     label: 'Rede',
                     data: dadosRede,
@@ -95,15 +83,16 @@ function abrirGrafico(tipo) {
         });
 
     } else if (tipo == "ram") {
-        boxGrafico.style.backgroundColor = "rgba(245, 199, 126, 1)";
-        lineDescricao.innerHTML = `Monitoramento da memória RAM nas últimas 24 horas em %`;
+        selectedComponent = "ram";
+        boxGrafico.style.backgroundColor = "rgba(30, 144, 255, 1)";
+        lineDescricao.innerHTML = `Monitoramento da memória RAM em tempo real em %`;
         localChart.innerHTML = `<canvas class="graficoRAM" id="graficoRAM"></canvas>`;
         const ctxRam = document.getElementById('graficoRAM');
 
         const chartDois = new Chart(ctxRam, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: dadosHorario,
                 datasets: [{
                     label: 'RAM',
                     data: dadosRAM,
@@ -126,8 +115,9 @@ function abrirGrafico(tipo) {
         });
 
     } else if (tipo == "disco") {
-        boxGrafico.style.backgroundColor = "rgba(117, 199, 126, 1)";
-        lineDescricao.innerHTML = `Monitoramento do Disco nas últimas 24 horas em %`;
+        selectedComponent = "disco";
+        boxGrafico.style.backgroundColor = "rgba(100, 149, 237, 1)";
+        lineDescricao.innerHTML = `Monitoramento do Disco em tempo real em %`;
         localChart.innerHTML = `<canvas class="graficoDisco" id="graficoDisco"></canvas>`;
         const ctxDisco = document.getElementById('graficoDisco');
 
@@ -135,7 +125,7 @@ function abrirGrafico(tipo) {
         const chartTres = new Chart(ctxDisco, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: dadosHorario,
                 datasets: [{
                     label: 'Disco',
                     data: dadosDISCO,
@@ -157,15 +147,16 @@ function abrirGrafico(tipo) {
             }
         });
     } else {
-        boxGrafico.style.backgroundColor = "rgba(136, 187, 204, 0.8)";
-        lineDescricao.innerHTML = ` Monitoramento da Cpu nas últimas 24 horas em %`;
+        selectedComponent = "cpu"
+        boxGrafico.style.backgroundColor = "rgba(135, 206, 250, 1)";
+        lineDescricao.innerHTML = ` Monitoramento da Cpu em tempo real em %`;
         localChart.innerHTML = `<canvas class="graficoCPU" id="graficoCPU"></canvas>`;
         const ctxCpu = document.getElementById('graficoCPU');
 
         const chart = new Chart(ctxCpu, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: dadosHorario,
                 datasets: [{
                     label: 'CPU',
                     data: dadosCPU,
@@ -192,28 +183,28 @@ function abrirGrafico(tipo) {
     trocarBoxParametro(tipo);
 }
 
-function trocarBoxParametro(tipo){
+function trocarBoxParametro(tipo) {
 
-    if(tipo == "rede"){
-        boxRight.style.backgroundColor = "rgba(131, 74, 161, 0.5)";
+    if (tipo == "rede") {
+        boxRight.style.backgroundColor = "rgba(135, 164, 214, 1)";
         descricaoBom.innerHTML = `Acima de 10MB/s. O sistema funcionará sem problemas.`;
         descricaoMedio.innerHTML = `Entre 10MB/s e 6MB/s. O sistema funcionará sem problemas, porém, pode apresentar problemas em horário de pico.`;
         descricaoRuim.innerHTML = `De 5MB/s. Indica lentidão, travamento e instabilidade do sistema`;
 
-    }else if(tipo == "ram"){
-        boxRight.style.backgroundColor = "rgba(245, 199, 126, 1)";
+    } else if (tipo == "ram") {
+        boxRight.style.backgroundColor = "rgba(30, 144, 255, 1)";
         descricaoBom.innerHTML = `Menos de 85% da memória total disponível. Garante que o sistema tenha recursos suficientes para executar aplicativos sem lentidão ou travamentos.`;
         descricaoMedio.innerHTML = ` Entre 85% e 89% da memória total utilizada. Nível aceitável, mas exige monitoramento para evitar sobrecarga da memória.`;
         descricaoRuim.innerHTML = ` Mais de 89% da memória total disponível. Sobrecarga da memória pode levar a lentidão, travamentos, falhas no sistema e até mesmo perda de dados.`;
 
-    }else if(tipo == "disco"){
-        boxRight.style.backgroundColor = "rgba(117, 199, 126, 1)";
+    } else if (tipo == "disco") {
+        boxRight.style.backgroundColor = "rgba(100, 149, 237, 1)";
         descricaoBom.innerHTML = `Menos de 80%. Nível aceitável que garante que o disco não esteja sobrecarregado, permitindo que funcione de forma eficiente.`;
         descricaoMedio.innerHTML = `Entre 80% e 90%. Nível de alerta que exige monitoramento para evitar que a utilização do disco exceda a capacidade.`;
         descricaoRuim.innerHTML = `Acima de 90%. Utilização excessiva do disco pode levar a lentidão, travamentos e falhas no sistema.`;
-        
-    }else{
-        boxRight.style.backgroundColor = "rgba(136, 187, 204, 1)";
+
+    } else {
+        boxRight.style.backgroundColor = "rgba(135, 206, 250, 1)";
         descricaoBom.innerHTML = `Menos de 79%. Indica que a CPU está trabalhando sem sobrecarga, com folga para lidar com picos de demanda.`;
         descricaoMedio.innerHTML = `Entre 80% e 90%. É sinal de que a CPU está sendo utilizada com eficiência, mas pode haver lentidão em momentos de pico.`;
         descricaoRuim.innerHTML = `Acima de 90%. Indica sobrecarga da CPU, resultando em lentidão, travamentos e instabilidades do sistema.`;
@@ -236,3 +227,382 @@ document.getElementById("btn_sair").addEventListener("click", () => {
     sessionStorage.clear();
     window.location.href = "/";
 })
+
+
+let totemSelectedId;
+const selectedTotemTitle = document.getElementById("h1TituloTotem");
+function setTotemVisualized(idTotem, empresa, nome) {
+    dadosCPU = [];
+    dadosRAM = [];
+    dadosDISCO = [];
+    dadosRede = [];
+    dadosHorario = [];
+    abrirGrafico("cpu");
+    selectedTotemTitle.innerHTML = `${nome}`;
+    totemSelectedId = idTotem;
+    selectedComponent = "cpu"
+
+    for (let i = 0; i < allTotens.length; i++) {
+        if (allTotens[i].idtotem == idTotem) {
+            document.getElementById("situacaoAtualCpu").innerHTML = `${allCpuLastData[i].valor}%`;
+            allCpuLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosCPU.push(filtered.valor) });
+            document.getElementById("situacaoAtualRam").innerHTML = `${allMemoryLastData[i].valor}%`;
+            allMemoryLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosRAM.push(filtered.valor) });
+            document.getElementById("situacaoAtualDisco").innerHTML = `TODO`;
+            document.getElementById("situacaoAtualRede").innerHTML = `${allNetworkLastData[i].valor}MB/s`;
+            allNetworkLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosRede.push(filtered.valor) });
+
+            putIntoGraphContinuos()
+            verifyAllContinuos()
+        }
+    }
+}
+
+const allTotens = [];
+const listTotalTotem = document.getElementById('totalTotensList');
+const listTotensFirstScreen = document.getElementById("lineTotens");
+function listTotensFirstScreenAdd() {
+    allTotens.forEach((i) => {
+        listTotensFirstScreen.innerHTML +=
+            `<div class="totemAmarelo" id="lineBoxTotem${i.idtotem}" onclick="setTotemVisualized(${i.idtotem}, ${i.empresa}, '${i.nome}')">
+            <div class="circle" id="totemLineCircle${i.idtotem}"></div>
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">${i.nome}</span>
+            </div>`;
+    })
+
+    allTotens.forEach((i) => {
+        listTotalTotem.innerHTML +=
+            `<div class="totemAmarelo" id="totalBoxTotem${i.idtotem}" onclick="setTotemVisualized('${i.idtotem}', '${i.empresa}', '${i.nome}')">
+            <div class="circle" id="totemBoxCircle${i.idtotem}"></div>
+                <img src="../../img/smartphone.png">
+                <span id="spanNameTotem">${i.nome}</span>
+            </div>`;
+    })
+}
+
+function totalTotemFunction(decisao) {
+    if (decisao == "abrir") {
+        totalTotem.style.display = "flex";
+    } else {
+        totalTotem.style.display = "none";
+    }
+}
+
+async function listAll() {
+    try {
+        const response = await fetch(`/totens/listAll/${sessionStorage.EMPRESA_USUARIO}`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            allTotens.push(...json);
+            listTotensFirstScreenAdd();
+            getLastComponentsData();
+            console.log("totens na lista = " + allTotens);
+        } else {
+            console.error("Deu bolete");
+        }
+    } catch (error) {
+        console.error("Erro em buscar totens no banco", error);
+    }
+}
+
+let allCpuLastData = [];
+let allMemoryLastData = [];
+let allDiskLastData = [];
+let allNetworkLastData = [];
+async function getLastComponentsData() {
+    if (allCpuLastData.length > 0) {
+        allCpuLastData = [];
+    }
+    if (allMemoryLastData.length > 0) {
+        allMemoryLastData = [];
+    }
+    if (allDiskLastData.length > 0) {
+        allDiskLastData = [];
+    }
+    if (allNetworkLastData.length > 0) {
+        allNetworkLastData = [];
+    }
+    try {
+        //CPU
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/1`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            allCpuLastData.push(...json);
+            console.log("Registros Cpu " + allCpuLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
+
+    try {
+        //Memoria
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${2}`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            allMemoryLastData.push(...json);
+            console.log("Registros memoria " + allMemoryLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
+
+    // try {
+    //     //Discos
+    //     const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${1}`);
+    //     if (response.ok) {
+    //         const json = await response.json();
+    //         console.log(JSON.stringify(json));
+    //     } else {
+    //         console.error("Deu bolete " + error);
+    //     }
+    // } catch (error) {
+    //     console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    // }
+
+    try {
+        //Rede
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${4}`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            allNetworkLastData.push(...json);
+            console.log("Registros rede " + allNetworkLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
+
+    document.getElementById(`lineBoxTotem${allTotens[0].idtotem}`).click();
+    abrirGrafico("cpu");
+}
+
+async function putIntoGraphContinuos() {
+    let cpu = [];
+    let memory = [];
+    let disk = [];
+    let network = [];
+    if (dadosCPU.length >= 10) {
+        dadosCPU.shift();
+    }
+    if (dadosDISCO.length >= 10) {
+        dadosDISCO.shift();
+    }
+    if (dadosRAM.length >= 10) {
+        dadosRAM.shift();
+    }
+    if (dadosRede.length >= 10) {
+        dadosRede.shift();
+    }
+    if (dadosHorario.length >= 10) {
+        dadosHorario.shift();
+    }
+    try {
+        //CPU
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/1`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            cpu.push(...json);
+            console.log("Registros Cpu " + allCpuLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
+
+    try {
+        //Memoria
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${2}`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            memory.push(...json);
+            console.log("Registros memoria " + allMemoryLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
+
+    // try {
+    //     //Discos
+    //     const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${1}`);
+    //     if (response.ok) {
+    //         const json = await response.json();
+    //         console.log(JSON.stringify(json));
+    //     } else {
+    //         console.error("Deu bolete " + error);
+    //     }
+    // } catch (error) {
+    //     console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    // }
+
+    try {
+        //Rede
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${4}`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            network.push(...json);
+            console.log("Registros rede " + allNetworkLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
+
+    cpu.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosCPU.push(filtered.valor) });
+    memory.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRAM.push(filtered.valor) });
+    network.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRede.push(filtered.valor) });
+    network.filter(it => it.idtotem == totemSelectedId).forEach(filtered => {
+        const horario = filtered.horario;
+        const regex = /T(\d{2}):(\d{2})/;
+        const match = horario.match(regex);
+
+        if (match) {
+            const horas = match[1];
+            const minutos = match[2];
+            const horarioFormatado = `${horas}:${minutos}`;
+            dadosHorario.push(horarioFormatado)
+        } else {
+            console.log("Horário não encontrado na string.");
+        }
+    });
+
+    document.getElementById("situacaoAtualCpu").innerHTML = `${dadosCPU[dadosCPU.length - 1]}%`;
+    document.getElementById("situacaoAtualRam").innerHTML = `${dadosRAM[dadosRAM.length - 1]}%`;
+    document.getElementById("situacaoAtualDisco").innerHTML = `TODO`;
+    document.getElementById("situacaoAtualRede").innerHTML = `${dadosRede[dadosRede.length - 1]}MB/s`;
+
+    verifyAllContinuos(cpu, memory, disk, network)
+    abrirGrafico(selectedComponent);
+    setTimeout(putIntoGraphContinuos, 135000)
+}
+
+async function verifyAllContinuos(cpu, memory, disk, network) {
+    let cpuColor = "";
+    let memoryColor = "";
+    let diskColor = "";
+    let networkColor = "";
+    cpu.forEach(it => {
+        let num = parseFloat(it.valor);
+
+        if (num < 80.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            if (it.idtotem = totemSelectedId) {
+                cpuColor = "green";
+            }
+        } else if (num >= 80.0 && num <= 90.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (it.idtotem == totemSelectedId) {
+                cpuColor = "yellow";
+            }
+            // alertaMedio(it.idtotem, it.valor, "Cpu");
+        } else if (num > 90.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
+            if (it.idtotem == totemSelectedId) {
+                cpuColor = "red";
+            }
+            // alertaRuim(it.idtotem, it.valor, "Cpu");
+        }
+    })
+
+    memory.forEach(it => {
+        let num = parseFloat(it.valor);
+
+        if (num < 85.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            if (it.idtotem == totemSelectedId) {
+                memoryColor = "green";
+            }
+        } else if (num >= 85.0 && num <= 89.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (it.idtotem == totemSelectedId) {
+                memoryColor = "yellow";
+            }
+            // alertaMedio(it.idtotem, it.valor, "Memória");
+        } else if (num > 89.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
+            if (it.idtotem == totemSelectedId) {
+                memoryColor = "red";
+            }
+            // alertaRuim(it.idtotem, it.valor, "Memória");
+        }
+    })
+
+    disk.forEach(it => {
+        let num = parseFloat(it.valor);
+
+        if (num < 80.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            if (it.idtotem == totemSelectedId) {
+                diskColor = "green";
+            }
+        } else if (num >= 80.0 && num <= 90.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (it.idtotem == totemSelectedId) {
+                diskColor = "yellow";
+            }
+            // alertaMedio(it.idtotem, it.valor, "Memória");
+        } else if (num > 90.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
+            if (it.idtotem == totemSelectedId) {
+                diskColor = "red";
+            }
+            // alertaRuim(it.idtotem, it.valor, "Memória");
+        }
+    })
+
+    network.forEach(it => {
+        let num = parseFloat(it.valor);
+
+        if (num > 10.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            if (it.idtotem == totemSelectedId) {
+                networkColor = "green";
+            }
+        } else if (num >= 6.0 && num <= 10.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (it.idtotem == totemSelectedId) {
+                networkColor = "yellow";
+            }
+            // alertaMedio(it.idtotem, it.valor, "Rede");
+        } else if (num < 6.0) {
+            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
+            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
+            if (it.idtotem == totemSelectedId) {
+                networkColor = "red";
+            }
+            // alertaRuim(it.idtotem, it.valor, "Rede");
+        }
+    })
+
+    document.getElementById("boxCpuCircle").style.backgroundColor = cpuColor;
+    // document.getElementById("boxDiscoCircle").style.backgroundColor = diskColor;
+    document.getElementById("boxRamCircle").style.backgroundColor = memoryColor;
+    document.getElementById("boxRedeCircle").style.backgroundColor = networkColor;
+}

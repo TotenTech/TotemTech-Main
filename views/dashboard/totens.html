@@ -65,149 +65,49 @@
             </div>
             <h2>Todos os totens</h2>
             <div id="boxListTotaTotem" class="boxListTotalTotem">
-                <div class="lineTotem">
-                    <div class="totemAmarelo" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 1</span>
-                    </div>
-                    <div class="totemVermelho" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 2</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 3</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 4</span>
-                    </div>
-                </div>
-
-                <div class="lineTotem">
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 5</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 6</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 7</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 8</span>
-                    </div>
-                </div>
-
-                <div class="lineTotem">
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 9</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 10</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 11</span>
-                    </div>
-                    <div class="totemVerde" id="boxTotem">
-                        <img src="../../img/smartphone.png">
-                        <span id="spanNameTotem">Totem 12</span>
-                    </div>
-                </div>
+                <div class="lineTotem" id="totalTotensList"></div>
 
             </div>
         </div>
 
-        <div class="lineTotens">
+        <div class="lineTotens" id="lineTotens">
 
             <div class="totem" id="boxTotem" onclick="totalTotemFunction('abrir')">
                 <span id="spanNameTotem">Ver todos</span>
             </div>
-
-            <div class="totemAmarelo" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-
-            <div class="totemVermelho" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-            <div class="totemVerde" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-
-            <div class="totemVerde" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-            <div class="totemVerde" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-            <div class="totemVerde" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-            <div class="totemVerde" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-            <div class="totemVerde" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
-            <div class="totemVerde" id="boxTotem">
-                <img src="../../img/smartphone.png">
-                <span id="spanNameTotem">Totem 1</span>
-            </div>
-
+            
         </div>
 
-        <h1 id="h1TituloTotem" class="tituloTotem">
-            Totem 1
-        </h1>
+        <h1 id="h1TituloTotem" class="tituloTotem"></h1>
 
         <div class="boxComponent">
 
             <div class="boxCpu" onclick="abrirGrafico('cpu')">
+                <div class="boxAtualCircle" id="boxCpuCircle"></div>
                 <img src="../../img/torre-da-cpu.png">
                 <h3>Cpu:</h3>
-                <span id="situacaoAtualCpu">47%</span>
+                <span id="situacaoAtualCpu"></span>
             </div>
 
             <div class="boxDisco" onclick="abrirGrafico('disco')">
+                <div class="boxAtualCircle" id="boxDiscoCircle"></div>
                 <img src="../../img/drive-de-disco-rigido.png">
                 <h3>Disco:</h3>
-                <span id="situacaoAtualDisco">79%</span>
+                <span id="situacaoAtualDisco"></span>
             </div>
 
             <div class="boxMemoria" onclick="abrirGrafico('ram')">
+                <div class="boxAtualCircle" id="boxRamCircle"></div>
                 <img src="../../img/ram.png">
                 <h3>Memória:</h3>
-                <span id="situacaoAtualRam">84%</span>
+                <span id="situacaoAtualRam"></span>
             </div>
 
             <div class="boxRede" onclick="abrirGrafico('rede')">
+                <div class="boxAtualCircle" id="boxRedeCircle"></div>
                 <img src="../../img/rede.png">
                 <h3>Rede:</h3>
-                <span id="situacaoAtualRede">12MB/s</span>
+                <span id="situacaoAtualRede"></span>
             </div>
 
 
@@ -218,11 +118,11 @@
             <div class="boxLeftCpu" id="divBoxGrafico">
 
                 <div class="line" id="boxLineDescricao">
-                    Monitoramento da Cpu nas últimas 24 horas em %
+                    Monitoramento da Cpu em tempo real em %
                 </div>
 
                 <div class="microBox">
-                    <span class="situacao" id="spanSituacaoCPU">Situação Atual: 50%</span>
+                    <!-- <span class="situacao" id="spanSituacaoCPU">Situação Atual: 50%</span> -->
                     <div class="localChart" id="boxLocalChart">
                         <canvas class="graficoCPU" id="graficoCPU"></canvas>
                     </div>
