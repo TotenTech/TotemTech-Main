@@ -47,14 +47,36 @@ function cadastrarTotemComponetes(req, res) {
     }
 }
 
-function cadastrarTotemRam(req, res) {
-    var total = req.body.totalServer;
-    var tipoComponente = req.body.tipoServer;
+function cadastrarComponentesTotem(req, res) {
+    var nomeComponente = req.body.nomeComponenteServer;
+    var nome1 = req.body.nome1Server;
+    var valor1 = req.body.valor1Server;
+    var unidadeMedida1 = req.body.unidadeMedida1Server;
+    var nome2 = req.body.nome2Server;
+    var valor2 = req.body.valor2Server;
+    var unidadeMedida2 = req.body.unidadeMedida2Server;
+    var nomeComponenteCPU = req.body.nomeComponenteCPUServer;
+    var valorCPU = req.body.valorCPUServer;
+    var unidadeMedidaCPU = req.body.unidadeMedidaCPUServer;
+    var nomeComponenteRede = req.body.nomeComponenteRedeServer;
+    var nomeEspecificacao1Rede = req.body.nomeEspecificacao1RedeServer;
+    var valorEspecificacao1Rede = req.body.valorEspecificacao1RedeServer;
+    var unidadeMedidaEspecificacao1Rede = req.body.unidadeMedidaEspecificacao1RedeServer;
+    var nomeEspecificacao2Rede = req.body.nomeEspecificacao2RedeServer;
+    var valorEspecificacao2Rede = req.body.valorEspecificacao2RedeServer;
+    var unidadeMedidaEspecificacao2Rede = req.body.unidadeMedidaEspecificacao2RedeServer;
 
-    if (total == undefined) {
+    if (nomeComponente == undefined ||
+        nome1 == undefined ||
+        valor1 == undefined ||
+        unidadeMedida1 == undefined ||
+        nome2 == undefined ||
+        valor2 == undefined ||
+        unidadeMedida2 == undefined ) {
+
         res.status(400).send("Algum dado está undefined!");
     } else {
-        dashboardModel.cadastrarTotemRam(total, tipoComponente)
+        dashboardModel.cadastrarComponentesTotem( nomeComponente, nome1, valor1, unidadeMedida1, nome2, valor2, unidadeMedida2, nomeComponenteCPU, valorCPU, unidadeMedidaCPU, nomeComponenteRede,  nomeEspecificacao1Rede, valorEspecificacao1Rede, unidadeMedidaEspecificacao1Rede, nomeEspecificacao2Rede, valorEspecificacao2Rede, unidadeMedidaEspecificacao2Rede)
             .then(function (resposta) {
                 res.status(200).send("Componentes do totem cadastrado com sucesso");
             }).catch(function (erro) {
@@ -64,14 +86,24 @@ function cadastrarTotemRam(req, res) {
     }
 }
 
-function cadastrarTotemDisco(req, res) {
-    var disco = req.body.discoServer;
-    var total = req.body.totalServer;
+function cadastrarComponentesTotemDisco(req, res) {
+    var nomeComponente = req.body.nomeComponenteServer;
+    var nome1 = req.body.nome1Server;
+    var valor1 = req.body.valor1Server;
+    var unidadeMedida1 = req.body.unidadeMedida1Server;
+    var nome2 = req.body.nome2Server;
+    var valor2 = req.body.valor2Server;
+    var unidadeMedida2 = req.body.unidadeMedida2Server;
 
-    if (disco == undefined || total == undefined) {
+    if (
+        nomeComponente == undefined ||
+        nome1 == undefined ||
+        valor1 == undefined ||
+        unidadeMedida1 == undefined) {
+
         res.status(400).send("Algum dado está undefined!");
     } else {
-        dashboardModel.cadastrarTotemDisco(disco, total)
+        dashboardModel.cadastrarComponentesTotemDisco( nomeComponente, nome1, valor1, unidadeMedida1, nome2, valor2, unidadeMedida2)
             .then(function (resposta) {
                 res.status(200).send("Componentes do totem cadastrado com sucesso");
             }).catch(function (erro) {
@@ -101,7 +133,7 @@ function deletarTotem(req, res) {
     } else {
         dashboardModel.deletarTotem(totem)
             .then(function (resposta) {
-                res.status(200).send("Sucesso em deletar as visualizações do totem");
+                res.status(200).send("Sucesso em deletar o totem");
 
             }).catch(function (erro) {
                 console.log(erro);
@@ -179,19 +211,19 @@ function alterarTotemRam(req, res) {
     }
 }
 
-function alterarTotemDisco(req, res) {
-    var id = req.body.idServer;
-    var total = req.body.totalServer;
-    var tipo = req.body.tipoServer;
-    var totem = req.body.totemServer;
+function alterarComponenteEspecificacao(req, res) {
+    var idcomponente = req.body.idcomponenteServer;
+    var tipoComponente = req.body.tipoComponenteServer;
+    var idespecificacao = req.body.idespecificacaoServer;
+    var valorEspecificacao = req.body.valorEspecificacaoServer;
 
-    if (totem == undefined ||
-        total == undefined ||
-        tipo == undefined ||
-        id == undefined) {
+    if (valorEspecificacao == undefined ||
+        tipoComponente == undefined ||
+        idespecificacao == undefined ||
+        idcomponente == undefined) {
         res.status(400).send("Algum dado está undefined!");
     } else {
-            dashboardModel.alterarTotemDisco(id, total, tipo, totem)
+            dashboardModel.alterarComponenteEspecificacao(idcomponente, tipoComponente, idespecificacao, valorEspecificacao)
                 .then(function (resposta) {
                     res.status(200).send("Alteração feita com sucesso!");
 
@@ -259,39 +291,46 @@ function buscarInfoTotemComponente(req, res) {
     }
 }
 
-
-function buscarInfoTotemTotalRam(req, res) {
-    var totem = req.body.totemServer;
+function buscarInfoComponente(req, res) {
+    var totem = req.body.idTotemServer;
     if (totem == undefined) {
         res.status(400).send("Seu totem está undefined!");
     } else {
 
-        dashboardModel.buscarInfoTotemTotalRam(totem)
-            .then(
-                function (resultadoAutenticar) {
-                    if (resultadoAutenticar.length == 1) {
-                        res.json({
-                            total: resultadoAutenticar[0].total,
-                        });
-                    }
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar buscar! Erro:", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+        dashboardModel.buscarInfoComponente(totem)
+        .then(function (resposta) {
+            res.status(200).send(resposta);
+    
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
     }
 }
 
-function buscarInfoTotemTipoDisco(req, res) {
-    var totem = req.body.totemServer;
+function buscarInfoEspecificacao(req, res) {
+    var totem = req.body.idtotemServer;
     if (totem == undefined) {
         res.status(400).send("Seu totem está undefined!");
     } else {
 
-        dashboardModel.buscarInfoTotemTipoDisco(totem).then(function (resposta) {
+        dashboardModel.buscarInfoEspecificacao(totem).then(function (resposta) {
+            res.status(200).send(resposta);
+    
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+    }
+}
+
+function buscarEspecificacaoComponente(req, res) {
+    var componente = req.body.idcomponenteServer;
+    if (componente == undefined) {
+        res.status(400).send("Seu componente está undefined!");
+    } else {
+
+        dashboardModel.buscarEspecificacaoComponente(componente).then(function (resposta) {
             res.status(200).send(resposta);
     
         }).catch(function (erro) {
@@ -302,8 +341,6 @@ function buscarInfoTotemTipoDisco(req, res) {
 }
 
 // Controlador para inserir uma nova interrupção
-
-
 function buscarInterrupcoes(req, res) {
     dashboardModel.buscarInterrupcoes().then(function (resposta) {
         res.status(200).send(resposta);
@@ -430,18 +467,19 @@ function editarUsuario(req, res) {
 module.exports = {
     cadastrarTotem,
     cadastrarTotemComponetes,
-    cadastrarTotemRam,
-    cadastrarTotemDisco,
+    cadastrarComponentesTotem,
+    cadastrarComponentesTotemDisco,
     listarTotens,
     deletarTotem,
     alterarTotem,
     alterarTotemComponente,
     alterarTotemRam,
-    alterarTotemDisco,
+    alterarComponenteEspecificacao,
     buscarInfoTotem,
     buscarInfoTotemComponente,
-    buscarInfoTotemTotalRam,
-    buscarInfoTotemTipoDisco,
+    buscarInfoComponente,
+    buscarInfoEspecificacao,
+    buscarEspecificacaoComponente,
     buscarInterrupcoes,
     contarInterrupcoes,
     cadastrarUsuario,

@@ -273,10 +273,10 @@ function listarUsuarios() {
                                 tableUser.innerHTML += `
                                 <div class="lineDark">
                                 <div class="imagem">
-                                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta(${usuario.idUsuario})">
+                                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta(${usuario.idusuario})">
                                 </div>
                                 <div class="imagem">
-                                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false, ${usuario.idUsuario})">
+                                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false, ${usuario.idusuario})">
                                 </div>
                                 <span class="nome">${usuario.nome}</span>
                                 <span class="email">${usuario.email}</span>
@@ -287,10 +287,10 @@ function listarUsuarios() {
                                 tableUser.innerHTML += `
                                 <div class="lineWhite">
                                 <div class="imagem">
-                                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta(${usuario.idUsuario})">
+                                    <img src="../../img/lixeira-de-reciclagem.png" class="lixeira" onclick="mostrarAlerta(${usuario.idusuario})">
                                 </div>
                                 <div class="imagem">
-                                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false, ${usuario.idUsuario})">
+                                    <img src="../../img/ferramenta-lapis.png" class="lapis" onclick="screenEdit(false, ${usuario.idusuario})">
                                 </div>
                                 <span class="nome">${usuario.nome}</span>
                                 <span class="email">${usuario.email}</span>
@@ -365,7 +365,7 @@ function editarUsuario(idusuario) {
         if(senhaUsuario == ""){
             senhaUsuario = sessionStorage.SENHA_USUARIO_INFO;
         }
-        
+
         fetch("/dashboard/editarUsuario", {
             method: "POST",
             headers: {
