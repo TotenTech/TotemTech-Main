@@ -13,7 +13,7 @@ app.set("view engine", "html");
 app.set("views", path.join(__dirname, "/views"));
 
 app.listen(port, () => {
-    console.log("Servidor iniciado na porta " + port)
+    console.log("Servidor iniciado na porta " + port);
 });
 
 const indexRouter = require("./src/routes/indexRouter");
@@ -21,9 +21,11 @@ const cadastroRouter = require("./src/routes/cadastroRouter");
 const dashboardRouter = require("./src/routes/dashboardRouter");
 const loginRouter = require("./src/routes/loginRouter");
 const erroRouter = require("./src/routes/erroRouter");
+const totensRouter = require("./src/routes/totensRouter");
 
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/cadastro", cadastroRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/erro", erroRouter);
+app.use("/totens", totensRouter);
