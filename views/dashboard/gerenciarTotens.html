@@ -61,8 +61,6 @@
 
         <h1 class="title">Gerenciar Totens</h1>
 
-        <div class="alertMessage" id="alertMessage"></div>
-
         <div class="line">
             <span>Lista de Totens Cadastrado</span>
             <button onclick="abrirGerenTotem()">Gerenciar Totens</button>
@@ -121,6 +119,7 @@
                 </p>
 
                 <p>
+                    <input type="text" id="inputNovoTipoRamTotem" placeholder="Tipo de memória RAM*">
                     <input type="number" id="inputNovoTotalRamTotem" placeholder="Quantidade de memória RAM*">
                 </p>        
 
@@ -159,7 +158,7 @@
         <div class="bigBoxEdit" id="screenEditDiv">
             <div class="screenEdit">
 
-                <h3>Editar Totem <button onclick="fecharEditarTotem()">X</button></h3>
+                <h3>Informações Totem <button onclick="fecharEditarTotem()">X</button></h3>
 
                 <span>
                     <p id="lineEditTotemNome">Nome:
@@ -186,12 +185,15 @@
                 <div  class="listEditDisco" id="listEditDiscoDiv"></div>
 
                 <span>
+                    <p id="lineEditTotemTipoRam">Tipo memória Ram:
+                        <span class="spanTotem" id="tipoRamSpanTotem"></span>
+                    </p>
                     <p id="lineEditTotemTotalRam">Total memória Ram:
                         <span class="spanTotem" id="totalRamSpanTotem"></span>
                     </p>
                 </span>
 
-
+                <h3>Componentes que deseja monitorar</h3>
                 <ul class="listaDesempenho">
 
                     <li>
@@ -216,93 +218,15 @@
 
                 </ul>
 
-                <div class="line">
+                <div class="line" id="lineButtonDiv">
 
                     <button type="submit" onclick="editarValores()">Editar</button>
-                    <button type="submit" onclick="salvarDadoNovos()">Salvar</button>
+                    <button type="submit" onclick="updateVisualizacao()">Salvar</button>
 
                 </div>
 
             </div>
 
-            <div class="totemCasca">
-                <div class="telaTotem" id="home">
-                    <img src="/img/logo.png">
-                </div>
-            </div>
-        </div>
-
-        <div class="boxInfo" id="screenInfoDiv">
-            <div class="screenInfo">
-                <h3>Informações do Totem
-                    <button onclick="fecharInformacao()">X</button>
-                </h3>
-
-                <div class="line">
-                    <p id="infoTotemNome">Nome:
-                        <span class="spanTotem" id="nomeTotemSpanInfo">teste</span>
-                    </p>
-
-                    <p id="infoTotemEmail">Email:
-                        <span class="spanTotem" id="emailTotemSpanInfo">teste@gmail.com</span>
-                    </p>
-                </div>
-
-                <div class="line">
-                    <p id="infoTotemSenha">Senha:
-                        <span class="spanTotem" id="senhaTotemSpanInfo">**********</span>
-                    </p>
-
-                    <p id="infoTotemSistemaOperacional">Sistema Operacional:
-                        <span class="spanTotem" id="sistemaOperacionalTotemSpanInfo">testeSistema</span>
-                    </p>
-
-                </div>
-
-                <div class="line">
-                    <p id="infoTotemTipoDisco1">
-                        Tipo de Disco:
-                        <span class="spanTotem" id="tipoDisco1TotemSpanInfo"></span>
-                    </p>
-                    <p id="infoTotemTotalDisco1">
-                        Total do Disco:
-                        <span class="spanTotem" id="totalDisco1TotemSpanInfo"></span>
-                    </p>
-                </div>
-
-
-                <div class="line">
-                    <p id="infoTotemTotalRam">
-                        Total Memória Ram:
-                        <span class="spanTotem" id="totalRamTotemSpanInfo"></span>
-                    </p>
-                    </p>
-                </div>
-
-                <ul class="listaDesempenho">
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemCPUInfo" disabled>
-                        <span class="textoSpan">CPU</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemRedeInfo" disabled>
-                        <span class="textoSpan">REDE</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemRAMInfo" disabled>
-                        <span class="textoSpan">Memória RAM</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemDiscoInfo" disabled>
-                        <span class="textoSpan">Disco</span>
-                    </li>
-
-                </ul>
-            </div>
             <div class="totemCasca">
                 <div class="telaTotem" id="home">
                     <img src="/img/logo.png">
@@ -311,6 +235,7 @@
         </div>
 
     </div>
+    <div class="alertMessage" id="alertMessage"></div>
 </body>
 <script src="/js/dashboard/gerenciarTotens.js"></script>
 
