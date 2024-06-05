@@ -81,14 +81,6 @@ router.post("/buscarInfoTotemComponente", function(req, res){
     dashboardController.buscarInfoTotemComponente(req, res);
 })
 
-router.get("/buscarInterrupcoes", function(req, res){
-    dashboardController.buscarInterrupcoes(req, res);
-})
-
-router.get("/contarInterrupcoes", function(req, res){
-    dashboardController.contarInterrupcoes(req, res);
-})
-
 router.post("/cadastrarUsuario", function (req, res) {
     dashboardController.cadastrarUsuario(req, res);
 })
@@ -108,5 +100,34 @@ router.post("/deletarUsuario", function(req, res){
 router.post("/editarUsuario", function (req, res) {
     dashboardController.editarUsuario(req, res);
 })
+
+router.get("/buscarUltimos30Dias", function(req, res){
+    dashboardController.buscarUltimos30Dias(req, res);
+});
+
+router.get("/buscarInterrupcoes", function(req, res){
+    dashboardController.buscarInterrupcoes(req, res);
+});
+
+router.get("/contarInterrupcoesPorMotivoUltimos30Dias", function(req, res){
+    dashboardController.contarInterrupcoesPorMotivoUltimos30Dias(req, res);
+});
+
+router.get("/buscarInterrupcoesUltimas24Horas", function(req, res){
+    dashboardController.buscarInterrupcoesUltimas24Horas(req, res);
+});
+
+router.get("/buscarInterrupcoesPorData", function(req, res){
+    dashboardController.buscarInterrupcoesPorData(req, res);
+});
+
+
+router.get("/motivoUltimos30Dias", function(req, res){
+    dashboardController.obterInterrupcoesPorMotivoUltimos30Dias(req, res);
+});
+
+router.get("/totemUltimos30Dias", function(req, res){
+    dashboardController.obterInterrupcoesPorTotemUltimos30Dias(req, res);
+});
 
 module.exports = router;

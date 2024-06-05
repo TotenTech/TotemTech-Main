@@ -62,79 +62,54 @@
         <h1 class="title">Estatísticas</h1>
 
         <div class="boxStatistics">
-
             <div class="left">
                 <h3>Total de interrupções nas últimas 24 horas</h3>
-
                 <div class="chartLinha">
                     <canvas id="graficoBar"></canvas>
                 </div>
-    
             </div>
-            
             <div class="right">
                 <p>Selecione a data da busca:</p>
-
-            <input type="date">
-
+                <input type="date" id="dataBusca">
+                <div id="errorMessage" style="color: red;"></div>
             </div>
         </div>
 
 
         <div class="lineInterruptions">
-
             <div class="boxInterruptions">
-
                 <div class="left">
                     <div class="chartPizza">
                         <canvas id="graficoPizza"></canvas>
                     </div>
                 </div>
-    
+        
                 <div class="right">
-                    <h4>Total de interrupções por componentes  nos últimos 30 dias</h4>
+                    <h4>Total de interrupções por componentes nos últimos 30 dias</h4>
                     <div class="line">
-                        <span id="componenteCpu">Cpu: 12</span>
-                        <span id="componenteDisco">Disco: 2</span>
+                        <span class="spanComponente" id="spanTotalCpu">Cpu: 0</span>
+                        <span class="spanComponente" id="spanTotalDisco">Disco: 0</span>
                     </div>
                     <div class="line">
-                        <span id="componenteMemoria">Memória: 4</span>
-                        <span id="componenteRede">Rede: 1</span>
+                        <span class="spanComponente" id="spanTotalRam">Memória: 0</span>
+                        <span class="spanComponente" id="spanTotalRede">Rede: 0</span>
                     </div>
                 </div>
             </div>
-
+        
             <div class="boxOptionsTotem">
                 <h3>Escolha um totem</h3>
-
-                <ul>
-                    <li>Geral</li>
-                    <li>Totem 1</li>
-                    <li>Totem 2</li>
-                    <li>Totem 3</li>
-                    <li>Totem 4</li>
-                    <li>Totem 5</li>
-                    <li>Totem 6</li>
-                    <li>Totem 1</li>
-                    <li>Totem 2</li>
-                    <li>Totem 3</li>
-                    <li>Totem 4</li>
-                    <li>Totem 5</li>
-                    <li>Totem 6</li>
-                    <li>Totem 1</li>
-                    <li>Totem 2</li>
-                    <li>Totem 3</li>
-                    <li>Totem 4</li>
-                    <li>Totem 5</li>
-                    <li>Totem 6</li>
-                </ul>
+                <ul></ul>
             </div>
-        </div>
+        </div>        
         
+
     </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.21.1/date-fns.min.js"></script>
 <script src="/js/dashboard/estatisticas.js"></script>
 
 </html>

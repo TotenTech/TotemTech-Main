@@ -170,12 +170,6 @@ function buscarInfoEspecificacao(totem) {
     return database.executar(instrucao);
 }
 
-function buscarInterrupcoes() {
-    var instrucao = `
-    select totem as nome, horario , motivo  from interrupcoes;`
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
 
 function buscarEspecificacaoComponente(componente) {
     var instrucao = `
@@ -200,12 +194,6 @@ ORDER BY
     return database.executar(instrucao);
 }
 
-function contarInterrupcoes() {
-    var instrucao = `
-    select count(*) as total from interrupcoes;`
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
 
 function cadastrarUsuario(nome, email, senha, empresa, nivelAcesso) {
     var instrucao = `
@@ -246,6 +234,104 @@ function editarUsuario(id, nome, email, senha, tipo) {
     return database.executar(instrucao);
 }
 
+function buscarUltimos30Dias() {
+    var instrucao = `
+    SELECT totem AS nome, horario, motivo
+    FROM interrupcoes
+    WHERE horario >= DATEADD(DAY, -30, GETDATE())
+    ORDER BY horario ASC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarInterrupcoes(start_date, end_date) {
+    var instrucao = `
+    SELECT totem AS nome, horario, motivo
+    FROM interrupcoes
+    WHERE horario >= '${start_date} 00:00:00' AND horario <= '${end_date} 23:59:59'
+    ORDER BY horario ASC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function contarInterrupcoesPorMotivoUltimos30Dias() {
+    var instrucao = `
+        SELECT motivo, COUNT(*) AS total
+        FROM interrupcoes
+        WHERE horario >= DATEADD(DAY, -30, GETDATE())
+        GROUP BY motivo;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function contarInterrupcoesPorMotivo(start_date, end_date) {
+    var instrucao = `
+        SELECT motivo, COUNT(*) AS total
+        FROM interrupcoes
+        WHERE horario >= '${start_date} 00:00:00' AND horario <= '${end_date} 23:59:59'
+        GROUP BY motivo;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function obterInterrupcoesUltimas24Horas() {
+    const instrucao = `
+        SELECT FORMAT(horario, 'HH:00') AS hora, COUNT(*) AS total, STRING_AGG(motivo, ', ') AS motivo
+        FROM interrupcoes
+        WHERE horario >= DATEADD(DAY, -1, GETDATE())
+        GROUP BY FORMAT(horario, 'HH:00')
+        ORDER BY hora;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function obterInterrupcoesPorData(data) {
+    const instrucao = `
+        SELECT FORMAT(horario, 'HH:00') AS hora, COUNT(*) AS total, STRING_AGG(motivo, ', ') AS motivo
+        FROM interrupcoes
+        WHERE CAST(horario AS DATE) = '${data}'
+        GROUP BY FORMAT(horario, 'HH:00')
+        ORDER BY hora;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function obterInterrupcoesPorMotivoUltimos30Dias(totem = null) {
+    let instrucao = `
+        SELECT motivo, COUNT(*) AS total
+        FROM interrupcoes
+        WHERE horario >= DATEADD(DAY, -30, GETDATE())
+    `;
+    
+    if (totem) {
+        instrucao += ` AND totem = ${totem}`;
+    }
+
+    instrucao += ` GROUP BY motivo;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function obterInterrupcoesPorTotemUltimos30Dias() {
+    var instrucao = `
+        SELECT totem, COUNT(*) AS total
+        FROM interrupcoes
+        WHERE horario >= DATEADD(DAY, -30, GETDATE())
+        GROUP BY totem;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 module.exports = {
     cadastrarTotem,
     cadastrarTotemComponetes,
@@ -262,11 +348,17 @@ module.exports = {
     buscarInfoComponente,
     buscarInfoEspecificacao,
     buscarEspecificacaoComponente,
-    buscarInterrupcoes,
-    contarInterrupcoes,
     cadastrarUsuario,
     listarUsuarios,
     buscarInfoUsuario,
     deletarUsuario,
     editarUsuario,
+    buscarUltimos30Dias,
+    buscarInterrupcoes,
+    contarInterrupcoesPorMotivoUltimos30Dias,
+    contarInterrupcoesPorMotivo,
+    obterInterrupcoesUltimas24Horas,
+    obterInterrupcoesPorData,
+    obterInterrupcoesPorMotivoUltimos30Dias,
+    obterInterrupcoesPorTotemUltimos30Dias,
 };

@@ -340,25 +340,6 @@ function buscarEspecificacaoComponente(req, res) {
     }
 }
 
-// Controlador para inserir uma nova interrupção
-function buscarInterrupcoes(req, res) {
-    dashboardModel.buscarInterrupcoes().then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-// Controlador para contar o número total de interrupções
-function contarInterrupcoes(req, res) {
-    dashboardModel.contarInterrupcoes().then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
 function cadastrarUsuario(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
@@ -462,6 +443,83 @@ function editarUsuario(req, res) {
     }
 }
 
+function buscarUltimos30Dias(req, res) {
+    dashboardModel.buscarUltimos30Dias().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarInterrupcoes(req, res) {
+    const { start_date, end_date } = req.query;
+    dashboardModel.buscarInterrupcoes(start_date, end_date).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function contarInterrupcoesPorMotivoUltimos30Dias(req, res) {
+    dashboardModel.contarInterrupcoesPorMotivoUltimos30Dias().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function contarInterrupcoesPorMotivo(req, res) {
+    const { start_date, end_date } = req.query;
+    dashboardModel.contarInterrupcoesPorMotivo(start_date, end_date).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarInterrupcoesUltimas24Horas(req, res) {
+    dashboardModel.obterInterrupcoesUltimas24Horas().then(function(resposta) {
+        res.status(200).send(resposta);
+    }).catch(function(erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarInterrupcoesPorData(req, res) {
+    const data = req.query.data;
+    dashboardModel.obterInterrupcoesPorData(data).then(function(resposta) {
+        res.status(200).send(resposta);
+    }).catch(function(erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function obterInterrupcoesPorMotivoUltimos30Dias(req, res) {
+    const totem = req.query.totem;
+    dashboardModel.obterInterrupcoesPorMotivoUltimos30Dias(totem).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function obterInterrupcoesPorTotemUltimos30Dias(req, res) {
+    dashboardModel.obterInterrupcoesPorTotemUltimos30Dias().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 
 module.exports = {
@@ -480,11 +538,17 @@ module.exports = {
     buscarInfoComponente,
     buscarInfoEspecificacao,
     buscarEspecificacaoComponente,
-    buscarInterrupcoes,
-    contarInterrupcoes,
     cadastrarUsuario,
     listarUsuarios,
     buscarInfoUsuario,
     deletarUsuario,
     editarUsuario,
+    buscarUltimos30Dias,
+    buscarInterrupcoes,
+    contarInterrupcoesPorMotivoUltimos30Dias,
+    contarInterrupcoesPorMotivo,
+    buscarInterrupcoesUltimas24Horas,
+    buscarInterrupcoesPorData,
+    obterInterrupcoesPorMotivoUltimos30Dias,
+    obterInterrupcoesPorTotemUltimos30Dias,
 }
