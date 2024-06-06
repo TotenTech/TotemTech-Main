@@ -114,6 +114,9 @@ var ram = 0;
 var totalDisco = 1;
 var contador = 0;
 
+// Soma dos valores de Disco 
+var totalDisco = 0;
+
 //Muda o site com base no nivel de usuario
 tipoTelaUsuario();
 function tipoTelaUsuario() {
@@ -341,7 +344,7 @@ function addComponentesTotem() {
     var nomeEspecificacao2Rede = "ideal";
     var valorEspecificacao2Rede = "10.0";
     var unidadeMedidaEspecificacao2Rede = "MB/s";
-    
+    totalDisco = 0;
     
     
     fetch("/dashboard/cadastrarComponentesTotem", {
@@ -398,6 +401,7 @@ function addDiscoTotem() {
 
         nomeComponente = tipoDiscoDaVez;
         valor2 = totalDiscoDaVez;
+        totalDisco+= parseInt(totalDiscoDaVez, 10);
 
         fetch("/dashboard/cadastrarComponentesTotemDisco", {
             method: "POST",
@@ -416,12 +420,25 @@ function addDiscoTotem() {
         });
         addDiscoTotem();
     } else {
+        addTotalDiscoTotem();
         alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Totem cadastrado com sucesso!!`;
         mostrarAlerta();
         setTimeout(function () {
             abrirGerenTotem();
         }, 2000);
     }
+}
+
+function addTotalDiscoTotem(){
+    fetch("/dashboard/cadastrarTotalDiscoTotem", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            totalDiscoServer: totalDisco,
+        })
+    });    
 }
 
 function addDisco() {

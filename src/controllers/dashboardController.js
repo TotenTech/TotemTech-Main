@@ -113,6 +113,24 @@ function cadastrarComponentesTotemDisco(req, res) {
     }
 }
 
+function cadastrarTotalDiscoTotem(req, res) {
+    var totalDisco = req.body.totalDiscoServer;
+
+    if (totalDisco == undefined) {
+
+        res.status(400).send("dado está undefined!");
+    } else {
+        dashboardModel.cadastrarTotalDiscoTotem(totalDisco)
+            .then(function (resposta) {
+                res.status(200).send("Componentes do totem cadastrado com sucesso");
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
+
 function listarTotens(req, res) {
     var empresa = req.body.empresaServer
 
@@ -527,6 +545,7 @@ module.exports = {
     cadastrarTotemComponetes,
     cadastrarComponentesTotem,
     cadastrarComponentesTotemDisco,
+    cadastrarTotalDiscoTotem,
     listarTotens,
     deletarTotem,
     alterarTotem,
