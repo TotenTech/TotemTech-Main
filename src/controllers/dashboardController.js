@@ -252,6 +252,24 @@ function alterarComponenteEspecificacao(req, res) {
     }
 }
 
+function alterarEspecificacaoTotalDisco(req, res) {
+    var idespecificacao = req.body.idespecificacaoServer;
+    var totalDisco = req.body.totalDiscoServer;
+
+    if (idespecificacao == undefined || totalDisco == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+            dashboardModel.alterarEspecificacaoTotalDisco(idespecificacao, totalDisco)
+                .then(function (resposta) {
+                    res.status(200).send("Alteração feita com sucesso!");
+
+                }).catch(function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                })
+    }
+}
+
 function buscarInfoTotem(req, res) {
     var totem = req.body.totemServer;
     if (totem == undefined) {
@@ -494,6 +512,7 @@ module.exports = {
     alterarTotemComponente,
     alterarTotemRam,
     alterarComponenteEspecificacao,
+    alterarEspecificacaoTotalDisco,
     buscarInfoTotem,
     buscarInfoTotemComponente,
     buscarInfoComponente,

@@ -150,6 +150,13 @@ EXEC dbo.UpdateComponenteEspecificacao
     return database.executar(instrucao);
 }
 
+function alterarEspecificacaoTotalDisco(idespecificacao, totalDisco) {
+    var instrucao = `
+    UPDATE especificacao SET valor = '${totalDisco}' WHERE idespecificacao = ${idespecificacao};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function buscarInfoTotem(totem) {
     var instrucao = `
     SELECT nome, login, senha, sistemaOperacional FROM totem WHERE idtotem = ${totem};
@@ -269,6 +276,7 @@ module.exports = {
     alterarTotemComponente,
     alterarTotemRam,
     alterarComponenteEspecificacao,
+    alterarEspecificacaoTotalDisco,
     buscarInfoTotem,
     buscarInfoTotemComponente,
     buscarInfoComponente,
