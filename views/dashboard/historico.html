@@ -20,87 +20,57 @@
             <img src="../../img/Logo-Preta.png">
             <span>TotemTech</span>
         </div>
-
-
         <div class="boxUser">
-            <span class="nameUser" id="spanNameUser">
-                Usuário
-            </span>
-            <span class="nameCompany" id="spanNameCompany">
-                nome da empresa
-            </span>
-
+            <span class="nameUser" id="spanNameUser">Usuário</span>
+            <span class="nameCompany" id="spanNameCompany">nome da empresa</span>
         </div>
-
         <ul class="optionMenu" id="boxOptionMenu">
-            <li class="totens">
-                <a href="/dashboard">Totens</a>
-            </li>
-            <li class="gerenciar">
-                <a href="/dashboard/gerenciarT">Gerenciar Totens</a>
-            </li>
-            <li class="historico">
-                <a href="/dashboard/historico">Histórico</a>
-            </li>
-            <li class="estatisticas">
-                <a href="/dashboard/estatisticas">Estatísticas</a>
-            </li>
-            <li class="gerenciarU" id="screenGerenciarUsuarioLi">
-                <a href="/dashboard/gerenciarU">Gerenciar Usuários</a>
-            </li>
+            <li class="totens"><a href="/dashboard">Totens</a></li>
+            <li class="gerenciar"><a href="/dashboard/gerenciarT">Gerenciar Totens</a></li>
+            <li class="historico"><a href="/dashboard/historico">Histórico</a></li>
+            <li class="estatisticas"><a href="/dashboard/estatisticas">Estatísticas</a></li>
+            <li class="gerenciarU" id="screenGerenciarUsuarioLi"><a href="/dashboard/gerenciarU">Gerenciar Usuários</a></li>
         </ul>
-
         <div class="boxExit" id="btn_sair">
             <img src="../../img/sair (1).png">
             <span>Sair</span>
         </div>
-
     </div>
-
     <div class="dashboard" id="boxDashboard">
-
-
         <h1 class="title">Histórico</h1>
-
+        <form id="dateForm" style="display: flex;">
+            <input type="date" name="start_date" id="start_date" required>
+            <input type="date" name="end_date" id="end_date" required>
+            <button type="submit">Filtrar</button>
+        </form>
         <div class="bigBox" id="bigBoxDiv">
-
             <div class="boxSmall">
-
                 <h1>Total de interrupções</h1>
                 <div class="circleFundo">
                     <div class="circle">
                         <span id="spanNumberTotal"></span>
                     </div>
                 </div>
-
                 <h6>Com base nos últimos 30 dias.</h6>
-
                 <p>Motivos:</p>
-
-                <span class="spanComponente" id="spanTotalCpu">Cpu: 4</span>
-                <span class="spanComponente" id="spanTotalDisco">Disco: 3</span>
-                <span class="spanComponente" id="spanTotalRam">Memória: 2</span>
-                <span class="spanComponente" id="spanTotalRede">Rede: 1</span>
+                <span class="spanComponente" id="spanTotalCpu">Cpu: 0</span>
+                <span class="spanComponente" id="spanTotalDisco">Disco: 0</span>
+                <span class="spanComponente" id="spanTotalRam">Memória: 0</span>
+                <span class="spanComponente" id="spanTotalRede">Rede: 0</span>
             </div>
-
             <div class="tableBox" id="tableBoxDiv">
                 <div class="tituloDetalhe">Detalhes</div>
-
                 <div class="lineDescription">
                     <span class="description">Nome</span>
                     <span class="description">Horário</span>
                     <span class="description">Motivo</span>
                 </div>
-
                 <div class="historico" id="lineWhite">
                     <!-- As linhas serão inseridas aqui pelo JavaScript -->
                 </div>
-
             </div>
-
         </div>
     </div>
-
 </body>
 
 <script src="/js/dashboard/historico.js"></script>
