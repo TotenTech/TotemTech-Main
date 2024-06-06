@@ -76,6 +76,10 @@ router.post("/alterarComponenteEspecificacao", function(req, res){
     dashboardController.alterarComponenteEspecificacao(req, res);
 })
 
+router.post("/alterarEspecificacaoTotalDisco", function(req, res){
+    dashboardController.alterarEspecificacaoTotalDisco(req, res);
+})
+
 router.post("/buscarInfoTotem", function(req, res){
     dashboardController.buscarInfoTotem(req, res);
 })

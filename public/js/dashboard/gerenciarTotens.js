@@ -282,8 +282,13 @@ function addTotem() {
         TotalRamTotem == "" ||
         TipoRamTotem == ""
     ) {
-        abrirGerenTotem()
         alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha todos campos para adicionar um totem`;
+        mostrarAlerta();
+        setTimeout(function () {
+            esconderAlerta();
+        }, 3000);
+    } else if (cpu == 0 && ram == 0 && rede == 0 && disco == 0) {
+        alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha algum componente para visualiização`;
         mostrarAlerta();
         setTimeout(function () {
             esconderAlerta();
@@ -345,8 +350,8 @@ function addComponentesTotem() {
     var valorEspecificacao2Rede = "10.0";
     var unidadeMedidaEspecificacao2Rede = "MB/s";
     totalDisco = 0;
-    
-    
+
+
     fetch("/dashboard/cadastrarComponentesTotem", {
         method: "POST",
         headers: {
@@ -372,7 +377,7 @@ function addComponentesTotem() {
             unidadeMedidaEspecificacao2RedeServer: unidadeMedidaEspecificacao2Rede,
         })
     });
-    
+
     addDiscoTotem();
 }
 
@@ -401,7 +406,7 @@ function addDiscoTotem() {
 
         nomeComponente = tipoDiscoDaVez;
         valor2 = totalDiscoDaVez;
-        totalDisco+= parseInt(totalDiscoDaVez, 10);
+        totalDisco += parseInt(totalDiscoDaVez, 10);
 
         fetch("/dashboard/cadastrarComponentesTotemDisco", {
             method: "POST",
@@ -429,7 +434,7 @@ function addDiscoTotem() {
     }
 }
 
-function addTotalDiscoTotem(){
+function addTotalDiscoTotem() {
     fetch("/dashboard/cadastrarTotalDiscoTotem", {
         method: "POST",
         headers: {
@@ -438,7 +443,7 @@ function addTotalDiscoTotem(){
         body: JSON.stringify({
             totalDiscoServer: totalDisco,
         })
-    });    
+    });
 }
 
 function addDisco() {
@@ -573,6 +578,8 @@ function buscarInfoTotem(idTotem) {
                                 mostrarEspecificacaoDisco(componente.idcomponente);
                                 qtdDisco++;
                                 totalDisco++;
+                            } else if (componente.tipo == 5) {
+                                sessionStorage.ID_TOTAL_DISCO_COMPONENTE = componente.idcomponente;
                             }
                         }
                         buscarInfoEspecificacao(idTotem);
@@ -615,6 +622,8 @@ function buscarInfoEspecificacao(idTotem) {
                             } else if (especificacao.nome == "total" && especificacao.tipo == 2) {
                                 sessionStorage.RAM_ID_ESPECIFICACAO = especificacao.idespecificacao;
                                 sessionStorage.RAM_VALOR_COMPONENTE = especificacao.valor;
+                            }else if(especificacao.tipo == 5){
+                                sessionStorage.ID_TOTAL_DISCO_ESPECIFICACAO = especificacao.idespecificacao;
                             }
 
                         }
@@ -647,60 +656,65 @@ function mostrarInformacoesscreenEdit() {
     totalRamTotemEdit.innerHTML += `${sessionStorage.RAM_VALOR_COMPONENTE}`;
     tipoRamTotemEdit.innerHTML += `${sessionStorage.RAM_TIPO_COMPONENTE}`;
 
-    if (cpu == 1) {
-        cpuTotemInfo.checked = true;
+    if (cpuTotemInfo || ramTotemInfo || discoTotemInfo || redeTotemInfo) {
+        if (cpu == 1) {
+            cpuTotemInfo.checked = true;
+
+        } else {
+            cpuTotemInfo.checked = false;
+
+        }
+        if (ram == 1) {
+            ramTotemInfo.checked = true;
+
+        } else {
+            ramTotemInfo.checked = false;
+        }
+        if (disco == 1) {
+            discoTotemInfo.checked = true;
+
+        } else {
+            discoTotemInfo.checked = false;
+
+        }
+        if (rede == 1) {
+            redeTotemInfo.checked = true;
+
+        } else {
+            redeTotemInfo.checked = false;
+
+        }
 
     } else {
-        cpuTotemInfo.checked = false;
+        if (cpu == 1) {
+            cpuTotemEdit.checked = true;
 
+        } else {
+            cpuTotemEdit.checked = false;
+        }
+        if (ram == 1) {
+            ramTotemEdit.checked = true;
+
+        } else {
+            ramTotemEdit.checked = false;
+
+        }
+        if (disco == 1) {
+            discoTotemEdit.checked = true;
+
+        } else {
+            discoTotemEdit.checked = false;
+
+        }
+        if (rede == 1) {
+            redeTotemEdit.checked = true;
+
+        } else {
+            redeTotemEdit.checked = false;
+        }
     }
-    if (ram == 1) {
-        ramTotemInfo.checked = true;
 
-    } else {
-        ramTotemInfo.checked = false;
-    }
-    if (disco == 1) {
-        discoTotemInfo.checked = true;
 
-    } else {
-        discoTotemInfo.checked = false;
-
-    }
-    if (rede == 1) {
-        redeTotemInfo.checked = true;
-
-    } else {
-        redeTotemInfo.checked = false;
-
-    }
-
-    if (cpu == 1) {
-        cpuTotemEdit.checked = true;
-
-    } else {
-        cpuTotemEdit.checked = false;
-    }
-    if (ram == 1) {
-        ramTotemEdit.checked = true;
-
-    } else {
-        ramTotemEdit.checked = false;
-
-    }
-    if (disco == 1) {
-        discoTotemEdit.checked = true;
-
-    } else {
-        discoTotemEdit.checked = false;
-
-    }
-    if (rede == 1) {
-        redeTotemEdit.checked = true;
-
-    } else {
-        redeTotemEdit.checked = false;
-    }
 
 }
 
@@ -874,24 +888,33 @@ function updateVisualizacao() {
         disco = 0;
     }
 
-    mostrarAlerta();
-    alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
+    if (cpu == 0 && ram == 0 && rede == 0 && disco == 0) {
+        alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha algum componente para visualiização`;
+        mostrarAlerta();
+        setTimeout(function () {
+            esconderAlerta();
+        }, 3000);
+    } else {
 
-    fetch("/dashboard/alterarTotemComponente", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            cpuServer: cpu,
-            redeServer: rede,
-            ramServer: ram,
-            discoServer: disco,
-            totemServer: sessionStorage.ID_TOTEM,
+        mostrarAlerta();
+        alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
+
+        fetch("/dashboard/alterarTotemComponente", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cpuServer: cpu,
+                redeServer: rede,
+                ramServer: ram,
+                discoServer: disco,
+                totemServer: sessionStorage.ID_TOTEM,
+            })
         })
-    })
 
-    updateTotem();
+        updateTotem();
+    }
 }
 
 function updateTotem() {
@@ -925,7 +948,7 @@ function updateTotem() {
     direcionadorDisco()
 
 }
-
+totalDisco = 0;
 function direcionadorDisco() {
     for (let c = 1; c <= qtdDisco; c++) {
         setTimeout(function () {
@@ -936,9 +959,10 @@ function direcionadorDisco() {
                 document.getElementById(`inputEditarTotalDisco${c}`).value
             );
         }, c * 100);
+        totalDisco += parseInt(document.getElementById(`inputEditarTotalDisco${c}`).value, 10);
     }
+    updateEspecificacaoTotalDisco();
     esconderInput();
-
 }
 
 function updateComponenteEspecificacao(idcomponente,
@@ -958,6 +982,19 @@ function updateComponenteEspecificacao(idcomponente,
             tipoComponenteServer: tipoComponente,
             idespecificacaoServer: idespecificacao,
             valorEspecificacaoServer: valorEspecificacao,
+        })
+    })
+}
+
+function updateEspecificacaoTotalDisco(){
+    fetch("/dashboard/alterarEspecificacaoTotalDisco", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idespecificacaoServer: sessionStorage.ID_TOTAL_DISCO_ESPECIFICACAO,
+            totalDiscoServer : totalDisco -1,
         })
     })
 }
@@ -1021,7 +1058,7 @@ function abrirInformacao(idTotem) {
     sessionStorage.ID_TOTEM = idTotem;
 
     const lineButton = document.getElementById("lineButtonDiv");
-    lineButton.style.display= "none";
+    lineButton.style.display = "none";
 
     fetch("/dashboard/buscarInfoTotem", {
         method: "POST",
