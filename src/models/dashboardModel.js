@@ -82,6 +82,17 @@ function cadastrarComponentesTotemDisco(nomeComponente, nome1, valor1, unidadeMe
 }
 
 
+function cadastrarTotalDiscoTotem(totalDisco) {
+    var instrucao = `
+    EXEC InsertTotalDisco
+    @totalDisco = '${totalDisco}';
+    `
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+
+    return database.executar(instrucao);
+}
+
 function listarTotens(empresa) {
     var instrucao = `
     select nome, idtotem from totem WHERE empresa = ${empresa};`;
@@ -251,6 +262,7 @@ module.exports = {
     cadastrarTotemComponetes,
     cadastrarComponentesTotem,
     cadastrarComponentesTotemDisco,
+    cadastrarTotalDiscoTotem,
     listarTotens,
     deletarTotem,
     alterarTotem,

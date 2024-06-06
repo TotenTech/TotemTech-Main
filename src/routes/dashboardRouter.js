@@ -40,6 +40,9 @@ router.post("/cadastrarComponentesTotem", function (req, res) {
     dashboardController.cadastrarComponentesTotem(req, res);
 })
 
+router.post("/cadastrarTotalDiscoTotem", function (req, res) {
+    dashboardController.cadastrarTotalDiscoTotem(req, res);
+})
 
 router.post("/buscarInfoComponente", function (req, res) {
     dashboardController.buscarInfoComponente(req, res);
