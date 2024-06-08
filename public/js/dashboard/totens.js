@@ -228,7 +228,6 @@ document.getElementById("btn_sair").addEventListener("click", () => {
     window.location.href = "/";
 })
 
-
 let totemSelectedId;
 const selectedTotemTitle = document.getElementById("h1TituloTotem");
 function setTotemVisualized(idTotem, empresa, nome) {
@@ -237,23 +236,23 @@ function setTotemVisualized(idTotem, empresa, nome) {
     dadosDISCO = [];
     dadosRede = [];
     dadosHorario = [];
-    abrirGrafico("cpu");
     selectedTotemTitle.innerHTML = `${nome}`;
     totemSelectedId = idTotem;
     selectedComponent = "cpu"
+    abrirGrafico(selectedComponent);
 
     for (let i = 0; i < allTotens.length; i++) {
         if (allTotens[i].idtotem == idTotem) {
-            document.getElementById("situacaoAtualCpu").innerHTML = `${allCpuLastData[i].valor}%`;
-            allCpuLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosCPU.push(filtered.valor) });
-            document.getElementById("situacaoAtualRam").innerHTML = `${allMemoryLastData[i].valor}%`;
-            allMemoryLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosRAM.push(filtered.valor) });
-            document.getElementById("situacaoAtualDisco").innerHTML = `TODO`;
-            document.getElementById("situacaoAtualRede").innerHTML = `${allNetworkLastData[i].valor}MB/s`;
-            allNetworkLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosRede.push(filtered.valor) });
+            allCpuLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosCPU.push(filtered.valor) });
+            document.getElementById("situacaoAtualCpu").innerHTML = `${dadosCPU[dadosCPU.length - 1]}%`;
+            allMemoryLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosRAM.push(filtered.valor) });
+            document.getElementById("situacaoAtualRam").innerHTML = `${dadosRAM[dadosRAM.length - 1]}%`;
+            allDiskLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosDISCO.push(filtered.valor) });
+            document.getElementById("situacaoAtualDisco").innerHTML = `${dadosDISCO[dadosDISCO.length - 1]}%`;
+            allNetworkLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosRede.push(filtered.valor) });
+            document.getElementById("situacaoAtualRede").innerHTML = `${dadosRede[dadosRede.length - 1]}MB/s`;
 
-            putIntoGraphContinuos()
-            verifyAllContinuos()
+            putIntoGraphContinuos();
         }
     }
 }
@@ -354,18 +353,20 @@ async function getLastComponentsData() {
         console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
     }
 
-    // try {
-    //     //Discos
-    //     const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${1}`);
-    //     if (response.ok) {
-    //         const json = await response.json();
-    //         console.log(JSON.stringify(json));
-    //     } else {
-    //         console.error("Deu bolete " + error);
-    //     }
-    // } catch (error) {
-    //     console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
-    // }
+    try {
+        //Discos
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${5}`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            allDiskLastData.push(...json);
+            console.log("Registros disco " + allDiskLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
 
     try {
         //Rede
@@ -386,6 +387,7 @@ async function getLastComponentsData() {
     abrirGrafico("cpu");
 }
 
+let counter = 0;
 async function putIntoGraphContinuos() {
     let cpu = [];
     let memory = [];
@@ -413,7 +415,7 @@ async function putIntoGraphContinuos() {
             const json = await response.json();
             console.log(JSON.stringify(json));
             cpu.push(...json);
-            console.log("Registros Cpu " + allCpuLastData);
+            console.log("Registros Cpu " + cpu);
         } else {
             console.error("Deu bolete " + error);
         }
@@ -428,7 +430,7 @@ async function putIntoGraphContinuos() {
             const json = await response.json();
             console.log(JSON.stringify(json));
             memory.push(...json);
-            console.log("Registros memoria " + allMemoryLastData);
+            console.log("Registros memoria " + memory);
         } else {
             console.error("Deu bolete " + error);
         }
@@ -436,18 +438,19 @@ async function putIntoGraphContinuos() {
         console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
     }
 
-    // try {
-    //     //Discos
-    //     const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${1}`);
-    //     if (response.ok) {
-    //         const json = await response.json();
-    //         console.log(JSON.stringify(json));
-    //     } else {
-    //         console.error("Deu bolete " + error);
-    //     }
-    // } catch (error) {
-    //     console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
-    // }
+    try {
+        //Discos
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${5}`);
+        if (response.ok) {
+            const json = await response.json();
+            disk.push(...json);
+            console.log(JSON.stringify(json));
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
 
     try {
         //Rede
@@ -456,7 +459,7 @@ async function putIntoGraphContinuos() {
             const json = await response.json();
             console.log(JSON.stringify(json));
             network.push(...json);
-            console.log("Registros rede " + allNetworkLastData);
+            console.log("Registros rede " + network);
         } else {
             console.error("Deu bolete " + error);
         }
@@ -465,7 +468,9 @@ async function putIntoGraphContinuos() {
     }
 
     cpu.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosCPU.push(filtered.valor) });
+    console.log("Esses foram os dados filtrados " + cpu.filter(it => it.idtotem == totemSelectedId));
     memory.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRAM.push(filtered.valor) });
+    disk.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosDISCO.push(filtered.valor) });
     network.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRede.push(filtered.valor) });
     network.filter(it => it.idtotem == totemSelectedId).forEach(filtered => {
         const horario = filtered.horario;
@@ -484,12 +489,15 @@ async function putIntoGraphContinuos() {
 
     document.getElementById("situacaoAtualCpu").innerHTML = `${dadosCPU[dadosCPU.length - 1]}%`;
     document.getElementById("situacaoAtualRam").innerHTML = `${dadosRAM[dadosRAM.length - 1]}%`;
-    document.getElementById("situacaoAtualDisco").innerHTML = `TODO`;
+    document.getElementById("situacaoAtualDisco").innerHTML = `${dadosDISCO[dadosDISCO.length - 1]}%`;
     document.getElementById("situacaoAtualRede").innerHTML = `${dadosRede[dadosRede.length - 1]}MB/s`;
 
-    verifyAllContinuos(cpu, memory, disk, network)
+    verifyAllContinuos(cpu, memory, disk, network);
     abrirGrafico(selectedComponent);
-    setTimeout(putIntoGraphContinuos, 135000)
+    if (counter == 0) {
+        setInterval(putIntoGraphContinuos, 127000);
+        counter++;
+    }
 }
 
 async function verifyAllContinuos(cpu, memory, disk, network) {
@@ -501,14 +509,18 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
         let num = parseFloat(it.valor);
 
         if (num < 80.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
-            if (it.idtotem = totemSelectedId) {
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "yellow" && document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            }
+            if (it.idtotem == totemSelectedId) {
                 cpuColor = "green";
             }
         } else if (num >= 80.0 && num <= 90.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            }
             if (it.idtotem == totemSelectedId) {
                 cpuColor = "yellow";
             }
@@ -527,14 +539,18 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
         let num = parseFloat(it.valor);
 
         if (num < 85.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "yellow" && document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            }
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "green";
             }
         } else if (num >= 85.0 && num <= 89.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            }
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "yellow";
             }
@@ -553,14 +569,18 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
         let num = parseFloat(it.valor);
 
         if (num < 80.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "yellow" && document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            }
             if (it.idtotem == totemSelectedId) {
                 diskColor = "green";
             }
         } else if (num >= 80.0 && num <= 90.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            }
             if (it.idtotem == totemSelectedId) {
                 diskColor = "yellow";
             }
@@ -579,14 +599,18 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
         let num = parseFloat(it.valor);
 
         if (num > 10.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "yellow" && document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "green";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
+            }
             if (it.idtotem == totemSelectedId) {
                 networkColor = "green";
             }
         } else if (num >= 6.0 && num <= 10.0) {
-            document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
-            document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            if (document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor != "red") {
+                document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
+                document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
+            }
             if (it.idtotem == totemSelectedId) {
                 networkColor = "yellow";
             }
@@ -602,7 +626,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
     })
 
     document.getElementById("boxCpuCircle").style.backgroundColor = cpuColor;
-    // document.getElementById("boxDiscoCircle").style.backgroundColor = diskColor;
+    document.getElementById("boxDiscoCircle").style.backgroundColor = diskColor;
     document.getElementById("boxRamCircle").style.backgroundColor = memoryColor;
     document.getElementById("boxRedeCircle").style.backgroundColor = networkColor;
 }
