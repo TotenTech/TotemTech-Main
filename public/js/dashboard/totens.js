@@ -237,20 +237,21 @@ function setTotemVisualized(idTotem, empresa, nome) {
     dadosDISCO = [];
     dadosRede = [];
     dadosHorario = [];
-    abrirGrafico("cpu");
     selectedTotemTitle.innerHTML = `${nome}`;
     totemSelectedId = idTotem;
     selectedComponent = "cpu"
+    abrirGrafico(selectedComponent);
 
     for (let i = 0; i < allTotens.length; i++) {
         if (allTotens[i].idtotem == idTotem) {
-            document.getElementById("situacaoAtualCpu").innerHTML = `${allCpuLastData[i].valor}%`;
-            allCpuLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosCPU.push(filtered.valor) });
-            document.getElementById("situacaoAtualRam").innerHTML = `${allMemoryLastData[i].valor}%`;
-            allMemoryLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosRAM.push(filtered.valor) });
-            document.getElementById("situacaoAtualDisco").innerHTML = `TODO`;
-            document.getElementById("situacaoAtualRede").innerHTML = `${allNetworkLastData[i].valor}MB/s`;
-            allNetworkLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosRede.push(filtered.valor) });
+            allCpuLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosCPU.push(filtered.valor) });
+            document.getElementById("situacaoAtualCpu").innerHTML = `${dadosCPU[dadosCPU.length - 1]}%`;
+            allMemoryLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosRAM.push(filtered.valor) });
+            document.getElementById("situacaoAtualRam").innerHTML = `${dadosRAM[dadosRAM.length - 1]}%`;
+            allDiskLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosDISCO.push(filtered.valor) });
+            document.getElementById("situacaoAtualDisco").innerHTML = `${dadosDISCO[dadosDISCO.length - 1]}%`;
+            allNetworkLastData.filter(it => it.idtotem === idTotem).forEach(filtered => { dadosRede.push(filtered.valor) });
+            document.getElementById("situacaoAtualRede").innerHTML = `${dadosRede[dadosRede.length - 1]}MB/s`;
 
             putIntoGraphContinuos()
             verifyAllContinuos()
@@ -354,18 +355,20 @@ async function getLastComponentsData() {
         console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
     }
 
-    // try {
-    //     //Discos
-    //     const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${1}`);
-    //     if (response.ok) {
-    //         const json = await response.json();
-    //         console.log(JSON.stringify(json));
-    //     } else {
-    //         console.error("Deu bolete " + error);
-    //     }
-    // } catch (error) {
-    //     console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
-    // }
+    try {
+        //Discos
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${5}`);
+        if (response.ok) {
+            const json = await response.json();
+            console.log(JSON.stringify(json));
+            allDiskLastData.push(...json);
+            console.log("Registros disco " + allDiskLastData);
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
 
     try {
         //Rede
@@ -436,18 +439,19 @@ async function putIntoGraphContinuos() {
         console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
     }
 
-    // try {
-    //     //Discos
-    //     const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${1}`);
-    //     if (response.ok) {
-    //         const json = await response.json();
-    //         console.log(JSON.stringify(json));
-    //     } else {
-    //         console.error("Deu bolete " + error);
-    //     }
-    // } catch (error) {
-    //     console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
-    // }
+    try {
+        //Discos
+        const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/${5}`);
+        if (response.ok) {
+            const json = await response.json();
+            disk.push(...json);
+            console.log(JSON.stringify(json));
+        } else {
+            console.error("Deu bolete " + error);
+        }
+    } catch (error) {
+        console.error("Erro em buscar dados dos componentes do totem selecionado " + error);
+    }
 
     try {
         //Rede
@@ -466,6 +470,7 @@ async function putIntoGraphContinuos() {
 
     cpu.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosCPU.push(filtered.valor) });
     memory.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRAM.push(filtered.valor) });
+    disk.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosDISCO.push(filtered.valor) });
     network.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRede.push(filtered.valor) });
     network.filter(it => it.idtotem == totemSelectedId).forEach(filtered => {
         const horario = filtered.horario;
@@ -484,7 +489,7 @@ async function putIntoGraphContinuos() {
 
     document.getElementById("situacaoAtualCpu").innerHTML = `${dadosCPU[dadosCPU.length - 1]}%`;
     document.getElementById("situacaoAtualRam").innerHTML = `${dadosRAM[dadosRAM.length - 1]}%`;
-    document.getElementById("situacaoAtualDisco").innerHTML = `TODO`;
+    document.getElementById("situacaoAtualDisco").innerHTML = `${dadosDISCO[dadosDISCO.length - 1]}%`;
     document.getElementById("situacaoAtualRede").innerHTML = `${dadosRede[dadosRede.length - 1]}MB/s`;
 
     verifyAllContinuos(cpu, memory, disk, network)
@@ -602,7 +607,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
     })
 
     document.getElementById("boxCpuCircle").style.backgroundColor = cpuColor;
-    // document.getElementById("boxDiscoCircle").style.backgroundColor = diskColor;
+    document.getElementById("boxDiscoCircle").style.backgroundColor = diskColor;
     document.getElementById("boxRamCircle").style.backgroundColor = memoryColor;
     document.getElementById("boxRedeCircle").style.backgroundColor = networkColor;
 }
