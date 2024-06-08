@@ -283,7 +283,9 @@ function historyAlerta(tipo) {
     let ano = dataAtual.getFullYear();
     let mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
     let dia = String(dataAtual.getDate()).padStart(2, '0');
-    let dataFormatada = `${ano}-${dia}-${mes}`;
+    let dataFormatada = `${ano}-${mes}-${dia}`;
+    var vazio = true;
+    var contador = 1;
 
 
     fetch("/dashboard/selectTotemAlerta", {
@@ -323,20 +325,44 @@ function historyAlerta(tipo) {
 
                             boxRight.innerHTML += `<div class="boxInterrupcoes">
                         <div class="line">
-                            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${c}"></div>
                             ${interrupcao.nome} - ${horaFormatada}</div>   
-                        <span class="texto">O entrou no status Amarelo por conta do componente ${interrupcao.motivo}.</span>
+                        <span class="texto">O totem reiniciou por conta do componente ${interrupcao.motivo}.</span>
                         <div>
                         </div>
                     </div>`;
+                            const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + `${c}`);
+                            boxAtualInterrupcoesCircle.style.backgroundColor = 'red';
+                            contador++;
                         }
+                        contador = 1;
+
+                        historyMessageArray.forEach((objeto, indice) => {
+                            console.log(`Item ${indice + 1}:`);
+                            if (objeto.tipo === tipo) {
+                                boxRight.innerHTML += `
+                            <div class="boxInterrupcoes">
+                              <div class="line">
+                                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${c}"></div>
+                                ${objeto.nomeTotem} - ${objeto.horario} 
+                              </div>   
+                              <span class="texto">O totem ficou com o status ${objeto.cor} do componente ${objeto.tipo}.</span>
+                            </div>
+                          `;
+                                const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + `${c}`);
+                                if (objeto.cor == "Amarelo") {
+                                    boxAtualInterrupcoesCircle.style.backgroundColor = `yellow`;
+                                } else {
+                                    boxAtualInterrupcoesCircle.style.backgroundColor = `red`;
+                                }
+                                contador++;
+                            }
+                        });
+                        plotarMessage(true, tipo)
                     } else {
-                        boxRight.innerHTML += `<div class="boxInterrupcoes">
-                    <div class="line">
-                        <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
-                        Nenhuma interrupção encontrada.</div>
-                    </div>`;
+                        plotarMessage(false, tipo)
                     }
+
                 });
             } else {
                 console.error("Erro na requisição:", resposta.status);
@@ -346,45 +372,9 @@ function historyAlerta(tipo) {
             console.error("Erro ao processar requisição:", erro);
             boxRight.innerHTML = `Erro na requisição`;
         });
-        
 
-        const historyMessageArray = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
-  
-        historyMessageArray.forEach((objeto, indice) => {
-            console.log(`Item ${indice + 1}:`);
-            for (const chave in objeto) {
-              if (objeto.hasOwnProperty(chave)) {
-                if (objeto[tipo] === tipo) {
-                  console.log(objeto[chave].nomeTotem);
-                  boxRight.innerHTML += `
-                    <div class="boxInterrupcoes">
-                      <div class="line">
-                        <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
-                        ${objeto[nome]} - ${objeto[horario]}
-                      </div>   
-                      <span class="texto">O totem entrou no status Amarelo por conta do componente ${objeto[chave].tipo}.</span>
-                    </div>
-                  `;
-                }
-              }
-            }
-          });
 
-        // for (var c = 0; c < storedMessages.length; c++) {
-        //     var messageDaVez = storedMessages[c];
-        //     console.log('Mensagem atual:', messageDaVez);
-        //     if (messageDaVez.tipo === tipo) {
-        //         boxRight.innerHTML += `
-        //         <div class="boxInterrupcoes">
-        //             <div class="line">
-        //                 <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
-        //                 ${messageDaVez.nomeTotem} - ${messageDaVez.horario}
-        //             </div>   
-        //             <span class="texto">O totem entrou no status Amarelo por conta do componente ${messageDaVez.tipo}.</span>
-        //             <div></div>
-        //         </div>`; 
-        //     }
-        // }
+    const historyMessageArray = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
 }
 
 function historyAlertaTotal() {
@@ -393,7 +383,7 @@ function historyAlertaTotal() {
     let ano = dataAtual.getFullYear();
     let mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
     let dia = String(dataAtual.getDate()).padStart(2, '0');
-    let dataFormatada = `${ano}-${dia}-${mes}`;
+    let dataFormatada = `${ano}-${mes}-${dia}`;
 
 
     fetch("/dashboard/selectTotemAlertaTotal", {
@@ -432,12 +422,15 @@ function historyAlertaTotal() {
 
                             boxRight.innerHTML += `<div class="boxInterrupcoes">
                         <div class="line">
-                            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${c}"></div>
                             ${interrupcao.nome} - ${horaFormatada}</div>   
-                        <span class="texto">O entrou no status Amarelo por conta do componente ${interrupcao.motivo}.</span>
+                        <span class="texto">O totem reiniciou por conta do componente ${interrupcao.motivo}.</span>
                         <div>
                         </div>
                     </div>`;
+
+                            const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + `${c}`);
+                            boxAtualInterrupcoesCircle.style.backgroundColor = `red`;
                         }
                     } else {
                         boxRight.innerHTML += `<div class="boxInterrupcoes">
@@ -459,12 +452,45 @@ function historyAlertaTotal() {
 
 }
 
+function plotarMessage(vazio, tipo) {
+    let contador = 1;
+    const historyMessageArray = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
+    if (vazio) {
+        historyMessageArray.forEach((objeto, indice) => {
+            if (objeto.tipo === tipo) {
+                boxRight.innerHTML += `
+            <div class="boxInterrupcoes">
+              <div class="line">
+                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${contador}"></div>
+                ${objeto.nomeTotem} - ${objeto.horario} 
+              </div>   
+              <span class="texto">O totem entrou no status ${objeto.cor} por conta do componente ${objeto.tipo}.</span>
+            </div>
+          `;
+                const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + contador);
+                if (objeto.cor == "Amarelo") {
+                    boxAtualInterrupcoesCircle.style.backgroundColor = `yellow`;
+                } else {
+                    boxAtualInterrupcoesCircle.style.backgroundColor = `red`;
+                }
+                contador++;
+            }
+        });
+    } else {
+        boxRight.innerHTML += `<div class="boxInterrupcoes">
+        <div class="line">
+            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+            Nenhuma interrupção encontrada.</div>
+        </div>`;
+    }
+}
+
 function newInfoMessage(cor, tipo, horarioAtual) {
     let colorMessage = "";
 
-    if(cor == "yellow"){
+    if (cor == "yellow") {
         colorMessage = 'Amarelo';
-    }else{
+    } else {
         colorMessage = 'Vermelho';
     }
 
@@ -497,13 +523,13 @@ function newInfoMessage(cor, tipo, horarioAtual) {
             messagemInterrupcoes = [];
         }
     }
-    
+
     sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
 
 
     setTimeout(function () {
         esconderAlerta();
-    }, 15000);
+    }, 6000);
 }
 
 function mostrarAlerta() {
@@ -802,14 +828,14 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem = totemSelectedId) {
                 cpuColor = "green";
-                newInfoMessage( 'pink', 'cpu', horarioAtual);
+
             }
         } else if (num >= 80.0 && num <= 90.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
             if (it.idtotem == totemSelectedId) {
                 cpuColor = "yellow";
-                newInfoMessage( cpuColor, 'cpu', horarioAtual);
+                newInfoMessage(cpuColor, 'cpu', horarioAtual);
             }
             // alertaMedio(it.idtotem, it.valor, "Cpu");
         } else if (num > 90.0) {
@@ -817,7 +843,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 cpuColor = "red";
-                newInfoMessage( cpuColor, 'cpu', horarioAtual);
+                newInfoMessage(cpuColor, 'cpu', horarioAtual);
             }
             // alertaRuim(it.idtotem, it.valor, "Cpu");
         }
@@ -831,14 +857,14 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "green";
-                newInfoMessage( 'pink', 'ram', horarioAtual);
+
             }
         } else if (num >= 85.0 && num <= 89.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "yellow";
-                newInfoMessage(memoryColor , 'ram', horarioAtual);
+                newInfoMessage(memoryColor, 'ram', horarioAtual);
             }
             // alertaMedio(it.idtotem, it.valor, "Memória");
         } else if (num > 89.0) {
@@ -860,7 +886,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem == totemSelectedId) {
                 diskColor = "green";
-                newInfoMessage('pink', 'disco', horarioAtual);
+
             }
         } else if (num >= 80.0 && num <= 90.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
@@ -889,7 +915,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem == totemSelectedId) {
                 networkColor = "green";
-                newInfoMessage('pink', 'rede', horarioAtual);
+
             }
         } else if (num >= 6.0 && num <= 10.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
