@@ -22,13 +22,13 @@
 }
 
 
-body{
+body {
     display: flex;
     flex-direction: row;
     overflow: hidden;
 }
 
-.menuLateral{
+.menuLateral {
     width: 13%;
     height: 98vh;
     background-image: url(../../img/menu-fundo.png);
@@ -41,32 +41,32 @@ body{
 }
 
 
-.menuLateral .boxSoon{
-   display: flex;
-   background-color: #FFFFFF;
-   color: black;
-   width: 100%;
-   height: fit-content;
-   padding: 2% 0; 
-   border-radius: 10px;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+.menuLateral .boxSoon {
+    display: flex;
+    background-color: #FFFFFF;
+    color: black;
+    width: 100%;
+    height: fit-content;
+    padding: 2% 0;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.menuLateral .boxSoon img{
+.menuLateral .boxSoon img {
     width: 50%;
     margin: 0%;
-    padding: 0% ;
+    padding: 0%;
 }
 
-.menuLateral .boxSoon span{
-    font-weight: 900 ;
+.menuLateral .boxSoon span {
+    font-weight: 900;
     font-size: 120%;
 }
 
 
-.menuLateral .boxUser{
+.menuLateral .boxUser {
     width: 100%;
     font-size: 100%;
     display: flex;
@@ -76,19 +76,19 @@ body{
     color: #FFFFFF;
 }
 
-.menuLateral .boxUser .nameUser{
+.menuLateral .boxUser .nameUser {
     font-size: 130%;
     text-align: center;
     width: 100%;
 }
 
-.menuLateral .boxUser .nameCompany{
+.menuLateral .boxUser .nameCompany {
     font-size: 90%;
     text-align: center;
     width: 100%;
 }
 
-.menuLateral .optionMenu{
+.menuLateral .optionMenu {
     width: 98%;
     height: fit-content;
     gap: 3vh;
@@ -99,21 +99,21 @@ body{
     list-style-type: none;
 }
 
-.menuLateral .optionMenu li{
+.menuLateral .optionMenu li {
     font-size: 100%;
     font-weight: 700;
     cursor: pointer;
     width: 100%;
     height: fit-content;
-}   
+}
 
-.menuLateral .optionMenu li a{
+.menuLateral .optionMenu li a {
     color: #FFFFFF;
     text-decoration: none;
     width: 100%;
 }
 
-.menuLateral .optionMenu .totens{
+.menuLateral .optionMenu .totens {
     width: 100%;
     background-color: #FFFFFF;
     padding: 3% 2%;
@@ -121,11 +121,11 @@ body{
     font-size: 100%;
 }
 
-.menuLateral .optionMenu .totens a{
+.menuLateral .optionMenu .totens a {
     color: black;
 }
 
-.menuLateral .boxExit{
+.menuLateral .boxExit {
     display: flex;
     flex-direction: row;
     background-color: #FFFFFF;
@@ -140,18 +140,18 @@ body{
     bottom: 1px;
 }
 
-.menuLateral .boxExit img{
+.menuLateral .boxExit img {
     height: 4vh;
     margin-left: 2%;
     padding: 0;
 }
 
-.menuLateral .boxExit span{
+.menuLateral .boxExit span {
     font-size: 130%;
     font-weight: 900;
 }
 
-.dashboard{
+.dashboard {
     width: 85%;
     height: 100vh;
     display: flex;
@@ -160,7 +160,7 @@ body{
     overflow: hidden;
 }
 
-.dashboard .boxTotalTotem{
+.dashboard .boxTotalTotem {
     position: absolute;
     background-color: #FFFFFF;
     width: 70%;
@@ -172,7 +172,7 @@ body{
     border-radius: 5px;
 }
 
-.dashboard .boxTotalTotem .line{
+.dashboard .boxTotalTotem .line {
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -181,14 +181,14 @@ body{
     align-items: center;
 }
 
-.dashboard .boxTotalTotem .line button{
+.dashboard .boxTotalTotem .line button {
     border: 0;
     font-size: 160%;
     background-color: #FFFFFF;
     font-weight: 700;
 }
 
-.dashboard .boxTotalTotem h2{
+.dashboard .boxTotalTotem h2 {
     width: 100%;
     text-align: center;
     margin: 0%;
@@ -200,7 +200,7 @@ body{
     font-size: 200%;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem{
+.dashboard .boxTotalTotem .boxListTotalTotem {
     width: 96%;
     padding: 0 2%;
     display: flex;
@@ -211,7 +211,7 @@ body{
     height: 80%;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem {
     display: flex;
     justify-content: center;
     align-content: space-between;
@@ -223,7 +223,7 @@ body{
     gap: 10px;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemVerde{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemVerde {
     width: 22%;
     height: 90%;
     border-radius: 10px;
@@ -236,7 +236,7 @@ body{
     border-left: 8px solid green;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemAmarelo{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemAmarelo {
     width: 22%;
     height: 90%;
     border-radius: 10px;
@@ -247,14 +247,14 @@ body{
     flex-direction: column;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemAmarelo .circle{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemAmarelo .circle {
     width: 15px;
     height: 15px;
     border-radius: 50%;
     background-color: green;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemVermelho{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem .totemVermelho {
     width: 22%;
     height: 90%;
     border-radius: 10px;
@@ -267,16 +267,16 @@ body{
     border-left: 8px solid red;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem div img{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem div img {
     height: 70%;
 }
 
-.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem div span{
+.dashboard .boxTotalTotem .boxListTotalTotem .lineTotem div span {
     font-size: 110%;
     font-weight: 700;
 }
 
-.dashboard .lineTotens{
+.dashboard .lineTotens {
     width: 92%;
     height: 20vh;
     display: flex;
@@ -290,7 +290,7 @@ body{
     white-space: nowrap;
 }
 
-.dashboard .lineTotens .totem{
+.dashboard .lineTotens .totem {
     height: 16vh;
     width: 140px;
     background-color: #D9D9D9;
@@ -305,7 +305,7 @@ body{
     cursor: pointer;
 }
 
-.dashboard .lineTotens .totemVerde{
+.dashboard .lineTotens .totemVerde {
     height: 16vh;
     width: 140px;
     background-color: #D9D9D9;
@@ -322,7 +322,7 @@ body{
 }
 
 
-.dashboard .lineTotens .totemAmarelo{
+.dashboard .lineTotens .totemAmarelo {
     height: 16vh;
     width: 140px;
     background-color: #D9D9D9;
@@ -337,7 +337,7 @@ body{
     cursor: pointer;
 }
 
-.dashboard .lineTotens .totemAmarelo .circle{
+.dashboard .lineTotens .totemAmarelo .circle {
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -345,7 +345,7 @@ body{
 }
 
 
-.dashboard .lineTotens .totemVermelho{
+.dashboard .lineTotens .totemVermelho {
     height: 16vh;
     width: 140px;
     background-color: #D9D9D9;
@@ -361,23 +361,23 @@ body{
     cursor: pointer;
 }
 
-.dashboard .lineTotens div img{
+.dashboard .lineTotens div img {
     height: 8vh;
 }
 
-.dashboard .lineTotens div span{
+.dashboard .lineTotens div span {
     font-size: 90%;
     font-weight: 700;
 }
 
-.dashboard .tituloTotem{
+.dashboard .tituloTotem {
     color: #0B3EA1;
 }
 
-.dashboard .boxComponent{
+.dashboard .boxComponent {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 94%;
     gap: 5%;
@@ -386,11 +386,11 @@ body{
 }
 
 
-.dashboard .boxComponent .boxCpu{
+.dashboard .boxComponent .boxCpu {
     width: fit-content;
     padding: 1% 2%;
     border-radius: 20px;
-    background-color:  rgba(135, 206, 250, 1);
+    background-color: rgba(135, 206, 250, 1);
     color: #000000;
     font-size: 100%;
     font-weight: 700;
@@ -401,65 +401,74 @@ body{
     cursor: pointer;
 }
 
-.boxAtualCircle{
-    width: 15px;
+.boxAtualCircle {
+    width: 20px;
     height: 15px;
     border-radius: 50%;
-    margin-right: 10px;
     background-color: green;
 }
 
-.dashboard .boxComponent .boxDisco{
+.dashboard .boxComponent .boxDisco {
     width: fit-content;
     padding: 1% 2%;
     border-radius: 20px;
-    background-color:  rgba(100, 149, 237, 1);
+    background-color: rgba(100, 149, 237, 1);
     color: #000000;
     font-size: 100%;
     font-weight: 700;
     display: flex;
     justify-content: baseline;
     align-items: center;
-    flex-direction: row;    
+    flex-direction: row;
     cursor: pointer;
 }
 
-.dashboard .boxComponent .boxMemoria{
+.dashboard .boxComponent .boxMemoria {
     width: fit-content;
     padding: 1% 2%;
     border-radius: 20px;
-    background-color:  rgba(30, 144, 255, 1);
+    background-color: rgba(30, 144, 255, 1);
     color: #000000;
     font-size: 100%;
     font-weight: 700;
     display: flex;
     justify-content: baseline;
     align-items: center;
-    flex-direction: row;    
+    flex-direction: row;
     cursor: pointer;
 }
 
-.dashboard .boxComponent .boxRede{
+.dashboard .boxComponent .boxRede {
     width: fit-content;
     padding: 1% 2%;
     border-radius: 20px;
-    background-color:  rgba(135, 164, 214, 1);
+    background-color: rgba(135, 164, 214, 1);
     color: #000000;
     font-size: 100%;
     font-weight: 700;
     display: flex;
     justify-content: baseline;
     align-items: center;
-    flex-direction: row;    
+    flex-direction: row;
     cursor: pointer;
 }
 
-.dashboard .boxComponent div img{
+.dashboard .boxComponent div {
+    gap: 0.5%;
+}
+
+.dashboard .boxComponent div img {
     height: 8vh;
 }
 
+.dashboard .boxComponent div .duvida {
+    margin-left: 1%;
+    height: 4vh;
+    width: auto;
+    z-index: 500;
+}
 
-.dashboard .boxGlobal{
+.dashboard .boxGlobal {
     height: 70vh;
     width: 94%;
     display: flex;
@@ -469,7 +478,7 @@ body{
     align-items: center;
 }
 
-.dashboard .boxGlobal .boxLeftCpu{
+.dashboard .boxGlobal .boxLeftCpu {
     width: 50%;
     height: fit-content;
     background-color: rgba(136, 187, 204, 0.8);
@@ -481,7 +490,7 @@ body{
     border-radius: 15px;
 }
 
-.dashboard .boxGlobal .boxLeftCpu .line{
+.dashboard .boxGlobal .boxLeftCpu .line {
     width: 100%;
     height: fit-content;
     padding: 2% 0;
@@ -489,11 +498,11 @@ body{
     font-weight: 700;
 }
 
-.dashboard .boxGlobal .boxLeftCpu canvas{
+.dashboard .boxGlobal .boxLeftCpu canvas {
     width: 100%;
 }
 
-.dashboard .boxGlobal .boxLeftCpu .microBox{
+.dashboard .boxGlobal .boxLeftCpu .microBox {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -503,11 +512,11 @@ body{
     gap: 4%;
 }
 
-.dashboard .boxGlobal .boxLeftCpu .microBox .localChart{
+.dashboard .boxGlobal .boxLeftCpu .microBox .localChart {
     display: block;
 }
 
-.dashboard .boxGlobal .boxRight{
+.dashboard .boxGlobal .boxRight {
     width: 45%;
     height: 80%;
     display: flex;
@@ -524,7 +533,35 @@ body{
     width: 0px;
 }
 
-.dashboard .boxGlobal .boxRight .line{
+.dashboard .boxGlobal .boxRight .lineButton {
+    width: 94%;
+    padding: 0 3%;
+    margin-top: 3%;
+    font-weight: 600;
+    gap: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .boxGlobal .boxRight .lineButton button {
+    border: none;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    font-size: 100%;
+    transition: 1s;
+}
+
+.dashboard .boxGlobal .boxRight .lineButton .escolhido{
+    color: black;
+    border-bottom: 5px solid #0B3EA1;
+    padding: 0 2%;
+    border-radius: 5px 5px 0 0;
+    font-weight: 600;
+    transition: 1s;
+  }
+
+.dashboard .boxGlobal .boxRight .line {
     width: 94%;
     padding: 0 3%;
     margin-top: 3%;
@@ -534,31 +571,98 @@ body{
     align-items: center;
 }
 
-.dashboard .boxGlobal .boxRight .line .circuleGreen{
+.dashboard .boxGlobal .boxRight .line .circuleGreen {
     width: 20px;
     height: 20px;
     border-radius: 10px;
     background-color: green;
 }
 
-.dashboard .boxGlobal .boxRight .line .circuleYellow{
+.dashboard .boxGlobal .boxRight .line .circuleYellow {
     width: 20px;
     height: 20px;
     border-radius: 10px;
     background-color: yellow;
 }
 
-.dashboard .boxGlobal .boxRight .line .circuleRed{
+.dashboard .boxGlobal .boxRight .line .circuleRed {
     width: 20px;
     height: 20px;
     border-radius: 10px;
     background-color: red;
 }
 
-.dashboard .boxGlobal .boxRight .descricao{
+.dashboard .boxGlobal .boxRight .descricao {
     width: 94%;
     padding: 0 3% 5% 3%;
     text-align: left;
     border-bottom: 1px solid #000000;
+    font-size: 90%;
+}
+
+.dashboard .boxGlobal .boxRight .boxInterrupcoes{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 2% 5%;
+    align-items: baseline;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+}
+
+.dashboard .boxGlobal .boxRight .boxInterrupcoes .line{
+    text-align: center;
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+}
+
+.boxAtualInterrupcoesCircle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+.dashboard .boxGlobal .boxRight .detalheMensagem{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    gap: 2%;
+}
+
+.dashboard .boxGlobal .boxRight .detalheMensagem button{
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0 1%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dashboard .boxGlobal .boxRight .legendaInterrupcoes{
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}
+
+.alertMessage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    right: -100%;
+    position: absolute;
+    border: 2px solid #203FAB;
+    background-color: rgba(0, 115, 207, 0.9);
+    color: white;
+    margin: 5% 0;
+    padding: 1%;
+    border-radius: 15px;
+    align-items: center;
+    gap: 1%;
+    transition: 1s;
+    opacity: 0;
+    position: fixed;
     font-size: 90%;
 }

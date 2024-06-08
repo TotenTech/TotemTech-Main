@@ -116,4 +116,12 @@ router.post("/editarUsuario", function (req, res) {
     dashboardController.editarUsuario(req, res);
 })
 
+router.post("/selectTotemAlerta", function (req, res) {
+    dashboardController.selectTotemAlerta(req, res);
+})
+
+router.post("/selectTotemAlertaTotal", function (req, res) {
+    dashboardController.selectTotemAlertaTotal(req, res);
+})
+
 module.exports = router;

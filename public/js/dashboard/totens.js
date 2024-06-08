@@ -34,9 +34,18 @@ nameCompany.innerHTML = `${sessionStorage.NOME_EMPRESA}`;
 const boxRight = document.getElementById('boxRightDiv');
 
 // Descrição das métricas
+const lineButton = document.getElementById('lineButtonDiv');
 const descricaoBom = document.getElementById('boxDescricaoBom');
 const descricaoMedio = document.getElementById('boxDescricaoMedio');
 const descricaoRuim = document.getElementById('boxDescricaoRuim');
+
+// Mensagem de alerta
+const alertMessage = document.getElementById('alertMessage');
+
+
+//Mensagem interrupcoes e alertas
+var messagemInterrupcoes = [];
+var storedMessages = sessionStorage.getItem('HISTORY_MESSAGE');
 
 //gráfico:
 // Dados de exemplo 
@@ -180,31 +189,39 @@ function abrirGrafico(tipo) {
 
     }
 
-    trocarBoxParametro(tipo);
+    direcionarButton(selectedComponent, 'legenda');
 }
 
 function trocarBoxParametro(tipo) {
 
     if (tipo == "rede") {
         boxRight.style.backgroundColor = "rgba(135, 164, 214, 1)";
+        lineButton.innerHTML = ` <button class="escolhido" onclick="direcionarButton('rede', 'legenda')">Legenda</button>
+        <button onclick="direcionarButton('rede', 'alerta')">Alertas</button>`;
         descricaoBom.innerHTML = `Acima de 10MB/s. O sistema funcionará sem problemas.`;
         descricaoMedio.innerHTML = `Entre 10MB/s e 6MB/s. O sistema funcionará sem problemas, porém, pode apresentar problemas em horário de pico.`;
         descricaoRuim.innerHTML = `De 5MB/s. Indica lentidão, travamento e instabilidade do sistema`;
 
     } else if (tipo == "ram") {
         boxRight.style.backgroundColor = "rgba(30, 144, 255, 1)";
+        lineButton.innerHTML = ` <button class="escolhido" onclick="direcionarButton('ram', 'legenda')">Legenda</button>
+        <button onclick="direcionarButton('ram', 'alerta')">Alertas</button>`;
         descricaoBom.innerHTML = `Menos de 85% da memória total disponível. Garante que o sistema tenha recursos suficientes para executar aplicativos sem lentidão ou travamentos.`;
         descricaoMedio.innerHTML = ` Entre 85% e 89% da memória total utilizada. Nível aceitável, mas exige monitoramento para evitar sobrecarga da memória.`;
         descricaoRuim.innerHTML = ` Mais de 89% da memória total disponível. Sobrecarga da memória pode levar a lentidão, travamentos, falhas no sistema e até mesmo perda de dados.`;
 
     } else if (tipo == "disco") {
         boxRight.style.backgroundColor = "rgba(100, 149, 237, 1)";
+        lineButton.innerHTML = ` <button class="escolhido" onclick="direcionarButton('disco', 'legenda')">Legenda</button>
+        <button onclick="direcionarButton('disco', 'alerta')">Alertas</button>`;
         descricaoBom.innerHTML = `Menos de 80%. Nível aceitável que garante que o disco não esteja sobrecarregado, permitindo que funcione de forma eficiente.`;
         descricaoMedio.innerHTML = `Entre 80% e 90%. Nível de alerta que exige monitoramento para evitar que a utilização do disco exceda a capacidade.`;
         descricaoRuim.innerHTML = `Acima de 90%. Utilização excessiva do disco pode levar a lentidão, travamentos e falhas no sistema.`;
 
     } else {
         boxRight.style.backgroundColor = "rgba(135, 206, 250, 1)";
+        lineButton.innerHTML = ` <button class="escolhido" onclick="direcionarButton('cpu', 'legenda')">Legenda</button>
+        <button onclick="direcionarButton('cpu', 'alerta')">Alertas</button>`;
         descricaoBom.innerHTML = `Menos de 79%. Indica que a CPU está trabalhando sem sobrecarga, com folga para lidar com picos de demanda.`;
         descricaoMedio.innerHTML = `Entre 80% e 90%. É sinal de que a CPU está sendo utilizada com eficiência, mas pode haver lentidão em momentos de pico.`;
         descricaoRuim.innerHTML = `Acima de 90%. Indica sobrecarga da CPU, resultando em lentidão, travamentos e instabilidades do sistema.`;
@@ -229,6 +246,276 @@ document.getElementById("btn_sair").addEventListener("click", () => {
 })
 
 
+function direcionarButton(tipo, button) {
+    if (button == "legenda") {
+        boxRight.innerHTML = `  <div class="lineButton" id="lineButtonDiv">
+        <button class="escolhido" onclick="direcionarButton('${selectedComponent}', 'legenda')">Legenda</button>
+        <button onclick="direcionarButton('${selectedComponent}', 'alerta')">Alertas</button>
+    </div>
+
+    <div class="line">
+        <div class="circuleGreen"></div> Bom
+    </div>
+    <span class="descricao" id="boxDescricaoBom">Menos de 79%. Indica que a CPU está trabalhando sem sobrecarga, com folga para lidar com picos de demanda.</span>
+
+
+    <div class="line">
+        <div class="circuleYellow"></div>Médio
+    </div>
+    <span class="descricao" id="boxDescricaoMedio">Entre 80% e 90%. É sinal de que a CPU está sendo utilizada com eficiência, mas pode haver lentidão em momentos de pico.
+    </span>
+
+    <div class="line">
+        <div class="circuleRed"></div>Ruim
+    </div>
+    <span class="descricao" id="boxDescricaoRuim">Acima de 90%. Indica sobrecarga da CPU, resultando em lentidão, travamentos e instabilidade do sistema.
+    </span>
+`;
+        trocarBoxParametro(tipo);
+    } else {
+        historyAlerta(tipo);
+    }
+}
+
+function historyAlerta(tipo) {
+    let dataAtual = new Date();
+
+    let ano = dataAtual.getFullYear();
+    let mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    let dia = String(dataAtual.getDate()).padStart(2, '0');
+    let dataFormatada = `${ano}-${dia}-${mes}`;
+
+
+    fetch("/dashboard/selectTotemAlerta", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({
+            idtotemServer: sessionStorage.ID_TOTEM_ALERTA,
+            tipoServer: tipo,
+            dataServer: dataFormatada,
+        })
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    boxRight.innerHTML = `
+                <div class="lineButton" id="lineButtonDiv">
+                    <button onclick="direcionarButton('${selectedComponent}', 'legenda')">Legenda</button>
+                    <button class="escolhido" onclick="direcionarButton('${selectedComponent}', 'alerta')">Alertas</button>
+                </div>
+    
+                <div class="detalheMensagem">
+                    <button onclick="historyAlertaTotal()">Total</button>
+                    <button onclick="historyAlerta('${selectedComponent}')">Totem Atual</button>
+                </div>
+                
+                    <span class="legendaInterrupcoes">Mensagem do Dia</span>`;
+                    if (resposta.length > 0) {
+                        for (var c = 0; c < resposta.length; c++) {
+                            var interrupcao = resposta[c];
+                            let data = new Date(interrupcao.horario);
+                            let hora = ("0" + data.getUTCHours()).slice(-2);
+                            let minutos = ("0" + data.getUTCMinutes()).slice(-2);
+
+                            let horaFormatada = hora + ":" + minutos;
+
+                            boxRight.innerHTML += `<div class="boxInterrupcoes">
+                        <div class="line">
+                            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                            ${interrupcao.nome} - ${horaFormatada}</div>   
+                        <span class="texto">O entrou no status Amarelo por conta do componente ${interrupcao.motivo}.</span>
+                        <div>
+                        </div>
+                    </div>`;
+                        }
+                    } else {
+                        boxRight.innerHTML += `<div class="boxInterrupcoes">
+                    <div class="line">
+                        <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                        Nenhuma interrupção encontrada.</div>
+                    </div>`;
+                    }
+                });
+            } else {
+                console.error("Erro na requisição:", resposta.status);
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao processar requisição:", erro);
+            boxRight.innerHTML = `Erro na requisição`;
+        });
+        
+
+        const historyMessageArray = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
+  
+        historyMessageArray.forEach((objeto, indice) => {
+            console.log(`Item ${indice + 1}:`);
+            for (const chave in objeto) {
+              if (objeto.hasOwnProperty(chave)) {
+                if (objeto[tipo] === tipo) {
+                  console.log(objeto[chave].nomeTotem);
+                  boxRight.innerHTML += `
+                    <div class="boxInterrupcoes">
+                      <div class="line">
+                        <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                        ${objeto[nome]} - ${objeto[horario]}
+                      </div>   
+                      <span class="texto">O totem entrou no status Amarelo por conta do componente ${objeto[chave].tipo}.</span>
+                    </div>
+                  `;
+                }
+              }
+            }
+          });
+
+        // for (var c = 0; c < storedMessages.length; c++) {
+        //     var messageDaVez = storedMessages[c];
+        //     console.log('Mensagem atual:', messageDaVez);
+        //     if (messageDaVez.tipo === tipo) {
+        //         boxRight.innerHTML += `
+        //         <div class="boxInterrupcoes">
+        //             <div class="line">
+        //                 <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+        //                 ${messageDaVez.nomeTotem} - ${messageDaVez.horario}
+        //             </div>   
+        //             <span class="texto">O totem entrou no status Amarelo por conta do componente ${messageDaVez.tipo}.</span>
+        //             <div></div>
+        //         </div>`; 
+        //     }
+        // }
+}
+
+function historyAlertaTotal() {
+    let dataAtual = new Date();
+
+    let ano = dataAtual.getFullYear();
+    let mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    let dia = String(dataAtual.getDate()).padStart(2, '0');
+    let dataFormatada = `${ano}-${dia}-${mes}`;
+
+
+    fetch("/dashboard/selectTotemAlertaTotal", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({
+            empresaServer: sessionStorage.EMPRESA_USUARIO,
+            dataServer: dataFormatada,
+        })
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    boxRight.innerHTML = `
+                <div class="lineButton" id="lineButtonDiv">
+                    <button onclick="direcionarButton('${selectedComponent}', 'legenda')">Legenda</button>
+                    <button class="escolhido" onclick="direcionarButton('${selectedComponent}', 'alerta')">Alertas</button>
+                </div>
+    
+                <div class="detalheMensagem">
+                    <button onclick="historyAlertaTotal()">Total</button>
+                    <button onclick="historyAlerta('${selectedComponent}')">Totem Atual</button>
+                </div>
+                
+                    <span class="legendaInterrupcoes">Mensagem do Dia</span>`;
+                    if (resposta.length > 0) {
+                        for (var c = 0; c < resposta.length; c++) {
+                            var interrupcao = resposta[c];
+                            let data = new Date(interrupcao.horario);
+                            let hora = ("0" + data.getUTCHours()).slice(-2);
+                            let minutos = ("0" + data.getUTCMinutes()).slice(-2);
+
+                            let horaFormatada = hora + ":" + minutos;
+
+                            boxRight.innerHTML += `<div class="boxInterrupcoes">
+                        <div class="line">
+                            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                            ${interrupcao.nome} - ${horaFormatada}</div>   
+                        <span class="texto">O entrou no status Amarelo por conta do componente ${interrupcao.motivo}.</span>
+                        <div>
+                        </div>
+                    </div>`;
+                        }
+                    } else {
+                        boxRight.innerHTML += `<div class="boxInterrupcoes">
+                    <div class="line">
+                        <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                        Nenhuma interrupção encontrada.</div>
+                    </div>`;
+                    }
+                });
+            } else {
+                console.error("Erro na requisição:", resposta.status);
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao processar requisição:", erro);
+            boxRight.innerHTML = `Erro na requisição`;
+        });
+
+
+}
+
+function newInfoMessage(cor, tipo, horarioAtual) {
+    let colorMessage = "";
+
+    if(cor == "yellow"){
+        colorMessage = 'Amarelo';
+    }else{
+        colorMessage = 'Vermelho';
+    }
+
+    let message = {
+        nomeTotem: `${sessionStorage.NOME_TOTEM_ALERTA}`,
+        cor: colorMessage,
+        tipo: tipo,
+        horario: horarioAtual,
+    };
+    messagemInterrupcoes.push(message);
+
+    alertMessage.innerHTML = `
+        <div class="boxInterrupcoes">
+            <div class="line">
+                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                    ${messagemInterrupcoes[messagemInterrupcoes.length - 1].nomeTotem} - ${messagemInterrupcoes[messagemInterrupcoes.length - 1].horario}  
+                </div>   
+                    <span class="texto">O totem entrou no status ${colorMessage} por conta do componente ${messagemInterrupcoes[messagemInterrupcoes.length - 1].tipo}.</span>
+                <div>
+            </div>
+         </div>`;
+
+    mostrarAlerta();
+    const circleStatus = document.getElementById('boxAtualInterrupcoesCircleDiv');
+    circleStatus.style.backgroundColor = `${cor}`;
+    if (storedMessages) {
+        try {
+            messagemInterrupcoes = JSON.parse(storedMessages);
+        } catch (e) {
+            messagemInterrupcoes = [];
+        }
+    }
+    
+    sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
+
+
+    setTimeout(function () {
+        esconderAlerta();
+    }, 15000);
+}
+
+function mostrarAlerta() {
+    alertMessage.style.right = '2%';
+    alertMessage.style.opacity = '1';
+}
+
+function esconderAlerta() {
+    alertMessage.style.right = '-100%';
+    alertMessage.style.opacity = '0';
+}
+
 let totemSelectedId;
 const selectedTotemTitle = document.getElementById("h1TituloTotem");
 function setTotemVisualized(idTotem, empresa, nome) {
@@ -240,7 +527,9 @@ function setTotemVisualized(idTotem, empresa, nome) {
     abrirGrafico("cpu");
     selectedTotemTitle.innerHTML = `${nome}`;
     totemSelectedId = idTotem;
-    selectedComponent = "cpu"
+    selectedComponent = "cpu";
+    sessionStorage.ID_TOTEM_ALERTA = idTotem;
+    sessionStorage.NOME_TOTEM_ALERTA = nome;
 
     for (let i = 0; i < allTotens.length; i++) {
         if (allTotens[i].idtotem == idTotem) {
@@ -251,7 +540,7 @@ function setTotemVisualized(idTotem, empresa, nome) {
             document.getElementById("situacaoAtualDisco").innerHTML = `TODO`;
             document.getElementById("situacaoAtualRede").innerHTML = `${allNetworkLastData[i].valor}MB/s`;
             allNetworkLastData.filter(it => it.idtotem == idTotem).forEach(filtered => { dadosRede.push(filtered.valor) });
-
+            sessionStorage.NOME_TOTEM = it => it.idtotem;
             putIntoGraphContinuos()
             verifyAllContinuos()
         }
@@ -497,6 +786,14 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
     let memoryColor = "";
     let diskColor = "";
     let networkColor = "";
+
+    //Pegar horario
+    let dataAtual = new Date();
+
+    let horaAtual = ("0" + dataAtual.getHours()).slice(-2);
+    let minutosAtuais = ("0" + dataAtual.getMinutes()).slice(-2);
+    let horarioAtual = horaAtual + ":" + minutosAtuais;
+
     cpu.forEach(it => {
         let num = parseFloat(it.valor);
 
@@ -505,12 +802,14 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem = totemSelectedId) {
                 cpuColor = "green";
+                newInfoMessage( 'pink', 'cpu', horarioAtual);
             }
         } else if (num >= 80.0 && num <= 90.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
             if (it.idtotem == totemSelectedId) {
                 cpuColor = "yellow";
+                newInfoMessage( cpuColor, 'cpu', horarioAtual);
             }
             // alertaMedio(it.idtotem, it.valor, "Cpu");
         } else if (num > 90.0) {
@@ -518,6 +817,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 cpuColor = "red";
+                newInfoMessage( cpuColor, 'cpu', horarioAtual);
             }
             // alertaRuim(it.idtotem, it.valor, "Cpu");
         }
@@ -531,12 +831,14 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "green";
+                newInfoMessage( 'pink', 'ram', horarioAtual);
             }
         } else if (num >= 85.0 && num <= 89.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "yellow";
+                newInfoMessage(memoryColor , 'ram', horarioAtual);
             }
             // alertaMedio(it.idtotem, it.valor, "Memória");
         } else if (num > 89.0) {
@@ -544,6 +846,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "red";
+                newInfoMessage(memoryColor, 'ram', horarioAtual);
             }
             // alertaRuim(it.idtotem, it.valor, "Memória");
         }
@@ -557,12 +860,14 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem == totemSelectedId) {
                 diskColor = "green";
+                newInfoMessage('pink', 'disco', horarioAtual);
             }
         } else if (num >= 80.0 && num <= 90.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
             if (it.idtotem == totemSelectedId) {
                 diskColor = "yellow";
+                newInfoMessage(memoryColor, 'disco', horarioAtual);
             }
             // alertaMedio(it.idtotem, it.valor, "Memória");
         } else if (num > 90.0) {
@@ -570,6 +875,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 diskColor = "red";
+                newInfoMessage(memoryColor, 'disco', horarioAtual);
             }
             // alertaRuim(it.idtotem, it.valor, "Memória");
         }
@@ -583,12 +889,14 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "green";
             if (it.idtotem == totemSelectedId) {
                 networkColor = "green";
+                newInfoMessage('pink', 'rede', horarioAtual);
             }
         } else if (num >= 6.0 && num <= 10.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "yellow";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "yellow";
             if (it.idtotem == totemSelectedId) {
                 networkColor = "yellow";
+                newInfoMessage(memoryColor, 'rede', horarioAtual);
             }
             // alertaMedio(it.idtotem, it.valor, "Rede");
         } else if (num < 6.0) {
@@ -596,6 +904,7 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 networkColor = "red";
+                newInfoMessage(memoryColor, 'rede', horarioAtual);
             }
             // alertaRuim(it.idtotem, it.valor, "Rede");
         }

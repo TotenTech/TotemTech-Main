@@ -498,6 +498,32 @@ function editarUsuario(req, res) {
     }
 }
 
+function selectTotemAlerta(req, res) {
+    var idtotem = req.body.idtotemServer;
+    var data = req.body.dataServer;
+    var tipo = req.body.tipoServer;
+
+    dashboardModel.selectTotemAlerta(idtotem, data, tipo).then(function (resposta) {
+        res.status(200).send(resposta);
+
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function selectTotemAlertaTotal(req, res) {
+    var empresa = req.body.empresaServer;
+    var data = req.body.dataServer;
+
+    dashboardModel.selectTotemAlertaTotal(empresa, data).then(function (resposta) {
+        res.status(200).send(resposta);
+
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
 
 
 module.exports = {
@@ -525,4 +551,6 @@ module.exports = {
     buscarInfoUsuario,
     deletarUsuario,
     editarUsuario,
+    selectTotemAlerta,
+    selectTotemAlertaTotal,
 }
