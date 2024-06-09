@@ -11,15 +11,6 @@ function cadastrarTotem(nome, login, senha, sistemaOperacional, empresa) {
     return database.executar(instrucao);
 }
 
-function cadastrarTotemComponetes(cpu, rede, ram, disco) {
-
-    var instrucao = `INSERT INTO visualizacao (cpu, memoria, disco, rede, totem)VALUES 
-    (${cpu}, ${ram}, ${disco}, ${rede}, (SELECT MAX(idtotem) FROM totem));`
-
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
 function cadastrarComponentesTotem(nomeComponente,
     nome1,
     valor1,
@@ -118,17 +109,6 @@ function alterarTotem(nome, login, senha, sistemaOperacional, totem) {
     return database.executar(instrucao);
 }
 
-function alterarTotemComponente(cpu, rede, memoria, disco, totem) {
-    var instrucao = `
-    UPDATE visualizacao 
-    SET cpu = ${cpu}, memoria = ${memoria}, disco = ${disco}, rede = ${rede}
-    WHERE totem = ${totem};
-        `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-
-    return database.executar(instrucao);
-}
-
 function alterarTotemRam(ram, totem) {
     var instrucao = `
     SELECT nome, login, senha FROM totem WHERE idtotem = ${totem};
@@ -160,14 +140,6 @@ function alterarEspecificacaoTotalDisco(idespecificacao, totalDisco) {
 function buscarInfoTotem(totem) {
     var instrucao = `
     SELECT nome, login, senha, sistemaOperacional FROM totem WHERE idtotem = ${totem};
-        `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function buscarInfoTotemComponente(totem) {
-    var instrucao = `
-    SELECT * FROM visualizacao WHERE totem = ${totem};
         `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -372,19 +344,16 @@ function obterInterrupcoesPorTotemUltimos30Dias() {
 
 module.exports = {
     cadastrarTotem,
-    cadastrarTotemComponetes,
     cadastrarComponentesTotem,
     cadastrarComponentesTotemDisco,
     cadastrarTotalDiscoTotem,
     listarTotens,
     deletarTotem,
     alterarTotem,
-    alterarTotemComponente,
     alterarTotemRam,
     alterarComponenteEspecificacao,
     alterarEspecificacaoTotalDisco,
     buscarInfoTotem,
-    buscarInfoTotemComponente,
     buscarInfoComponente,
     buscarInfoEspecificacao,
     buscarEspecificacaoComponente,

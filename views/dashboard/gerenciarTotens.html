@@ -123,27 +123,7 @@
                     <input type="number" id="inputNovoTotalRamTotem" placeholder="Quantidade de memória RAM*">
                 </p>        
 
-                <h3>Escolha o que deseja visualizar</h3>
-                <ul class="listaDesempenho">
-
-                    <li>
-                        <input type="checkbox" id="checkboxCPU"><span class="textoSpan">CPU</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxRede"><span class="textoSpan">REDE</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxRAM"><span class="textoSpan">Memória RAM</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxDisco"><span class="textoSpan">Disco</span>
-                    </li>
-
-                </ul>
-
+             
                 <button type="submit" onclick="addTotem()">Salvar</button>
 
             </div>
@@ -193,35 +173,11 @@
                     </p>
                 </span>
 
-                <h3>Componentes que deseja monitorar</h3>
-                <ul class="listaDesempenho">
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemCPU" disabled>
-                        <span class="textoSpan" id="textoSpanCpu">CPU</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemRede" disabled>
-                        <span class="textoSpan" id="textoSpanRede">REDE</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemRAM" disabled>
-                        <span class="textoSpan" id="textoSpanRam">Memória RAM</span>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="checkboxTotemDisco" disabled>
-                        <span class="textoSpan" id="textoSpanDisco">Disco</span>
-                    </li>
-
-                </ul>
-
+              
                 <div class="line" id="lineButtonDiv">
 
                     <button type="submit" onclick="editarValores()">Editar</button>
-                    <button type="submit" onclick="updateVisualizacao()">Salvar</button>
+                    <button type="submit" onclick=" updateTotem()">Salvar</button>
 
                 </div>
 
