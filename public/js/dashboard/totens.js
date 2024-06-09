@@ -219,10 +219,10 @@ function trocarBoxParametro(tipo) {
 
 `;
 
-const lineButton = document.getElementById('lineButtonDiv');
-const descricaoBom = document.getElementById('boxDescricaoBom');
-const descricaoMedio = document.getElementById('boxDescricaoMedio');
-const descricaoRuim = document.getElementById('boxDescricaoRuim');
+    const lineButton = document.getElementById('lineButtonDiv');
+    const descricaoBom = document.getElementById('boxDescricaoBom');
+    const descricaoMedio = document.getElementById('boxDescricaoMedio');
+    const descricaoRuim = document.getElementById('boxDescricaoRuim');
 
     if (tipo == "rede") {
         boxRight.style.backgroundColor = "rgba(135, 164, 214, 1)";
@@ -523,8 +523,22 @@ function newInfoMessage(cor, tipo, horarioAtual, idtotem, valor) {
         horario: horarioAtual,
         valor: valor
     };
-    messagemInterrupcoes.push(message);
-    sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
+
+    messagemInterrupcoes = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
+
+    if (messagemInterrupcoes.length === 0 &&
+        (messagemInterrupcoes[messagemInterrupcoes.length - 1].valor !== message.valor &&
+            messagemInterrupcoes[messagemInterrupcoes.length - 1].idtotem !== message.idtotem)) {
+
+        messagemInterrupcoes.push(message);
+
+        sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
+    }
+
+    // if(messagemInterrupcoes[sessionStorage.HISTORY_MESSAGE.length].valor != message.valor){
+    //     messagemInterrupcoes.push(message);
+    //     sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
+    // }
 
 
     alertMessage.innerHTML = `
