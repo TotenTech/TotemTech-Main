@@ -137,4 +137,12 @@ router.get("/totemUltimos30Dias", function(req, res){
     dashboardController.obterInterrupcoesPorTotemUltimos30Dias(req, res);
 });
 
+router.post("/selectTotemAlerta", function (req, res) {
+    dashboardController.selectTotemAlerta(req, res);
+})
+
+router.post("/selectTotemAlertaTotal", function (req, res) {
+    dashboardController.selectTotemAlertaTotal(req, res);
+})
+
 module.exports = router;

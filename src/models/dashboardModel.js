@@ -252,6 +252,26 @@ function editarUsuario(id, nome, email, senha, tipo) {
     return database.executar(instrucao);
 }
 
+function selectTotemAlerta(idtotem, data) {
+    var instrucao = `SELECT i.*, t.* 
+    FROM interrupcoes i
+    JOIN totem t ON i.totem = t.idtotem
+    WHERE i.totem = ${idtotem}
+      AND CAST(i.horario AS DATE) = '${data}';`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function selectTotemAlertaTotal(empresa, data) {
+    var instrucao = `SELECT i.*, t.* 
+    FROM interrupcoes i
+    JOIN totem t ON i.totem = t.idtotem
+    WHERE t.empresa = ${empresa}
+      AND CAST(i.horario AS DATE) = '${data}';`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function buscarUltimos30Dias() {
     var instrucao = `
     SELECT totem AS nome, horario, motivo
@@ -381,4 +401,6 @@ module.exports = {
     obterInterrupcoesPorData,
     obterInterrupcoesPorMotivoUltimos30Dias,
     obterInterrupcoesPorTotemUltimos30Dias,
+    selectTotemAlerta,
+    selectTotemAlertaTotal,
 };

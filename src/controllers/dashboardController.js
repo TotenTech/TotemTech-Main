@@ -556,6 +556,108 @@ function obterInterrupcoesPorTotemUltimos30Dias(req, res) {
     });
 }
 
+function buscarUltimos30Dias(req, res) {
+    dashboardModel.buscarUltimos30Dias().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarInterrupcoes(req, res) {
+    const { start_date, end_date } = req.query;
+    dashboardModel.buscarInterrupcoes(start_date, end_date).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function contarInterrupcoesPorMotivoUltimos30Dias(req, res) {
+    dashboardModel.contarInterrupcoesPorMotivoUltimos30Dias().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function contarInterrupcoesPorMotivo(req, res) {
+    const { start_date, end_date } = req.query;
+    dashboardModel.contarInterrupcoesPorMotivo(start_date, end_date).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarInterrupcoesUltimas24Horas(req, res) {
+    dashboardModel.obterInterrupcoesUltimas24Horas().then(function(resposta) {
+        res.status(200).send(resposta);
+    }).catch(function(erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarInterrupcoesPorData(req, res) {
+    const data = req.query.data;
+    dashboardModel.obterInterrupcoesPorData(data).then(function(resposta) {
+        res.status(200).send(resposta);
+    }).catch(function(erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function obterInterrupcoesPorMotivoUltimos30Dias(req, res) {
+    const totem = req.query.totem;
+    dashboardModel.obterInterrupcoesPorMotivoUltimos30Dias(totem).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function obterInterrupcoesPorTotemUltimos30Dias(req, res) {
+    dashboardModel.obterInterrupcoesPorTotemUltimos30Dias().then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function selectTotemAlerta(req, res) {
+    var idtotem = req.body.idtotemServer;
+    var data = req.body.dataServer;
+
+    dashboardModel.selectTotemAlerta(idtotem, data).then(function (resposta) {
+        res.status(200).send(resposta);
+
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function selectTotemAlertaTotal(req, res) {
+    var empresa = req.body.empresaServer;
+    var data = req.body.dataServer;
+
+    dashboardModel.selectTotemAlertaTotal(empresa, data).then(function (resposta) {
+        res.status(200).send(resposta);
+
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
 
 
 module.exports = {
@@ -581,6 +683,8 @@ module.exports = {
     buscarInfoUsuario,
     deletarUsuario,
     editarUsuario,
+    selectTotemAlerta,
+    selectTotemAlertaTotal,
     buscarUltimos30Dias,
     buscarInterrupcoes,
     contarInterrupcoesPorMotivoUltimos30Dias,

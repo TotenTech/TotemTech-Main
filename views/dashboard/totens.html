@@ -70,6 +70,8 @@
             </div>
         </div>
 
+        <div class="alertMessage" id="alertMessage"></div>
+        
         <div class="lineTotens" id="lineTotens">
 
             <div class="totem" id="boxTotem" onclick="totalTotemFunction('abrir')">
@@ -131,6 +133,11 @@
             </div>
 
             <div class="boxRight" id="boxRightDiv">
+                <div class="lineButton" id="lineButtonDiv">
+                    <button class="escolhido" onclick="direcionarButton('cpu', 'legenda')">Legenda</button>
+                    <button onclick="direcionarButton('cpu', 'alerta')">Alertas</button>
+                </div>
+
                 <div class="line">
                     <div class="circuleGreen"></div> Bom
                 </div>
