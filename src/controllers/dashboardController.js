@@ -636,9 +636,8 @@ function obterInterrupcoesPorTotemUltimos30Dias(req, res) {
 function selectTotemAlerta(req, res) {
     var idtotem = req.body.idtotemServer;
     var data = req.body.dataServer;
-    var tipo = req.body.tipoServer;
 
-    dashboardModel.selectTotemAlerta(idtotem, data, tipo).then(function (resposta) {
+    dashboardModel.selectTotemAlerta(idtotem, data).then(function (resposta) {
         res.status(200).send(resposta);
 
     }).catch(function (erro) {

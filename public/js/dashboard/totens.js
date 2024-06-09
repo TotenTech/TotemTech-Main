@@ -193,6 +193,36 @@ function abrirGrafico(tipo) {
 }
 
 function trocarBoxParametro(tipo) {
+    boxRight.innerHTML = `
+<div class="lineButton" id="lineButtonDiv">
+    <button class="escolhido" onclick="direcionarButton('cpu', 'legenda')">Legenda</button>
+    <button onclick="direcionarButton('cpu', 'alerta')">Alertas</button>
+</div>
+
+<div class="line">
+    <div class="circuleGreen"></div> Bom
+</div>
+<span class="descricao" id="boxDescricaoBom">Menos de 79%. Indica que a CPU está trabalhando sem sobrecarga, com folga para lidar com picos de demanda.</span>
+
+
+<div class="line">
+    <div class="circuleYellow"></div>Médio
+</div>
+<span class="descricao" id="boxDescricaoMedio">Entre 80% e 90%. É sinal de que a CPU está sendo utilizada com eficiência, mas pode haver lentidão em momentos de pico.
+</span>
+
+<div class="line">
+    <div class="circuleRed"></div>Ruim
+</div>
+<span class="descricao" id="boxDescricaoRuim">Acima de 90%. Indica sobrecarga da CPU, resultando em lentidão, travamentos e instabilidade do sistema.
+</span>
+
+`;
+
+const lineButton = document.getElementById('lineButtonDiv');
+const descricaoBom = document.getElementById('boxDescricaoBom');
+const descricaoMedio = document.getElementById('boxDescricaoMedio');
+const descricaoRuim = document.getElementById('boxDescricaoRuim');
 
     if (tipo == "rede") {
         boxRight.style.backgroundColor = "rgba(135, 164, 214, 1)";
@@ -295,7 +325,6 @@ function historyAlerta(tipo) {
         },
         body: JSON.stringify({
             idtotemServer: sessionStorage.ID_TOTEM_ALERTA,
-            tipoServer: tipo,
             dataServer: dataFormatada,
         })
     })
@@ -335,33 +364,8 @@ function historyAlerta(tipo) {
                             boxAtualInterrupcoesCircle.style.backgroundColor = 'red';
                             contador++;
                         }
-                        contador = 1;
-
-                        historyMessageArray.forEach((objeto, indice) => {
-                            console.log(`Item ${indice + 1}:`);
-                            if (objeto.tipo === tipo) {
-                                boxRight.innerHTML += `
-                            <div class="boxInterrupcoes">
-                              <div class="line">
-                                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${c}"></div>
-                                ${objeto.nomeTotem} - ${objeto.horario} 
-                              </div>   
-                              <span class="texto">O totem ficou com o status ${objeto.cor} do componente ${objeto.tipo}.</span>
-                            </div>
-                          `;
-                                const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + `${c}`);
-                                if (objeto.cor == "Amarelo") {
-                                    boxAtualInterrupcoesCircle.style.backgroundColor = `yellow`;
-                                } else {
-                                    boxAtualInterrupcoesCircle.style.backgroundColor = `red`;
-                                }
-                                contador++;
-                            }
-                        });
-                        plotarMessage(true, tipo)
-                    } else {
-                        plotarMessage(false, tipo)
                     }
+                    plotarMessage(true, sessionStorage.ID_TOTEM_ALERTA)
 
                 });
             } else {
@@ -439,6 +443,7 @@ function historyAlertaTotal() {
                         Nenhuma interrupção encontrada.</div>
                     </div>`;
                     }
+                    plotarMessage(false)
                 });
             } else {
                 console.error("Erro na requisição:", resposta.status);
@@ -452,22 +457,23 @@ function historyAlertaTotal() {
 
 }
 
-function plotarMessage(vazio, tipo) {
+function plotarMessage(vazio, idtotem) {
     let contador = 1;
     const historyMessageArray = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
     if (vazio) {
         historyMessageArray.forEach((objeto, indice) => {
-            if (objeto.tipo === tipo) {
+            if (objeto.idtotem === parseInt(idtotem, 10)) {
                 boxRight.innerHTML += `
             <div class="boxInterrupcoes">
               <div class="line">
-                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${contador}"></div>
+                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${contador}I"></div>
                 ${objeto.nomeTotem} - ${objeto.horario} 
               </div>   
               <span class="texto">O totem entrou no status ${objeto.cor} por conta do componente ${objeto.tipo}.</span>
+              <span class="texto">Valor: ${objeto.valor}</span>
             </div>
           `;
-                const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + contador);
+                const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + contador + "I");
                 if (objeto.cor == "Amarelo") {
                     boxAtualInterrupcoesCircle.style.backgroundColor = `yellow`;
                 } else {
@@ -477,15 +483,29 @@ function plotarMessage(vazio, tipo) {
             }
         });
     } else {
-        boxRight.innerHTML += `<div class="boxInterrupcoes">
-        <div class="line">
-            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
-            Nenhuma interrupção encontrada.</div>
-        </div>`;
+        historyMessageArray.forEach((objeto, indice) => {
+            boxRight.innerHTML += `
+            <div class="boxInterrupcoes">
+              <div class="line">
+                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv${contador}I"></div>
+                ${objeto.nomeTotem} - ${objeto.horario} 
+              </div>   
+              <span class="texto">O totem entrou no status ${objeto.cor} por conta do componente ${objeto.tipo}.</span>
+              <span class="texto">Valor: ${objeto.valor}</span>
+            </div>
+          `;
+            const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + contador + "I");
+            if (objeto.cor == "Amarelo") {
+                boxAtualInterrupcoesCircle.style.backgroundColor = `yellow`;
+            } else {
+                boxAtualInterrupcoesCircle.style.backgroundColor = `red`;
+            }
+            contador++;
+        });
     }
 }
 
-function newInfoMessage(cor, tipo, horarioAtual) {
+function newInfoMessage(cor, tipo, horarioAtual, idtotem, valor) {
     let colorMessage = "";
 
     if (cor == "yellow") {
@@ -494,13 +514,18 @@ function newInfoMessage(cor, tipo, horarioAtual) {
         colorMessage = 'Vermelho';
     }
 
+
     let message = {
-        nomeTotem: `${sessionStorage.NOME_TOTEM_ALERTA}`,
+        idtotem: idtotem,
+        nomeTotem: allTotens[idtotem - 1].nome,
         cor: colorMessage,
         tipo: tipo,
         horario: horarioAtual,
+        valor: valor
     };
     messagemInterrupcoes.push(message);
+    sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
+
 
     alertMessage.innerHTML = `
         <div class="boxInterrupcoes">
@@ -509,6 +534,8 @@ function newInfoMessage(cor, tipo, horarioAtual) {
                     ${messagemInterrupcoes[messagemInterrupcoes.length - 1].nomeTotem} - ${messagemInterrupcoes[messagemInterrupcoes.length - 1].horario}  
                 </div>   
                     <span class="texto">O totem entrou no status ${colorMessage} por conta do componente ${messagemInterrupcoes[messagemInterrupcoes.length - 1].tipo}.</span>
+                   <br>
+                    <span class="texto">Valor: ${messagemInterrupcoes[messagemInterrupcoes.length - 1].valor}</span>
                 <div>
             </div>
          </div>`;
@@ -523,10 +550,7 @@ function newInfoMessage(cor, tipo, horarioAtual) {
             messagemInterrupcoes = [];
         }
     }
-
-    sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
-
-
+    historyAlerta(tipo);
     setTimeout(function () {
         esconderAlerta();
     }, 6000);
@@ -848,16 +872,16 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             }
             if (it.idtotem == totemSelectedId) {
                 cpuColor = "yellow";
-                newInfoMessage(cpuColor, 'cpu', horarioAtual);
             }
+            newInfoMessage('yellow', 'cpu', horarioAtual, it.idtotem, it.valor);
             // alertaMedio(it.idtotem, it.valor, "Cpu");
         } else if (num > 90.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 cpuColor = "red";
-                newInfoMessage(cpuColor, 'cpu', horarioAtual);
             }
+            newInfoMessage('red', 'cpu', horarioAtual, it.idtotem, it.valor);
             // alertaRuim(it.idtotem, it.valor, "Cpu");
         }
     })
@@ -881,16 +905,16 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             }
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "yellow";
-                newInfoMessage(memoryColor, 'ram', horarioAtual);
             }
+            newInfoMessage('yellow', 'ram', horarioAtual, it.idtotem, it.valor);
             // alertaMedio(it.idtotem, it.valor, "Memória");
         } else if (num > 89.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 memoryColor = "red";
-                newInfoMessage(memoryColor, 'ram', horarioAtual);
             }
+            newInfoMessage('red', 'ram', horarioAtual, it.idtotem, it.valor);
             // alertaRuim(it.idtotem, it.valor, "Memória");
         }
     })
@@ -914,16 +938,16 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             }
             if (it.idtotem == totemSelectedId) {
                 diskColor = "yellow";
-                newInfoMessage(memoryColor, 'disco', horarioAtual);
             }
+            newInfoMessage('yellow', 'disco', horarioAtual, it.idtotem, it.valor);
             // alertaMedio(it.idtotem, it.valor, "Memória");
         } else if (num > 90.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 diskColor = "red";
-                newInfoMessage(memoryColor, 'disco', horarioAtual);
             }
+            newInfoMessage('red', 'disco', horarioAtual, it.idtotem, it.valor);
             // alertaRuim(it.idtotem, it.valor, "Memória");
         }
     })
@@ -947,16 +971,16 @@ async function verifyAllContinuos(cpu, memory, disk, network) {
             }
             if (it.idtotem == totemSelectedId) {
                 networkColor = "yellow";
-                newInfoMessage(memoryColor, 'rede', horarioAtual);
             }
+            newInfoMessage('yellow', 'rede', horarioAtual, it.idtotem, it.valor);
             // alertaMedio(it.idtotem, it.valor, "Rede");
         } else if (num < 6.0) {
             document.getElementById(`totemLineCircle${it.idtotem}`).style.backgroundColor = "red";
             document.getElementById(`totemBoxCircle${it.idtotem}`).style.backgroundColor = "red";
             if (it.idtotem == totemSelectedId) {
                 networkColor = "red";
-                newInfoMessage(memoryColor, 'rede', horarioAtual);
             }
+            newInfoMessage('red', 'rede', horarioAtual, it.idtotem, it.valor);
             // alertaRuim(it.idtotem, it.valor, "Rede");
         }
     })
