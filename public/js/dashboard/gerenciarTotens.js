@@ -53,10 +53,6 @@ const tipoDisco2TotemEdit = document.getElementById('tipoDisco2SpanTotem');
 const totalDisco2TotemEdit = document.getElementById('totalDisco2SpanTotem');
 const totalRamTotemEdit = document.getElementById('totalRamSpanTotem');
 const tipoRamTotemEdit = document.getElementById('tipoRamSpanTotem')
-const cpuTotemEdit = document.getElementById('checkboxTotemCPU');
-const redeTotemEdit = document.getElementById('checkboxTotemRede');
-const ramTotemEdit = document.getElementById('checkboxTotemRAM');
-const discoTotemEdit = document.getElementById('checkboxTotemDisco');
 
 
 //Tela de informações do totem
@@ -70,10 +66,7 @@ const tipoDisco2TotemInfo = document.getElementById('tipoDisco2TotemSpanInfo');
 const totalDisco2TotemInfo = document.getElementById('totalDisco2TotemSpanInfo');
 const totalRamTotemInfo = document.getElementById('totalRamTotemSpanInfo');
 const tipoRamTotemInfo = document.getElementById('tipoRamTotemSpanInfo');
-const cpuTotemInfo = document.getElementById('checkboxTotemCPUInfo');
-const redeTotemInfo = document.getElementById('checkboxTotemRedeInfo');
-const ramTotemInfo = document.getElementById('checkboxTotemRAMInfo');
-const discoTotemInfo = document.getElementById('checkboxTotemDiscoInfo');
+
 
 //Numero total de totens e o total de cada componente
 const numberTotal = document.getElementById('spanNumberTotal');
@@ -104,11 +97,6 @@ var TotalDisco1Totem = "";
 var TotalRamTotem = "";
 var TipoRamTotem = "";
 
-//Variaveis de visualização de componentes 
-var cpu = 0;
-var rede = 0;
-var disco = 0;
-var ram = 0;
 
 // Variavel com total de disco
 var totalDisco = 1;
@@ -239,14 +227,6 @@ function listarTotens() {
 
 // Criar o cadastro de um totem novo
 function addTotem() {
-    var cpuC = document.getElementById('checkboxCPU');
-    var redeC = document.getElementById('checkboxRede');
-    var ramC = document.getElementById('checkboxRAM');
-    var discoC = document.getElementById('checkboxDisco');
-    var cpu = 0;
-    var rede = 0;
-    var disco = 0;
-    var ram = 0;
     NomeTotem = inputNovoNomeTotem.value;
     EmailTotem = inputNovoEmailTotem.value;
     SenhaTotem = inputNovoSenhaTotem.value;
@@ -257,21 +237,6 @@ function addTotem() {
     TipoRamTotem = inputNovoTipoRamTotem.value;
 
 
-    if (cpuC.checked) {
-        cpu = 1;
-    }
-
-    if (redeC.checked) {
-        rede = 1;
-    }
-
-    if (ramC.checked) {
-        ram = 1;
-    }
-
-    if (discoC.checked) {
-        disco = 1;
-    }
 
     if (NomeTotem == "" ||
         EmailTotem == "" ||
@@ -283,12 +248,6 @@ function addTotem() {
         TipoRamTotem == ""
     ) {
         alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha todos campos para adicionar um totem`;
-        mostrarAlerta();
-        setTimeout(function () {
-            esconderAlerta();
-        }, 3000);
-    } else if (cpu == 0 && ram == 0 && rede == 0 && disco == 0) {
-        alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha algum componente para visualiização`;
         mostrarAlerta();
         setTimeout(function () {
             esconderAlerta();
@@ -309,26 +268,8 @@ function addTotem() {
                 sistemaOperacionalServer: SistemaOperacionalTotem,
             })
         })
-        setTimeout(1000, addTotemVisualizacao(cpu, rede, ram, disco));
+            addComponentesTotem();
     }
-}
-
-function addTotemVisualizacao(cpu, rede, ram, disco) {
-    //Cadastrar componentes totem
-
-    fetch("/dashboard/cadastrarTotemComponetes", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            cpuServer: cpu,
-            redeServer: rede,
-            ramServer: ram,
-            discoServer: disco,
-        })
-    })
-    addComponentesTotem();
 }
 
 function addComponentesTotem() {
@@ -514,34 +455,6 @@ function abrirEditarTotem(idTotem) {
                     sessionStorage.LOGIN_TOTEM = json.login;
                     sessionStorage.S_T = json.senha;
                     sessionStorage.SISTEMA_OPERACIONAL_TOTEM = json.sistemaOperacional;
-                    buscarInfoTotemComponente(idTotem);
-                });
-            }
-        })
-        .catch(function (erro) {
-            console.error("Erro ao processar requisição:", erro);
-        });
-}
-
-function buscarInfoTotemComponente(idTotem) {
-
-    fetch("/dashboard/buscarInfoTotemComponente", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            totemServer: idTotem,
-        })
-    })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(json => {
-                    cpu = json.cpu;
-                    ram = json.memoria;
-                    disco = json.disco;
-                    rede = json.rede;
-
                     buscarInfoTotem(idTotem);
                 });
             }
@@ -656,64 +569,7 @@ function mostrarInformacoesscreenEdit() {
     totalRamTotemEdit.innerHTML += `${sessionStorage.RAM_VALOR_COMPONENTE}`;
     tipoRamTotemEdit.innerHTML += `${sessionStorage.RAM_TIPO_COMPONENTE}`;
 
-    if (cpuTotemInfo || ramTotemInfo || discoTotemInfo || redeTotemInfo) {
-        if (cpu == 1) {
-            cpuTotemInfo.checked = true;
-
-        } else {
-            cpuTotemInfo.checked = false;
-
-        }
-        if (ram == 1) {
-            ramTotemInfo.checked = true;
-
-        } else {
-            ramTotemInfo.checked = false;
-        }
-        if (disco == 1) {
-            discoTotemInfo.checked = true;
-
-        } else {
-            discoTotemInfo.checked = false;
-
-        }
-        if (rede == 1) {
-            redeTotemInfo.checked = true;
-
-        } else {
-            redeTotemInfo.checked = false;
-
-        }
-
-    } else {
-        if (cpu == 1) {
-            cpuTotemEdit.checked = true;
-
-        } else {
-            cpuTotemEdit.checked = false;
-        }
-        if (ram == 1) {
-            ramTotemEdit.checked = true;
-
-        } else {
-            ramTotemEdit.checked = false;
-
-        }
-        if (disco == 1) {
-            discoTotemEdit.checked = true;
-
-        } else {
-            discoTotemEdit.checked = false;
-
-        }
-        if (rede == 1) {
-            redeTotemEdit.checked = true;
-
-        } else {
-            redeTotemEdit.checked = false;
-        }
-    }
-
+    
 
 
 }
@@ -803,12 +659,6 @@ function editarValores() {
     editarTotemTipoRam.innerHTML = `Tipo memoria Ram: <input type="text" id="inputEditarTipoRamTotem" value="${sessionStorage.RAM_TIPO_COMPONENTE}">`
 
 
-    document.getElementById('checkboxTotemCPU').removeAttribute('disabled');
-    document.getElementById('checkboxTotemRede').removeAttribute('disabled');
-    document.getElementById('checkboxTotemRAM').removeAttribute('disabled');
-    document.getElementById('checkboxTotemDisco').removeAttribute('disabled');
-
-
     editarValoresDisco();
 }
 
@@ -863,58 +713,6 @@ function editarValoresDisco() {
         .catch(function (erro) {
             console.error("Erro ao processar requisição:", erro);
         });
-}
-
-function updateVisualizacao() {
-
-    if (cpuTotemEdit.checked) {
-        cpu = 1;
-    } else {
-        cpu = 0;
-    }
-    if (redeTotemEdit.checked) {
-        rede = 1;
-    } else {
-        rede = 0;
-    }
-    if (ramTotemEdit.checked) {
-        ram = 1;
-    } else {
-        ram = 0;
-    }
-    if (discoTotemEdit.checked) {
-        disco = 1;
-    } else {
-        disco = 0;
-    }
-
-    if (cpu == 0 && ram == 0 && rede == 0 && disco == 0) {
-        alertMessage.innerHTML = `<img src="/img/erro.png" height="40vh"> Preencha algum componente para visualiização`;
-        mostrarAlerta();
-        setTimeout(function () {
-            esconderAlerta();
-        }, 3000);
-    } else {
-
-        mostrarAlerta();
-        alertMessage.innerHTML = `<img src='/img/sinal-de-visto.png' height="50vh"> Dados alterados com sucesso!!`;
-
-        fetch("/dashboard/alterarTotemComponente", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                cpuServer: cpu,
-                redeServer: rede,
-                ramServer: ram,
-                discoServer: disco,
-                totemServer: sessionStorage.ID_TOTEM,
-            })
-        })
-
-        updateTotem();
-    }
 }
 
 function updateTotem() {

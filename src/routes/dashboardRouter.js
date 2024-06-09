@@ -28,10 +28,6 @@ router.post("/cadastrarTotem", function (req, res) {
     dashboardController.cadastrarTotem(req, res);
 })
 
-router.post("/cadastrarTotemComponetes", function (req, res) {
-    dashboardController.cadastrarTotemComponetes(req, res);
-})
-
 router.post("/cadastrarComponentesTotemDisco", function (req, res) {
     dashboardController.cadastrarComponentesTotemDisco(req, res);
 })
@@ -68,10 +64,6 @@ router.post("/alterarTotem", function(req, res){
     dashboardController.alterarTotem(req, res);
 })
 
-router.post("/alterarTotemComponente", function(req, res){
-    dashboardController.alterarTotemComponente(req, res);
-})
-
 router.post("/alterarComponenteEspecificacao", function(req, res){
     dashboardController.alterarComponenteEspecificacao(req, res);
 })
@@ -82,10 +74,6 @@ router.post("/alterarEspecificacaoTotalDisco", function(req, res){
 
 router.post("/buscarInfoTotem", function(req, res){
     dashboardController.buscarInfoTotem(req, res);
-})
-
-router.post("/buscarInfoTotemComponente", function(req, res){
-    dashboardController.buscarInfoTotemComponente(req, res);
 })
 
 router.post("/cadastrarUsuario", function (req, res) {
