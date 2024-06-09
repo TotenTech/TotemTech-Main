@@ -677,6 +677,13 @@ async function getLastComponentsData() {
     if (allNetworkLastData.length > 0) {
         allNetworkLastData = [];
     }
+    if (counter == 0) {
+        dadosCPU = [];
+        dadosDISCO = [];
+        dadosHorario = [];
+        dadosRAM = [];
+        dadosRede = [];
+    }
     try {
         //CPU
         const response = await fetch(`/totens/getComponentLastData/${sessionStorage.EMPRESA_USUARIO}/1`);
@@ -822,7 +829,7 @@ async function putIntoGraphContinuos() {
     }
 
     cpu.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosCPU.push(filtered.valor) });
-    console.log("Esses foram os dados filtrados " + cpu.filter(it => it.idtotem == totemSelectedId));
+    console.log("Esses foram os dados filtrados " + cpu.filter(it => it.idtotem == totemSelectedId).map(at => at.valor));
     memory.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRAM.push(filtered.valor) });
     disk.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosDISCO.push(filtered.valor) });
     network.filter(it => it.idtotem == totemSelectedId).forEach(filtered => { dadosRede.push(filtered.valor) });
@@ -840,6 +847,13 @@ async function putIntoGraphContinuos() {
             console.log("Horário não encontrado na string.");
         }
     });
+
+    if (dadosCPU.length > dadosHorario.length) {
+        dadosCPU.shift();
+        dadosDISCO.shift();
+        dadosRAM.shift();
+        dadosRede.shift();
+    }
 
     document.getElementById("situacaoAtualCpu").innerHTML = `${dadosCPU[dadosCPU.length - 1]}%`;
     document.getElementById("situacaoAtualRam").innerHTML = `${dadosRAM[dadosRAM.length - 1]}%`;
