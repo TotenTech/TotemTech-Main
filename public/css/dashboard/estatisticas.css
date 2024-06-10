@@ -194,6 +194,12 @@ body {
     width: 63%;
 }
 
+.inputData{
+    border: none;
+    border-radius: 5px ;
+    padding: 1% 2%;
+}
+
 .dashboard .boxStatistics .right {
     width: 30%;
     height: 90%;

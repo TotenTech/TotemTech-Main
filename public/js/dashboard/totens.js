@@ -61,7 +61,7 @@ function abrirGrafico(tipo) {
     if (tipo == "rede") {
         selectedComponent = "rede";
         boxGrafico.style.backgroundColor = "rgba(135, 164, 214, 1)";
-        lineDescricao.innerHTML = `Monitoramento da Rede em tempo real em %`;
+        lineDescricao.innerHTML = `Monitoramento da Rede em tempo real em MB/s`;
         localChart.innerHTML = `<canvas class="graficoRede" id="graficoRede"></canvas>`;
         const ctxRede = document.getElementById('graficoRede');
 
@@ -339,7 +339,7 @@ function historyAlerta(tipo) {
     
                 <div class="detalheMensagem">
                     <button onclick="historyAlertaTotal()">Total</button>
-                    <button onclick="historyAlerta('${selectedComponent}')">Totem Atual</button>
+                    <button class="escolhido" onclick="historyAlerta('${selectedComponent}')">Totem Atual</button>
                 </div>
                 
                     <span class="legendaInterrupcoes">Mensagem do Dia</span>`;
@@ -410,7 +410,7 @@ function historyAlertaTotal() {
                 </div>
     
                 <div class="detalheMensagem">
-                    <button onclick="historyAlertaTotal()">Total</button>
+                    <button class="escolhido" onclick="historyAlertaTotal()">Total</button>
                     <button onclick="historyAlerta('${selectedComponent}')">Totem Atual</button>
                 </div>
                 
@@ -436,13 +436,7 @@ function historyAlertaTotal() {
                             const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + `${c}`);
                             boxAtualInterrupcoesCircle.style.backgroundColor = `red`;
                         }
-                    } else {
-                        boxRight.innerHTML += `<div class="boxInterrupcoes">
-                    <div class="line">
-                        <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
-                        Nenhuma interrupção encontrada.</div>
-                    </div>`;
-                    }
+                    } 
                     plotarMessage(false)
                 });
             } else {
@@ -525,22 +519,13 @@ function newInfoMessage(cor, tipo, horarioAtual, idtotem, valor) {
     };
 
     messagemInterrupcoes = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
-
-    if (messagemInterrupcoes.length === 0 &&
-        (messagemInterrupcoes[messagemInterrupcoes.length - 1].valor !== message.valor &&
-            messagemInterrupcoes[messagemInterrupcoes.length - 1].idtotem !== message.idtotem)) {
-
-        messagemInterrupcoes.push(message);
-
-        sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
-    }
-
-    // if(messagemInterrupcoes[sessionStorage.HISTORY_MESSAGE.length].valor != message.valor){
-    //     messagemInterrupcoes.push(message);
-    //     sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
-    // }
-
-
+    
+    if ( messagemInterrupcoes[messagemInterrupcoes.length - 1].valor != message.valor ||
+        messagemInterrupcoes[messagemInterrupcoes.length - 1].idtotem != message.idtotem) { 
+            messagemInterrupcoes.push(message);
+        }
+            sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
+        
     alertMessage.innerHTML = `
         <div class="boxInterrupcoes">
             <div class="line">
