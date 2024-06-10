@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // GRAFICO PIZZA : uso de recursos
-const labelsDistribuicao = ['CPU', 'Memória RAM', 'Disco', 'Rede'];
+const labelsDistribuicao = ['CPU', 'Memória RAM'];
 const cores = ['#0000CD', '#6495ED', '#1e90ff', '#3E6BA8'];
 let chart;
 
@@ -136,8 +136,6 @@ function normalizeMotivo(motivo) {
     const mapping = {
         'Cpu': 'CPU',
         'Memória RAM': 'Memória RAM',
-        'Disco': 'Disco',
-        'Rede': 'Rede'
     };
     return mapping[motivo] || motivo;
 }
@@ -178,22 +176,17 @@ function updateComponentCounts(data) {
     const componentCounts = {
         CPU: 0,
         'Memória RAM': 0,
-        Disco: 0,
-        Rede: 0
     };
 
     data.forEach(item => {
         const motivo = normalizeMotivo(item.motivo);
         if (motivo === 'CPU') componentCounts.CPU = item.total;
         if (motivo === 'Memória RAM') componentCounts['Memória RAM'] = item.total;
-        if (motivo === 'Disco') componentCounts.Disco = item.total;
-        if (motivo === 'Rede') componentCounts.Rede = item.total;
     });
 
     document.getElementById('spanTotalCpu').textContent = `Cpu: ${componentCounts.CPU}`;
-    document.getElementById('spanTotalDisco').textContent = `Disco: ${componentCounts.Disco}`;
     document.getElementById('spanTotalRam').textContent = `Memória RAM: ${componentCounts['Memória RAM']}`;
-    document.getElementById('spanTotalRede').textContent = `Rede: ${componentCounts.Rede}`;
+
 }
 
 function fetchMotivoData(totem = '') {
