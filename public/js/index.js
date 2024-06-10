@@ -60,14 +60,18 @@ window.addEventListener('scroll', function() {
 });
 
 // modal suporte
-var modalSuporte = document.getElementById("modalSuporte");
-var btnModalSuporte = document.getElementById("abrirModalSuporte");
-var spanModalSuporte = document.getElementsByClassName("fecharModalSuporte")[0];
+document.getElementById("redirecionarSlack").addEventListener("click", function() {
+window.location.href = "https://totemtechgrupo.slack.com";
+});
 
-btnModalSuporte.onclick = function() {
-  modalSuporte.style.display = "flex";
-}
+// var modalSuporte = document.getElementById("modalSuporte");
+// var btnModalSuporte = document.getElementById("abrirModalSuporte");
+// var spanModalSuporte = document.getElementsByClassName("fecharModalSuporte")[0];
 
-spanModalSuporte.onclick = function() {
-  modalSuporte.style.display = "none";
-}
+// btnModalSuporte.onclick = function() {
+//   modalSuporte.style.display = "flex";
+// }
+
+// spanModalSuporte.onclick = function() {
+//   modalSuporte.style.display = "none";
+// }
