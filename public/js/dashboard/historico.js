@@ -200,19 +200,42 @@ function filtrarTotens() {
         console.error("Erro ao processar requisição:", erro);
       });
   }
+
+  function formatDate(inputDate) {
+    let date = new Date(inputDate);
+    
+    let day = date.getUTCDate();
+    let month = date.getUTCMonth() + 1; 
+    let year = date.getUTCFullYear();
+    let hours = date.getUTCHours();
+    let minutes = date.getUTCMinutes();
+    let seconds = date.getUTCSeconds();
+  
+    let timezoneOffset = -240;
+    let adjustedDate = new Date(date.getTime() + timezoneOffset * 60000);
+    day = adjustedDate.getUTCDate();
+    month = adjustedDate.getUTCMonth() + 1;
+    year = adjustedDate.getUTCFullYear();
+    hours = adjustedDate.getUTCHours();
+    minutes = adjustedDate.getUTCMinutes();
+    seconds = adjustedDate.getUTCSeconds();
+  
+    let formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  
+    return formattedDate;
+  }
   
   function atualizarHistorico(interrupcoes) {
     var lineWhite = document.getElementById('lineWhite');
     lineWhite.innerHTML = ""; // Limpa o conteúdo atual
     for (var c = 0; c < interrupcoes.length; c++) {
       var interrupcao = interrupcoes[c];
-      var data = new Date(interrupcao.horario);
-      var dataFormatada = data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear() + " " + data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();
-      if (c % 2 == 0) {
+      let formattedDate = formatDate(interrupcao.horario);
+        if (c % 2 == 0) {
         lineWhite.innerHTML += `
                 <div class="lineWhite">
                     <span class="dado">Totem ${interrupcao.nome}</span>
-                    <span class="dado">${dataFormatada}</span>
+                    <span class="dado">${formattedDate}</span>
                     <span class="dado">${interrupcao.motivo}</span>
                 </div>
             `;
@@ -220,7 +243,7 @@ function filtrarTotens() {
         lineWhite.innerHTML += `
                 <div class="lineDark">
                     <span class="dado">Totem ${interrupcao.nome}</span>
-                    <span class="dado">${dataFormatada}</span>
+                    <span class="dado">${formattedDate}</span>
                     <span class="dado">${interrupcao.motivo}</span>
                 </div>
             `;
