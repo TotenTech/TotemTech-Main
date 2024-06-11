@@ -436,7 +436,7 @@ function historyAlertaTotal() {
                             const boxAtualInterrupcoesCircle = document.getElementById("boxAtualInterrupcoesCircleDiv" + `${c}`);
                             boxAtualInterrupcoesCircle.style.backgroundColor = `red`;
                         }
-                    } 
+                    }
                     plotarMessage(false)
                 });
             } else {
@@ -519,25 +519,29 @@ function newInfoMessage(cor, tipo, horarioAtual, idtotem, valor) {
     };
 
     messagemInterrupcoes = JSON.parse(sessionStorage.getItem('HISTORY_MESSAGE')) || [];
-    
-    if ( messagemInterrupcoes[messagemInterrupcoes.length - 1].valor != message.valor ||
-        messagemInterrupcoes[messagemInterrupcoes.length - 1].idtotem != message.idtotem) { 
+
+    if (messagemInterrupcoes.length == 0) {
+        messagemInterrupcoes.push(message);
+    }else{
+        if (messagemInterrupcoes[messagemInterrupcoes.length - 1].valor != message.valor ||
+            messagemInterrupcoes[messagemInterrupcoes.length - 1].idtotem != message.idtotem) {
             messagemInterrupcoes.push(message);
         }
-            sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
-        
+    }
+    sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
+
     alertMessage.innerHTML = `
-        <div class="boxInterrupcoes">
-            <div class="line">
-                <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
-                    ${messagemInterrupcoes[messagemInterrupcoes.length - 1].nomeTotem} - ${messagemInterrupcoes[messagemInterrupcoes.length - 1].horario}  
-                </div>   
-                    <span class="texto">O totem entrou no status ${colorMessage} por conta do componente ${messagemInterrupcoes[messagemInterrupcoes.length - 1].tipo}.</span>
-                   <br>
-                    <span class="texto">Valor: ${messagemInterrupcoes[messagemInterrupcoes.length - 1].valor}</span>
-                <div>
-            </div>
-         </div>`;
+    <div class="boxInterrupcoes">
+        <div class="line">
+            <div class="boxAtualInterrupcoesCircle" id="boxAtualInterrupcoesCircleDiv"></div>
+                ${message.nomeTotem} - ${message.horario}  
+            </div>   
+                <span class="texto">O totem entrou no status ${colorMessage} por conta do componente ${message.tipo}.</span>
+               <br>
+                <span class="texto">Valor: ${message.valor}</span>
+            <div>
+        </div>
+     </div>`;
 
     mostrarAlerta();
     const circleStatus = document.getElementById('boxAtualInterrupcoesCircleDiv');
