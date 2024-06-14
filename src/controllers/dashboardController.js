@@ -50,11 +50,11 @@ function cadastrarComponentesTotem(req, res) {
         unidadeMedida1 == undefined ||
         nome2 == undefined ||
         valor2 == undefined ||
-        unidadeMedida2 == undefined ) {
+        unidadeMedida2 == undefined) {
 
         res.status(400).send("Algum dado está undefined!");
     } else {
-        dashboardModel.cadastrarComponentesTotem( nomeComponente, nome1, valor1, unidadeMedida1, nome2, valor2, unidadeMedida2, nomeComponenteCPU, valorCPU, unidadeMedidaCPU, nomeComponenteRede,  nomeEspecificacao1Rede, valorEspecificacao1Rede, unidadeMedidaEspecificacao1Rede, nomeEspecificacao2Rede, valorEspecificacao2Rede, unidadeMedidaEspecificacao2Rede)
+        dashboardModel.cadastrarComponentesTotem(nomeComponente, nome1, valor1, unidadeMedida1, nome2, valor2, unidadeMedida2, nomeComponenteCPU, valorCPU, unidadeMedidaCPU, nomeComponenteRede, nomeEspecificacao1Rede, valorEspecificacao1Rede, unidadeMedidaEspecificacao1Rede, nomeEspecificacao2Rede, valorEspecificacao2Rede, unidadeMedidaEspecificacao2Rede)
             .then(function (resposta) {
                 res.status(200).send("Componentes do totem cadastrado com sucesso");
             }).catch(function (erro) {
@@ -81,7 +81,7 @@ function cadastrarComponentesTotemDisco(req, res) {
 
         res.status(400).send("Algum dado está undefined!");
     } else {
-        dashboardModel.cadastrarComponentesTotemDisco( nomeComponente, nome1, valor1, unidadeMedida1, nome2, valor2, unidadeMedida2)
+        dashboardModel.cadastrarComponentesTotemDisco(nomeComponente, nome1, valor1, unidadeMedida1, nome2, valor2, unidadeMedida2)
             .then(function (resposta) {
                 res.status(200).send("Componentes do totem cadastrado com sucesso");
             }).catch(function (erro) {
@@ -194,14 +194,14 @@ function alterarComponenteEspecificacao(req, res) {
         idcomponente == undefined) {
         res.status(400).send("Algum dado está undefined!");
     } else {
-            dashboardModel.alterarComponenteEspecificacao(idcomponente, tipoComponente, idespecificacao, valorEspecificacao)
-                .then(function (resposta) {
-                    res.status(200).send("Alteração feita com sucesso!");
+        dashboardModel.alterarComponenteEspecificacao(idcomponente, tipoComponente, idespecificacao, valorEspecificacao)
+            .then(function (resposta) {
+                res.status(200).send("Alteração feita com sucesso!");
 
-                }).catch(function (erro) {
-                    console.log(erro);
-                    res.status(500).json(erro.sqlMessage);
-                })
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
     }
 }
 
@@ -212,14 +212,14 @@ function alterarEspecificacaoTotalDisco(req, res) {
     if (idespecificacao == undefined || totalDisco == undefined) {
         res.status(400).send("Algum dado está undefined!");
     } else {
-            dashboardModel.alterarEspecificacaoTotalDisco(idespecificacao, totalDisco)
-                .then(function (resposta) {
-                    res.status(200).send("Alteração feita com sucesso!");
+        dashboardModel.alterarEspecificacaoTotalDisco(idespecificacao, totalDisco)
+            .then(function (resposta) {
+                res.status(200).send("Alteração feita com sucesso!");
 
-                }).catch(function (erro) {
-                    console.log(erro);
-                    res.status(500).json(erro.sqlMessage);
-                })
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
     }
 }
 
@@ -258,13 +258,13 @@ function buscarInfoComponente(req, res) {
     } else {
 
         dashboardModel.buscarInfoComponente(totem)
-        .then(function (resposta) {
-            res.status(200).send(resposta);
-    
-        }).catch(function (erro) {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        })
+            .then(function (resposta) {
+                res.status(200).send(resposta);
+
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
     }
 }
 
@@ -276,7 +276,7 @@ function buscarInfoEspecificacao(req, res) {
 
         dashboardModel.buscarInfoEspecificacao(totem).then(function (resposta) {
             res.status(200).send(resposta);
-    
+
         }).catch(function (erro) {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
@@ -292,7 +292,7 @@ function buscarEspecificacaoComponente(req, res) {
 
         dashboardModel.buscarEspecificacaoComponente(componente).then(function (resposta) {
             res.status(200).send(resposta);
-    
+
         }).catch(function (erro) {
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
@@ -404,17 +404,23 @@ function editarUsuario(req, res) {
 }
 
 function buscarUltimos30Dias(req, res) {
-    dashboardModel.buscarUltimos30Dias().then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
+    var empresa = req.body.empresaServer;
+    if (empresa == undefined) {
+        res.status(400).send("Algum dado está undefined!");
+    } else {
+        dashboardModel.buscarUltimos30Dias(empresa)
+        .then(function (resposta) {
+            res.status(200).send(resposta);
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+    }
 }
 
 function buscarInterrupcoes(req, res) {
-    const { start_date, end_date } = req.query;
-    dashboardModel.buscarInterrupcoes(start_date, end_date).then(function (resposta) {
+    const { start_date, end_date, empresa} = req.query;
+    dashboardModel.buscarInterrupcoes(start_date, end_date, empresa).then(function (resposta) {
         res.status(200).send(resposta);
     }).catch(function (erro) {
         console.log(erro);
@@ -422,8 +428,51 @@ function buscarInterrupcoes(req, res) {
     });
 }
 
+function contarInterrupcoesPorMotivo(req, res) {
+    const { start_date, end_date } = req.query;
+    dashboardModel.contarInterrupcoesPorMotivo(start_date, end_date).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarInterrupcoesPorData(req, res) {
+    const data = req.query.data;
+    dashboardModel.obterInterrupcoesPorData(data).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function obterInterrupcoesPorMotivoUltimos30Dias(req, res) {
+    const { totem, empresa } = req.query;
+    dashboardModel.obterInterrupcoesPorMotivoUltimos30Dias(totem, empresa).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function obterInterrupcoesPorTotemUltimos30Dias(req, res) {
+    const empresa = req.query.empresa;
+    dashboardModel.obterInterrupcoesPorTotemUltimos30Dias(empresa).then(function (resposta) {
+        res.status(200).send(resposta);
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 function contarInterrupcoesPorMotivoUltimos30Dias(req, res) {
-    dashboardModel.contarInterrupcoesPorMotivoUltimos30Dias().then(function (resposta) {
+    var empresa = req.body.empresaServer;
+    dashboardModel.contarInterrupcoesPorMotivoUltimos30Dias(empresa).then(function (resposta) {
         res.status(200).send(resposta);
     }).catch(function (erro) {
         console.log(erro);
@@ -442,9 +491,10 @@ function contarInterrupcoesPorMotivo(req, res) {
 }
 
 function buscarInterrupcoesUltimas24Horas(req, res) {
-    dashboardModel.obterInterrupcoesUltimas24Horas().then(function(resposta) {
+    const {empresa}= req.query;
+    dashboardModel.obterInterrupcoesUltimas24Horas(empresa).then(function (resposta) {
         res.status(200).send(resposta);
-    }).catch(function(erro) {
+    }).catch(function (erro) {
         console.log(erro);
         res.status(500).json(erro.sqlMessage);
     });
@@ -452,18 +502,8 @@ function buscarInterrupcoesUltimas24Horas(req, res) {
 
 function buscarInterrupcoesPorData(req, res) {
     const data = req.query.data;
-    dashboardModel.obterInterrupcoesPorData(data).then(function(resposta) {
-        res.status(200).send(resposta);
-    }).catch(function(erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-
-function obterInterrupcoesPorMotivoUltimos30Dias(req, res) {
-    const totem = req.query.totem;
-    dashboardModel.obterInterrupcoesPorMotivoUltimos30Dias(totem).then(function (resposta) {
+    const empresa = req.query.empresa;
+    dashboardModel.obterInterrupcoesPorData(data,empresa).then(function (resposta) {
         res.status(200).send(resposta);
     }).catch(function (erro) {
         console.log(erro);
@@ -471,91 +511,6 @@ function obterInterrupcoesPorMotivoUltimos30Dias(req, res) {
     });
 }
 
-function obterInterrupcoesPorTotemUltimos30Dias(req, res) {
-    dashboardModel.obterInterrupcoesPorTotemUltimos30Dias().then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function buscarUltimos30Dias(req, res) {
-    dashboardModel.buscarUltimos30Dias().then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function buscarInterrupcoes(req, res) {
-    const { start_date, end_date } = req.query;
-    dashboardModel.buscarInterrupcoes(start_date, end_date).then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function contarInterrupcoesPorMotivoUltimos30Dias(req, res) {
-    dashboardModel.contarInterrupcoesPorMotivoUltimos30Dias().then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function contarInterrupcoesPorMotivo(req, res) {
-    const { start_date, end_date } = req.query;
-    dashboardModel.contarInterrupcoesPorMotivo(start_date, end_date).then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function buscarInterrupcoesUltimas24Horas(req, res) {
-    dashboardModel.obterInterrupcoesUltimas24Horas().then(function(resposta) {
-        res.status(200).send(resposta);
-    }).catch(function(erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function buscarInterrupcoesPorData(req, res) {
-    const data = req.query.data;
-    dashboardModel.obterInterrupcoesPorData(data).then(function(resposta) {
-        res.status(200).send(resposta);
-    }).catch(function(erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-
-function obterInterrupcoesPorMotivoUltimos30Dias(req, res) {
-    const totem = req.query.totem;
-    dashboardModel.obterInterrupcoesPorMotivoUltimos30Dias(totem).then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function obterInterrupcoesPorTotemUltimos30Dias(req, res) {
-    dashboardModel.obterInterrupcoesPorTotemUltimos30Dias().then(function (resposta) {
-        res.status(200).send(resposta);
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
 
 function selectTotemAlerta(req, res) {
     var idtotem = req.body.idtotemServer;

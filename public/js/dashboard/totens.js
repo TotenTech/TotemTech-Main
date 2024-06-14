@@ -522,11 +522,19 @@ function newInfoMessage(cor, tipo, horarioAtual, idtotem, valor) {
 
     if (messagemInterrupcoes.length == 0) {
         messagemInterrupcoes.push(message);
-    }else{
-        if (messagemInterrupcoes[messagemInterrupcoes.length - 1].valor != message.valor ||
-            messagemInterrupcoes[messagemInterrupcoes.length - 1].idtotem != message.idtotem) {
+    } else {
+        var dadoRepetido = false;
+        for (var c = 0; c < messagemInterrupcoes.length; c++) {
+            if ((messagemInterrupcoes[c].valor == message.valor &&
+                messagemInterrupcoes[c].idtotem == message.idtotem) || (messagemInterrupcoes[c].valor == message.valor &&
+                    messagemInterrupcoes[c].idtotem == message.idtotem && messagemInterrupcoes[c].horario == message.horario)) {
+                dadoRepetido = true;
+            }
+        }
+        if(dadoRepetido == false){
             messagemInterrupcoes.push(message);
         }
+
     }
     sessionStorage.setItem('HISTORY_MESSAGE', JSON.stringify(messagemInterrupcoes));
 
