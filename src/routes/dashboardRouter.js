@@ -96,15 +96,15 @@ router.post("/editarUsuario", function (req, res) {
     dashboardController.editarUsuario(req, res);
 })
 
-router.get("/buscarUltimos30Dias", function(req, res){
+router.post("/buscarUltimos30Dias", function (req, res) {
     dashboardController.buscarUltimos30Dias(req, res);
-});
+})
 
 router.get("/buscarInterrupcoes", function(req, res){
     dashboardController.buscarInterrupcoes(req, res);
 });
 
-router.get("/contarInterrupcoesPorMotivoUltimos30Dias", function(req, res){
+router.post("/contarInterrupcoesPorMotivoUltimos30Dias", function(req, res){
     dashboardController.contarInterrupcoesPorMotivoUltimos30Dias(req, res);
 });
 

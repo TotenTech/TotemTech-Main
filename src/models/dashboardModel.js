@@ -244,33 +244,35 @@ function selectTotemAlertaTotal(empresa, data) {
     return database.executar(instrucao);
 }
 
-function buscarUltimos30Dias() {
+function buscarUltimos30Dias(empresa) {
     var instrucao = `
-    SELECT totem AS nome, horario, motivo
-    FROM interrupcoes
-    WHERE horario >= DATEADD(DAY, -30, GETDATE())
-    ORDER BY horario ASC;
+    SELECT * FROM interrupcoes JOIN totem ON interrupcoes.totem = totem.idtotem
+WHERE horario >= DATEADD(DAY, -30, GETDATE())
+  AND totem.empresa = ${empresa}
+ORDER BY horario ASC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function buscarInterrupcoes(start_date, end_date) {
+function buscarInterrupcoes(start_date, end_date, empresa) {
     var instrucao = `
     SELECT totem AS nome, horario, motivo
-    FROM interrupcoes
+    FROM interrupcoes JOIN totem ON interrupcoes.totem = totem.idtotem
     WHERE horario >= '${start_date} 00:00:00' AND horario <= '${end_date} 23:59:59'
+	AND totem.empresa = ${empresa}
     ORDER BY horario ASC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function contarInterrupcoesPorMotivoUltimos30Dias() {
+function contarInterrupcoesPorMotivoUltimos30Dias(empresa) {
     var instrucao = `
         SELECT motivo, COUNT(*) AS total
-        FROM interrupcoes
+        FROM interrupcoes JOIN totem ON interrupcoes.totem = totem.idtotem
         WHERE horario >= DATEADD(DAY, -30, GETDATE())
+		AND totem.empresa = ${empresa}
         GROUP BY motivo;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -289,11 +291,12 @@ function contarInterrupcoesPorMotivo(start_date, end_date) {
     return database.executar(instrucao);
 }
 
-function obterInterrupcoesUltimas24Horas() {
+function obterInterrupcoesUltimas24Horas(empresa) {
     const instrucao = `
-        SELECT FORMAT(horario, 'HH:00') AS hora, COUNT(*) AS total, STRING_AGG(motivo, ', ') AS motivo
-        FROM interrupcoes
+       SELECT FORMAT(horario, 'HH:00') AS hora, COUNT(*) AS total, STRING_AGG(motivo, ', ') AS motivo
+        FROM interrupcoes JOIN totem ON interrupcoes.totem = totem.idtotem
         WHERE horario >= DATEADD(DAY, -1, GETDATE())
+		AND totem.empresa = ${empresa}
         GROUP BY FORMAT(horario, 'HH:00')
         ORDER BY hora;
     `;
@@ -301,11 +304,12 @@ function obterInterrupcoesUltimas24Horas() {
     return database.executar(instrucao);
 }
 
-function obterInterrupcoesPorData(data) {
+function obterInterrupcoesPorData(data, empresa) {
     const instrucao = `
-        SELECT FORMAT(horario, 'HH:00') AS hora, COUNT(*) AS total, STRING_AGG(motivo, ', ') AS motivo
-        FROM interrupcoes
+     SELECT FORMAT(horario, 'HH:00') AS hora, COUNT(*) AS total, STRING_AGG(motivo, ', ') AS motivo
+        FROM interrupcoes JOIN totem ON interrupcoes.totem = totem.idtotem
         WHERE CAST(horario AS DATE) = '${data}'
+		AND totem.empresa = ${empresa}
         GROUP BY FORMAT(horario, 'HH:00')
         ORDER BY hora;
     `;
@@ -313,13 +317,13 @@ function obterInterrupcoesPorData(data) {
     return database.executar(instrucao);
 }
 
-function obterInterrupcoesPorMotivoUltimos30Dias(totem = null) {
+function obterInterrupcoesPorMotivoUltimos30Dias(totem = null, empresa) {
     let instrucao = `
-        SELECT motivo, COUNT(*) AS total
-        FROM interrupcoes
-        WHERE horario >= DATEADD(DAY, -30, GETDATE())
-    `;
-    
+SELECT interrupcoes.motivo, COUNT(*) AS total
+FROM interrupcoes
+JOIN totem ON interrupcoes.totem = totem.idtotem
+WHERE horario >= DATEADD(DAY, -30, GETDATE()) 
+  AND totem.empresa = ${empresa}`;
     if (totem) {
         instrucao += ` AND totem = ${totem}`;
     }
@@ -330,11 +334,12 @@ function obterInterrupcoesPorMotivoUltimos30Dias(totem = null) {
     return database.executar(instrucao);
 }
 
-function obterInterrupcoesPorTotemUltimos30Dias() {
+function obterInterrupcoesPorTotemUltimos30Dias(empresa) {
     var instrucao = `
         SELECT totem, COUNT(*) AS total
-        FROM interrupcoes
+        FROM interrupcoes JOIN totem ON interrupcoes.totem = totem.idtotem
         WHERE horario >= DATEADD(DAY, -30, GETDATE())
+		AND totem.empresa = ${empresa}
         GROUP BY totem;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

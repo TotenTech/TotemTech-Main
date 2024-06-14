@@ -111,11 +111,14 @@ function filtrarTotens() {
   
   function carregarUltimos30Dias() {
     fetch("/dashboard/buscarUltimos30Dias", {
-      method: "GET",
+      method: "POST",
       headers: {
-        "Content-Type": 'application/json',
-      }
-    })
+          "Content-Type": 'application/json',
+      },
+      body: JSON.stringify({
+        empresaServer: sessionStorage.EMPRESA_USUARIO,
+      })
+  })
       .then(function (resposta) {
         if (resposta.ok) {
           resposta.json().then(function (resposta) {
@@ -124,6 +127,7 @@ function filtrarTotens() {
           });
         } else {
           console.error("Erro na requisição:", resposta.status);
+          console.log(resposta)
         }
       })
       .catch(function (erro) {
@@ -134,8 +138,9 @@ function filtrarTotens() {
   function buscarHistoricoUsuario() {
     const startDate = document.getElementById('start_date').value;
     const endDate = document.getElementById('end_date').value;
+    const empresa = sessionStorage.EMPRESA_USUARIO;
   
-    fetch(`/dashboard/buscarInterrupcoes?start_date=${startDate}&end_date=${endDate}`, {
+    fetch(`/dashboard/buscarInterrupcoes?start_date=${startDate}&end_date=${endDate}&empresa=${empresa}`, {
       method: "GET",
       headers: {
         "Content-Type": 'application/json',
@@ -145,7 +150,6 @@ function filtrarTotens() {
         if (resposta.ok) {
           resposta.json().then(function (resposta) {
             atualizarHistorico(resposta);
-            contarInterrupcoesPorMotivo();
           });
         } else {
           console.error("Erro na requisição:", resposta.status);
@@ -158,10 +162,13 @@ function filtrarTotens() {
   
   function contarInterrupcoesPorMotivoUltimos30Dias() {
     fetch("/dashboard/contarInterrupcoesPorMotivoUltimos30Dias", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": 'application/json',
-      }
+      },
+      body: JSON.stringify({
+        empresaServer: sessionStorage.EMPRESA_USUARIO,
+      })
     })
       .then(function (resposta) {
         if (resposta.ok) {
@@ -177,30 +184,7 @@ function filtrarTotens() {
       });
   }
   
-  function contarInterrupcoesPorMotivo() {
-    const startDate = document.getElementById('start_date').value;
-    const endDate = document.getElementById('end_date').value;
   
-    fetch(`/dashboard/contarInterrupcoesPorMotivo?start_date=${startDate}&end_date=${endDate}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": 'application/json',
-      }
-    })
-      .then(function (resposta) {
-        if (resposta.ok) {
-          resposta.json().then(function (resposta) {
-            atualizarContagemInterrupcoes(resposta);
-          });
-        } else {
-          console.error("Erro na requisição:", resposta.status);
-        }
-      })
-      .catch(function (erro) {
-        console.error("Erro ao processar requisição:", erro);
-      });
-  }
-
   function formatDate(inputDate) {
     let date = new Date(inputDate);
     

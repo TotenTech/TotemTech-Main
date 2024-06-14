@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 // Definir telas disponiveis por nivel de acesso
-if(sessionStorage.TIPO_USUARIO == "1"){
+if (sessionStorage.TIPO_USUARIO == "1") {
     const screenGerenciarUsuario = document.getElementById("screenGerenciarUsuarioLi");
     screenGerenciarUsuario.style.display = "none";
 }
@@ -25,7 +25,7 @@ function closeModal() {
     document.getElementById('myModal').style.display = 'none';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const ctx1 = document.getElementById('graficoBar').getContext('2d');
     const dateInput = document.getElementById('dataBusca');
     const errorMessage = document.getElementById('errorMessage');
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                const labels = Array.from({length: 24}, (_, i) => `${String(i).padStart(2, '0')}:00`);
+                const labels = Array.from({ length: 24 }, (_, i) => `${String(i).padStart(2, '0')}:00`);
                 const values = new Array(24).fill(0);
                 const motivos = new Array(24).fill('');
 
@@ -72,14 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             suggestedMax: Math.max(...values) + 1,
                             ticks: {
                                 stepSize: 1,
-                                callback: function(value) {
+                                callback: function (value) {
                                     return value;
                                 }
                             }
                         },
                         x: {
                             ticks: {
-                                callback: function(value, index, ticks) {
+                                callback: function (value, index, ticks) {
                                     return labels[index];
                                 }
                             }
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     plugins: {
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     let label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';
@@ -119,11 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     let chart1;
-    fetchAndRenderData('/dashboard/buscarInterrupcoesUltimas24Horas');
+    fetchAndRenderData(`/dashboard/buscarInterrupcoesUltimas24Horas?empresa=${sessionStorage.EMPRESA_USUARIO}`);
 
-    dateInput.addEventListener('change', function() {
+    dateInput.addEventListener('change', function () {
         const selectedDate = dateInput.value;
-        fetchAndRenderData(`/dashboard/buscarInterrupcoesPorData?data=${selectedDate}`);
+        fetchAndRenderData(`/dashboard/buscarInterrupcoesPorData?data=${selectedDate}&empresa=${sessionStorage.EMPRESA_USUARIO}`);
     });
 });
 
@@ -190,7 +190,7 @@ function updateComponentCounts(data) {
 }
 
 function fetchMotivoData(totem = '') {
-    const url = totem ? `/dashboard/motivoUltimos30Dias?totem=${totem}` : '/dashboard/motivoUltimos30Dias';
+    const url = totem ? `/dashboard/motivoUltimos30Dias?totem=${totem}&empresa=${sessionStorage.EMPRESA_USUARIO}` : `/dashboard/motivoUltimos30Dias?empresa=${sessionStorage.EMPRESA_USUARIO}`;
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -201,7 +201,7 @@ function fetchMotivoData(totem = '') {
 }
 
 function fetchTotemData() {
-    fetch('/dashboard/totemUltimos30Dias')
+    fetch(`/dashboard/totemUltimos30Dias?empresa=${sessionStorage.EMPRESA_USUARIO}`)
         .then(response => response.json())
         .then(data => {
             const ul = document.querySelector('.boxOptionsTotem ul');
@@ -215,7 +215,7 @@ function fetchTotemData() {
             });
 
             document.querySelectorAll('.boxOptionsTotem ul li').forEach(li => {
-                li.addEventListener('click', function() {
+                li.addEventListener('click', function () {
                     const totem = this.getAttribute('data-totem');
                     fetchMotivoData(totem);
                 });
